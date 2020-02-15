@@ -1,0 +1,10 @@
+pandoc: 2.7.2
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  example1_intro: example1_intro.html
+  example2_join: example2_join.html
+  example3_reshape: example3_reshape.html
+  example4_nest: example4_nest.html
+  example5_tibble: example5_tibble.html
+
