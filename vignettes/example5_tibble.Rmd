@@ -1,0 +1,36 @@
+---
+title: "Eample 5: Tibble"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example5_tibble}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+  `tibble` is the name of a package, as well as a enhanced data.frame structure, which provides user lots of information automatically. I admire this design, and used to think of adding `as_tibble` to every end of function. This is, however, inefficient for data manipulation, which violates the principal of "fast". But thanks to Houyun, he taught me a way to adjust the `print.data.frame` function, which I finally use for `pring.data.table` for an alternative way of printing data.table. Now let's try it with the function `show_tibble`:
+```{r setup}
+library(tidyfst)
+
+iris %>% count_dt(Species) -> a
+class(a)
+
+# turn on
+show_tibble(TRUE)
+a
+class(a)
+
+# shut off
+show_tibble(FALSE)
+a
+class(a)
+```
+
+  We can find that the structure of variable `a` never changes, but the printing form of it could be altered to tibble or back to data.table using `show_tibble` function. You can choose the one you preferred.
+  
+  

@@ -1,0 +1,48 @@
+---
+title: "Eample 4: Nest"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example4_nest}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+  This vignette displays how to use nesting in `tidyfst`. It has referred to `tidyr`s vignette in <https://tidyr.tidyverse.org/articles/nest.html>. Now fist, we nest the "mtcars" data.frame by "cyl" column.
+```{r setup}
+library(tidyfst)
+
+# nest by "cyl" column
+mtcars_nested <- mtcars %>% 
+  nest_by("cyl")
+
+# inspect the output data.table
+mtcars_nested
+
+```
+
+  Now, we want to do a regression within the nested group "cyl". We'll use the famous `lapply` to complete this:
+
+```{r}
+mtcars_nested2 <- mtcars_nested %>% 
+  mutate_dt(model = lapply(ndt,function(df) lm(mpg ~ wt, data = df)))
+
+mtcars_nested2
+```
+  We could see that the model is stored in the column "model".
+  Now, we try to get the fitted value in the model.
+```{r}
+mtcars_nested3 <- mtcars_nested2 %>% 
+  mutate_dt(model_predict = lapply(model, predict))
+mtcars_nested3$model_predict
+```
+  We could find that the "model_predict" is a list of numeric vectors. Let's try to unnest the target column "model_predict". 
+```{r}
+mtcars_nested3 %>% unnest_col(model_predict)
+```
+  This process would remove all the other list column automatically. For instance, in our case, the column "ndt" is removed.

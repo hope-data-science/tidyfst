@@ -1,0 +1,92 @@
+---
+title: "Example 2: Join tables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example2_join}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+  This post has referred to a vignette from `dplyr`, you can find it in <https://dplyr.tidyverse.org/articles/two-table.html>. We'll try to display how to join data tables in this vignette. First, load the packages we need and get some data.
+```{r setup}
+library(tidyfst)
+library(nycflights13)
+
+flights2 <- flights %>% 
+  select_dt(year,month,day, hour, origin, dest, tailnum, carrier)
+
+```
+  Do a left join with a simple:
+```{r}
+flights2 %>% 
+  left_join_dt(airlines)
+```
+  
+## Controlling how the tables are matched
+  Join works the same as `dplyr`:
+```{r}
+flights2 %>% left_join_dt(weather)
+flights2 %>% left_join_dt(planes, by = "tailnum")
+flights2 %>% left_join_dt(airports, c("dest" = "faa"))
+flights2 %>% left_join_dt(airports, c("origin" = "faa"))
+```
+
+## Types of join
+
+```{r}
+df1 <- data.table(x = c(1, 2), y = 2:1)
+df2 <- data.table(x = c(1, 3), a = 10, b = "a")
+
+df1 %>% inner_join_dt(df2) 
+df1 %>% left_join_dt(df2)
+df1 %>% right_join_dt(df2)
+df1 %>% full_join_dt(df2)
+
+```
+  If all you have is a data.frame or tibble, you have no need to change the format. Feed the data directly:
+```{r}
+df1 <- data.frame(x = c(1, 1, 2), y = 1:3)
+df2 <- data.frame(x = c(1, 1, 2), z = c("a", "b", "a"))
+
+df1 %>% left_join_dt(df2)
+```
+  The "_dt" suffix should remind you that this is backed up by `data.table` and will always return a data.table in the end.
+
+## Filtering joins
+  Filtering joins have also been supported in `tidyfst`.
+```{r}
+flights %>% 
+  anti_join_dt(planes, by = "tailnum") %>% 
+  count_dt(tailnum, sort = TRUE)
+```
+  Other examples (`semi_join_dt()` and `anti_join_dt()` never duplicate; they only ever remove observations.):
+```{r}
+df1 <- data.frame(x = c(1, 1, 3, 4), y = 1:4)
+df2 <- data.frame(x = c(1, 1, 2), z = c("a", "b", "a"))
+
+# Four rows to start with:
+df1 %>% nrow()
+
+# And we get four rows after the join
+df1 %>% inner_join_dt(df2, by = "x") %>% nrow()
+
+# But only two rows actually match
+df1 %>% semi_join_dt(df2, by = "x") %>% nrow()
+```
+  
+## Set operations
+  For set operations, use `data.table`'s function directly. `tidyfst` have exported the following functions:
+  
+* fintersect(x, y, all = FALSE)
+* fsetdiff(x, y, all = FALSE)
+* funion(x, y, all = FALSE)
+* fsetequal(x, y, all = TRUE)
+
+  For details, just find the help from `data.table` using `?setops`.
+

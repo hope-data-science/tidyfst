@@ -1,0 +1,151 @@
+---
+title: "Eample 1: Basic usage"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example1_intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette has referred to `dplyr`'s vignette in <https://dplyr.tidyverse.org/articles/dplyr.html>. We'll try to reproduce all the results. First load the needed packages.
+
+```{r}
+library(tidyfst)
+library(nycflights13)
+
+data.table(flights)
+```
+
+## Filter rows with `filter_dt()`
+```{r}
+filter_dt(flights, month == 1, day == 1)
+```
+
+## Arrange rows with `arrange_dt()`
+```{r}
+arrange_dt(flights, year, month, day)
+```
+
+  Use `-` (minus symbol) to order a column in descending order:
+```{r}
+arrange_dt(flights, -arr_delay)
+```
+
+## Select columns with `select_dt()`
+
+```{r}
+select_dt(flights, year, month, day)
+```
+
+  `select_dt(flights, year:day)` and `select_dt(flights, -(year:day))` are not supported. But I have added a feature to help select with regular expression, which means you can:
+```{r}
+select_dt(flights, "^dep")
+```
+  The rename process is almost the same as that in `dplyr`:
+```{r}
+select_dt(flights, tail_num = tailnum)
+rename_dt(flights, tail_num = tailnum)
+```
+  
+## Add new columns with `mutate_dt()`
+```{r}
+mutate_dt(flights,
+  gain = arr_delay - dep_delay,
+  speed = distance / air_time * 60
+)
+```
+  
+  However, if you just create the column, please split them. The following codes would not work:
+```{r,eval=FALSE}
+mutate_dt(flights,
+  gain = arr_delay - dep_delay,
+  gain_per_hour = gain / (air_time / 60)
+)
+```
+  Instead, use:
+```{r}
+mutate_dt(flights,gain = arr_delay - dep_delay) %>%
+  mutate_dt(gain_per_hour = gain / (air_time / 60))
+```
+  
+  If you only want to keep the new variables, use `transmute_dt()`:
+```{r}
+transmute_dt(flights,
+  gain = arr_delay - dep_delay
+)
+```
+  
+## Summarise values with `summarise_dt()`
+```{r}
+summarise_dt(flights,
+  delay = mean(dep_delay, na.rm = TRUE)
+)
+```
+
+## Randomly sample rows with `sample_n_dt()` and `sample_frac_dt()`
+```{r}
+sample_n_dt(flights, 10)
+sample_frac_dt(flights, 0.01)
+```
+
+## Grouped operations
+  For the below `dplyr` codes:
+```{r,eval=FALSE}
+by_tailnum <- group_by(flights, tailnum)
+delay <- summarise(by_tailnum,
+  count = n(),
+  dist = mean(distance, na.rm = TRUE),
+  delay = mean(arr_delay, na.rm = TRUE))
+delay <- filter(delay, count > 20, dist < 2000)
+```
+  We could get it via:
+```{r}
+flights %>% 
+  summarise_dt( count = .N,
+  dist = mean(distance, na.rm = TRUE),
+  delay = mean(arr_delay, na.rm = TRUE),by = tailnum)
+```
+  `summarise_dt` (or `summarize_dt`) has a parameter "by", you can specify the group.
+  We could find the number of planes and the number of flights that go to each possible destination:
+```{r}
+# the dplyr syntax:
+# destinations <- group_by(flights, dest)
+# summarise(destinations,
+#   planes = n_distinct(tailnum),
+#   flights = n()
+# )
+
+summarise_dt(flights,planes = uniqueN(tailnum),flights = .N,by = dest) %>% 
+  arrange_dt(dest)
+
+```
+  If you need to group by many variables, use:
+```{r}
+# the dplyr syntax:
+# daily <- group_by(flights, year, month, day)
+# (per_day   <- summarise(daily, flights = n()))
+
+flights %>% 
+  summarise_dt(by = .(year,month,day),flights = .N)
+
+# (per_month <- summarise(per_day, flights = sum(flights)))
+flights %>% 
+  summarise_dt(by = .(year,month,day),flights = .N) %>% 
+  summarise_dt(by = .(year,month),flights = sum(flights))
+
+# (per_year  <- summarise(per_month, flights = sum(flights)))
+flights %>% 
+  summarise_dt(by = .(year,month,day),flights = .N) %>% 
+  summarise_dt(by = .(year,month),flights = sum(flights)) %>% 
+  summarise_dt(by = .(year),flights = sum(flights))
+```
+  
+
+

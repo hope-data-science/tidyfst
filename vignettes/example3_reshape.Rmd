@@ -1,0 +1,83 @@
+---
+title: "Example 3: Reshape"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example3_reshape}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+  When I design `longer_dt` and `wider_dt`, I could find the `pivot_longer` and `pivot_wider` in `tidyr` and `melt` and `dcast` in `data.table`. Still, designing this API is not easy, as my goal is to let users use it with least pain. Here we would try to reproduce the results in the vignette of `tidyr`(<https://tidyr.tidyverse.org/articles/pivot.html>). First load the packages:
+```{r setup}
+library(tidyfst)
+library(tidyr)
+```
+
+## Longer
+  First inspect the data:
+```{r}
+relig_income
+```
+  In `tidyr`, to get the longer format you need:
+```{r,eval=FALSE}
+relig_income %>% 
+  pivot_longer(-religion, names_to = "income", values_to = "count")
+```
+  In `tidyfst`, we have:
+```{r,warning=FALSE}
+relig_income %>% 
+  longer_dt(group_to_keep = "religion",gathered_name = "income",gathered_value = "count")
+```
+  Another example from `tidyr`:
+```{r,eval=FALSE}
+billboard
+
+# tidyr way:
+# billboard %>% 
+#   pivot_longer(
+#     cols = starts_with("wk"), 
+#     names_to = "week", 
+#     values_to = "rank",
+#     values_drop_na = TRUE
+#   )
+
+# tidyfst way:
+billboard %>% 
+  longer_dt("wk",negate = TRUE,  
+            gathered_name = "week",
+            gathered_value = "rank",
+            na.rm = TRUE
+            )
+# regex should select group_to_keep, negate could reverse that
+```
+    A warning would could come out because the merging column has different data types and do the coercion automatically.
+    
+## Wider
+
+```{r}
+## data
+fish_encounters
+
+## tidyr way:
+fish_encounters %>% pivot_wider(names_from = station, values_from = seen)
+
+## tidyfst way:
+fish_encounters %>% 
+  wider_dt(name_to_spread = "station",value_to_spread = "seen")
+```
+    
+  If you want to fill with 0s, use:
+```{r}
+fish_encounters %>% 
+  wider_dt(name_to_spread = "station",value_to_spread = "seen",fill = 0)
+```
+  `tidyfst` currently does not support spreading multiple columns. I believe this way could keep this function simple and easy to understand. When you need this function, try spread them one by one (using a loop), or try `data.table` and `tidyr`.
+
+
+
