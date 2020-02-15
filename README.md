@@ -1,6 +1,6 @@
 # tidyfst: Tidy Verbs for Fast Data Manipulation<img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  [![](https://img.shields.io/badge/devel%20version-0.5.7-blue.svg)](https://github.com/hope-data-science/tidyfst) ![](https://img.shields.io/badge/lifecycle-maturing-blue.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master)
+[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  [![](https://img.shields.io/badge/devel%20version-0.5.7-blue.svg)](https://github.com/hope-data-science/tidyfst) ![](https://img.shields.io/badge/lifecycle-maturing-blue.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
 
 
 
@@ -20,7 +20,7 @@ Enjoy the data science in *tidyfst* !
 - Never use in place replacement. 
 - Use suffix rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
 - More verbs for big data manipulation.
-- Supporting data importing and parsing with *fst*, details see [parse_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html), [select_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html).
+- Supporting data importing and parsing with *fst*, details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
 - Flagship functions: [group_dt](https://hope-data-science.github.io/tidyfst/reference/group_dt.html), [unnest_dt](https://hope-data-science.github.io/tidyfst/reference/unnest_dt.html), [mutate_when](https://hope-data-science.github.io/tidyfst/reference/mutate_when.html), etc.
 
 
