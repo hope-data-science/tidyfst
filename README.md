@@ -16,11 +16,12 @@ Enjoy the data science in *tidyfst* !
 
 ## Features
 
-- Always receives data.frame (tibble/data.table/data.frame) and returns a data.table.
+- Receives any data.frame (tibble/data.table/data.frame) and returns a data.table.
 - Never use in place replacement. 
 - Use suffix rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
-- More verbs for big data manipulation.
+- More flexible verbs for big data manipulation.
 - Supporting data importing and parsing with *fst*, details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
+- Whole tibble display of data.table using [show_tibble](https://hope-data-science.github.io/tidyfst/reference/show_tibble.html).
 - Flagship functions: [group_dt](https://hope-data-science.github.io/tidyfst/reference/group_dt.html), [unnest_dt](https://hope-data-science.github.io/tidyfst/reference/unnest_dt.html), [mutate_when](https://hope-data-science.github.io/tidyfst/reference/mutate_when.html), etc.
 
 
