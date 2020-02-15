@@ -1,6 +1,6 @@
 # tidyfst: Tidy Verbs for Fast Data Manipulation<img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-[![](https://img.shields.io/badge/devel%20version-0.5.7-lightgreen.svg)](https://github.com/hope-data-science/tidyfst) ![](https://img.shields.io/badge/lifecycle-maturing-lightblue.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
+[![](https://img.shields.io/badge/devel%20version-0.5.7-orange.svg)](https://github.com/hope-data-science/tidyfst) ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
 
 
 
