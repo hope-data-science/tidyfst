@@ -34,29 +34,33 @@ filter_fst(ft, ...)
 An API for reading fst file as data.table.
 }
 \examples{
-fst::write_fst(iris,"iris_fst_test.fst")
 
-parse_fst("iris_fst_test.fst") -> ft
-ft
+\dontrun{
+  fst::write_fst(iris,"iris_test.fst")
+  # parse the file but not reading it
+  parse_fst("iris_test.fst") -> ft
+  ft
 
-ft \%>\% slice_fst(1:3)
-ft \%>\% slice_fst(c(1,3))
+  # get the data by query
+  ft \%>\% slice_fst(1:3)
+  ft \%>\% slice_fst(c(1,3))
 
-ft \%>\% select_fst(Sepal.Length,Sepal.Width) # could not select only one in this way
-ft \%>\% select_fst("Sepal.Length")
-ft \%>\% select_fst(1:3)
-ft \%>\% select_fst(1,3)
-ft \%>\% select_fst("Se")
-ft \%>\% select_fst("nothing")
-ft \%>\% select_fst("Se|Sp")
-ft \%>\% select_fst(names(iris)[2:3])
+  ft \%>\% select_fst(Sepal.Length)
+  ft \%>\% select_fst(Sepal.Length,Sepal.Width)
+  ft \%>\% select_fst("Sepal.Length")
+  ft \%>\% select_fst(1:3)
+  ft \%>\% select_fst(1,3)
+  ft \%>\% select_fst("Se")
+  ft \%>\% select_fst("nothing")
+  ft \%>\% select_fst("Se|Sp")
+  ft \%>\% select_fst(names(iris)[2:3])
 
-ft \%>\% filter_fst(Sepal.Width > 3)
-ft \%>\% filter_fst(Sepal.Length > 6 , Species == "virginica")
-ft \%>\% filter_fst(Sepal.Length > 6 & Species == "virginica" & Sepal.Width < 3)
+  ft \%>\% filter_fst(Sepal.Width > 3)
+  ft \%>\% filter_fst(Sepal.Length > 6 , Species == "virginica")
+  ft \%>\% filter_fst(Sepal.Length > 6 & Species == "virginica" & Sepal.Width < 3)
 
-rm(ft)
-unlink("iris_fst_test.fst")
+  unlink("iris_test.fst")
+}
 }
 \seealso{
 \code{\link[fst]{fst}}

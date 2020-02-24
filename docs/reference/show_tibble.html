@@ -79,7 +79,7 @@ or tibble." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.6</span>
       </span>
     </div>
 
@@ -174,11 +174,11 @@ or tibble.</p>
 
 <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count.html'>count_dt</a></span>(<span class='no'>Species</span>) <span class='kw'>-&gt;</span> <span class='no'>a</span>
 <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; [1] "data.table" "data.frame"</div><div class='input'>
-<span class='fu'>show_tibble</span>(<span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; The tibble mode has been turned on.</div><div class='input'><span class='no'>a</span></div><div class='output co'>#&gt;       Species  n
+<span class='no'>print.data.table</span> <span class='kw'>=</span> <span class='fu'>show_tibble</span>(<span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>The tibble mode has been turned on.</span></div><div class='input'><span class='no'>a</span></div><div class='output co'>#&gt;       Species  n
 #&gt; 1:     setosa 50
 #&gt; 2: versicolor 50
 #&gt; 3:  virginica 50</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; [1] "data.table" "data.frame"</div><div class='input'>
-<span class='fu'>show_tibble</span>(<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; The tibble mode has been shut off.</div><div class='input'><span class='no'>a</span></div><div class='output co'>#&gt;       Species  n
+<span class='no'>print.data.table</span> <span class='kw'>=</span> <span class='fu'>show_tibble</span>(<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>The tibble mode has been shut off.</span></div><div class='input'><span class='no'>a</span></div><div class='output co'>#&gt;       Species  n
 #&gt; 1:     setosa 50
 #&gt; 2: versicolor 50
 #&gt; 3:  virginica 50</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; [1] "data.table" "data.frame"</div></pre>

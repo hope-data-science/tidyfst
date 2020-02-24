@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.6</span>
       </span>
     </div>
 
@@ -191,37 +191,33 @@ character vector of length 2.</p></td>
     <p>data.table</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/dplyr/man/join.html'>left_join</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/join.html'>left_join</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>workers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/fread.html'>fread</a></span>(<span class='st'>"
+<span class='no'>workers</span> <span class='kw'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>fread</a></span>(<span class='st'>"
     name company
     Nick Acme
     John Ajax
     Daniela Ajax
 "</span>)
 
-<span class='no'>positions</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/fread.html'>fread</a></span>(<span class='st'>"
+<span class='no'>positions</span> <span class='kw'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>fread</a></span>(<span class='st'>"
     name position
     John designer
     Daniela engineer
     Cathie manager
 "</span>)
 
-<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>inner_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; Joining by: name
-#&gt; </div><div class='output co'>#&gt;       name company position
+<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>inner_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;       name company position
 #&gt; 1: Daniela    Ajax engineer
-#&gt; 2:    John    Ajax designer</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>left_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; Joining by: name
-#&gt; </div><div class='output co'>#&gt;       name company position
+#&gt; 2:    John    Ajax designer</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>left_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;       name company position
 #&gt; 1: Daniela    Ajax engineer
 #&gt; 2:    John    Ajax designer
-#&gt; 3:    Nick    Acme     &lt;NA&gt;</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>right_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; Joining by: name
-#&gt; </div><div class='output co'>#&gt;       name company position
+#&gt; 3:    Nick    Acme     &lt;NA&gt;</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>right_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;       name company position
 #&gt; 1:  Cathie    &lt;NA&gt;  manager
 #&gt; 2: Daniela    Ajax engineer
-#&gt; 3:    John    Ajax designer</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>full_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; Joining by: name
-#&gt; </div><div class='output co'>#&gt;       name company position
+#&gt; 3:    John    Ajax designer</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>full_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;       name company position
 #&gt; 1:  Cathie    &lt;NA&gt;  manager
 #&gt; 2: Daniela    Ajax engineer
 #&gt; 3:    John    Ajax designer

@@ -27,11 +27,11 @@ This function actually define or remove a function named as
 iris \%>\% count_dt(Species) -> a
 class(a)
 
-show_tibble(TRUE)
+print.data.table = show_tibble(TRUE)
 a
 class(a)
 
-show_tibble(FALSE)
+print.data.table = show_tibble(FALSE)
 a
 class(a)
 }

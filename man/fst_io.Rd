@@ -54,7 +54,7 @@ from \pkg{fst}, but use a different default. For data import, always return a da
 For data export, always compress the data to the smallest size.
 }
 \examples{
-\donttest{
+\dontrun{
 export_fst(iris,"iris_fst_test.fst")
 iris_dt = import_fst("iris_fst_test.fst")
 iris_dt
