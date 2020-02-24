@@ -29,6 +29,8 @@ Enjoy the data science in *tidyfst* !
 ## Installation
 
 ```R
+install.packages("tidyfst")
+# or
 devtools::install_github("hope-data-science/tidyfst")
 ```
 
