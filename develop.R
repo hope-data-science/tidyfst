@@ -30,12 +30,23 @@ build_site()
 
 submit_cran()
 
+
+f <- file.path(tempdir(), "mypackage_thefile.csv")
+if (file.exists(f)) {
+  d <- read.csv(f)
+} else {
+  # download it and save to f
+}
+
 # https://github.com/GuangchuangYu/badger
 badge_devel("guangchuangyu/ggtree", "blue")
 badge_devel("hope-data-science/tidydt", "blue")
 
 a = "dl-keras-tf"
 stringr::str_glue("wget -c \"https://codeload.github.com/rstudio-conf-2020/{a}/zip/master\" -O {a}")
+
+a = "rstudio/cheatsheets"
+stringr::str_glue("wget -c \"https://codeload.github.com/{a}/zip/master\" -O cheatsheet.zip")
 
 use_logo(file.choose())
 use_vignette(name = "Introduction",title = "Using data.table the tidy way")
