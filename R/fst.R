@@ -11,29 +11,37 @@
 #' @seealso \code{\link[fst]{fst}}
 #' @importFrom stringr str_detect
 #' @examples
-#' fst::write_fst(iris,"iris_fst_test.fst")
 #'
-#' parse_fst("iris_fst_test.fst") -> ft
-#' ft
+#' \dontrun{
+#'   fst::write_fst(iris,"iris_test.fst")
+#'   # parse the file but not reading it
+#'   parse_fst("iris_test.fst") -> ft
+#'   ft
 #'
-#' ft %>% slice_fst(1:3)
-#' ft %>% slice_fst(c(1,3))
+#'   # get the data by query
+#'   ft %>% slice_fst(1:3)
+#'   ft %>% slice_fst(c(1,3))
 #'
-#' ft %>% select_fst(Sepal.Length,Sepal.Width) # could not select only one in this way
-#' ft %>% select_fst("Sepal.Length")
-#' ft %>% select_fst(1:3)
-#' ft %>% select_fst(1,3)
-#' ft %>% select_fst("Se")
-#' ft %>% select_fst("nothing")
-#' ft %>% select_fst("Se|Sp")
-#' ft %>% select_fst(names(iris)[2:3])
+#'   ft %>% select_fst(Sepal.Length)
+#'   ft %>% select_fst(Sepal.Length,Sepal.Width)
+#'   ft %>% select_fst("Sepal.Length")
+#'   ft %>% select_fst(1:3)
+#'   ft %>% select_fst(1,3)
+#'   ft %>% select_fst("Se")
+#'   ft %>% select_fst("nothing")
+#'   ft %>% select_fst("Se|Sp")
+#'   ft %>% select_fst(names(iris)[2:3])
 #'
-#' ft %>% filter_fst(Sepal.Width > 3)
-#' ft %>% filter_fst(Sepal.Length > 6 , Species == "virginica")
-#' ft %>% filter_fst(Sepal.Length > 6 & Species == "virginica" & Sepal.Width < 3)
+#'   ft %>% filter_fst(Sepal.Width > 3)
+#'   ft %>% filter_fst(Sepal.Length > 6 , Species == "virginica")
+#'   ft %>% filter_fst(Sepal.Length > 6 & Species == "virginica" & Sepal.Width < 3)
 #'
-#' rm(ft)
-#' unlink("iris_fst_test.fst")
+#'   unlink("iris_test.fst")
+#' }
+
+
+
+
 
 globalVariables(c("."))
 
@@ -58,7 +66,7 @@ select_fst = function(ft,...){
     deparse() %>%
     str_extract("\\(.+\\)") %>%
     str_sub(2,-2)-> dot_string
-  if(str_detect(dot_string,"^\"")){
+  if(str_detect(dot_string,"^\"") | str_detect(dot_string,"^[a-zA-Z0-9_.]+$")){
     dot_string = str_remove_all(dot_string,"\"")
     str_detect(names(ft),dot_string) -> logical_vec
     if(all(logical_vec == FALSE)) {
@@ -78,7 +86,7 @@ select_fst = function(ft,...){
       str_c(collapse = ",") %>%
       str_c("c(",.,")") -> dot_string
     eval(parse(text = str_glue("ft[,{dot_string}] %>% as.data.table()")))
-  } else
+  }  else
     eval(parse(text = str_glue("ft[,{dot_string}] %>% as.data.table()")))
 }
 

@@ -21,12 +21,12 @@ iris %>% count_dt(Species) -> a
 class(a)
 
 # turn on
-show_tibble(TRUE)
+print.data.table = show_tibble(TRUE)
 a
 class(a)
 
 # shut off
-show_tibble(FALSE)
+print.data.table = show_tibble(FALSE)
 a
 class(a)
 ```

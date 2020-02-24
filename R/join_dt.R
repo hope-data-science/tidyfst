@@ -56,7 +56,7 @@ left_join_dt = function(x,y,by = NULL,suffix = c(".x",".y")){
   dt2 = as_dt(y)
   if(is.null(by)) {
     join_names = intersect(names(dt1),names(dt2)) %>% str_c(collapse = ",")
-    print(str_glue("Joining by: {join_names}\n\n"))
+    message(str_glue("Joining by: {join_names}\n\n"))
     merge(dt1,dt2,all.x = TRUE,suffixes = suffix)
   }
   else if(is.null(names(by))) merge(dt1,dt2,all.x = TRUE,by = by,suffixes = suffix)
@@ -70,7 +70,7 @@ right_join_dt = function(x,y,by = NULL,suffix = c(".x",".y")){
   dt2 = as_dt(y)
   if(is.null(by)) {
     join_names = intersect(names(dt1),names(dt2)) %>% str_c(collapse = ",")
-    print(str_glue("Joining by: {join_names}\n\n"))
+    message(str_glue("Joining by: {join_names}\n\n"))
     merge(dt1,dt2,all.y = TRUE,suffixes = suffix)
   }
   else if(is.null(names(by))) merge(dt1,dt2,all.y = TRUE,by = by,suffixes = suffix)
@@ -84,7 +84,7 @@ inner_join_dt = function(x,y,by = NULL,suffix = c(".x",".y")){
   dt2 = as_dt(y)
   if(is.null(by)) {
     join_names = intersect(names(dt1),names(dt2)) %>% str_c(collapse = ",")
-    print(str_glue("Joining by: {join_names}\n\n"))
+    message(str_glue("Joining by: {join_names}\n\n"))
     merge(dt1,dt2,suffixes = suffix)
   }
   else if(is.null(names(by))) merge(dt1,dt2,by = by,suffixes = suffix)
@@ -98,7 +98,7 @@ full_join_dt = function(x,y,by = NULL,suffix = c(".x",".y")){
   dt2 = as_dt(y)
   if(is.null(by)) {
     join_names = intersect(names(dt1),names(dt2)) %>% str_c(collapse = ",")
-    print(str_glue("Joining by: {join_names}\n\n"))
+    message(str_glue("Joining by: {join_names}\n\n"))
     merge(dt1,dt2,all = TRUE,suffixes = suffix)
   }
   else if(is.null(names(by))) merge(dt1,dt2,all = TRUE,by = by,suffixes = suffix)

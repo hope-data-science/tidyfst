@@ -25,7 +25,7 @@
 #' writes `x` to a `fst` file and invisibly returns `x` (so you can use this function in a pipeline).
 #' @seealso \code{\link[fst]{read_fst}}
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' export_fst(iris,"iris_fst_test.fst")
 #' iris_dt = import_fst("iris_fst_test.fst")
 #' iris_dt

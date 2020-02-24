@@ -15,24 +15,37 @@
 #' iris %>% count_dt(Species) -> a
 #' class(a)
 #'
-#' show_tibble(TRUE)
+#' print.data.table = show_tibble(TRUE)
 #' a
 #' class(a)
 #'
-#' show_tibble(FALSE)
+#' print.data.table = show_tibble(FALSE)
 #' a
 #' class(a)
+
 
 
 #' @export
 show_tibble = function(use = FALSE){
   if(use){
-    print.data.table <<- function(x, ...) {
-      print(as_tibble(x), ...)
-    }
-    cat("The tibble mode has been turned on.\n")
+    message("The tibble mode has been turned on.\n")
+    function(x, ...) print(as_tibble(x), ...)
   }else {
-    print.data.table <<- NULL
-    cat("The tibble mode has been shut off.\n")
+    message("The tibble mode has been shut off.\n")
+    NULL
   }
 }
+
+# show_tibble = function(use = FALSE){
+#   if(use){
+#     print.data.table <<- function(x, ...) {
+#       print(as_tibble(x), ...)
+#     }
+#     message("The tibble mode has been turned on.\n")
+#   }else {
+#     print.data.table <<- NULL
+#     message("The tibble mode has been shut off.\n")
+#   }
+# }
+# globalVariables(c("<<-"))
+
