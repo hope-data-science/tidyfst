@@ -1,6 +1,6 @@
 # tidyfst: Tidy Verbs for Fast Data Manipulation<img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  [![](https://img.shields.io/badge/devel%20version-0.6.6-blue.svg)](https://github.com/hope-data-science/tidyfst) ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
+[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
 
 
 
