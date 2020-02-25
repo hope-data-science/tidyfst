@@ -169,7 +169,18 @@
 <a class="sourceLine" id="cb2-30" title="30"><span class="co">#&gt; 3:          2.0         3.6          1.4         0.2  setosa   1</span></a>
 <a class="sourceLine" id="cb2-31" title="31"><span class="co">#&gt; 4:          5.4         3.9          1.7         0.4  setosa  NA</span></a>
 <a class="sourceLine" id="cb2-32" title="32"><span class="co">#&gt; 5:          4.6         3.4          1.4         0.3  setosa  NA</span></a>
-<a class="sourceLine" id="cb2-33" title="33"><span class="co">#&gt; 6:          2.0         3.4          1.5         0.2  setosa   1</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-33" title="33"><span class="co">#&gt; 6:          2.0         3.4          1.5         0.2  setosa   1</span></a>
+<a class="sourceLine" id="cb2-34" title="34"></a>
+<a class="sourceLine" id="cb2-35" title="35">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/count.html">count_dt</a></span>(Species) -&gt;<span class="st"> </span>a</a>
+<a class="sourceLine" id="cb2-36" title="36">print.data.table =<span class="st"> </span><span class="kw"><a href="reference/show_tibble.html">show_tibble</a></span>(<span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-37" title="37"><span class="co">#&gt; The tibble mode has been turned on.</span></a>
+<a class="sourceLine" id="cb2-38" title="38">a</a>
+<a class="sourceLine" id="cb2-39" title="39"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
+<a class="sourceLine" id="cb2-40" title="40"><span class="co">#&gt;   Species        n</span></a>
+<a class="sourceLine" id="cb2-41" title="41"><span class="co">#&gt;   &lt;fct&gt;      &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb2-42" title="42"><span class="co">#&gt; 1 setosa        50</span></a>
+<a class="sourceLine" id="cb2-43" title="43"><span class="co">#&gt; 2 versicolor    50</span></a>
+<a class="sourceLine" id="cb2-44" title="44"><span class="co">#&gt; 3 virginica     50</span></a></code></pre></div>
 </div>
 <div id="future-plans" class="section level2">
 <h2 class="hasAnchor">

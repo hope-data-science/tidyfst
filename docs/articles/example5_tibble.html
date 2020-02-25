@@ -108,7 +108,7 @@
 
     
     
-<p><code>tibble</code> is the name of a package, as well as a enhanced data.frame structure, which provides user lots of information automatically. I admire this design, and used to think of adding <code>as_tibble</code> to every end of function. This is, however, inefficient for data manipulation, which violates the principal of “fast”. But thanks to Houyun, he taught me a way to adjust the <code>print.data.frame</code> function, which I finally use for <code>pring.data.table</code> for an alternative way of printing data.table. Now let’s try it with the function <code>show_tibble</code>:</p>
+<p><code>tibble</code> is the name of a package, as well as a enhanced data.frame structure, which provides user lots of information automatically. I admire this design, and used to think of adding <code>as_tibble</code> to every end of function. This is, however, inefficient for data manipulation, which violates the principal of “fast”. But thanks to Houyun, he taught me a way to adjust the <code>print.data.frame</code> function, which I finally use for <code>print.data.table</code> for an alternative way of printing data.table. Now let’s try it with the function <code>show_tibble</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyfst)</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
 <a class="sourceLine" id="cb1-3" title="3">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/count.html">count_dt</a></span>(Species) -&gt;<span class="st"> </span>a</a>
