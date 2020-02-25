@@ -477,75 +477,75 @@
 </h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="../reference/sample.html">sample_n_dt</a></span>(flights, <span class="dv">10</span>)</a>
 <a class="sourceLine" id="cb13-2" title="2"><span class="co">#&gt;     year month day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="co">#&gt;  1: 2013     3  26     1937           1940        -3     2228           2240</span></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="co">#&gt;  2: 2013    10  24     1732           1734        -2     2035           2046</span></a>
-<a class="sourceLine" id="cb13-5" title="5"><span class="co">#&gt;  3: 2013     3   8     1450           1446         4     1739           1744</span></a>
-<a class="sourceLine" id="cb13-6" title="6"><span class="co">#&gt;  4: 2013     8  20     1712           1710         2     1924           2005</span></a>
-<a class="sourceLine" id="cb13-7" title="7"><span class="co">#&gt;  5: 2013     8  31      756            800        -4     1004           1021</span></a>
-<a class="sourceLine" id="cb13-8" title="8"><span class="co">#&gt;  6: 2013     4  27     1850           1855        -5     2111           2132</span></a>
-<a class="sourceLine" id="cb13-9" title="9"><span class="co">#&gt;  7: 2013     8  18      615            605        10      800            749</span></a>
-<a class="sourceLine" id="cb13-10" title="10"><span class="co">#&gt;  8: 2013    10  20     1733           1715        18     2109           2005</span></a>
-<a class="sourceLine" id="cb13-11" title="11"><span class="co">#&gt;  9: 2013     8  19      747            755        -8      903            930</span></a>
-<a class="sourceLine" id="cb13-12" title="12"><span class="co">#&gt; 10: 2013     2  22      602            600         2      842            815</span></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co">#&gt;  1: 2013    10  15     2057           2050         7     2209           2212</span></a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="co">#&gt;  2: 2013     4   1     1316           1320        -4     1638           1628</span></a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="co">#&gt;  3: 2013     9   3     1937           1940        -3     2117           2120</span></a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="co">#&gt;  4: 2013    10  18      824            830        -6     1124           1122</span></a>
+<a class="sourceLine" id="cb13-7" title="7"><span class="co">#&gt;  5: 2013     5   6      615            615         0      911            915</span></a>
+<a class="sourceLine" id="cb13-8" title="8"><span class="co">#&gt;  6: 2013     4  16     2156           1929       147       32           2229</span></a>
+<a class="sourceLine" id="cb13-9" title="9"><span class="co">#&gt;  7: 2013     1  29      959           1006        -7     1208           1219</span></a>
+<a class="sourceLine" id="cb13-10" title="10"><span class="co">#&gt;  8: 2013     2  20      604            600         4      755            759</span></a>
+<a class="sourceLine" id="cb13-11" title="11"><span class="co">#&gt;  9: 2013     3  13      815            815         0     1110           1115</span></a>
+<a class="sourceLine" id="cb13-12" title="12"><span class="co">#&gt; 10: 2013     7  28     1555           1542        13       NA           1753</span></a>
 <a class="sourceLine" id="cb13-13" title="13"><span class="co">#&gt;     arr_delay carrier flight tailnum origin dest air_time distance hour minute</span></a>
-<a class="sourceLine" id="cb13-14" title="14"><span class="co">#&gt;  1:       -12      AA   1787  N3DLAA    JFK  TPA      151     1005   19     40</span></a>
-<a class="sourceLine" id="cb13-15" title="15"><span class="co">#&gt;  2:       -11      UA    418  N503UA    EWR  SFO      327     2565   17     34</span></a>
-<a class="sourceLine" id="cb13-16" title="16"><span class="co">#&gt;  3:        -5      UA   1122  N14237    EWR  PBI      138     1023   14     46</span></a>
-<a class="sourceLine" id="cb13-17" title="17"><span class="co">#&gt;  4:       -41      AA    257  N617AA    JFK  LAS      286     2248   17     10</span></a>
-<a class="sourceLine" id="cb13-18" title="18"><span class="co">#&gt;  5:       -17      B6    677  N354JB    JFK  JAX      107      828    8      0</span></a>
-<a class="sourceLine" id="cb13-19" title="19"><span class="co">#&gt;  6:       -21      DL    951  N176DZ    JFK  ATL      109      760   18     55</span></a>
-<a class="sourceLine" id="cb13-20" title="20"><span class="co">#&gt;  7:        11      DL   1279  N315NB    LGA  MEM      149      963    6      5</span></a>
-<a class="sourceLine" id="cb13-21" title="21"><span class="co">#&gt;  8:        64      WN   2067  N709SW    EWR  HOU      225     1411   17     15</span></a>
-<a class="sourceLine" id="cb13-22" title="22"><span class="co">#&gt;  9:       -27      AA    309  N454AA    LGA  ORD      105      733    7     55</span></a>
-<a class="sourceLine" id="cb13-23" title="23"><span class="co">#&gt; 10:        27      FL    345  N991AT    LGA  ATL      134      762    6      0</span></a>
+<a class="sourceLine" id="cb13-14" title="14"><span class="co">#&gt;  1:        -3      DL    985  N329NB    JFK  BOS       34      187   20     50</span></a>
+<a class="sourceLine" id="cb13-15" title="15"><span class="co">#&gt;  2:        10      UA   1054  N17126    EWR  LAX      358     2454   13     20</span></a>
+<a class="sourceLine" id="cb13-16" title="16"><span class="co">#&gt;  3:        -3      AA    363  N4XPAA    LGA  ORD      110      733   19     40</span></a>
+<a class="sourceLine" id="cb13-17" title="17"><span class="co">#&gt;  4:         2      UA    443  N596UA    JFK  LAX      329     2475    8     30</span></a>
+<a class="sourceLine" id="cb13-18" title="18"><span class="co">#&gt;  5:        -4      AA   1895  N3BUAA    EWR  MIA      161     1085    6     15</span></a>
+<a class="sourceLine" id="cb13-19" title="19"><span class="co">#&gt;  6:       123      AA   2075  N543AA    EWR  DFW      188     1372   19     29</span></a>
+<a class="sourceLine" id="cb13-20" title="20"><span class="co">#&gt;  7:       -11      EV   4445  N13989    EWR  IND      108      645   10      6</span></a>
+<a class="sourceLine" id="cb13-21" title="21"><span class="co">#&gt;  8:        -4      DL    731  N337NW    LGA  DTW       81      502    6      0</span></a>
+<a class="sourceLine" id="cb13-22" title="22"><span class="co">#&gt;  9:        -5      DL   1167  N305DQ    JFK  TPA      163     1005    8     15</span></a>
+<a class="sourceLine" id="cb13-23" title="23"><span class="co">#&gt; 10:        NA      EV   6002  N14902    EWR  SDF       NA      642   15     42</span></a>
 <a class="sourceLine" id="cb13-24" title="24"><span class="co">#&gt;               time_hour</span></a>
-<a class="sourceLine" id="cb13-25" title="25"><span class="co">#&gt;  1: 2013-03-26 19:00:00</span></a>
-<a class="sourceLine" id="cb13-26" title="26"><span class="co">#&gt;  2: 2013-10-24 17:00:00</span></a>
-<a class="sourceLine" id="cb13-27" title="27"><span class="co">#&gt;  3: 2013-03-08 14:00:00</span></a>
-<a class="sourceLine" id="cb13-28" title="28"><span class="co">#&gt;  4: 2013-08-20 17:00:00</span></a>
-<a class="sourceLine" id="cb13-29" title="29"><span class="co">#&gt;  5: 2013-08-31 08:00:00</span></a>
-<a class="sourceLine" id="cb13-30" title="30"><span class="co">#&gt;  6: 2013-04-27 18:00:00</span></a>
-<a class="sourceLine" id="cb13-31" title="31"><span class="co">#&gt;  7: 2013-08-18 06:00:00</span></a>
-<a class="sourceLine" id="cb13-32" title="32"><span class="co">#&gt;  8: 2013-10-20 17:00:00</span></a>
-<a class="sourceLine" id="cb13-33" title="33"><span class="co">#&gt;  9: 2013-08-19 07:00:00</span></a>
-<a class="sourceLine" id="cb13-34" title="34"><span class="co">#&gt; 10: 2013-02-22 06:00:00</span></a>
+<a class="sourceLine" id="cb13-25" title="25"><span class="co">#&gt;  1: 2013-10-15 20:00:00</span></a>
+<a class="sourceLine" id="cb13-26" title="26"><span class="co">#&gt;  2: 2013-04-01 13:00:00</span></a>
+<a class="sourceLine" id="cb13-27" title="27"><span class="co">#&gt;  3: 2013-09-03 19:00:00</span></a>
+<a class="sourceLine" id="cb13-28" title="28"><span class="co">#&gt;  4: 2013-10-18 08:00:00</span></a>
+<a class="sourceLine" id="cb13-29" title="29"><span class="co">#&gt;  5: 2013-05-06 06:00:00</span></a>
+<a class="sourceLine" id="cb13-30" title="30"><span class="co">#&gt;  6: 2013-04-16 19:00:00</span></a>
+<a class="sourceLine" id="cb13-31" title="31"><span class="co">#&gt;  7: 2013-01-29 10:00:00</span></a>
+<a class="sourceLine" id="cb13-32" title="32"><span class="co">#&gt;  8: 2013-02-20 06:00:00</span></a>
+<a class="sourceLine" id="cb13-33" title="33"><span class="co">#&gt;  9: 2013-03-13 08:00:00</span></a>
+<a class="sourceLine" id="cb13-34" title="34"><span class="co">#&gt; 10: 2013-07-28 15:00:00</span></a>
 <a class="sourceLine" id="cb13-35" title="35"><span class="kw"><a href="../reference/sample.html">sample_frac_dt</a></span>(flights, <span class="fl">0.01</span>)</a>
 <a class="sourceLine" id="cb13-36" title="36"><span class="co">#&gt;       year month day dep_time sched_dep_time dep_delay arr_time sched_arr_time</span></a>
-<a class="sourceLine" id="cb13-37" title="37"><span class="co">#&gt;    1: 2013     5  18     1136           1145        -9     1304           1323</span></a>
-<a class="sourceLine" id="cb13-38" title="38"><span class="co">#&gt;    2: 2013     4  19      600            605        -5      756            800</span></a>
-<a class="sourceLine" id="cb13-39" title="39"><span class="co">#&gt;    3: 2013     1   2      929            929         0     1252           1237</span></a>
-<a class="sourceLine" id="cb13-40" title="40"><span class="co">#&gt;    4: 2013     6  17     1452           1455        -3     1658           1645</span></a>
-<a class="sourceLine" id="cb13-41" title="41"><span class="co">#&gt;    5: 2013     8  18     1845           1535       190     2120           1746</span></a>
+<a class="sourceLine" id="cb13-37" title="37"><span class="co">#&gt;    1: 2013     5   7      728            735        -7     1011           1110</span></a>
+<a class="sourceLine" id="cb13-38" title="38"><span class="co">#&gt;    2: 2013     2   1      951           1000        -9     1054           1121</span></a>
+<a class="sourceLine" id="cb13-39" title="39"><span class="co">#&gt;    3: 2013     7  24     1640           1620        20     1956           1945</span></a>
+<a class="sourceLine" id="cb13-40" title="40"><span class="co">#&gt;    4: 2013    12  18     1329           1305        24     1525           1517</span></a>
+<a class="sourceLine" id="cb13-41" title="41"><span class="co">#&gt;    5: 2013     7  22     1241           1242        -1     1333           1349</span></a>
 <a class="sourceLine" id="cb13-42" title="42"><span class="co">#&gt;   ---                                                                         </span></a>
-<a class="sourceLine" id="cb13-43" title="43"><span class="co">#&gt; 3363: 2013     7  27     1915           1730       105     2158           2030</span></a>
-<a class="sourceLine" id="cb13-44" title="44"><span class="co">#&gt; 3364: 2013     4  15      913            920        -7     1156           1225</span></a>
-<a class="sourceLine" id="cb13-45" title="45"><span class="co">#&gt; 3365: 2013    11  20     1948           1955        -7     2145           2207</span></a>
-<a class="sourceLine" id="cb13-46" title="46"><span class="co">#&gt; 3366: 2013     3  14     2115           2115         0        7           2358</span></a>
-<a class="sourceLine" id="cb13-47" title="47"><span class="co">#&gt; 3367: 2013     6   5     2240           2245        -5     2346           2357</span></a>
+<a class="sourceLine" id="cb13-43" title="43"><span class="co">#&gt; 3363: 2013     7   8       NA           1935        NA       NA           2135</span></a>
+<a class="sourceLine" id="cb13-44" title="44"><span class="co">#&gt; 3364: 2013    10   2      814            817        -3     1120           1127</span></a>
+<a class="sourceLine" id="cb13-45" title="45"><span class="co">#&gt; 3365: 2013     6   5     1554           1440        74     1832           1742</span></a>
+<a class="sourceLine" id="cb13-46" title="46"><span class="co">#&gt; 3366: 2013     2   2     2021           2029        -8     2129           2139</span></a>
+<a class="sourceLine" id="cb13-47" title="47"><span class="co">#&gt; 3367: 2013    10  26     1008            900        68     1211           1129</span></a>
 <a class="sourceLine" id="cb13-48" title="48"><span class="co">#&gt;       arr_delay carrier flight tailnum origin dest air_time distance hour</span></a>
-<a class="sourceLine" id="cb13-49" title="49"><span class="co">#&gt;    1:       -19      UA    655  N809UA    LGA  ORD      117      733   11</span></a>
-<a class="sourceLine" id="cb13-50" title="50"><span class="co">#&gt;    2:        -4      MQ   4401  N725MQ    LGA  DTW       89      502    6</span></a>
-<a class="sourceLine" id="cb13-51" title="51"><span class="co">#&gt;    3:        15      UA   1018  N14102    EWR  PBI      154     1023    9</span></a>
-<a class="sourceLine" id="cb13-52" title="52"><span class="co">#&gt;    4:        13      MQ   2815  N928MQ    JFK  CLE       80      425   14</span></a>
-<a class="sourceLine" id="cb13-53" title="53"><span class="co">#&gt;    5:       214      EV   4603  N13964    EWR  SDF      110      642   15</span></a>
+<a class="sourceLine" id="cb13-49" title="49"><span class="co">#&gt;    1:       -59      VX     11  N836VA    JFK  SFO      324     2586    7</span></a>
+<a class="sourceLine" id="cb13-50" title="50"><span class="co">#&gt;    2:       -27      US   2169  N730US    LGA  DCA       45      214   10</span></a>
+<a class="sourceLine" id="cb13-51" title="51"><span class="co">#&gt;    3:        11      AA   1467  N3JKAA    LGA  MIA      149     1096   16</span></a>
+<a class="sourceLine" id="cb13-52" title="52"><span class="co">#&gt;    4:         8      EV   5207  N752EV    LGA  CLT       83      544   13</span></a>
+<a class="sourceLine" id="cb13-53" title="53"><span class="co">#&gt;    5:       -16      B6   1318  N179JB    JFK  BOS       34      187   12</span></a>
 <a class="sourceLine" id="cb13-54" title="54"><span class="co">#&gt;   ---                                                                    </span></a>
-<a class="sourceLine" id="cb13-55" title="55"><span class="co">#&gt; 3363:        88      UA   1626  N47414    EWR  SAN      319     2425   17</span></a>
-<a class="sourceLine" id="cb13-56" title="56"><span class="co">#&gt; 3364:       -29      AA   1739  N577AA    EWR  DFW      196     1372    9</span></a>
-<a class="sourceLine" id="cb13-57" title="57"><span class="co">#&gt; 3365:       -22      DL   2131  N976DL    LGA  DTW       77      502   19</span></a>
-<a class="sourceLine" id="cb13-58" title="58"><span class="co">#&gt; 3366:         9      B6    927  N517JB    EWR  MCO      132      937   21</span></a>
-<a class="sourceLine" id="cb13-59" title="59"><span class="co">#&gt; 3367:       -11      B6     22  N296JB    JFK  SYR       41      209   22</span></a>
+<a class="sourceLine" id="cb13-55" title="55"><span class="co">#&gt; 3363:        NA      EV   5454  N135EV    EWR  DTW       NA      488   19</span></a>
+<a class="sourceLine" id="cb13-56" title="56"><span class="co">#&gt; 3364:        -7      B6    929  N639JB    JFK  RSW      152     1074    8</span></a>
+<a class="sourceLine" id="cb13-57" title="57"><span class="co">#&gt; 3365:        50      DL   1902  N329NW    LGA  PBI      138     1035   14</span></a>
+<a class="sourceLine" id="cb13-58" title="58"><span class="co">#&gt; 3366:       -10      EV   4695  N15983    EWR  MHT       33      209   20</span></a>
+<a class="sourceLine" id="cb13-59" title="59"><span class="co">#&gt; 3367:        42      DL    502  N349NB    EWR  ATL      105      746    9</span></a>
 <a class="sourceLine" id="cb13-60" title="60"><span class="co">#&gt;       minute           time_hour</span></a>
-<a class="sourceLine" id="cb13-61" title="61"><span class="co">#&gt;    1:     45 2013-05-18 11:00:00</span></a>
-<a class="sourceLine" id="cb13-62" title="62"><span class="co">#&gt;    2:      5 2013-04-19 06:00:00</span></a>
-<a class="sourceLine" id="cb13-63" title="63"><span class="co">#&gt;    3:     29 2013-01-02 09:00:00</span></a>
-<a class="sourceLine" id="cb13-64" title="64"><span class="co">#&gt;    4:     55 2013-06-17 14:00:00</span></a>
-<a class="sourceLine" id="cb13-65" title="65"><span class="co">#&gt;    5:     35 2013-08-18 15:00:00</span></a>
+<a class="sourceLine" id="cb13-61" title="61"><span class="co">#&gt;    1:     35 2013-05-07 07:00:00</span></a>
+<a class="sourceLine" id="cb13-62" title="62"><span class="co">#&gt;    2:      0 2013-02-01 10:00:00</span></a>
+<a class="sourceLine" id="cb13-63" title="63"><span class="co">#&gt;    3:     20 2013-07-24 16:00:00</span></a>
+<a class="sourceLine" id="cb13-64" title="64"><span class="co">#&gt;    4:      5 2013-12-18 13:00:00</span></a>
+<a class="sourceLine" id="cb13-65" title="65"><span class="co">#&gt;    5:     42 2013-07-22 12:00:00</span></a>
 <a class="sourceLine" id="cb13-66" title="66"><span class="co">#&gt;   ---                           </span></a>
-<a class="sourceLine" id="cb13-67" title="67"><span class="co">#&gt; 3363:     30 2013-07-27 17:00:00</span></a>
-<a class="sourceLine" id="cb13-68" title="68"><span class="co">#&gt; 3364:     20 2013-04-15 09:00:00</span></a>
-<a class="sourceLine" id="cb13-69" title="69"><span class="co">#&gt; 3365:     55 2013-11-20 19:00:00</span></a>
-<a class="sourceLine" id="cb13-70" title="70"><span class="co">#&gt; 3366:     15 2013-03-14 21:00:00</span></a>
-<a class="sourceLine" id="cb13-71" title="71"><span class="co">#&gt; 3367:     45 2013-06-05 22:00:00</span></a></code></pre></div>
+<a class="sourceLine" id="cb13-67" title="67"><span class="co">#&gt; 3363:     35 2013-07-08 19:00:00</span></a>
+<a class="sourceLine" id="cb13-68" title="68"><span class="co">#&gt; 3364:     17 2013-10-02 08:00:00</span></a>
+<a class="sourceLine" id="cb13-69" title="69"><span class="co">#&gt; 3365:     40 2013-06-05 14:00:00</span></a>
+<a class="sourceLine" id="cb13-70" title="70"><span class="co">#&gt; 3366:     29 2013-02-02 20:00:00</span></a>
+<a class="sourceLine" id="cb13-71" title="71"><span class="co">#&gt; 3367:      0 2013-10-26 09:00:00</span></a></code></pre></div>
 </div>
 <div id="grouped-operations" class="section level2">
 <h2 class="hasAnchor">

@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
   `tibble` is the name of a package, as well as a enhanced data.frame structure, which provides user lots of information automatically. I admire this design, and used to think of adding `as_tibble` to every end of function. This is, however, inefficient for data manipulation, which violates the principal of "fast". But thanks to Houyun, he taught me a way to adjust the `print.data.frame` function, which I finally use for `pring.data.table` for an alternative way of printing data.table. Now let's try it with the function `show_tibble`:
-```{r setup}
+```{r,eval=FALSE}
 library(tidyfst)
 
 iris %>% count_dt(Species) -> a
