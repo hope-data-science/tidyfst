@@ -72,6 +72,17 @@ iris[3:8,] %>%
 #> 4:          5.4         3.9          1.7         0.4  setosa  NA
 #> 5:          4.6         3.4          1.4         0.3  setosa  NA
 #> 6:          2.0         3.4          1.5         0.2  setosa   1
+
+iris %>% count_dt(Species) -> a
+print.data.table = show_tibble(TRUE)
+#> The tibble mode has been turned on.
+a
+#> # A tibble: 3 x 2
+#>   Species        n
+#>   <fct>      <int>
+#> 1 setosa        50
+#> 2 versicolor    50
+#> 3 virginica     50
 ```
 
 
