@@ -92,11 +92,11 @@ a
 *unnest_dt* is now fast enough to beat the *tidyr::unnest*, but the *nest_dt* function would build a nested data.table with *data.table* inside. How to use such data structure is remained to be seen, and the performance is still to be explored.
 
 ## Vignettes
-- [Eample 1: Basic usage](https://hope-data-science.github.io/tidyfst/articles/example1_intro.html)
+- [Example 1: Basic usage](https://hope-data-science.github.io/tidyfst/articles/example1_intro.html)
 - [Example 2: Join tables](https://hope-data-science.github.io/tidyfst/articles/example2_join.html)
 - [Example 3: Reshape](https://hope-data-science.github.io/tidyfst/articles/example3_reshape.html)
-- [Eample 4: Nest](https://hope-data-science.github.io/tidyfst/articles/example4_nest.html)
-- [Eample 5: Tibble](https://hope-data-science.github.io/tidyfst/articles/example5_tibble.html)
+- [Example 4: Nest](https://hope-data-science.github.io/tidyfst/articles/example4_nest.html)
+- [Example 5: Tibble](https://hope-data-science.github.io/tidyfst/articles/example5_tibble.html)
 
 ## Related work
 
