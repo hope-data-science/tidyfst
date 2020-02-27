@@ -17,7 +17,8 @@
 
 mutate_when = function(data,...){
   dt = as_dt(data)
-  dot_string <- substitute(list(...)) %>% deparse() %>% str_extract("(?<=\\().+?(?=\\))") %>%
+  dot_string <- substitute(list(...)) %>% deparse() %>%
+    str_extract("(?<=\\().+?(?=\\))") %>%
     strsplit(",") %>% unlist()
   when = dot_string[1]
   what = dot_string[-1] %>% paste0(collapse = ",")

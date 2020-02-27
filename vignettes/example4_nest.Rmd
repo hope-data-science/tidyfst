@@ -1,5 +1,5 @@
 ---
-title: "Eample 4: Nest"
+title: "Example 4: Nest"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{example4_nest}

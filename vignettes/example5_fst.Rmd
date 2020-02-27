@@ -1,0 +1,78 @@
+---
+title: "Example 5: Fst"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example5_fst}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+ 
+ The [fst](https://github.com/fstpackage/fst) package for R provides a fast, easy and flexible way to serialize data frames. It has very amazing features, such as fast read and write of R data frames, super file compression and parse data frames without reading it. Considering all these features, now [tidyfst](https://github.com/hope-data-science/tidyfst) could provide a new workflow to manipulate data more efficiently. The core idea is: We never need the whole data all at once, we only need the things we want and aggregate them to get the summary to provide target information. 
+ 
+ *tidyfst* have provided the following functions to facilitate the workflow:
+ 
+- parse_fst: Get information of the data.frame without reading it
+- slice_fst: Select the target rows by number
+- select_fst: Select the target columns for the task
+- filter_fst: Conditional selection of rows
+- import_fst: Read a fst file like `fst::read_fst` but always return a data.table
+- export_fst: Write a fst file like `fst::write_fst` but always use largest compress factor (which yields smallest file)
+
+  In such a workflow, you never need to read the whole data.frame into your RAM, you just select the target data, process them instantly and get the results all at once. You do not have to read the data to know the structure of data.frame, because we have `parse_fst`(a wrapper for `fst` in *fst* package). Now let's give it a try.
+```{r setup}
+library(tidyfst)
+
+# Generate some random data frame with 10 million rows and various column types
+nr_of_rows <- 1e7
+
+df <- data.frame(
+    Logical = sample(c(TRUE, FALSE, NA), prob = c(0.85, 0.1, 0.05), nr_of_rows, replace = TRUE),
+    Integer = sample(1L:100L, nr_of_rows, replace = TRUE),
+    Real = sample(sample(1:10000, 20) / 100, nr_of_rows, replace = TRUE),
+    Factor = as.factor(sample(labels(UScitiesD), nr_of_rows, replace = TRUE))
+  )
+
+# write the fst file, make sure you do not have the file with same name in the directory
+export_fst(df,"fst_test.fst")
+
+# remove all variables in the environment
+rm(list = ls())
+```
+ Now, we want to know the information in the data frame.
+```{r}
+parse_fst("fst_test.fst") -> ft
+ft
+```
+ If we want to get the information in the `Factor` column, use:
+```{r}
+ft %>% 
+  select_fst(Factor) %>% 
+  count_dt(Factor) -> factor_info
+
+factor_info
+```
+ If we want to calculate the mean of `Integer` by the group of `Factor`, use:
+```{r}
+ft %>% 
+  select_fst(Integer,Factor) %>% 
+  summarise_dt(avg = mean(Integer),by = Factor) -> avg_info
+
+avg_info
+
+```
+ In this workflow, we only select/filter/slice the data we need, and get the results directly from the pipeline. Therefore, we read the minimum needed data into RAM and release it and save only the results we want. This workflow could save memory for many exploratory big data analysis.
+ Last, let's delete the output file:
+```{r}
+# delete the output file
+unlink("fst_test.fst")
+```
+ 
+

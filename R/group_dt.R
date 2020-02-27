@@ -24,11 +24,16 @@
 #'    by = cyl
 #' )
 #'
-#'  # but you could also, of course, use group_dt
-#' mtcars %>%
-#'   group_dt(by =.(vs,am),
-#'     summarise_dt(avg = mean(mpg)))
+#'   # but you could also, of course, use group_dt
+#'  mtcars %>%
+#'    group_dt(by =.(vs,am),
+#'      summarise_dt(avg = mean(mpg)))
 #'
+#'   # and list of variables could also be used
+#'  mtcars %>%
+#'    group_dt(by =list(vs,am),
+#'             summarise_dt(avg = mean(mpg)))
+
 
 #' @export
 
@@ -41,12 +46,12 @@ group_dt = function(data,by = NULL,...){
    # str_squish() %>%
     str_extract("\\(.+\\)") %>%
     str_sub(2,-2) -> dot_string
-  if(deparse(by) == "NULL") stop("Please provide the group(s).")
-  else if(by %>% deparse() %>% str_detect("^\\."))
+  deparse(by) -> by_deparse
+  if(by_deparse == "NULL") stop("Please provide the group(s).")
+  else if(by_deparse %>% str_detect("^\\.|^list\\("))
     eval(parse(text = str_glue("dt[,(.SD %>% {dot_string}),by = by]")))
   else {
-    by %>%
-      deparse() %>%
+    by_deparse %>%
       str_c(".(",.,")") -> by
     eval(parse(text = str_glue("dt[,(.SD %>% {dot_string}),by = {by}]")))
   }

@@ -12,6 +12,7 @@
 #' @param .at Variables to select, could use regular expression or numeric/character
 #' vector.
 #' @param .if Conditional function to select columns.
+#' When starts with `-`(minus symbol), return the negative columns.
 #' @details Always return the columns with their original names after \code{mutate} or
 #' \code{summarise}.
 #' @return A data.table
@@ -28,13 +29,16 @@
 #' iris %>% at_dt(1:3,mutate,scale)
 #' iris %>% at_dt(c("Petal.Length"),mutate,scale,center = FALSE)
 #'
-#' # if_
-#' iris %>%
-#'   if_dt(is.double,mutate_dt,scale,center = FALSE)
-#' iris %>%
-#'   if_dt(is.factor,mutate,as.character)
-#' iris %>%
-#'   if_dt(is.numeric,summarise,max,na.rm = TRUE)
+#'  # if_
+#'  iris %>%
+#'    if_dt(is.double,mutate_dt,scale,center = FALSE)
+#'   ## support minus symbol to select negative conditions
+#'  iris %>%
+#'    if_dt(-is.factor,mutate_dt,scale,center = FALSE)
+#'  iris %>%
+#'    if_dt(is.factor,mutate,as.character)
+#'  iris %>%
+#'    if_dt(is.numeric,summarise,max,na.rm = TRUE)
 
 #' @rdname all_at_if
 #' @export
@@ -76,7 +80,14 @@ at_dt = function(data,.at,.func,.funcs,...){
 #' @export
 if_dt = function(data,.if,.func,.funcs,...){
   dt = as_dt(data)
-  sel_name = subset(sapply(dt,.if),sapply(dt,.if) == TRUE) %>% names()
+
+  if_name = substitute(.if) %>% deparse()
+  if(str_detect(if_name,"^-")){
+    .if = str_remove(if_name,"-")
+    eval(parse(text = str_glue("sel_name = subset(sapply(dt,{.if}),
+                        sapply(dt,{.if}) == FALSE) %>% names()")))
+  } else
+    sel_name = subset(sapply(dt,.if),sapply(dt,.if) == TRUE) %>% names()
   dt2 = dt[,.SD, .SDcols = sel_name]
 
   func = substitute(.func) %>% deparse()
@@ -92,6 +103,9 @@ if_dt = function(data,.if,.func,.funcs,...){
     dt2[, lapply(.SD, .funcs, ...)]
   }
 }
+
+
+
 
 
 

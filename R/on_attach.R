@@ -1,4 +1,5 @@
 .onAttach = function(...) {
+    options("datatable.print.class" = TRUE) # print class in data.table
     hints = c(
         "Life's short, use R."
     )
