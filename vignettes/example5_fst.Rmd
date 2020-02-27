@@ -24,9 +24,9 @@ knitr::opts_chunk$set(
 - select_fst: Select the target columns for the task
 - filter_fst: Conditional selection of rows
 - import_fst: Read a fst file like `fst::read_fst` but always return a data.table
-- export_fst: Write a fst file like `fst::write_fst` but always use largest compress factor (which yields smallest file)
+- export_fst: Write a fst file like `fst::write_fst` but always use largest compress factor (which yields smallest file)  
 
-  In such a workflow, you never need to read the whole data.frame into your RAM, you just select the target data, process them instantly and get the results all at once. You do not have to read the data to know the structure of data.frame, because we have `parse_fst`(a wrapper for `fst` in *fst* package). Now let's give it a try.
+In such a workflow, you never need to read the whole data.frame into your RAM, you just select the target data, process them instantly and get the results all at once. You do not have to read the data to know the structure of data.frame, because we have `parse_fst`(a wrapper for `fst` in *fst* package). Now let's give it a try.
 ```{r setup}
 library(tidyfst)
 
