@@ -80,7 +80,7 @@ to do both in all_dt,at_dt and if_dt." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@ to do both in all_dt,at_dt and if_dt." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/example1_intro.html">Eample 1: Basic usage</a>
+      <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
     </li>
     <li>
       <a href="../articles/example2_join.html">Example 2: Join tables</a>
@@ -112,10 +112,10 @@ to do both in all_dt,at_dt and if_dt." />
       <a href="../articles/example3_reshape.html">Example 3: Reshape</a>
     </li>
     <li>
-      <a href="../articles/example4_nest.html">Eample 4: Nest</a>
+      <a href="../articles/example4_nest.html">Example 4: Nest</a>
     </li>
     <li>
-      <a href="../articles/example5_tibble.html">Eample 5: Tibble</a>
+      <a href="../articles/example5_fst.html">Example 5: Fst</a>
     </li>
   </ul>
 </li>
@@ -185,7 +185,8 @@ vector.</p></td>
     </tr>
     <tr>
       <th>.if</th>
-      <td><p>Conditional function to select columns.</p></td>
+      <td><p>Conditional function to select columns.
+When starts with `-`(minus symbol), return the negative columns.</p></td>
     </tr>
     </table>
 
@@ -201,6 +202,7 @@ vector.</p></td>
     <pre class="examples"><div class='input'>
 <span class='co'># all_</span>
 <span class='fu'>all_dt</span>(<span class='no'>iris</span>[,-<span class='fl'>5</span>],<span class='no'>mutate_dt</span>,<span class='no'>scale</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt;   1:  -0.89767388  1.01560199   -1.3357516  -1.3110521
 #&gt;   2:  -1.13920048 -0.13153881   -1.3357516  -1.3110521
 #&gt;   3:  -1.38072709  0.32731751   -1.3923993  -1.3110521
@@ -212,6 +214,7 @@ vector.</p></td>
 #&gt; 148:   0.79301235 -0.13153881    0.8168591   1.0504160
 #&gt; 149:   0.43072244  0.78617383    0.9301544   1.4439941
 #&gt; 150:   0.06843254 -0.13153881    0.7602115   0.7880307</div><div class='input'><span class='fu'>all_dt</span>(<span class='no'>iris</span>[,-<span class='fl'>5</span>],<span class='no'>mutate</span>,<span class='no'>scale</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt;   1:  -0.89767388  1.01560199   -1.3357516  -1.3110521
 #&gt;   2:  -1.13920048 -0.13153881   -1.3357516  -1.3110521
 #&gt;   3:  -1.38072709  0.32731751   -1.3923993  -1.3110521
@@ -223,10 +226,13 @@ vector.</p></td>
 #&gt; 148:   0.79301235 -0.13153881    0.8168591   1.0504160
 #&gt; 149:   0.43072244  0.78617383    0.9301544   1.4439941
 #&gt; 150:   0.06843254 -0.13153881    0.7602115   0.7880307</div><div class='input'><span class='fu'>all_dt</span>(<span class='no'>iris</span>[,-<span class='fl'>5</span>],<span class='no'>summarise</span>,<span class='no'>max</span>)</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt; 1:          7.9         4.4          6.9         2.5</div><div class='input'><span class='fu'>all_dt</span>(<span class='no'>iris</span>[,-<span class='fl'>5</span>],<span class='no'>summarise</span>,<span class='no'>min</span>)</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt; 1:          4.3           2            1         0.1</div><div class='input'>
 <span class='co'># at_</span>
 <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>at_dt</span>(<span class='st'>"Se"</span>,<span class='no'>mutate</span>,<span class='no'>scale</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:  -0.89767388  1.01560199          1.4         0.2    setosa
 #&gt;   2:  -1.13920048 -0.13153881          1.4         0.2    setosa
 #&gt;   3:  -1.38072709  0.32731751          1.3         0.2    setosa
@@ -238,6 +244,7 @@ vector.</p></td>
 #&gt; 148:   0.79301235 -0.13153881          5.2         2.0 virginica
 #&gt; 149:   0.43072244  0.78617383          5.4         2.3 virginica
 #&gt; 150:   0.06843254 -0.13153881          5.1         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>at_dt</span>(<span class='fl'>1</span>:<span class='fl'>3</span>,<span class='no'>mutate</span>,<span class='no'>scale</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:  -0.89767388  1.01560199   -1.3357516         0.2    setosa
 #&gt;   2:  -1.13920048 -0.13153881   -1.3357516         0.2    setosa
 #&gt;   3:  -1.38072709  0.32731751   -1.3923993         0.2    setosa
@@ -249,6 +256,7 @@ vector.</p></td>
 #&gt; 148:   0.79301235 -0.13153881    0.8168591         2.0 virginica
 #&gt; 149:   0.43072244  0.78617383    0.9301544         2.3 virginica
 #&gt; 150:   0.06843254 -0.13153881    0.7602115         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>at_dt</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Petal.Length"</span>),<span class='no'>mutate</span>,<span class='no'>scale</span>,<span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:          5.1         3.5    0.3362663         0.2    setosa
 #&gt;   2:          4.9         3.0    0.3362663         0.2    setosa
 #&gt;   3:          4.7         3.2    0.3122473         0.2    setosa
@@ -260,9 +268,10 @@ vector.</p></td>
 #&gt; 148:          6.5         3.0    1.2489891         2.0 virginica
 #&gt; 149:          6.2         3.4    1.2970272         2.3 virginica
 #&gt; 150:          5.9         3.0    1.2249701         1.8 virginica</div><div class='input'>
-<span class='co'># if_</span>
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>if_dt</span>(<span class='no'>is.double</span>,<span class='no'>mutate_dt</span>,<span class='no'>scale</span>,<span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+ <span class='co'># if_</span>
+ <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+   <span class='fu'>if_dt</span>(<span class='no'>is.double</span>,<span class='no'>mutate_dt</span>,<span class='no'>scale</span>,<span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:    0.8613268   1.1296201    0.3362663    0.140405    setosa
 #&gt;   2:    0.8275493   0.9682458    0.3362663    0.140405    setosa
 #&gt;   3:    0.7937718   1.0327956    0.3122473    0.140405    setosa
@@ -273,8 +282,23 @@ vector.</p></td>
 #&gt; 147:    1.0639919   0.8068715    1.2009511    1.333847 virginica
 #&gt; 148:    1.0977695   0.9682458    1.2489891    1.404050 virginica
 #&gt; 149:    1.0471032   1.0973453    1.2970272    1.614657 virginica
-#&gt; 150:    0.9964369   0.9682458    1.2249701    1.263645 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>if_dt</span>(<span class='no'>is.factor</span>,<span class='no'>mutate</span>,<span class='no'>as.character</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+#&gt; 150:    0.9964369   0.9682458    1.2249701    1.263645 virginica</div><div class='input'>  <span class='co'>## support minus symbol to select negative conditions</span>
+ <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+   <span class='fu'>if_dt</span>(-<span class='no'>is.factor</span>,<span class='no'>mutate_dt</span>,<span class='no'>scale</span>,<span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
+#&gt;   1:    0.8613268   1.1296201    0.3362663    0.140405    setosa
+#&gt;   2:    0.8275493   0.9682458    0.3362663    0.140405    setosa
+#&gt;   3:    0.7937718   1.0327956    0.3122473    0.140405    setosa
+#&gt;   4:    0.7768830   1.0005207    0.3602853    0.140405    setosa
+#&gt;   5:    0.8444380   1.1618950    0.3362663    0.140405    setosa
+#&gt;  ---                                                            
+#&gt; 146:    1.1315470   0.9682458    1.2489891    1.614657 virginica
+#&gt; 147:    1.0639919   0.8068715    1.2009511    1.333847 virginica
+#&gt; 148:    1.0977695   0.9682458    1.2489891    1.404050 virginica
+#&gt; 149:    1.0471032   1.0973453    1.2970272    1.614657 virginica
+#&gt; 150:    0.9964369   0.9682458    1.2249701    1.263645 virginica</div><div class='input'> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+   <span class='fu'>if_dt</span>(<span class='no'>is.factor</span>,<span class='no'>mutate</span>,<span class='no'>as.character</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;char&gt;
 #&gt;   1:          5.1         3.5          1.4         0.2    setosa
 #&gt;   2:          4.9         3.0          1.4         0.2    setosa
 #&gt;   3:          4.7         3.2          1.3         0.2    setosa
@@ -285,8 +309,9 @@ vector.</p></td>
 #&gt; 147:          6.3         2.5          5.0         1.9 virginica
 #&gt; 148:          6.5         3.0          5.2         2.0 virginica
 #&gt; 149:          6.2         3.4          5.4         2.3 virginica
-#&gt; 150:          5.9         3.0          5.1         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>if_dt</span>(<span class='no'>is.numeric</span>,<span class='no'>summarise</span>,<span class='no'>max</span>,<span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; 150:          5.9         3.0          5.1         1.8 virginica</div><div class='input'> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+   <span class='fu'>if_dt</span>(<span class='no'>is.numeric</span>,<span class='no'>summarise</span>,<span class='no'>max</span>,<span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt; 1:          7.9         4.4          6.9         2.5</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

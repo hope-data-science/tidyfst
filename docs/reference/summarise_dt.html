@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
       </span>
     </div>
 
@@ -100,7 +100,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/example1_intro.html">Eample 1: Basic usage</a>
+      <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
     </li>
     <li>
       <a href="../articles/example2_join.html">Example 2: Join tables</a>
@@ -109,10 +109,10 @@
       <a href="../articles/example3_reshape.html">Example 3: Reshape</a>
     </li>
     <li>
-      <a href="../articles/example4_nest.html">Eample 4: Nest</a>
+      <a href="../articles/example4_nest.html">Example 4: Nest</a>
     </li>
     <li>
-      <a href="../articles/example5_tibble.html">Eample 5: Tibble</a>
+      <a href="../articles/example5_fst.html">Example 5: Fst</a>
     </li>
   </ul>
 </li>
@@ -178,22 +178,26 @@ grouping variables. For details see <a href='https://Rdatatable.gitlab.io/data.t
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>avg</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>Sepal.Length</span>))</div><div class='output co'>#&gt;         avg
+#&gt;       &lt;num&gt;
 #&gt; 1: 5.843333</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>avg</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>Sepal.Length</span>),<span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt;       Species   avg
+#&gt;        &lt;fctr&gt; &lt;num&gt;
 #&gt; 1:     setosa 5.006
 #&gt; 2: versicolor 5.936
-#&gt; 3:  virginica 6.588</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>avg</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>hp</span>),<span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'>.</span>(<span class='no'>cyl</span>,<span class='no'>vs</span>))</div><div class='output co'>#&gt;    cyl vs      avg
-#&gt; 1:   6  0 131.6667
-#&gt; 2:   4  1  81.8000
-#&gt; 3:   6  1 115.2500
-#&gt; 4:   8  0 209.2143
-#&gt; 5:   4  0  91.0000</div><div class='input'>
+#&gt; 3:  virginica 6.588</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>avg</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>hp</span>),<span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'>.</span>(<span class='no'>cyl</span>,<span class='no'>vs</span>))</div><div class='output co'>#&gt;      cyl    vs      avg
+#&gt;    &lt;num&gt; &lt;num&gt;    &lt;num&gt;
+#&gt; 1:     6     0 131.6667
+#&gt; 2:     4     1  81.8000
+#&gt; 3:     6     1 115.2500
+#&gt; 4:     8     0 209.2143
+#&gt; 5:     4     0  91.0000</div><div class='input'>
 <span class='co'># the data.table way</span>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>cyl_n</span> <span class='kw'>=</span> <span class='no'>.N</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'>.</span>(<span class='no'>cyl</span>, <span class='no'>vs</span>)) <span class='co'># `.`` is short for list</span></div><div class='output co'>#&gt;    cyl vs cyl_n
-#&gt; 1:   6  0     3
-#&gt; 2:   4  1    10
-#&gt; 3:   6  1     4
-#&gt; 4:   8  0    14
-#&gt; 5:   4  0     1</div><div class='input'>
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>cyl_n</span> <span class='kw'>=</span> <span class='no'>.N</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'>.</span>(<span class='no'>cyl</span>, <span class='no'>vs</span>)) <span class='co'># `.`` is short for list</span></div><div class='output co'>#&gt;      cyl    vs cyl_n
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;int&gt;
+#&gt; 1:     6     0     3
+#&gt; 2:     4     1    10
+#&gt; 3:     6     1     4
+#&gt; 4:     8     0    14
+#&gt; 5:     4     0     1</div><div class='input'>
 
 
 </div></pre>

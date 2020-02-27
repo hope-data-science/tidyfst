@@ -38,9 +38,13 @@ mtcars \%>\%
    by = cyl
 )
 
- # but you could also, of course, use group_dt
-mtcars \%>\%
-  group_dt(by =.(vs,am),
-    summarise_dt(avg = mean(mpg)))
+  # but you could also, of course, use group_dt
+ mtcars \%>\%
+   group_dt(by =.(vs,am),
+     summarise_dt(avg = mean(mpg)))
 
+  # and list of variables could also be used
+ mtcars \%>\%
+   group_dt(by =list(vs,am),
+            summarise_dt(avg = mean(mpg)))
 }

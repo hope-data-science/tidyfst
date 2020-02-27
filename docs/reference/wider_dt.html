@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
       </span>
     </div>
 
@@ -100,7 +100,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/example1_intro.html">Eample 1: Basic usage</a>
+      <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
     </li>
     <li>
       <a href="../articles/example2_join.html">Example 2: Join tables</a>
@@ -109,10 +109,10 @@
       <a href="../articles/example3_reshape.html">Example 3: Reshape</a>
     </li>
     <li>
-      <a href="../articles/example4_nest.html">Eample 4: Nest</a>
+      <a href="../articles/example4_nest.html">Example 4: Nest</a>
     </li>
     <li>
-      <a href="../articles/example5_tibble.html">Eample 5: Tibble</a>
+      <a href="../articles/example5_fst.html">Example 5: Fst</a>
     </li>
   </ul>
 </li>
@@ -200,6 +200,7 @@ If <code>NULL</code>, use all other variables.</p></td>
    <span class='fu'><a href='longer_dt.html'>longer_dt</a></span>(<span class='no'>time</span>) <span class='kw'>-&gt;</span> <span class='no'>longer_stocks</span>
 
  <span class='no'>longer_stocks</span></div><div class='output co'>#&gt;           time variable       value
+#&gt;         &lt;Date&gt;   &lt;fctr&gt;       &lt;num&gt;
 #&gt;  1: 2009-01-01        X -0.15569378
 #&gt;  2: 2009-01-02        X  0.43388979
 #&gt;  3: 2009-01-03        X -0.38195111
@@ -233,6 +234,7 @@ If <code>NULL</code>, use all other variables.</p></td>
 #&gt;           time variable       value</div><div class='input'>
  <span class='no'>longer_stocks</span> <span class='kw'>%&gt;%</span>
    <span class='fu'>wider_dt</span>(<span class='st'>"time"</span>,<span class='st'>"variable"</span>,<span class='st'>"value"</span>)</div><div class='output co'>#&gt;           time           X          Y          Z
+#&gt;         &lt;Date&gt;       &lt;num&gt;      &lt;num&gt;      &lt;num&gt;
 #&gt;  1: 2009-01-01 -0.15569378  1.8926958 -2.1466533
 #&gt;  2: 2009-01-02  0.43388979  2.6336527  0.9085085
 #&gt;  3: 2009-01-03 -0.38195111 -0.5932800  3.9138197
@@ -245,17 +247,18 @@ If <code>NULL</code>, use all other variables.</p></td>
 #&gt; 10: 2009-01-10 -0.35436116 -1.1170840  1.6994338</div><div class='input'>
  <span class='no'>longer_stocks</span> <span class='kw'>%&gt;%</span>
    <span class='fu'><a href='mutate.html'>mutate_dt</a></span>(<span class='kw'>one</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-   <span class='fu'>wider_dt</span>(<span class='st'>"time"</span>,<span class='st'>"variable"</span>,<span class='st'>"one"</span>)</div><div class='output co'>#&gt;           time X Y Z
-#&gt;  1: 2009-01-01 1 1 1
-#&gt;  2: 2009-01-02 1 1 1
-#&gt;  3: 2009-01-03 1 1 1
-#&gt;  4: 2009-01-04 1 1 1
-#&gt;  5: 2009-01-05 1 1 1
-#&gt;  6: 2009-01-06 1 1 1
-#&gt;  7: 2009-01-07 1 1 1
-#&gt;  8: 2009-01-08 1 1 1
-#&gt;  9: 2009-01-09 1 1 1
-#&gt; 10: 2009-01-10 1 1 1</div><div class='input'>
+   <span class='fu'>wider_dt</span>(<span class='st'>"time"</span>,<span class='st'>"variable"</span>,<span class='st'>"one"</span>)</div><div class='output co'>#&gt;           time     X     Y     Z
+#&gt;         &lt;Date&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt;  1: 2009-01-01     1     1     1
+#&gt;  2: 2009-01-02     1     1     1
+#&gt;  3: 2009-01-03     1     1     1
+#&gt;  4: 2009-01-04     1     1     1
+#&gt;  5: 2009-01-05     1     1     1
+#&gt;  6: 2009-01-06     1     1     1
+#&gt;  7: 2009-01-07     1     1     1
+#&gt;  8: 2009-01-08     1     1     1
+#&gt;  9: 2009-01-09     1     1     1
+#&gt; 10: 2009-01-10     1     1     1</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

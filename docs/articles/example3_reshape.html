@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
       </span>
     </div>
 
@@ -61,7 +61,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/example1_intro.html">Eample 1: Basic usage</a>
+      <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
     </li>
     <li>
       <a href="../articles/example2_join.html">Example 2: Join tables</a>
@@ -70,10 +70,10 @@
       <a href="../articles/example3_reshape.html">Example 3: Reshape</a>
     </li>
     <li>
-      <a href="../articles/example4_nest.html">Eample 4: Nest</a>
+      <a href="../articles/example4_nest.html">Example 4: Nest</a>
     </li>
     <li>
-      <a href="../articles/example5_tibble.html">Eample 5: Tibble</a>
+      <a href="../articles/example5_fst.html">Example 5: Fst</a>
     </li>
   </ul>
 </li>
@@ -148,17 +148,18 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">relig_income <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/longer_dt.html">longer_dt</a></span>(<span class="dt">group_to_keep =</span> <span class="st">"religion"</span>,<span class="dt">gathered_name =</span> <span class="st">"income"</span>,<span class="dt">gathered_value =</span> <span class="st">"count"</span>)</a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt;                   religion             income count</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt;   1:              Agnostic              &lt;$10k    27</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;   2:               Atheist              &lt;$10k    12</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;   3:              Buddhist              &lt;$10k    27</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;   4:              Catholic              &lt;$10k   418</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;   5:    Don’t know/refused              &lt;$10k    15</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  ---                                               </span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; 176:              Orthodox Don't know/refused    73</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; 177:       Other Christian Don't know/refused    18</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; 178:          Other Faiths Don't know/refused    71</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; 179: Other World Religions Don't know/refused     8</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 180:          Unaffiliated Don't know/refused   597</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt;                     &lt;char&gt;             &lt;fctr&gt; &lt;num&gt;</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;   1:              Agnostic              &lt;$10k    27</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;   2:               Atheist              &lt;$10k    12</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;   3:              Buddhist              &lt;$10k    27</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;   4:              Catholic              &lt;$10k   418</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;   5:    Don’t know/refused              &lt;$10k    15</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  ---                                               </span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; 176:              Orthodox Don't know/refused    73</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; 177:       Other Christian Don't know/refused    18</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; 178:          Other Faiths Don't know/refused    71</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 179: Other World Religions Don't know/refused     8</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; 180:          Unaffiliated Don't know/refused   597</span></a></code></pre></div>
 <p>Another example from <code>tidyr</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">billboard</a>
 <a class="sourceLine" id="cb5-2" title="2"></a>
@@ -229,49 +230,93 @@
 <a class="sourceLine" id="cb7-43" title="43"><span class="co">## tidyfst way:</span></a>
 <a class="sourceLine" id="cb7-44" title="44">fish_encounters <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb7-45" title="45"><span class="st">  </span><span class="kw"><a href="../reference/wider_dt.html">wider_dt</a></span>(<span class="dt">name_to_spread =</span> <span class="st">"station"</span>,<span class="dt">value_to_spread =</span> <span class="st">"seen"</span>)</a>
-<a class="sourceLine" id="cb7-46" title="46"><span class="co">#&gt;     fish Release I80_1 Lisbon Rstr Base_TD BCE BCW BCE2 BCW2 MAE MAW</span></a>
-<a class="sourceLine" id="cb7-47" title="47"><span class="co">#&gt;  1: 4842       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb7-48" title="48"><span class="co">#&gt;  2: 4843       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb7-49" title="49"><span class="co">#&gt;  3: 4844       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb7-50" title="50"><span class="co">#&gt;  4: 4845       1     1      1    1       1  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-51" title="51"><span class="co">#&gt;  5: 4847       1     1      1   NA      NA  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-52" title="52"><span class="co">#&gt;  6: 4848       1     1      1    1      NA  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-53" title="53"><span class="co">#&gt;  7: 4849       1     1     NA   NA      NA  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-54" title="54"><span class="co">#&gt;  8: 4850       1     1     NA    1       1   1   1   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-55" title="55"><span class="co">#&gt;  9: 4851       1     1     NA   NA      NA  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-56" title="56"><span class="co">#&gt; 10: 4854       1     1     NA   NA      NA  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-57" title="57"><span class="co">#&gt; 11: 4855       1     1      1    1       1  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-58" title="58"><span class="co">#&gt; 12: 4857       1     1      1    1       1   1   1    1    1  NA  NA</span></a>
-<a class="sourceLine" id="cb7-59" title="59"><span class="co">#&gt; 13: 4858       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb7-60" title="60"><span class="co">#&gt; 14: 4859       1     1      1    1       1  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-61" title="61"><span class="co">#&gt; 15: 4861       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb7-62" title="62"><span class="co">#&gt; 16: 4862       1     1      1    1       1   1   1    1    1  NA  NA</span></a>
-<a class="sourceLine" id="cb7-63" title="63"><span class="co">#&gt; 17: 4863       1     1     NA   NA      NA  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-64" title="64"><span class="co">#&gt; 18: 4864       1     1     NA   NA      NA  NA  NA   NA   NA  NA  NA</span></a>
-<a class="sourceLine" id="cb7-65" title="65"><span class="co">#&gt; 19: 4865       1     1      1   NA      NA  NA  NA   NA   NA  NA  NA</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-46" title="46"><span class="co">#&gt;       fish Release I80_1 Lisbon  Rstr Base_TD   BCE   BCW  BCE2  BCW2   MAE</span></a>
+<a class="sourceLine" id="cb7-47" title="47"><span class="co">#&gt;     &lt;fctr&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb7-48" title="48"><span class="co">#&gt;  1:   4842       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb7-49" title="49"><span class="co">#&gt;  2:   4843       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb7-50" title="50"><span class="co">#&gt;  3:   4844       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb7-51" title="51"><span class="co">#&gt;  4:   4845       1     1      1     1       1    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-52" title="52"><span class="co">#&gt;  5:   4847       1     1      1    NA      NA    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-53" title="53"><span class="co">#&gt;  6:   4848       1     1      1     1      NA    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-54" title="54"><span class="co">#&gt;  7:   4849       1     1     NA    NA      NA    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-55" title="55"><span class="co">#&gt;  8:   4850       1     1     NA     1       1     1     1    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-56" title="56"><span class="co">#&gt;  9:   4851       1     1     NA    NA      NA    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-57" title="57"><span class="co">#&gt; 10:   4854       1     1     NA    NA      NA    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-58" title="58"><span class="co">#&gt; 11:   4855       1     1      1     1       1    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-59" title="59"><span class="co">#&gt; 12:   4857       1     1      1     1       1     1     1     1     1    NA</span></a>
+<a class="sourceLine" id="cb7-60" title="60"><span class="co">#&gt; 13:   4858       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb7-61" title="61"><span class="co">#&gt; 14:   4859       1     1      1     1       1    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-62" title="62"><span class="co">#&gt; 15:   4861       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb7-63" title="63"><span class="co">#&gt; 16:   4862       1     1      1     1       1     1     1     1     1    NA</span></a>
+<a class="sourceLine" id="cb7-64" title="64"><span class="co">#&gt; 17:   4863       1     1     NA    NA      NA    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-65" title="65"><span class="co">#&gt; 18:   4864       1     1     NA    NA      NA    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-66" title="66"><span class="co">#&gt; 19:   4865       1     1      1    NA      NA    NA    NA    NA    NA    NA</span></a>
+<a class="sourceLine" id="cb7-67" title="67"><span class="co">#&gt;       MAW</span></a>
+<a class="sourceLine" id="cb7-68" title="68"><span class="co">#&gt;     &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb7-69" title="69"><span class="co">#&gt;  1:     1</span></a>
+<a class="sourceLine" id="cb7-70" title="70"><span class="co">#&gt;  2:     1</span></a>
+<a class="sourceLine" id="cb7-71" title="71"><span class="co">#&gt;  3:     1</span></a>
+<a class="sourceLine" id="cb7-72" title="72"><span class="co">#&gt;  4:    NA</span></a>
+<a class="sourceLine" id="cb7-73" title="73"><span class="co">#&gt;  5:    NA</span></a>
+<a class="sourceLine" id="cb7-74" title="74"><span class="co">#&gt;  6:    NA</span></a>
+<a class="sourceLine" id="cb7-75" title="75"><span class="co">#&gt;  7:    NA</span></a>
+<a class="sourceLine" id="cb7-76" title="76"><span class="co">#&gt;  8:    NA</span></a>
+<a class="sourceLine" id="cb7-77" title="77"><span class="co">#&gt;  9:    NA</span></a>
+<a class="sourceLine" id="cb7-78" title="78"><span class="co">#&gt; 10:    NA</span></a>
+<a class="sourceLine" id="cb7-79" title="79"><span class="co">#&gt; 11:    NA</span></a>
+<a class="sourceLine" id="cb7-80" title="80"><span class="co">#&gt; 12:    NA</span></a>
+<a class="sourceLine" id="cb7-81" title="81"><span class="co">#&gt; 13:     1</span></a>
+<a class="sourceLine" id="cb7-82" title="82"><span class="co">#&gt; 14:    NA</span></a>
+<a class="sourceLine" id="cb7-83" title="83"><span class="co">#&gt; 15:     1</span></a>
+<a class="sourceLine" id="cb7-84" title="84"><span class="co">#&gt; 16:    NA</span></a>
+<a class="sourceLine" id="cb7-85" title="85"><span class="co">#&gt; 17:    NA</span></a>
+<a class="sourceLine" id="cb7-86" title="86"><span class="co">#&gt; 18:    NA</span></a>
+<a class="sourceLine" id="cb7-87" title="87"><span class="co">#&gt; 19:    NA</span></a></code></pre></div>
 <p>If you want to fill with 0s, use:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">fish_encounters <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/wider_dt.html">wider_dt</a></span>(<span class="dt">name_to_spread =</span> <span class="st">"station"</span>,<span class="dt">value_to_spread =</span> <span class="st">"seen"</span>,<span class="dt">fill =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt;     fish Release I80_1 Lisbon Rstr Base_TD BCE BCW BCE2 BCW2 MAE MAW</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co">#&gt;  1: 4842       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt;  2: 4843       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt;  3: 4844       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt;  4: 4845       1     1      1    1       1   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt;  5: 4847       1     1      1    0       0   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-9" title="9"><span class="co">#&gt;  6: 4848       1     1      1    1       0   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt;  7: 4849       1     1      0    0       0   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt;  8: 4850       1     1      0    1       1   1   1    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&gt;  9: 4851       1     1      0    0       0   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt; 10: 4854       1     1      0    0       0   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt; 11: 4855       1     1      1    1       1   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt; 12: 4857       1     1      1    1       1   1   1    1    1   0   0</span></a>
-<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt; 13: 4858       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb8-17" title="17"><span class="co">#&gt; 14: 4859       1     1      1    1       1   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-18" title="18"><span class="co">#&gt; 15: 4861       1     1      1    1       1   1   1    1    1   1   1</span></a>
-<a class="sourceLine" id="cb8-19" title="19"><span class="co">#&gt; 16: 4862       1     1      1    1       1   1   1    1    1   0   0</span></a>
-<a class="sourceLine" id="cb8-20" title="20"><span class="co">#&gt; 17: 4863       1     1      0    0       0   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-21" title="21"><span class="co">#&gt; 18: 4864       1     1      0    0       0   0   0    0    0   0   0</span></a>
-<a class="sourceLine" id="cb8-22" title="22"><span class="co">#&gt; 19: 4865       1     1      1    0       0   0   0    0    0   0   0</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt;       fish Release I80_1 Lisbon  Rstr Base_TD   BCE   BCW  BCE2  BCW2   MAE</span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co">#&gt;     &lt;fctr&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt;  1:   4842       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt;  2:   4843       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt;  3:   4844       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt;  4:   4845       1     1      1     1       1     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="co">#&gt;  5:   4847       1     1      1     0       0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt;  6:   4848       1     1      1     1       0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt;  7:   4849       1     1      0     0       0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&gt;  8:   4850       1     1      0     1       1     1     1     0     0     0</span></a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt;  9:   4851       1     1      0     0       0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt; 10:   4854       1     1      0     0       0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt; 11:   4855       1     1      1     1       1     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt; 12:   4857       1     1      1     1       1     1     1     1     1     0</span></a>
+<a class="sourceLine" id="cb8-17" title="17"><span class="co">#&gt; 13:   4858       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb8-18" title="18"><span class="co">#&gt; 14:   4859       1     1      1     1       1     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-19" title="19"><span class="co">#&gt; 15:   4861       1     1      1     1       1     1     1     1     1     1</span></a>
+<a class="sourceLine" id="cb8-20" title="20"><span class="co">#&gt; 16:   4862       1     1      1     1       1     1     1     1     1     0</span></a>
+<a class="sourceLine" id="cb8-21" title="21"><span class="co">#&gt; 17:   4863       1     1      0     0       0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-22" title="22"><span class="co">#&gt; 18:   4864       1     1      0     0       0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-23" title="23"><span class="co">#&gt; 19:   4865       1     1      1     0       0     0     0     0     0     0</span></a>
+<a class="sourceLine" id="cb8-24" title="24"><span class="co">#&gt;       MAW</span></a>
+<a class="sourceLine" id="cb8-25" title="25"><span class="co">#&gt;     &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb8-26" title="26"><span class="co">#&gt;  1:     1</span></a>
+<a class="sourceLine" id="cb8-27" title="27"><span class="co">#&gt;  2:     1</span></a>
+<a class="sourceLine" id="cb8-28" title="28"><span class="co">#&gt;  3:     1</span></a>
+<a class="sourceLine" id="cb8-29" title="29"><span class="co">#&gt;  4:     0</span></a>
+<a class="sourceLine" id="cb8-30" title="30"><span class="co">#&gt;  5:     0</span></a>
+<a class="sourceLine" id="cb8-31" title="31"><span class="co">#&gt;  6:     0</span></a>
+<a class="sourceLine" id="cb8-32" title="32"><span class="co">#&gt;  7:     0</span></a>
+<a class="sourceLine" id="cb8-33" title="33"><span class="co">#&gt;  8:     0</span></a>
+<a class="sourceLine" id="cb8-34" title="34"><span class="co">#&gt;  9:     0</span></a>
+<a class="sourceLine" id="cb8-35" title="35"><span class="co">#&gt; 10:     0</span></a>
+<a class="sourceLine" id="cb8-36" title="36"><span class="co">#&gt; 11:     0</span></a>
+<a class="sourceLine" id="cb8-37" title="37"><span class="co">#&gt; 12:     0</span></a>
+<a class="sourceLine" id="cb8-38" title="38"><span class="co">#&gt; 13:     1</span></a>
+<a class="sourceLine" id="cb8-39" title="39"><span class="co">#&gt; 14:     0</span></a>
+<a class="sourceLine" id="cb8-40" title="40"><span class="co">#&gt; 15:     1</span></a>
+<a class="sourceLine" id="cb8-41" title="41"><span class="co">#&gt; 16:     0</span></a>
+<a class="sourceLine" id="cb8-42" title="42"><span class="co">#&gt; 17:     0</span></a>
+<a class="sourceLine" id="cb8-43" title="43"><span class="co">#&gt; 18:     0</span></a>
+<a class="sourceLine" id="cb8-44" title="44"><span class="co">#&gt; 19:     0</span></a></code></pre></div>
 <p><code>tidyfst</code> currently does not support spreading multiple columns. I believe this way could keep this function simple and easy to understand. When you need this function, try spread them one by one (using a loop), or try <code>data.table</code> and <code>tidyr</code>.</p>
 </div>
   </div>

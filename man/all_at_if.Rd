@@ -25,7 +25,8 @@ vectors with same length.}
 \item{.at}{Variables to select, could use regular expression or numeric/character
 vector.}
 
-\item{.if}{Conditional function to select columns.}
+\item{.if}{Conditional function to select columns.
+When starts with `-`(minus symbol), return the negative columns.}
 }
 \value{
 A data.table
@@ -53,11 +54,14 @@ iris \%>\% at_dt("Se",mutate,scale)
 iris \%>\% at_dt(1:3,mutate,scale)
 iris \%>\% at_dt(c("Petal.Length"),mutate,scale,center = FALSE)
 
-# if_
-iris \%>\%
-  if_dt(is.double,mutate_dt,scale,center = FALSE)
-iris \%>\%
-  if_dt(is.factor,mutate,as.character)
-iris \%>\%
-  if_dt(is.numeric,summarise,max,na.rm = TRUE)
+ # if_
+ iris \%>\%
+   if_dt(is.double,mutate_dt,scale,center = FALSE)
+  ## support minus symbol to select negative conditions
+ iris \%>\%
+   if_dt(-is.factor,mutate_dt,scale,center = FALSE)
+ iris \%>\%
+   if_dt(is.factor,mutate,as.character)
+ iris \%>\%
+   if_dt(is.numeric,summarise,max,na.rm = TRUE)
 }

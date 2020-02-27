@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
       </span>
     </div>
 
@@ -100,7 +100,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/example1_intro.html">Eample 1: Basic usage</a>
+      <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
     </li>
     <li>
       <a href="../articles/example2_join.html">Example 2: Join tables</a>
@@ -109,10 +109,10 @@
       <a href="../articles/example3_reshape.html">Example 3: Reshape</a>
     </li>
     <li>
-      <a href="../articles/example4_nest.html">Eample 4: Nest</a>
+      <a href="../articles/example4_nest.html">Example 4: Nest</a>
     </li>
     <li>
-      <a href="../articles/example5_tibble.html">Eample 5: Tibble</a>
+      <a href="../articles/example5_fst.html">Example 5: Fst</a>
     </li>
   </ul>
 </li>
@@ -226,6 +226,7 @@ character (id column names) vector.</p></td>
 #&gt; 10 2009-01-10 -0.282705449 -1.8281497 -6.04959861</div><div class='input'>
 <span class='no'>stocks</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>longer_dt</span>(<span class='no'>time</span>)</div><div class='output co'>#&gt;           time variable        value
+#&gt;         &lt;Date&gt;   &lt;fctr&gt;        &lt;num&gt;
 #&gt;  1: 2009-01-01        X -1.400043517
 #&gt;  2: 2009-01-02        X  0.255317055
 #&gt;  3: 2009-01-03        X -2.437263611
@@ -259,6 +260,7 @@ character (id column names) vector.</p></td>
 #&gt;           time variable        value</div><div class='input'>
 <span class='no'>stocks</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>longer_dt</span>(<span class='st'>"ti"</span>)</div><div class='output co'>#&gt;           time variable        value
+#&gt;         &lt;Date&gt;   &lt;fctr&gt;        &lt;num&gt;
 #&gt;  1: 2009-01-01        X -1.400043517
 #&gt;  2: 2009-01-02        X  0.255317055
 #&gt;  3: 2009-01-03        X -2.437263611
@@ -300,18 +302,19 @@ character (id column names) vector.</p></td>
     <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
     <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
     <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,<span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-  )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered week rank
-#&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26  wk1   87
-#&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02  wk1   91
-#&gt;    3: 3 Doors Down              Kryptonite   2000-04-08  wk1   81
-#&gt;    4: 3 Doors Down                   Loser   2000-10-21  wk1   76
-#&gt;    5:     504 Boyz           Wobble Wobble   2000-04-15  wk1   57
-#&gt;   ---                                                            
-#&gt; 5303:        Creed                  Higher   1999-09-11 wk63   50
-#&gt; 5304:     Lonestar                  Amazed   1999-06-05 wk63   45
-#&gt; 5305:        Creed                  Higher   1999-09-11 wk64   50
-#&gt; 5306:     Lonestar                  Amazed   1999-06-05 wk64   50
-#&gt; 5307:        Creed                  Higher   1999-09-11 wk65   49</div><div class='input'>
+  )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
+#&gt;             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;
+#&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26    wk1    87
+#&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02    wk1    91
+#&gt;    3: 3 Doors Down              Kryptonite   2000-04-08    wk1    81
+#&gt;    4: 3 Doors Down                   Loser   2000-10-21    wk1    76
+#&gt;    5:     504 Boyz           Wobble Wobble   2000-04-15    wk1    57
+#&gt;   ---                                                               
+#&gt; 5303:        Creed                  Higher   1999-09-11   wk63    50
+#&gt; 5304:     Lonestar                  Amazed   1999-06-05   wk63    45
+#&gt; 5305:        Creed                  Higher   1999-09-11   wk64    50
+#&gt; 5306:     Lonestar                  Amazed   1999-06-05   wk64    50
+#&gt; 5307:        Creed                  Higher   1999-09-11   wk65    49</div><div class='input'>
 <span class='co'># or use:</span>
  <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
    <span class='fu'>longer_dt</span>(
@@ -319,18 +322,19 @@ character (id column names) vector.</p></td>
      <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
      <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
      <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,<span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-   )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered week rank
-#&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26  wk1   87
-#&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02  wk1   91
-#&gt;    3: 3 Doors Down              Kryptonite   2000-04-08  wk1   81
-#&gt;    4: 3 Doors Down                   Loser   2000-10-21  wk1   76
-#&gt;    5:     504 Boyz           Wobble Wobble   2000-04-15  wk1   57
-#&gt;   ---                                                            
-#&gt; 5303:        Creed                  Higher   1999-09-11 wk63   50
-#&gt; 5304:     Lonestar                  Amazed   1999-06-05 wk63   45
-#&gt; 5305:        Creed                  Higher   1999-09-11 wk64   50
-#&gt; 5306:     Lonestar                  Amazed   1999-06-05 wk64   50
-#&gt; 5307:        Creed                  Higher   1999-09-11 wk65   49</div><div class='input'>
+   )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
+#&gt;             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;
+#&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26    wk1    87
+#&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02    wk1    91
+#&gt;    3: 3 Doors Down              Kryptonite   2000-04-08    wk1    81
+#&gt;    4: 3 Doors Down                   Loser   2000-10-21    wk1    76
+#&gt;    5:     504 Boyz           Wobble Wobble   2000-04-15    wk1    57
+#&gt;   ---                                                               
+#&gt; 5303:        Creed                  Higher   1999-09-11   wk63    50
+#&gt; 5304:     Lonestar                  Amazed   1999-06-05   wk63    45
+#&gt; 5305:        Creed                  Higher   1999-09-11   wk64    50
+#&gt; 5306:     Lonestar                  Amazed   1999-06-05   wk64    50
+#&gt; 5307:        Creed                  Higher   1999-09-11   wk65    49</div><div class='input'>
  <span class='co'># or use:</span>
  <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
    <span class='fu'>longer_dt</span>(
@@ -338,18 +342,19 @@ character (id column names) vector.</p></td>
      <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
      <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
      <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,<span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-   )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered week rank
-#&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26  wk1   87
-#&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02  wk1   91
-#&gt;    3: 3 Doors Down              Kryptonite   2000-04-08  wk1   81
-#&gt;    4: 3 Doors Down                   Loser   2000-10-21  wk1   76
-#&gt;    5:     504 Boyz           Wobble Wobble   2000-04-15  wk1   57
-#&gt;   ---                                                            
-#&gt; 5303:        Creed                  Higher   1999-09-11 wk63   50
-#&gt; 5304:     Lonestar                  Amazed   1999-06-05 wk63   45
-#&gt; 5305:        Creed                  Higher   1999-09-11 wk64   50
-#&gt; 5306:     Lonestar                  Amazed   1999-06-05 wk64   50
-#&gt; 5307:        Creed                  Higher   1999-09-11 wk65   49</div><div class='input'># }
+   )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
+#&gt;             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;
+#&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26    wk1    87
+#&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02    wk1    91
+#&gt;    3: 3 Doors Down              Kryptonite   2000-04-08    wk1    81
+#&gt;    4: 3 Doors Down                   Loser   2000-10-21    wk1    76
+#&gt;    5:     504 Boyz           Wobble Wobble   2000-04-15    wk1    57
+#&gt;   ---                                                               
+#&gt; 5303:        Creed                  Higher   1999-09-11   wk63    50
+#&gt; 5304:     Lonestar                  Amazed   1999-06-05   wk63    45
+#&gt; 5305:        Creed                  Higher   1999-09-11   wk64    50
+#&gt; 5306:     Lonestar                  Amazed   1999-06-05   wk64    50
+#&gt; 5307:        Creed                  Higher   1999-09-11   wk65    49</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

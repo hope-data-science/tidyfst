@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
       </span>
     </div>
 
@@ -100,7 +100,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/example1_intro.html">Eample 1: Basic usage</a>
+      <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
     </li>
     <li>
       <a href="../articles/example2_join.html">Example 2: Join tables</a>
@@ -109,10 +109,10 @@
       <a href="../articles/example3_reshape.html">Example 3: Reshape</a>
     </li>
     <li>
-      <a href="../articles/example4_nest.html">Eample 4: Nest</a>
+      <a href="../articles/example4_nest.html">Example 4: Nest</a>
     </li>
     <li>
-      <a href="../articles/example5_tibble.html">Eample 5: Tibble</a>
+      <a href="../articles/example5_fst.html">Example 5: Fst</a>
     </li>
   </ul>
 </li>
@@ -178,21 +178,26 @@
     <div class='dont-index'><p><code><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></code>,<code><a href='https://tidyr.tidyverse.org/reference/replace_na.html'>replace_na</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>()</div><div class='output co'>#&gt;    x y
-#&gt; 1: 1 a</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    x    y
-#&gt; 1: 1    a
-#&gt; 2: 2 &lt;NA&gt;</div><div class='input'>
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;    x y
-#&gt; 1: 1 a
-#&gt; 2: 2 0
-#&gt; 3: 0 b</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>x</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;    x    y
-#&gt; 1: 1    a
-#&gt; 2: 2 &lt;NA&gt;
-#&gt; 3: 0    b</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>y</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;     x y
-#&gt; 1:  1 a
-#&gt; 2:  2 0
-#&gt; 3: NA b</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
+<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>()</div><div class='output co'>#&gt;        x      y
+#&gt;    &lt;num&gt; &lt;char&gt;
+#&gt; 1:     1      a</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;        x      y
+#&gt;    &lt;num&gt; &lt;char&gt;
+#&gt; 1:     1      a
+#&gt; 2:     2   &lt;NA&gt;</div><div class='input'>
+<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
+#&gt;    &lt;num&gt; &lt;char&gt;
+#&gt; 1:     1      a
+#&gt; 2:     2      0
+#&gt; 3:     0      b</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>x</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
+#&gt;    &lt;num&gt; &lt;char&gt;
+#&gt; 1:     1      a
+#&gt; 2:     2   &lt;NA&gt;
+#&gt; 3:     0      b</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>y</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
+#&gt;    &lt;num&gt; &lt;char&gt;
+#&gt; 1:     1      a
+#&gt; 2:     2      0
+#&gt; 3:    NA      b</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

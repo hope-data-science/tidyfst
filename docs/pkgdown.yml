@@ -6,5 +6,5 @@ articles:
   example2_join: example2_join.html
   example3_reshape: example3_reshape.html
   example4_nest: example4_nest.html
-  example5_tibble: example5_tibble.html
+  example5_fst: example5_fst.html
 
