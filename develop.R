@@ -23,7 +23,7 @@ install(upgrade = "never",dependencies = F)
 rm(list = ls())
 library(tidyfst)
 
-library(tidydt)
+# library(tidydt)
 
 options(pkgdown.internet = F)
 build_site()

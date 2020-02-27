@@ -1,5 +1,17 @@
 
-## 0.6.6
+## 0.6.9
+Date: 20200227
+0. Reason for urgent update: The use of `show_tibble` violates the principals of programming. I hope this idea would not spread in the vignette. See changes in 4.
+1. Improve `select_dt` to let it accept `a:c`-like inputs. Add example `iris %>% select_dt(Sepal.Length:Petal.Length)`. Moreover, now `select_dt` supports delete columns with `-` symbol.
+2. Improve `group_dt` to let "by" parameter also accept list of variables, which means we could not use `mtcars %>% group_dt(by =list(vs,am),summarise_dt(avg = mean(mpg)))`.
+3. Fix a few typos in description and vignettes.
+4. Show the class of variables by default, using `options("datatable.print.class" = TRUE)`, and remove the inappropriate use of `show_tibble`. Details see <https://github.com/tidyverse/tibble/issues/716>.
+5. Add `select_if_dt` function. Moreover, support negative conditional selection in `if_dt`.
+6. Delete the vignette entitled "Example 5: Tibble", as this feature is not used any more.
+7. Add vignette "Example 5:Fst" for better introduction of the feature.
+ 
+## 0.6.6 
+Date:20200224
 1. Change all `print` and `cat` function to `message`.
 2. Use `tempdir()` to write file and read it back in the example of `parse_fst`.
 3. Fix the bug in `count_dt` and `add_count_dt` and add examples in the function.

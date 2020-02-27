@@ -1,6 +1,6 @@
 # tidyfst: Tidy Verbs for Fast Data Manipulation<img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
+[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) [![](https://img.shields.io/badge/devel%20version-0.6.9-yellow.svg)](https://github.com/hope-data-science/tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
 
 
 
@@ -17,11 +17,11 @@ Enjoy the data science in *tidyfst* !
 ## Features
 
 - Receives any data.frame (tibble/data.table/data.frame) and returns a data.table.
+- Show the variable class of data.table as default.
 - Never use in place replacement. 
 - Use suffix rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
 - More flexible verbs for big data manipulation.
 - Supporting data importing and parsing with *fst*, details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
-- Whole tibble display of data.table using [show_tibble](https://hope-data-science.github.io/tidyfst/reference/show_tibble.html).
 - Flagship functions: [group_dt](https://hope-data-science.github.io/tidyfst/reference/group_dt.html), [unnest_dt](https://hope-data-science.github.io/tidyfst/reference/unnest_dt.html), [mutate_when](https://hope-data-science.github.io/tidyfst/reference/mutate_when.html), etc.
 
 
@@ -49,6 +49,7 @@ iris %>%
   distinct_dt(sl,.keep_all = T) %>%
   summarise_dt(sw = max(sw),by = group)
 #>         group  sw
+#>        <fctr> <num>
 #> 1:     setosa 4.4
 #> 2: versicolor 3.4
 #> 3:  virginica 3.8
@@ -57,6 +58,7 @@ mtcars %>%
   group_dt(by =.(vs,am),
   summarise_dt(avg = mean(mpg)))
 #>    vs am      avg
+#>   <num> <num>    <num>
 #> 1:  0  1 19.75000
 #> 2:  1  1 28.37143
 #> 3:  1  0 20.74286
@@ -66,6 +68,7 @@ iris[3:8,] %>%
   mutate_when(Petal.Width == .2,
               one = 1,Sepal.Length=2)
 #>    Sepal.Length Sepal.Width Petal.Length Petal.Width Species one
+#>          <num>       <num>        <num>       <num>  <fctr> <num>
 #> 1:          2.0         3.2          1.3         0.2  setosa   1
 #> 2:          2.0         3.1          1.5         0.2  setosa   1
 #> 3:          2.0         3.6          1.4         0.2  setosa   1
@@ -73,16 +76,7 @@ iris[3:8,] %>%
 #> 5:          4.6         3.4          1.4         0.3  setosa  NA
 #> 6:          2.0         3.4          1.5         0.2  setosa   1
 
-iris %>% count_dt(Species) -> a
-print.data.table = show_tibble(TRUE)
-#> The tibble mode has been turned on.
-a
-#> # A tibble: 3 x 2
-#>   Species        n
-#>   <fct>      <int>
-#> 1 setosa        50
-#> 2 versicolor    50
-#> 3 virginica     50
+
 ```
 
 
@@ -96,11 +90,12 @@ a
 - [Example 2: Join tables](https://hope-data-science.github.io/tidyfst/articles/example2_join.html)
 - [Example 3: Reshape](https://hope-data-science.github.io/tidyfst/articles/example3_reshape.html)
 - [Example 4: Nest](https://hope-data-science.github.io/tidyfst/articles/example4_nest.html)
-- [Example 5: Tibble](https://hope-data-science.github.io/tidyfst/articles/example5_tibble.html)
+- [Example 5: Fst](https://hope-data-science.github.io/tidyfst/articles/example5_fst.html)
 
 ## Related work
 
 - [maditr](https://github.com/gdemin/maditr)
+- [fst](https://github.com/fstpackage/fst)
 - [data.table](https://github.com/Rdatatable/data.table)
 - [dplyr](https://github.com/Rdatatable/data.table)
 - [dtplyr](https://github.com/tidyverse/dtplyr)

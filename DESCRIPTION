@@ -1,6 +1,6 @@
 Package: tidyfst
 Title: Tidy Verbs for Fast Data Manipulation
-Version: 0.6.6
+Version: 0.6.9
 Depends: R (>= 3.3.0)
 Authors@R: 
     person(given = "Tian-Yuan",
@@ -9,7 +9,7 @@ Authors@R:
            email = "huang.tian-yuan@qq.com",
            comment = c(ORCID = "0000-0002-3591-4203"))
 Description: A toolkit of tidy data manipulation verbs with 'data.table' as the backend.
-  Combines the merits of syntax elegance from 'dplyr' and computing performance from 'data.table', 
+  Combining the merits of syntax elegance from 'dplyr' and computing performance from 'data.table', 
   'tidyfst' intends to provide users with state-of-the-art data manipulation tools with least pain.
   This package is inspired by 'maditr', but follows a different philosophy of design, 
   such as prohibiting in place replacement and used a "_dt" suffix API.
@@ -23,8 +23,7 @@ RoxygenNote: 7.0.2
 Imports: 
     data.table (>= 1.12.6),
     fst (>= 0.9.0),
-    stringr,
-    tibble
+    stringr
 Suggests: 
     knitr,
     rmarkdown,
