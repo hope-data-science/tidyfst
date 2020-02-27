@@ -17,7 +17,7 @@ Enjoy the data science in *tidyfst* !
 ## Features
 
 - Receives any data.frame (tibble/data.table/data.frame) and returns a data.table.
-- Show the variable class of data.table as default.
+- Show the variable class of data.table as default (currently in development version 0.6.9 only).
 - Never use in place replacement. 
 - Use suffix rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
 - More flexible verbs for big data manipulation.
