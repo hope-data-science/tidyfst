@@ -111,16 +111,14 @@
 <p>The <a href="https://github.com/fstpackage/fst">fst</a> package for R provides a fast, easy and flexible way to serialize data frames. It has very amazing features, such as fast read and write of R data frames, super file compression and parse data frames without reading it. Considering all these features, now <a href="https://github.com/hope-data-science/tidyfst">tidyfst</a> could provide a new workflow to manipulate data more efficiently. The core idea is: We never need the whole data all at once, we only need the things we want and aggregate them to get the summary to provide target information.</p>
 <p><em>tidyfst</em> have provided the following functions to facilitate the workflow:</p>
 <ul>
-<li><p>parse_fst: Get information of the data.frame without reading it</p></li>
-<li><p>slice_fst: Select the target rows by number</p></li>
-<li><p>select_fst: Select the target columns for the task</p></li>
-<li><p>filter_fst: Conditional selection of rows</p></li>
-<li><p>import_fst: Read a fst file like <code><a href="http://www.fstpackage.org/reference/write_fst.html">fst::read_fst</a></code> but always return a data.table</p></li>
-<li>
-<p>export_fst: Write a fst file like <code><a href="http://www.fstpackage.org/reference/write_fst.html">fst::write_fst</a></code> but always use largest compress factor (which yields smallest file)</p>
-<p>In such a workflow, you never need to read the whole data.frame into your RAM, you just select the target data, process them instantly and get the results all at once. You do not have to read the data to know the structure of data.frame, because we have <code>parse_fst</code>(a wrapper for <code>fst</code> in <em>fst</em> package). Now let’s give it a try.</p>
-</li>
+<li>parse_fst: Get information of the data.frame without reading it</li>
+<li>slice_fst: Select the target rows by number</li>
+<li>select_fst: Select the target columns for the task</li>
+<li>filter_fst: Conditional selection of rows</li>
+<li>import_fst: Read a fst file like <code><a href="http://www.fstpackage.org/reference/write_fst.html">fst::read_fst</a></code> but always return a data.table</li>
+<li>export_fst: Write a fst file like <code><a href="http://www.fstpackage.org/reference/write_fst.html">fst::write_fst</a></code> but always use largest compress factor (which yields smallest file)</li>
 </ul>
+<p>In such a workflow, you never need to read the whole data.frame into your RAM, you just select the target data, process them instantly and get the results all at once. You do not have to read the data to know the structure of data.frame, because we have <code>parse_fst</code>(a wrapper for <code>fst</code> in <em>fst</em> package). Now let’s give it a try.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyfst)</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="co"># Generate some random data frame with 10 million rows and various column types</span></a>
