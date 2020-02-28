@@ -85,7 +85,7 @@ iris[3:8,] %>%
 
 *unnest_dt* is now fast enough to beat the *tidyr::unnest*, but the *nest_dt* function would build a nested data.table with *data.table* inside. How to use such data structure is remained to be seen, and the performance is still to be explored.
 
-*tidyfst* will keep up with the [updates](https://github.com/Rdatatable/data.table/blob/master/NEWS.md) of *data.table* , in the next step would introduce more new features to improve the performance and flexibility to facilitate fast data manipulation in data syntax. 
+*tidyfst* will keep up with the [updates](https://github.com/Rdatatable/data.table/blob/master/NEWS.md) of *data.table* , in the next step would introduce more new features to improve the performance and flexibility to facilitate fast data manipulation in tidy syntax. 
 
 ## Vignettes
 - [Example 1: Basic usage](https://hope-data-science.github.io/tidyfst/articles/example1_intro.html)
