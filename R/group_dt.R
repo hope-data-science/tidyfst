@@ -43,20 +43,55 @@ group_dt = function(data,by = NULL,...){
   substitute(list(...)) %>%
     deparse() %>%
     str_c(collapse = "") %>%
-   # str_squish() %>%
+    # str_squish() %>%
     str_extract("\\(.+\\)") %>%
     str_sub(2,-2) -> dot_string
   deparse(by) -> by_deparse
   if(by_deparse == "NULL") stop("Please provide the group(s).")
-  else if(by_deparse %>% str_detect("^\\.|^list\\("))
-    eval(parse(text = str_glue("dt[,(.SD %>% {dot_string}),by = by]")))
-  else {
+  else if(!str_detect(by_deparse,"^\\.|^list\\("))
     by_deparse %>%
-      str_c(".(",.,")") -> by
-    eval(parse(text = str_glue("dt[,(.SD %>% {dot_string}),by = {by}]")))
-  }
+      str_c(".(",.,")") -> by_deparse
+
+  dot_string %>%
+    strsplit("%>%") %>%
+    unlist() %>%
+    str_squish() %>%
+    lapply(dot_convert) %>%
+    str_c("[,",.,",","by = {by_deparse}]") %>%
+    str_c(collapse = "") %>%
+    str_c("dt",.) -> to_eval
+
+  eval(parse(text = str_glue(to_eval)))
 }
 
+# group_dt = function(data,by = NULL,...){
+#   dt = as_dt(data)
+#   by = substitute(by)
+#   substitute(list(...)) %>%
+#     deparse() %>%
+#     str_c(collapse = "") %>%
+#    # str_squish() %>%
+#     str_extract("\\(.+\\)") %>%
+#     str_sub(2,-2) -> dot_string
+#   deparse(by) -> by_deparse
+#   if(by_deparse == "NULL") stop("Please provide the group(s).")
+#   else if(by_deparse %>% str_detect("^\\.|^list\\("))
+#     eval(parse(text = str_glue("dt[,(.SD %>% {dot_string}),by = by]")))
+#   else {
+#     by_deparse %>%
+#       str_c(".(",.,")") -> by
+#     eval(parse(text = str_glue("dt[,(.SD %>% {dot_string}),by = {by}]")))
+#   }
+# }
+
+dot_convert = function(string){
+  if(str_detect(string,",\\s*\\.\\s*,"))
+    str_replace(string,",\\s*\\.\\s*,",",.SD,") -> string
+  else if(str_detect(string,",s*\\.s*\\)"))
+    str_replace(string,",s*\\.s*\\)",",.SD\\)") -> string
+  else str_replace(string,"\\(","\\(.SD,") -> string
+  string
+}
 
 ## general
 as_dt = function(data){
