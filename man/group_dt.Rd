@@ -30,7 +30,15 @@ iris \%>\% group_dt(Species,
                   mutate_dt(max= max(Sepal.Length)) \%>\%
                     summarise_dt(sum=sum(Sepal.Length)))
 
-# for summarise_dt, you can use "by" to calculate within the group
+# for users familiar with data.table, you can work on .SD directly
+# following codes get the first and last row from each group
+iris \%>\%
+  group_dt(
+    by = Species,
+    rbind(.SD[1],.SD[.N])
+  )
+
+#' # for summarise_dt, you can use "by" to calculate within the group
 mtcars \%>\%
   summarise_dt(
    disp = mean(disp),

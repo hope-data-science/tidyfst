@@ -3,37 +3,52 @@
 \name{drop_na_dt}
 \alias{drop_na_dt}
 \alias{replace_na_dt}
-\title{Dump or replace missing values in data.frame}
+\alias{fill_na_dt}
+\title{Dump, replace and fill missing values in data.frame}
 \usage{
 drop_na_dt(data, ...)
 
 replace_na_dt(data, ..., to)
+
+fill_na_dt(data, ..., direction = c("down", "up"))
 }
 \arguments{
 \item{data}{data.frame}
 
-\item{...}{Colunms to be replaced. If not specified, use all columns.}
+\item{...}{Colunms to be replaced or filled. If not specified, use all columns.}
 
 \item{to}{What value should NA replace by?}
+
+\item{direction}{Direction in which to fill missing values.
+Currently either "down" (the default) or "up".}
 }
 \value{
 data.table
 }
 \description{
-Analogous function for \code{drop_na} and \code{replace_na} in \pkg{tidyr}, but with a different API.
+Analogous function for \code{drop_na}, \code{replace_na} and
+\code{fill} in \pkg{tidyr}, but with a different API.
 }
 \examples{
 df <- data.table(x = c(1, 2, NA), y = c("a", NA, "b"))
-df \%>\% drop_na_dt()
-df \%>\% drop_na_dt(x)
+ df \%>\% drop_na_dt()
+ df \%>\% drop_na_dt(x)
+ df \%>\% drop_na_dt(y)
+ df \%>\% drop_na_dt(x,y)
 
-df \%>\% replace_na_dt(to = 0)
-df \%>\% replace_na_dt(x,to = 0)
-df \%>\% replace_na_dt(y,to = 0)
+ df \%>\% replace_na_dt(to = 0)
+ df \%>\% replace_na_dt(x,to = 0)
+ df \%>\% replace_na_dt(y,to = 0)
+ df \%>\% replace_na_dt(x,y,to = 0)
+
+ df \%>\% fill_na_dt(x)
+ df \%>\% fill_na_dt() # not specified, fill all columns
+ df \%>\% fill_na_dt(y,direction = "up")
 }
 \references{
 https://stackoverflow.com/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table
 }
 \seealso{
-\code{\link[tidyr]{drop_na}},\code{\link[tidyr]{replace_na}}
+\code{\link[tidyr]{drop_na}},\code{\link[tidyr]{replace_na}},
+\code{\link[tidyr]{fill}}
 }

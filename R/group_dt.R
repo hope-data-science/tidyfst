@@ -16,7 +16,15 @@
 #'                   mutate_dt(max= max(Sepal.Length)) %>%
 #'                     summarise_dt(sum=sum(Sepal.Length)))
 #'
-#' # for summarise_dt, you can use "by" to calculate within the group
+#' # for users familiar with data.table, you can work on .SD directly
+#' # following codes get the first and last row from each group
+#' iris %>%
+#'   group_dt(
+#'     by = Species,
+#'     rbind(.SD[1],.SD[.N])
+#'   )
+#'
+#' #' # for summarise_dt, you can use "by" to calculate within the group
 #' mtcars %>%
 #'   summarise_dt(
 #'    disp = mean(disp),
@@ -33,6 +41,7 @@
 #'  mtcars %>%
 #'    group_dt(by =list(vs,am),
 #'             summarise_dt(avg = mean(mpg)))
+
 
 
 #' @export
@@ -64,6 +73,7 @@ group_dt = function(data,by = NULL,...){
   eval(parse(text = str_glue(to_eval)))
 }
 
+# previous method, slow
 # group_dt = function(data,by = NULL,...){
 #   dt = as_dt(data)
 #   by = substitute(by)
@@ -85,7 +95,8 @@ group_dt = function(data,by = NULL,...){
 # }
 
 dot_convert = function(string){
-  if(str_detect(string,",\\s*\\.\\s*,"))
+  if(str_detect(string,"\\.SD")) {}
+  else if(str_detect(string,",\\s*\\.\\s*,"))
     str_replace(string,",\\s*\\.\\s*,",",.SD,") -> string
   else if(str_detect(string,",s*\\.s*\\)"))
     str_replace(string,",s*\\.s*\\)",",.SD\\)") -> string
