@@ -81,7 +81,7 @@ iris[3:8,] %>%
 
 ## Note
 
-In the current version of *tidyfst* (v0.6.9), *group_dt* is not fast enough. To boost the speed, use the development version (v0.7.7) from GitHub.
+In the current version of *tidyfst* (v0.6.9), *group_dt* is not fast enough. To boost the speed, use the development version (v0.7.7) from GitHub. The *tidyfst* is improving all the time, using the development version could help you improve the performance with minimun possible trouble that might come up.
 
 
 
