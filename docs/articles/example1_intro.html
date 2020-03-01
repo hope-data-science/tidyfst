@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.7</span>
       </span>
     </div>
 
@@ -115,17 +115,13 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyfst)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
 <a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(flights)</a></code></pre></div>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(flights)</a></code></pre></div>
 <div id="filter-rows-with-filter_dt" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filter-rows-with-filter_dt" class="anchor"></a>Filter rows with <code>filter_dt()</code>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(flights, month <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, day <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
-</div>
-<div id="arrange-rows-with-arrange_dt" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arrange-rows-with-arrange_dt" class="anchor"></a>Arrange rows with <code>arrange_dt()</code>
-</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(flights, month <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>day <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<p>Note that comma could not be used in the expressions. Which means <code><a href="../reference/filter_dt.html">filter_dt(flights, month == 1,day == 1)</a></code> would return error. ## Arrange rows with <code><a href="../reference/arrange_dt.html">arrange_dt()</a></code></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(flights, year, month, day)</a></code></pre></div>
 <p>Use <code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code> (minus symbol) to order a column in descending order:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(flights, <span class="op">-</span>arr_delay)</a></code></pre></div>
@@ -200,7 +196,7 @@
 <a class="sourceLine" id="cb16-5" title="5"><span class="co">#   flights = n()</span></a>
 <a class="sourceLine" id="cb16-6" title="6"><span class="co"># )</span></a>
 <a class="sourceLine" id="cb16-7" title="7"></a>
-<a class="sourceLine" id="cb16-8" title="8"><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(flights,<span class="dt">planes =</span> <span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">uniqueN</a></span>(tailnum),<span class="dt">flights =</span> .N,<span class="dt">by =</span> dest) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-8" title="8"><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(flights,<span class="dt">planes =</span> <span class="kw"><a href="https://rdrr.io/pkg/data.table/man/duplicated.html">uniqueN</a></span>(tailnum),<span class="dt">flights =</span> .N,<span class="dt">by =</span> dest) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb16-9" title="9"><span class="st">  </span><span class="kw"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(dest)</a></code></pre></div>
 <p>If you need to group by many variables, use:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># the dplyr syntax:</span></a>
@@ -234,7 +230,7 @@
 <a class="sourceLine" id="cb18-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(data.table)</a>
 <a class="sourceLine" id="cb18-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
 <a class="sourceLine" id="cb18-4" title="4"></a>
-<a class="sourceLine" id="cb18-5" title="5">flights =<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(flights) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb18-5" title="5">flights =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(flights) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>()</a></code></pre></div>
 </div>
 <div id="subset-rows" class="section level2">
 <h2 class="hasAnchor">
@@ -368,7 +364,7 @@
 <a class="sourceLine" id="cb25-11" title="11">    <span class="dt">by =</span> .(origin, dest, month),</a>
 <a class="sourceLine" id="cb25-12" title="12">    <span class="kw"><a href="../reference/all_at_if.html">at_dt</a></span>(<span class="st">"_delay"</span>,summarise_dt,mean)</a>
 <a class="sourceLine" id="cb25-13" title="13">           )</a></code></pre></div>
-<p>Let me explain what happens here, especially in <code>group_dt</code>. First filter by condition <code>carrier == "AA"</code>, then group by three variables, which are <code>origin, dest, month</code>. Last, summarise by columns with "_delay" in the column names and get the mean value of all such variables(with "_delay" in their column names). This is a very creative design, utilizing <code>.SD</code> in <em>data.table</em> and upgrade the <code>group_by</code> function in <em>dplyr</em> (because you never need to <code>ungroup</code> now, just put the group operations in the <code>group_dt</code>). And <strong>you can pipe in the group_dt function</strong>. Let play with it a little bit further:</p>
+<p>Let me explain what happens here, especially in <code>group_dt</code>. First filter by condition <code>carrier == "AA"</code>, then group by three variables, which are <code>origin, dest, month</code>. Last, summarise by columns with "_delay" in the column names and get the mean value of all such variables(with "_delay" in their column names). This is a very creative design, utilizing <code>.SD</code> in <em>data.table</em> and upgrade the <code>group_by</code> function in <em>dplyr</em> (because you never need to <code>ungroup</code> now, just put the group operations in the <code>group_dt</code>). And <strong>you can pipe in the group_dt function</strong>. Let’s play with it a little bit further:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb26-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(carrier <span class="op">==</span><span class="st"> "AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/group_dt.html">group_dt</a></span>(</a>
@@ -397,7 +393,6 @@
 <li>
 <a href="#use-tidyfst-just-like-dplyr">Use tidyfst just like dplyr</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#filter-rows-with-filter_dt">Filter rows with <code>filter_dt()</code></a></li>
-      <li><a href="#arrange-rows-with-arrange_dt">Arrange rows with <code>arrange_dt()</code></a></li>
       <li><a href="#select-columns-with-select_dt">Select columns with <code>select_dt()</code></a></li>
       <li><a href="#add-new-columns-with-mutate_dt">Add new columns with <code>mutate_dt()</code></a></li>
       <li><a href="#summarise-values-with-summarise_dt">Summarise values with <code>summarise_dt()</code></a></li>

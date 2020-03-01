@@ -78,7 +78,7 @@ but in another efficient way." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.7</span>
       </span>
     </div>
 
@@ -196,7 +196,21 @@ but in another efficient way.</p>
 #&gt; 1:     setosa 250.3
 #&gt; 2: versicolor 296.8
 #&gt; 3:  virginica 329.4</div><div class='input'>
-<span class='co'># for summarise_dt, you can use "by" to calculate within the group</span>
+<span class='co'># for users familiar with data.table, you can work on .SD directly</span>
+<span class='co'># following codes get the first and last row from each group</span>
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>group_dt</span>(
+    <span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>.SD</span>[<span class='fl'>1</span>],<span class='no'>.SD</span>[<span class='no'>.N</span>])
+  )</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
+#&gt; 1:     setosa          5.1         3.5          1.4         0.2
+#&gt; 2:     setosa          5.0         3.3          1.4         0.2
+#&gt; 3: versicolor          7.0         3.2          4.7         1.4
+#&gt; 4: versicolor          5.7         2.8          4.1         1.3
+#&gt; 5:  virginica          6.3         3.3          6.0         2.5
+#&gt; 6:  virginica          5.9         3.0          5.1         1.8</div><div class='input'>
+<span class='co'>#' # for summarise_dt, you can use "by" to calculate within the group</span>
 <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='summarise_dt.html'>summarise_dt</a></span>(
    <span class='kw'>disp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>disp</span>),
