@@ -14,15 +14,24 @@
 #'               one = 1,Sepal.Length=2)
 #' @export
 
-
 mutate_when = function(data,...){
   dt = as_dt(data)
-  dot_string <- substitute(list(...)) %>% deparse() %>%
-    str_extract("(?<=\\().+?(?=\\))") %>%
-    strsplit(",") %>% unlist()
-  when = dot_string[1]
-  what = dot_string[-1] %>% paste0(collapse = ",")
+  substitute(list(...)) %>%
+    lapply(deparse) %>%
+    .[-1] -> dot_string
+  when = dot_string[[1]]
+  what = str_c(names(dot_string[-1]),dot_string[-1],sep = "=") %>%
+    str_c(collapse = ",")
   eval(parse(text = str_glue(" dt[{when},`:=`({what})][]")))
 }
 
-
+# mutate_when = function(data,...){
+#   dt = as_dt(data)
+#   dot_string <- substitute(list(...)) %>% deparse() %>%
+#     str_c(collapse = "") %>%
+#     str_extract("\\(.+\\)") %>%
+#     strsplit(",") %>% unlist()
+#   when = dot_string[1]
+#   what = dot_string[-1] %>% paste0(collapse = ",")
+#   eval(parse(text = str_glue(" dt[{when},`:=`({what})][]")))
+# }

@@ -36,7 +36,8 @@ data.table::funion
 #' @export
 data.table::fsetequal
 
-
+#' @export
+data.table::rbindlist
 
 
 

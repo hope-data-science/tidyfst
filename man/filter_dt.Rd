@@ -20,11 +20,7 @@ Analogous function for \code{filter} in \pkg{dplyr}.
 }
 \examples{
 iris \%>\% filter_dt(Sepal.Length > 7)
-\dontrun{
-# tidyfst do not support comma anymore, following codes would return error
-# please use `&` instead of `,`
 iris \%>\% filter_dt(Sepal.Length > 7,Sepal.Width > 3)
-}
 iris \%>\% filter_dt(Sepal.Length > 7 & Sepal.Width > 3)
 iris \%>\% filter_dt(Sepal.Length == max(Sepal.Length))
 }

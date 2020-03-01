@@ -8,25 +8,30 @@
 #' @seealso \code{\link[dplyr]{filter}}
 #' @examples
 #' iris %>% filter_dt(Sepal.Length > 7)
-#' \dontrun{
-#' # tidyfst do not support comma anymore, following codes would return error
-#' # please use `&` instead of `,`
 #' iris %>% filter_dt(Sepal.Length > 7,Sepal.Width > 3)
-#' }
 #' iris %>% filter_dt(Sepal.Length > 7 & Sepal.Width > 3)
 #' iris %>% filter_dt(Sepal.Length == max(Sepal.Length))
 
 #' @export
-
 filter_dt = function(data,...){
   dt = as_dt(data)
-  substitute(list(...)) %>%
-    deparse() %>%
-    str_c(collapse = "") %>%
-    str_squish() %>%
-    str_extract("\\(.+\\)") %>%
-    str_sub(2,-2) -> dot_string
+ substitute(list(...)) %>%
+    lapply(deparse) %>%
+    .[-1] %>%
+    str_c(collapse = " & ") -> dot_string
+
   eval(parse(text = str_glue("dt[{dot_string}]")))
 }
 
+# past version of filter_dt
+# filter_dt = function(data,...){
+#   dt = as_dt(data)
+#   substitute(list(...)) %>%
+#     deparse() %>%
+#     str_c(collapse = "") %>%
+#     str_squish() %>%
+#     str_extract("\\(.+\\)") %>%
+#     str_sub(2,-2) -> dot_string
+#   eval(parse(text = str_glue("dt[{dot_string}]")))
+# }
 
