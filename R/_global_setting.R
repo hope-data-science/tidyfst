@@ -13,9 +13,6 @@ stringr::`%>%`
 data.table::data.table
 
 #' @export
-data.table::as.data.table
-
-#' @export
 data.table::fread
 
 #' @export

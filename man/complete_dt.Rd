@@ -26,7 +26,10 @@ Turns implicit missing values into explicit missing values.
 Analogous function for \code{complete} function in \pkg{tidyr}.
 }
 \details{
-If you supply fill, these values will also replace existing explicit missing values in the data set.
+When the provided columns with addtion data are of different length,
+all the unique combinations would be returned.
+
+If you supply fill parameter, these values will also replace existing explicit missing values in the data set.
 }
 \examples{
 df <- data.table(
@@ -41,6 +44,7 @@ df \%>\% complete_dt(item_id,item_name)
 df \%>\% complete_dt(item_id,item_name,fill = 0)
 df \%>\% complete_dt("item")
 df \%>\% complete_dt(item_id=1:3)
+df \%>\% complete_dt(item_id=1:3,group=1:2)
 df \%>\% complete_dt(item_id=1:3,group=1:3,item_name=c("a","b","c"))
 }
 \seealso{

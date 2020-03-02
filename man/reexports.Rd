@@ -5,7 +5,6 @@
 \alias{reexports}
 \alias{\%>\%}
 \alias{data.table}
-\alias{as.data.table}
 \alias{fread}
 \alias{fwrite}
 \alias{uniqueN}
@@ -21,7 +20,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{data.table}{\code{\link[data.table]{as.data.table}}, \code{\link[data.table]{data.table}}, \code{\link[data.table]{fintersect}}, \code{\link[data.table]{fread}}, \code{\link[data.table]{fsetdiff}}, \code{\link[data.table]{fsetequal}}, \code{\link[data.table]{funion}}, \code{\link[data.table]{fwrite}}, \code{\link[data.table]{rbindlist}}, \code{\link[data.table]{uniqueN}}}
+  \item{data.table}{\code{\link[data.table]{data.table}}, \code{\link[data.table]{fintersect}}, \code{\link[data.table]{fread}}, \code{\link[data.table]{fsetdiff}}, \code{\link[data.table]{fsetequal}}, \code{\link[data.table]{funion}}, \code{\link[data.table]{fwrite}}, \code{\link[data.table]{rbindlist}}, \code{\link[data.table]{uniqueN}}}
 
   \item{stringr}{\code{\link[stringr]{\%>\%}}}
 }}

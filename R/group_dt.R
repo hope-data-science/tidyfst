@@ -2,7 +2,7 @@
 #' @title Data manipulation within groups
 #' @description Analogous function for \code{group_by} in \pkg{dplyr},
 #' but in another efficient way.
-#' @param data data.frame
+#' @param data A data.frame
 #' @param by Variables to group by,unquoted name of grouping variable of list of unquoted names of grouping variables.
 #' @param ... Any data manipulation arguments that could be implemented on a data.frame.
 #' @return data.table
@@ -104,9 +104,5 @@ dot_convert = function(string){
   string
 }
 
-## general
-as_dt = function(data){
-  if(!is.data.frame(data)) stop("Only a data.frame could be received.")
-  as.data.table(data)
-}
+
 

@@ -10,7 +10,9 @@
 #' needed columns and fill outside values) could not be mixed,
 #' find more details in examples.
 #' @param fill Atomic value to fill into the missing cell, default uses \code{NA}.
-#' @details If you supply fill, these values will also replace existing explicit missing values in the data set.
+#' @details When the provided columns with addtion data are of different length,
+#' all the unique combinations would be returned.
+#' @details If you supply fill parameter, these values will also replace existing explicit missing values in the data set.
 #' @seealso \code{\link[tidyr]{complete}}
 #' @return data.table
 #' @examples
@@ -26,6 +28,7 @@
 #' df %>% complete_dt(item_id,item_name,fill = 0)
 #' df %>% complete_dt("item")
 #' df %>% complete_dt(item_id=1:3)
+#' df %>% complete_dt(item_id=1:3,group=1:2)
 #' df %>% complete_dt(item_id=1:3,group=1:3,item_name=c("a","b","c"))
 
 #' @export
@@ -37,10 +40,10 @@ complete_dt = function(data,...,fill = NA){
      deparse() %>%
      str_detect("=")
   ) {
-    data.table(...) %>%
+    suppressWarnings(data.table(...)) %>%
+      unique() %>%
       expand.grid() %>%
       as.data.table(key=names(.)) %>%
-      unique() %>%
       merge(setorder(dt),all = TRUE) %>%
       replace_na_dt(to=fill)
   }else
