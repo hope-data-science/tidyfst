@@ -10,11 +10,13 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
-This vignette has referred to `dplyr`'s vignette in <https://dplyr.tidyverse.org/articles/dplyr.html>. We'll try to reproduce all the results. First load the needed packages.
+# Use tidyfst just like dplyr
+This part of vignette has referred to `dplyr`'s vignette in <https://dplyr.tidyverse.org/articles/dplyr.html>. We'll try to reproduce all the results. First load the needed packages.
 
 ```{r}
 library(tidyfst)
@@ -25,9 +27,9 @@ data.table(flights)
 
 ## Filter rows with `filter_dt()`
 ```{r}
-filter_dt(flights, month == 1, day == 1)
+filter_dt(flights, month == 1 & day == 1)
 ```
-
+Note that comma could not be used in the expressions. Which means `filter_dt(flights, month == 1,day == 1)` would return error.
 ## Arrange rows with `arrange_dt()`
 ```{r}
 arrange_dt(flights, year, month, day)
@@ -146,6 +148,181 @@ flights %>%
   summarise_dt(by = .(year,month),flights = sum(flights)) %>% 
   summarise_dt(by = .(year),flights = sum(flights))
 ```
+  
+# Comparison with data.table syntax
+  *tidyfst* provides a tidy syntax for *data.table*. For such design, *tidyfst* never runs faster than the analogous *data.table* codes. Nevertheless, it facilitate the dplyr-users to gain the computation performance in no time and guide them to learn more about data.table for speed.
+  Below, we'll compare the syntax of `tidyfst` and `data.table` (referring to  [Introduction to data.table](https://rdatatable.gitlab.io/data.table/articles/datatable-intro.html)). This could let you know how they are different, and let users to choose their preference. Ideally, *tidyfst* will lead even more users to learn more about *data.table* and its wonderful features, so as to design more extentions for *tidyfst* in the future.
+  
+## Data
+Because we want a more stable data source, here we'll use the flight data from the above `nycflights13` package.
+```{r}
+library(tidyfst)
+library(data.table)
+library(nycflights13)
+
+flights = data.table(flights) %>% na.omit()
+```
+
+## Subset rows
+```{r}
+# data.table
+head(flights[origin == "JFK" & month == 6L])
+flights[1:2]
+flights[order(origin, -dest)] 
+
+# tidyfst
+flights %>% 
+  filter_dt(origin == "JFK" & month == 6L) %>% 
+  head()
+flights %>% slice_dt(1:2)
+flights %>% arrange_dt(origin,-dest)
+```
+
+## Select column(s)
+```{r}
+# data.table
+flights[, list(arr_delay)]
+flights[, .(arr_delay, dep_delay)]
+flights[, .(delay_arr = arr_delay, delay_dep = dep_delay)]
+
+# tidyfst
+flights %>% select_dt(arr_delay)
+flights %>% select_dt(arr_delay, dep_delay)
+flights %>% transmute_dt(delay_arr = arr_delay, delay_dep = dep_delay)
+```
+
+## Mixed computation
+```{r}
+# data.table
+flights[, sum( (arr_delay + dep_delay) < 0)]
+flights[origin == "JFK" & month == 6L,
+               .(m_arr = mean(arr_delay), m_dep = mean(dep_delay))]
+flights[origin == "JFK" & month == 6L, length(dest)]
+flights[origin == "JFK" & month == 6L, .N]
+
+# tidyfst
+flights %>% summarise_dt(sum( (arr_delay + dep_delay) < 0))
+flights %>% 
+  filter_dt(origin == "JFK" & month == 6L) %>% 
+  summarise_dt(m_arr = mean(arr_delay), m_dep = mean(dep_delay))
+flights %>% 
+  filter_dt(origin == "JFK" & month == 6L) %>% 
+  nrow()
+flights %>% 
+  filter_dt(origin == "JFK" & month == 6L) %>% 
+  count_dt()
+flights %>% 
+  filter_dt(origin == "JFK" & month == 6L) %>% 
+  summarise_dt(.N)
+```
+  In the above examples, we could learn that in *tidyfst*, you could still use the methods in data.table, such as `.N`.
+  
+## Refer to columns by names
+```{r}
+# data.table
+flights[, c("arr_delay", "dep_delay")]
+
+select_cols = c("arr_delay", "dep_delay")
+flights[ , ..select_cols]
+flights[ , select_cols, with = FALSE]
+
+flights[, !c("arr_delay", "dep_delay")]
+flights[, -c("arr_delay", "dep_delay")]
+
+# returns year,month and day
+flights[, year:day]
+# returns day, month and year
+flights[, day:year]
+# returns all columns except year, month and day
+flights[, -(year:day)]
+flights[, !(year:day)]
+
+# tidyfst
+flights %>% select_dt(c("arr_delay", "dep_delay"))
+
+select_cols = c("arr_delay", "dep_delay")
+flights %>% select_dt(cols = select_cols)
+
+flights %>% select_dt(-arr_delay,-dep_delay)
+
+flights %>% select_dt(year:day)
+flights %>% select_dt(day:year)
+flights %>% select_dt(-(year:day))
+flights %>% select_dt(!(year:day))
+```
+
+## Aggregations
+```{r}
+# data.table
+flights[, .N, by = .(origin)]
+flights[carrier == "AA", .N, by = origin]
+flights[carrier == "AA", .N, by = .(origin, dest)]
+flights[carrier == "AA",
+        .(mean(arr_delay), mean(dep_delay)),
+        by = .(origin, dest, month)]
+
+# tidyfst
+flights %>% count_dt(origin) # sort by default
+flights %>% filter_dt(carrier == "AA") %>% count_dt(origin)
+flights %>% filter_dt(carrier == "AA") %>% count_dt(origin,dest)
+flights %>% filter_dt(carrier == "AA") %>% 
+  summarise_dt(mean(arr_delay), mean(dep_delay),
+               by = .(origin, dest, month))
+```
+  Note that currently `keyby` is not used in *tidyfst*. This featuer might be included in the future for better performance in order-independent tasks. Moreover, `count_dt` is sorted automatically by the counted number, this could be controlled by the parameter "sort".
+```{r}
+# data.table
+flights[carrier == "AA", .N, by = .(origin, dest)][order(origin, -dest)]
+flights[, .N, .(dep_delay>0, arr_delay>0)]
+
+# tidyfst
+flights %>% 
+  filter_dt(carrier == "AA") %>% 
+  count_dt(origin,dest,sort = FALSE) %>% 
+  arrange_dt(origin,-dest)
+flights %>% 
+  summarise_dt(.N,by = .(dep_delay>0, arr_delay>0))
+```
+  Now let's try a more complex example:
+```{r}
+# data.table
+flights[carrier == "AA", 
+        lapply(.SD, mean), 
+        by = .(origin, dest, month), 
+        .SDcols = c("arr_delay", "dep_delay")] 
+
+# tidyfst
+flights %>% 
+  filter_dt(carrier == "AA") %>% 
+  group_dt(
+    by = .(origin, dest, month),
+    at_dt("_delay",summarise_dt,mean)
+           )
+```
+  Let me explain what happens here, especially in `group_dt`. First filter by condition `carrier == "AA"`, then group by three variables, which are `origin, dest, month`. Last, summarise by columns with "_delay" in the column names and get the mean value of all such variables(with "_delay" in their column names). This is a very creative design, utilizing `.SD` in *data.table* and upgrade the `group_by` function in *dplyr* (because you never need to `ungroup` now, just put the group operations in the `group_dt`). And **you can pipe in the group_dt function**. Let's play with it a little bit further:
+```{r}
+flights %>% 
+  filter_dt(carrier == "AA") %>% 
+  group_dt(
+    by = .(origin, dest, month),
+    at_dt("_delay",summarise_dt,mean) %>% 
+      mutate_dt(sum = dep_delay + arr_delay)
+           )
+```
+  However, I don't recommend using it if you don't acutually need it for group computation (just start another pipe follows `group_dt`).
+  Now let's end with some easy examples:
+```{r}
+# data.table
+flights[, head(.SD, 2), by = month]
+
+# tidyfst
+flights %>% 
+  group_dt(by = month,head(2))
+```
+  Deep inside, *tidyfst* is born from *dplyr* and *data.table*, and use *stringr* to make flexible APIs, so as to bring their superiority into full play.
+  
+  
+  
   
 
 
