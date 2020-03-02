@@ -177,13 +177,15 @@ find more details in examples.</p></td>
     <p>data.table</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If you supply fill, these values will also replace existing explicit missing values in the data set.</p>
+    <p>When the provided columns with addtion data are of different length,
+all the unique combinations would be returned.</p>
+<p>If you supply fill parameter, these values will also replace existing explicit missing values in the data set.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://tidyr.tidyverse.org/reference/complete.html'>complete</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(
   <span class='kw'>group</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>1</span>),
   <span class='kw'>item_id</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>2</span>),
   <span class='kw'>item_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"b"</span>),
@@ -214,7 +216,17 @@ find more details in examples.</p></td>
 #&gt; 1:       1     1         a      1      4
 #&gt; 2:       2     1         b      3      6
 #&gt; 3:       2     2         b      2      5
-#&gt; 4:       3    NA      &lt;NA&gt;     NA     NA</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='kw'>item_id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>group</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>item_name</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>,<span class='st'>"b"</span>,<span class='st'>"c"</span>))</div><div class='output co'>#&gt;     item_id group item_name value1 value2
+#&gt; 4:       3    NA      &lt;NA&gt;     NA     NA</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='kw'>item_id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>group</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt;    item_id group item_name value1 value2
+#&gt;      &lt;int&gt; &lt;int&gt;    &lt;char&gt;  &lt;int&gt;  &lt;int&gt;
+#&gt; 1:       1     1         a      1      4
+#&gt; 2:       1     1         a      1      4
+#&gt; 3:       1     2      &lt;NA&gt;     NA     NA
+#&gt; 4:       2     1         b      3      6
+#&gt; 5:       2     1         b      3      6
+#&gt; 6:       2     2         b      2      5
+#&gt; 7:       3     1      &lt;NA&gt;     NA     NA
+#&gt; 8:       3     1      &lt;NA&gt;     NA     NA
+#&gt; 9:       3     2      &lt;NA&gt;     NA     NA</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='kw'>item_id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>group</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>item_name</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>,<span class='st'>"b"</span>,<span class='st'>"c"</span>))</div><div class='output co'>#&gt;     item_id group item_name value1 value2
 #&gt;       &lt;int&gt; &lt;int&gt;    &lt;char&gt;  &lt;int&gt;  &lt;int&gt;
 #&gt;  1:       1     1         a      1      4
 #&gt;  2:       1     1         b     NA     NA
