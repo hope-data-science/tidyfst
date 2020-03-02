@@ -21,6 +21,7 @@ Enjoy the data science in *tidyfst* !
 - Never use in place replacement. 
 - Use suffix rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
 - More flexible verbs for big data manipulation.
+- For some useful functions in *data.table*, if *tidyfst* could not optimize the API syntax, never rewrite but export them directly to guarantee the performance.
 - Supporting data importing and parsing with *fst*, details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
 - Flagship functions: [group_dt](https://hope-data-science.github.io/tidyfst/reference/group_dt.html), [unnest_dt](https://hope-data-science.github.io/tidyfst/reference/unnest_dt.html), [mutate_when](https://hope-data-science.github.io/tidyfst/reference/mutate_when.html), etc.
 
@@ -81,7 +82,7 @@ iris[3:8,] %>%
 
 ## Note
 
-In the current version of *tidyfst* (v0.6.9), *group_dt* is not fast enough. To boost the speed, use the development version (v0.7.7) from GitHub. The *tidyfst* is improving all the time, using the development version could help you improve the performance with minimun possible trouble that might come up.
+In the current version of *tidyfst* (v0.6.9), *group_dt* is not fast enough. To boost the speed, use the development version (v0.7.7) from GitHub.
 
 
 

@@ -1,4 +1,14 @@
 
+## 0.7.7
+1. Optimize `group_dt`. First, it is faster than before because I use `[][]` instead of ` %>% `. (Using `%>%` for `.SD` is slow) Second, I design an alternative to use `.SD` directly in `group_dt`, which might improve the efficiency further.
+2. Debug `filter_dt`.
+3. Add `fill_na_dt` to fill NAs in data.table. Debug all missing functions. Examples are refreshed.
+4. Debug `mutate_when`.
+5. Add `complete_dt` to complete a data.frame like `tidyr::complete`.
+6. Add `dummy_dt` to get dummy variables from columns.
+7. Add `t_dt` to transpose data frame efficiently.
+8. Remove the export of "as.data.table", add two functions:`as_dt` and `in_dt` to create a short cut to data.table facilities.
+
 ## 0.6.9
 Date: 20200227
 0. Reason for urgent update: The use of `show_tibble` violates the principals of programming. I hope this idea would not spread in the vignette. See changes in 4.
@@ -9,6 +19,7 @@ Date: 20200227
 5. Add `select_if_dt` function. Moreover, support negative conditional selection in `if_dt`.
 6. Delete the vignette entitled "Example 5: Tibble", as this feature is not used any more.
 7. Add vignette "Example 5:Fst" for better introduction of the feature.
+8. Update vignette "Example 1:Basic usage".
  
 ## 0.6.6 
 Date:20200224
