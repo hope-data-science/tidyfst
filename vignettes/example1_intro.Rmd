@@ -21,6 +21,7 @@ This part of vignette has referred to `dplyr`'s vignette in <https://dplyr.tidyv
 ```{r}
 library(tidyfst)
 library(nycflights13)
+library(data.table)
 
 data.table(flights)
 ```

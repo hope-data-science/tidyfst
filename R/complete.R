@@ -11,7 +11,8 @@
 #' find more details in examples.
 #' @param fill Atomic value to fill into the missing cell, default uses \code{NA}.
 #' @details When the provided columns with addtion data are of different length,
-#' all the unique combinations would be returned.
+#' all the unique combinations would be returned. This operation should be used
+#' only on unique entries, and it will always returned the unique entries.
 #' @details If you supply fill parameter, these values will also replace existing explicit missing values in the data set.
 #' @seealso \code{\link[tidyr]{complete}}
 #' @return data.table
@@ -45,7 +46,8 @@ complete_dt = function(data,...,fill = NA){
       expand.grid() %>%
       as.data.table(key=names(.)) %>%
       merge(setorder(dt),all = TRUE) %>%
-      replace_na_dt(to=fill)
+      replace_na_dt(to=fill) %>%
+      unique()
   }else
     setorder(dt)%>%
     select_dt(...) %>%
@@ -53,7 +55,8 @@ complete_dt = function(data,...,fill = NA){
     expand.grid() %>%
     as.data.table(key = names(.)) %>%
     merge(dt,all = TRUE) %>%
-    replace_na_dt(to=fill)
+    replace_na_dt(to=fill) %>%
+    unique()
 }
 
 

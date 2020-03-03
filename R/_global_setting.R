@@ -19,9 +19,6 @@ data.table::fread
 data.table::fwrite
 
 #' @export
-data.table::uniqueN
-
-#' @export
 data.table::fintersect
 
 #' @export

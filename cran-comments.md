@@ -8,6 +8,7 @@
 6. Add `dummy_dt` to get dummy variables from columns.
 7. Add `t_dt` to transpose data frame efficiently.
 8. Remove the export of "as.data.table", add two functions:`as_dt` and `in_dt` to create a short cut to data.table facilities.
+9. Add `unite_dt` and `separate_dt` for simple usage.
 
 ## 0.6.9
 Date: 20200227

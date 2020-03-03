@@ -48,20 +48,25 @@
 
 group_dt = function(data,by = NULL,...){
   dt = as_dt(data)
+
   by = substitute(by)
-  substitute(list(...)) %>%
-    deparse() %>%
-    str_c(collapse = "") %>%
-    # str_squish() %>%
-    str_extract("\\(.+\\)") %>%
-    str_sub(2,-2) -> dot_string
   deparse(by) -> by_deparse
   if(by_deparse == "NULL") stop("Please provide the group(s).")
   else if(!str_detect(by_deparse,"^\\.|^list\\("))
     by_deparse %>%
       str_c(".(",.,")") -> by_deparse
 
-  dot_string %>%
+  substitute(list(...)) %>%
+    deparse() %>%
+    str_c(collapse = "") %>%
+    str_squish() %>%
+    str_extract("\\(.+\\)") %>%
+    str_sub(2,-2) -> dot_string
+
+  if(str_detect(dot_string,"\\.SD"))
+    to_eval = "dt[,{dot_string},by = {by_deparse}]"
+  else
+    dot_string %>%
     strsplit("%>%") %>%
     unlist() %>%
     str_squish() %>%
@@ -95,8 +100,7 @@ group_dt = function(data,by = NULL,...){
 # }
 
 dot_convert = function(string){
-  if(str_detect(string,"\\.SD")) {}
-  else if(str_detect(string,",\\s*\\.\\s*,"))
+  if(str_detect(string,",\\s*\\.\\s*,"))
     str_replace(string,",\\s*\\.\\s*,",",.SD,") -> string
   else if(str_detect(string,",s*\\.s*\\)"))
     str_replace(string,",s*\\.s*\\)",",.SD\\)") -> string
