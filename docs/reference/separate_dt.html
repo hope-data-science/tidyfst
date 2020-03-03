@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Objects exported from other packages — reexports • tidyfst</title>
+<title>Separate a character column into two columns using
+a regular expression separator — separate_dt • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,15 +43,11 @@
 
 
 
-<meta property="og:title" content="Objects exported from other packages — reexports" />
-<meta property="og:description" content="These objects are imported from other packages. Follow the links
-below to see their documentation.
-
-  data.tabledata.table, fintersect, fread, fsetdiff, fsetequal, funion, fwrite, rbindlist
-
-  stringr%&amp;gt;%
-
-" />
+<meta property="og:title" content="Separate a character column into two columns using
+a regular expression separator — separate_dt" />
+<meta property="og:description" content="Given either regular expression,
+separate_dt() turns a single character column into two columns.
+Analogous to tidyr::separate, but only split into two columns only." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -144,29 +141,70 @@ below to see their documentation.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Objects exported from other packages</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/_global_setting.R'><code>R/_global_setting.R</code></a></small>
-    <div class="hidden name"><code>reexports.Rd</code></div>
+    <h1>Separate a character column into two columns using
+a regular expression separator</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/separate.R'><code>R/separate.R</code></a></small>
+    <div class="hidden name"><code>separate_dt.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These objects are imported from other packages. Follow the links
-below to see their documentation.</p>
-<dl class='dl-horizontal'>
-  <dt>data.table</dt><dd><p><code><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setops.html'>fintersect</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>fread</a></code>, <code><a href='https://rdrr.io/pkg/data.table/man/setops.html'>fsetdiff</a></code>, <code><a href='https://rdrr.io/pkg/data.table/man/setops.html'>fsetequal</a></code>, <code><a href='https://rdrr.io/pkg/data.table/man/setops.html'>funion</a></code>, <code><a href='https://rdrr.io/pkg/data.table/man/fwrite.html'>fwrite</a></code>, <code><a href='https://rdrr.io/pkg/data.table/man/rbindlist.html'>rbindlist</a></code></p></dd>
-
-  <dt>stringr</dt><dd><p><code>%&gt;%</code></p></dd>
-
-</dl>
+    <p>Given either regular expression,
+<code>separate_dt()</code> turns a single character column into two columns.
+Analogous to <code><a href='https://tidyr.tidyverse.org/reference/separate.html'>tidyr::separate</a></code>, but only split into two columns only.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>separate_dt</span>(
+  <span class='no'>data</span>,
+  <span class='no'>separated_colname</span>,
+  <span class='no'>into</span>,
+  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"[^[:alnum:]]+"</span>,
+  <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>A data frame.</p></td>
+    </tr>
+    <tr>
+      <th>separated_colname</th>
+      <td><p>Column name, string only.</p></td>
+    </tr>
+    <tr>
+      <th>into</th>
+      <td><p>Character vector of length 2.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>Separator between columns.</p></td>
+    </tr>
+    <tr>
+      <th>remove</th>
+      <td><p>If <code>TRUE</code>, remove input column from output data frame.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
+    <div class='dont-index'><p><code><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></code>, <code><a href='unite_dt.html'>unite_dt</a></code></p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>"a.b"</span>, <span class='st'>"a.d"</span>, <span class='st'>"b.c"</span>))
+<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>separate_dt</span>(<span class='st'>"x"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>))</div><div class='output co'>#&gt;         A      B
+#&gt;    &lt;char&gt; &lt;char&gt;
+#&gt; 1:   &lt;NA&gt;   &lt;NA&gt;
+#&gt; 2:      a      b
+#&gt; 3:      a      d
+#&gt; 4:      b      c</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
