@@ -27,7 +27,8 @@ Analogous function for \code{complete} function in \pkg{tidyr}.
 }
 \details{
 When the provided columns with addtion data are of different length,
-all the unique combinations would be returned.
+all the unique combinations would be returned. This operation should be used
+only on unique entries, and it will always returned the unique entries.
 
 If you supply fill parameter, these values will also replace existing explicit missing values in the data set.
 }

@@ -104,7 +104,7 @@ In the current version of *tidyfst* (v0.6.9), *group_dt* is not fast enough. To 
 - [maditr](https://github.com/gdemin/maditr)
 - [fst](https://github.com/fstpackage/fst)
 - [data.table](https://github.com/Rdatatable/data.table)
-- [dplyr](https://github.com/tidyverse/dtplyr)
+- [dplyr](https://github.com/tidyverse/dplyr)
 - [dtplyr](https://github.com/tidyverse/dtplyr)
 - [table.express](https://github.com/asardaes/table.express)
 - [tidyfast](https://github.com/TysonStanley/tidyfast)
