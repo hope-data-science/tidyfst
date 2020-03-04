@@ -1,0 +1,32 @@
+---
+title: "Example 6: Dt"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example6_dt}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+  For absolute physical speed, use *data.table* directly. While the learning curve might be longer, the improvement of computation performance pays off if you are dealing with large datasets frequently. There are several ways to cut into *data.table* syntax to gain higher performance in *tidyfst*. A convenient way is to use the `DT[I,J,BY]` syntax after the pipe(`%>%`).
+```{r setup}
+library(tidyfst)
+iris %>% 
+  as_dt()%>%  #coerce a data.frame to data.table
+  .[,.SD[1],by = Species]
+
+```
+  This syntax is not so consistent with the tidy syntax, therefore `in_dt` is also designed for the short cut to *data.table* method, which could be used as:
+```{r}
+iris %>% 
+  in_dt(,.SD[1],by = Species)
+```
+  
+  `in_dt` follows the basic principals of *tidyfst*, which include: (1) Never use in place replacement. Therefore, the in place functions like `:=` will still return the results. (2) Always recieves a data frame (data.frame/tibble/data.table) and returns a data.table. This means you don't have to write `as.data.table` or `as_dt` all the time as long as you are working on data frames in R.
+ 
+  

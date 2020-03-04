@@ -7,7 +7,7 @@
 5. Add `complete_dt` to complete a data.frame like `tidyr::complete`.
 6. Add `dummy_dt` to get dummy variables from columns.
 7. Add `t_dt` to transpose data frame efficiently.
-8. Remove the export of "as.data.table", add two functions:`as_dt` and `in_dt` to create a short cut to data.table facilities.
+8. Two functions:`as_dt` and `in_dt` to create a short cut to data.table facilities. Add vignette as tutorial in this feature.
 9. Add `unite_dt` and `separate_dt` for simple usage.
 
 ## 0.6.9

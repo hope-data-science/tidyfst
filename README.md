@@ -97,7 +97,8 @@ In the current version of *tidyfst* (v0.6.9), *group_dt* is not fast enough. To 
 - [Example 2: Join tables](https://hope-data-science.github.io/tidyfst/articles/example2_join.html)
 - [Example 3: Reshape](https://hope-data-science.github.io/tidyfst/articles/example3_reshape.html)
 - [Example 4: Nest](https://hope-data-science.github.io/tidyfst/articles/example4_nest.html)
-- [Example 5: Fst](https://hope-data-science.github.io/tidyfst/articles/example5_fst.html)
+- [Example 5: Fst](https://hope-data-science.github.io/tidyfst/articles/example5_fst.html) 
+- [Example 6: Dt](https://hope-data-science.github.io/tidyfst/articles/example6_dt.html) 
 
 ## Related work
 

@@ -35,14 +35,16 @@
 
 #' @rdname select
 #' @export
+
 select_dt = function(data,...,cols = NULL,negate =FALSE){
   dt = as_dt(data)
   if(is.null(cols)){
     substitute(list(...)) %>%
-      deparse() %>%
+      deparse() %>% paste0() %>%
       str_extract("\\(.+\\)") %>%
       str_sub(2,-2)-> dot_string
-    if(str_detect(dot_string,"^\"")){
+    if(is.na(dot_string)) dt
+    else if(str_detect(dot_string,"^\"")){
       str_remove_all(dot_string,"\"") %>%
         str_subset(names(dt),.,negate = negate) %>%
         str_c(collapse = ",") -> dot_string
@@ -65,6 +67,8 @@ select_dt = function(data,...,cols = NULL,negate =FALSE){
   }
   else dt[,.SD,.SDcols = cols]
 }
+
+
 
 #' @rdname select
 #' @export
