@@ -36,6 +36,7 @@ dummy_dt = function(data,...,longname = TRUE){
   dt
 }
 
+globalVariables("id_")
 
 dummy_col = function(data,col_name,longname){
   dt = as_dt(data)

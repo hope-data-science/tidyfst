@@ -14,6 +14,8 @@ unite_dt(data, united_colname, ..., sep = "_", remove = TRUE, na.rm = FALSE)
 \item{...}{A selection of columns. If want to select all columns,
 pass "" to the parameter. See example.}
 
+\item{sep}{Separator to use between values.}
+
 \item{remove}{If \code{TRUE}, remove input columns from output data frame.}
 
 \item{na.rm}{If \code{TRUE}, missing values would be merged into \code{NA},

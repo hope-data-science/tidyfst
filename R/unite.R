@@ -6,6 +6,7 @@
 #' @param united_colname The name of the new column, string only.
 #' @param ... A selection of columns. If want to select all columns,
 #' pass "" to the parameter. See example.
+#' @param sep Separator to use between values.
 #' @param remove If \code{TRUE}, remove input columns from output data frame.
 #' @param na.rm If \code{TRUE}, missing values would be merged into \code{NA},
 #' otherwise \code{NA} is treated as character "NA". This is different from

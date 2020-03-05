@@ -14,13 +14,19 @@
 #' @rdname mutate
 #' @export
 
+# mutate_dt = function(data,...){
+#   dt = as_dt(data)
+#   dt[,`:=`(...),]
+# }
+
 mutate_dt = function(data,...){
   dt = as_dt(data)
   substitute(list(...)) %>%
     deparse() %>%
     str_c(collapse = "") %>%
-    #str_squish() %>%
-    str_extract("\\(.+\\)")-> dot_string
+    str_squish() %>%
+    # str_extract("\\(.+\\)")
+    str_remove("list")-> dot_string
   eval(parse(text = str_glue("dt[,`:=`{dot_string}][]")))
 }
 

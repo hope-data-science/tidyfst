@@ -80,10 +80,6 @@ iris[3:8,] %>%
 
 ```
 
-## Note
-
-In the current version of *tidyfst* (v0.6.9), *group_dt* is not fast enough. To boost the speed, use the development version (v0.7.7) from GitHub.
-
 
 
 ## Future plans

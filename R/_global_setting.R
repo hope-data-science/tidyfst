@@ -3,7 +3,7 @@
 #' @import stringr
 #' @import fst
 
-#' @importFrom stats na.omit
+#' @importFrom stats na.omit setNames
 
 
 #' @export
