@@ -32,20 +32,20 @@ relig_income %>%
   In `tidyfst`, we have:
 ```{r,warning=FALSE}
 relig_income %>% 
-  longer_dt(group_to_keep = "religion",gathered_name = "income",gathered_value = "count")
+  longer_dt("religion",gathered_name = "income",gathered_value = "count")
 ```
   Another example from `tidyr`:
 ```{r,eval=FALSE}
 billboard
 
 # tidyr way:
-# billboard %>% 
-#   pivot_longer(
-#     cols = starts_with("wk"), 
-#     names_to = "week", 
-#     values_to = "rank",
-#     values_drop_na = TRUE
-#   )
+ billboard %>%
+   pivot_longer(
+     cols = starts_with("wk"),
+     names_to = "week",
+     values_to = "rank",
+     values_drop_na = TRUE
+   )
 
 # tidyfst way:
 billboard %>% 
@@ -56,7 +56,7 @@ billboard %>%
             )
 # regex should select group_to_keep, negate could reverse that
 ```
-    A warning would could come out because the merging column has different data types and do the coercion automatically.
+A warning would could come out because the merging column has different data types and do the coercion automatically.
     
 ## Wider
 
@@ -65,7 +65,8 @@ billboard %>%
 fish_encounters
 
 ## tidyr way:
-fish_encounters %>% pivot_wider(names_from = station, values_from = seen)
+fish_encounters %>% 
+  pivot_wider(names_from = station, values_from = seen)
 
 ## tidyfst way:
 fish_encounters %>% 
@@ -77,7 +78,7 @@ fish_encounters %>%
 fish_encounters %>% 
   wider_dt(name_to_spread = "station",value_to_spread = "seen",fill = 0)
 ```
-  `tidyfst` currently does not support spreading multiple columns. I believe this way could keep this function simple and easy to understand. When you need this function, try spread them one by one (using a loop), or try `data.table` and `tidyr`.
+  Note that the parameter of `name_to_spread` and `value_to_spread` should always be provided and should be explicit called (with the parameter names attached).
 
 
 

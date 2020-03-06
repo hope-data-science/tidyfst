@@ -2,13 +2,14 @@
 #' @title Pivot data from long to wide
 #' @description Analogous function for \code{pivot_wider} in \pkg{tidyr}.
 #' @param data data.table
-#' @param group_to_keep The unchanged group in the transformation.
-#' Could use integer vector, character vector or regular expression(to match
-#' the column names). If \code{NULL}, use all other variables.
+#' @param ... Optional. The unchanged group in the transformation.
+#' Could use integer vector, could receive what \code{select_dt} receives.
 #' @param name_to_spread Chracter.One column name of class to spread
 #' @param value_to_spread Chracter.One column name of value to spread.
 #' If \code{NULL}, use all other variables.
 #' @param fill Value with which to fill missing cells. Default uses \code{NA}.
+#' @details The parameter of `name_to_spread` and `value_to_spread` should always
+#' be provided and should be explicit called (with the parameter names attached).
 #' @return data.table
 #' @seealso \code{\link[data.table]{dcast}}
 #' @seealso \code{\link[tidyr]{pivot_wider}}
@@ -24,32 +25,49 @@
 #'  longer_stocks
 #'
 #'  longer_stocks %>%
-#'    wider_dt("time","variable","value")
+#'    wider_dt("time",
+#'             name_to_spread = "name",
+#'             value_to_spread = "value")
 #'
 #'  longer_stocks %>%
 #'    mutate_dt(one = 1) %>%
-#'    wider_dt("time","variable","one")
-#'
+#'    wider_dt("time",
+#'             name_to_spread = "name",
+#'             value_to_spread = "one")
+
 
 #' @export
 
 wider_dt = function(data,
-                    group_to_keep = NULL,
+                    ...,
                     name_to_spread,
                     value_to_spread = NULL,
                     fill = NA){
   dt = as_dt(data)
-  group = group_to_keep
-  if(is.null(group)) group = "..."
-  else if(is.integer(group)) names(dt)[group] -> group
-  else if(length(group) == 1 & is.character(group))
-    str_subset(names(dt),group) -> group
-  group = str_c(group,collapse = "+")
+  group = dt[0] %>% select_dt(...) %>% names() %>% str_c(collapse = "+")
+  if(setequal(group,names(dt))) group = "..."
   if(is.null(value_to_spread)) value_to_spread = "."
   call_string = str_glue("dcast(dt,{group}~{name_to_spread},
-                         value.var = value_to_spread,fill = {fill})")
+                          value.var = value_to_spread,fill = {fill})")
   eval(parse(text = call_string))
 }
 
+# wider_dt = function(data,
+#                     group_to_keep = NULL,
+#                     name_to_spread,
+#                     value_to_spread = NULL,
+#                     fill = NA){
+#   dt = as_dt(data)
+#   group = group_to_keep
+#   if(is.null(group)) group = "..."
+#   else if(is.integer(group)) names(dt)[group] -> group
+#   else if(length(group) == 1 & is.character(group))
+#     str_subset(names(dt),group) -> group
+#   group = str_c(group,collapse = "+")
+#   if(is.null(value_to_spread)) value_to_spread = "."
+#   call_string = str_glue("dcast(dt,{group}~{name_to_spread},
+#                           value.var = value_to_spread,fill = {fill})")
+#   eval(parse(text = call_string))
+# }
 
 

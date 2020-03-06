@@ -1,5 +1,16 @@
 
+## 0.8.8
+1. Get better understanding on non-standard evaluation, update functions that could be optimized. The updated functions include: `mutate_dt`, `transmute_dt`,`arrange_dt`,`distinct_dt`,`slice_dt`,`top_n_dt`,`top_frac_dt`,`mutate_when`. Therefore, now these functions should be faster than before.
+2. Add `nth` to extract element of vector via position, useful when we want a single element from the bottom.
+3. The API of `longer_dt` has been changed to be more powerful, and update the examples in `wider_dt`. Update the `Example 3: Reshape` vignette.
+4. Change the APIs of `nest_by` and `unnest_col` with enhancement of `select_dt`. The historical examples still works, but it is more powerful for other selection.
+5. Add `nest_cols` function for another nesting method.
+6. Exporting `frollapply` from data.table, this is a powerful function for aggregation on sliding window.
+
+
 ## 0.7.7
+Date: 20200305
+0. Reason for update: I've been using `tidyfst` on my daily work by adding `_dt` to many past and current tasks. In these experience, I debug some important functions (they runs well on simple tasks, but not on complicated ones), and add more functions. These features are so many that I think an update is necessary for users to get a better tookit earlier. If the update is too frequent, please accept my apology.
 1. Optimize `group_dt`. First, it is faster than before because I use `[][]` instead of ` %>% `. (Using `%>%` for `.SD` is slow) Second, I design an alternative to use `.SD` directly in `group_dt`, which might improve the efficiency further.
 2. Debug `filter_dt`.
 3. Add `fill_na_dt` to fill NAs in data.table. Debug all missing functions. Examples are refreshed.
@@ -9,6 +20,7 @@
 7. Add `t_dt` to transpose data frame efficiently.
 8. Two functions:`as_dt` and `in_dt` to create a short cut to data.table facilities. Add vignette as tutorial in this feature.
 9. Add `unite_dt` and `separate_dt` for simple usage.
+10. Debug `mutate_dt`.
 
 ## 0.6.9
 Date: 20200227

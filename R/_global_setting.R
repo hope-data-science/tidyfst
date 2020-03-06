@@ -1,9 +1,8 @@
 
 #' @import data.table
 #' @import fst
+#' @import stringr
 #' @importFrom stats na.omit setNames
-#' @importFrom stringr str_c str_sub str_subset str_detect str_extract str_glue str_squish `%>%`
-
 
 
 #' @export
@@ -36,7 +35,8 @@ data.table::fsetequal
 #' @export
 data.table::rbindlist
 
-
+#' @export
+data.table::frollapply
 
 
 

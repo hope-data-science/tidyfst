@@ -19,7 +19,7 @@ library(tidyfst)
 
 # nest by "cyl" column
 mtcars_nested <- mtcars %>% 
-  nest_by("cyl")
+  nest_by(cyl) # you can use "cyl" too, very flexible
 
 # inspect the output data.table
 mtcars_nested
