@@ -13,15 +13,20 @@
 
 slice_dt = function(data,...){
   dt = as_dt(data)
-  substitute(list(...)) %>%
-    deparse() %>%
-    str_extract("\\(.+\\)") %>%
-    str_sub(2,-2)-> dot_string
-  if(str_detect(dot_string,"^[0-9]") &
-     str_detect(dot_string,"[0-9]$") &
-     str_detect(dot_string,","))
-    eval(parse(text = str_glue("dt[c({dot_string})]")))
-  else eval(parse(text = str_glue("dt[{dot_string}]")))
+  eval(substitute(dt[c(...)]))
 }
+
+# slice_dt = function(data,...){
+#   dt = as_dt(data)
+#   substitute(list(...)) %>%
+#     deparse() %>%
+#     str_extract("\\(.+\\)") %>%
+#     str_sub(2,-2)-> dot_string
+#   if(str_detect(dot_string,"^[0-9]") &
+#      str_detect(dot_string,"[0-9]$") &
+#      str_detect(dot_string,","))
+#     eval(parse(text = str_glue("dt[c({dot_string})]")))
+#   else eval(parse(text = str_glue("dt[{dot_string}]")))
+# }
 
 

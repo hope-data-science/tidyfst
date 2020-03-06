@@ -24,26 +24,31 @@
 
 summarise_dt = function(data,...,by = NULL){
   dt = as_dt(data)
-  by = substitute(by)
-  substitute(list(...)) %>%
-    deparse() %>%
-    str_c(collapse = "") %>%
-    #str_squish() %>%
-    str_extract("\\(.+\\)") %>%
-    str_sub(2,-2) -> dot_string
-  if(deparse(by) == "NULL"){
-    eval(parse(text = str_glue("dt[,.({dot_string})]")))
-  } else{
-    if(by %>% deparse() %>% str_detect("\\."))
-      eval(parse(text = str_glue("dt[,.({dot_string}),by = by]")))
-    else{
-      by %>%
-        deparse() %>%
-        str_c(".(",.,")") -> by
-      eval(parse(text = str_glue("dt[,.({dot_string}),by = {by}]")))
-    }
-  }
+  eval(substitute(dt[,.(...),by = by]))
 }
+
+# summarise_dt = function(data,...,by = NULL){
+#   dt = as_dt(data)
+#   by = substitute(by)
+#   substitute(list(...)) %>%
+#     deparse() %>%
+#     str_c(collapse = "") %>%
+#     #str_squish() %>%
+#     str_extract("\\(.+\\)") %>%
+#     str_sub(2,-2) -> dot_string
+#   if(deparse(by) == "NULL"){
+#     eval(parse(text = str_glue("dt[,.({dot_string})]")))
+#   } else{
+#     if(by %>% deparse() %>% str_detect("\\."))
+#       eval(parse(text = str_glue("dt[,.({dot_string}),by = by]")))
+#     else{
+#       by %>%
+#         deparse() %>%
+#         str_c(".(",.,")") -> by
+#       eval(parse(text = str_glue("dt[,.({dot_string}),by = {by}]")))
+#     }
+#   }
+# }
 
 #' @rdname summarise_dt
 #' @export

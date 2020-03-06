@@ -21,9 +21,14 @@
 
 arrange_dt = function(data,...){
   dt = as_dt(data)
-  substitute(list(...)) %>%
-    deparse() %>%
-    str_extract("\\(.+\\)") %>%
-    str_sub(2,-2)-> dot_string
-  eval(parse(text = str_glue("dt[order({dot_string})]")))
+  dt[order(...)]
 }
+
+# arrange_dt = function(data,...){
+#   dt = as_dt(data)
+#   substitute(list(...)) %>%
+#     deparse() %>%
+#     str_extract("\\(.+\\)") %>%
+#     str_sub(2,-2)-> dot_string
+#   eval(parse(text = str_glue("dt[order({dot_string})]")))
+# }

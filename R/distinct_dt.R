@@ -20,21 +20,28 @@
 #'
 #' @export
 
-
-
 distinct_dt = function(data,...,.keep_all = FALSE){
   dt = as_dt(data)
-  substitute(list(...)) %>%
-    deparse() %>%
-    str_extract("\\(.+\\)") %>%
-    str_c(".",.)-> dot_string
-  if(is.na(dot_string)) unique(dt)
+  if(length(substitute(...)) == 0) unique(dt)
   else{
-    if(!.keep_all)
-      dt %>% select_dt(...) %>% unique()
-    else eval(parse(text = str_glue("dt[,.SD[1],by = {dot_string}]")))
+    if(.keep_all) eval(substitute(dt[,.SD[1],by = .(...)]))
+    else eval(substitute(unique(dt[,.(...),])))
   }
 }
+
+# distinct_dt = function(data,...,.keep_all = FALSE){
+#   dt = as_dt(data)
+#   substitute(list(...)) %>%
+#     deparse() %>%
+#     str_extract("\\(.+\\)") %>%
+#     str_c(".",.)-> dot_string
+#   if(is.na(dot_string)) unique(dt)
+#   else{
+#     if(!.keep_all)
+#       dt %>% select_dt(...) %>% unique()
+#     else eval(parse(text = str_glue("dt[,.SD[1],by = {dot_string}]")))
+#   }
+# }
 
 
 

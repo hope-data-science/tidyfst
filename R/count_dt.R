@@ -22,6 +22,7 @@
 #'
 #' @rdname count
 #' @export
+
 count_dt = function(data,...,sort = TRUE,name = "n"){
   dt = as_dt(data)
   dot_string = substitute(list(...))
@@ -42,4 +43,4 @@ add_count_dt = function(data,...,name = "n"){
 }
 
 
-globalVariables(c("n"))
+globalVariables("n")

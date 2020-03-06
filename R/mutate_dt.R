@@ -14,33 +14,39 @@
 #' @rdname mutate
 #' @export
 
-# mutate_dt = function(data,...){
-#   dt = as_dt(data)
-#   dt[,`:=`(...),]
-# }
-
 mutate_dt = function(data,...){
   dt = as_dt(data)
-  substitute(list(...)) %>%
-    deparse() %>%
-    str_c(collapse = "") %>%
-    str_squish() %>%
-    # str_extract("\\(.+\\)")
-    str_remove("list")-> dot_string
-  eval(parse(text = str_glue("dt[,`:=`{dot_string}][]")))
+  substitute(dt[,`:=`(...),][]) %>% eval()
 }
+
+# mutate_dt = function(data,...){
+#   dt = as_dt(data)
+#   substitute(list(...)) %>%
+#     deparse() %>%
+#     str_c(collapse = "") %>%
+#     str_squish() %>%
+#     # str_extract("\\(.+\\)")
+#     str_remove("list")-> dot_string
+#   eval(parse(text = str_glue("dt[,`:=`{dot_string}][]")))
+# }
 
 #' @rdname mutate
 #' @export
+
 transmute_dt = function(data,...){
   dt = as_dt(data)
-  dt = as_dt(data)
-  substitute(list(...)) %>%
-    deparse() %>%
-    str_c(collapse = "") %>%
-    str_squish() %>%
-    str_extract("\\(.+\\)")-> dot_string
-  eval(parse(text = str_glue("dt[,.{dot_string},]")))
+
+  substitute(dt[,.(...),][]) %>% eval()
 }
+
+# transmute_dt = function(data,...){
+#   dt = as_dt(data)
+#   substitute(list(...)) %>%
+#     deparse() %>%
+#     str_c(collapse = "") %>%
+#     str_squish() %>%
+#     str_extract("\\(.+\\)")-> dot_string
+#   eval(parse(text = str_glue("dt[,.{dot_string},]")))
+# }
 
 

@@ -1,9 +1,9 @@
 
 #' @import data.table
-#' @import stringr
 #' @import fst
-
 #' @importFrom stats na.omit setNames
+#' @importFrom stringr str_c str_sub str_subset str_detect str_extract str_glue str_squish `%>%`
+
 
 
 #' @export

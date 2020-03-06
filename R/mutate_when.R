@@ -3,8 +3,8 @@
 #' @description Integrate \code{mutate} and \code{case_when} in \pkg{dplyr} and make
 #' a new tidy verb for data.table.
 #' @param data data.frame
-#' @param ... the first argument (contents before the first comma) should be the condition,
-#' other should be equation(s) just like `mutate_dt`.
+#' @param when An object which can be coerced to logical mode
+#' @param ... Name-value pairs of expressions
 #' @return data.table
 #' @seealso \code{\link[dplyr]{case_when}}
 #' @examples
@@ -14,16 +14,22 @@
 #'               one = 1,Sepal.Length=2)
 #' @export
 
-mutate_when = function(data,...){
+mutate_when = function(data,when,...){
   dt = as_dt(data)
-  substitute(list(...)) %>%
-    lapply(deparse) %>%
-    .[-1] -> dot_string
-  when = dot_string[[1]]
-  what = str_c(names(dot_string[-1]),dot_string[-1],sep = "=") %>%
-    str_c(collapse = ",")
-  eval(parse(text = str_glue(" dt[{when},`:=`({what})][]")))
+  eval(substitute(dt[when,`:=`(...)][]))
 }
+
+# mutate_when = function(data,...){
+#   dt = as_dt(data)
+#   substitute(list(...)) %>%
+#     lapply(deparse) %>%
+#     .[-1] -> dot_string
+#   when = dot_string[[1]]
+#   what = str_c(names(dot_string[-1]),dot_string[-1],sep = "=") %>%
+#     str_c(collapse = ",")
+#   eval(parse(text = str_glue(" dt[{when},`:=`({what})][]")))
+# }
+
 
 # mutate_when = function(data,...){
 #   dt = as_dt(data)

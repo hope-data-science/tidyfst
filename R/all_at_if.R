@@ -106,6 +106,3 @@ if_dt = function(data,.if,.func,.funcs,...){
 
 
 
-
-
-

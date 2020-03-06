@@ -9,7 +9,6 @@
 #' @return \code{parse_fst} returns a fst_table class.
 #' @return \code{select_fst} and \code{filter_fst} returns a data.table.
 #' @seealso \code{\link[fst]{fst}}
-#' @importFrom stringr str_detect
 #' @examples
 #'
 #' \dontrun{

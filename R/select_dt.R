@@ -69,7 +69,6 @@ select_dt = function(data,...,cols = NULL,negate =FALSE){
 }
 
 
-
 #' @rdname select
 #' @export
 select_if_dt = function(data,.if){
