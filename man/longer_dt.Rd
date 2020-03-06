@@ -7,10 +7,8 @@
 longer_dt(
   data,
   ...,
-  gathered_name = "variable",
+  gathered_name = "name",
   gathered_value = "value",
-  group_to_keep = NULL,
-  negate = FALSE,
   na.rm = FALSE
 )
 }
@@ -18,20 +16,14 @@ longer_dt(
 \item{data}{A data.frame}
 
 \item{...}{Pattern for unchanged group or unquoted names. Pattern can accept
-regular expression to match column names. If set `negate = TRUE`,
-return non-matching columns.}
+regular expression to match column names. It can recieve what \code{select_dt}
+recieves.}
 
 \item{gathered_name}{name for the measured variable names column.
-The default name is 'variable'.}
+The default name is 'name'.}
 
 \item{gathered_value}{name for the molten data values column(s).
 The default name is 'value'.}
-
-\item{group_to_keep}{Group to keep, namely vector of unchanged variables.
-Can be integer (corresponding id column numbers) or
-character (id column names) vector.}
-
-\item{negate}{If \code{TRUE}, return non-matching elements.}
 
 \item{na.rm}{If \code{TRUE}, \code{NA} values will be removed from the molten data.}
 }
@@ -60,34 +52,35 @@ stocks \%>\%
   longer_dt("ti")
 
 # Example 2:
+
 \donttest{
-library(tidyr)
+  library(tidyr)
 
-billboard \%>\%
-  longer_dt(
-    "wk",
-    gathered_name = "week",
-    gathered_value = "rank",
-    na.rm = TRUE,negate = TRUE
-  )
+  billboard \%>\%
+    longer_dt(
+      "wk",negate = TRUE,
+      gathered_name = "week",
+      gathered_value = "rank",
+      na.rm = TRUE
+    )
 
-# or use:
- billboard \%>\%
-   longer_dt(
-     artist,track,date.entered,
-     gathered_name = "week",
-     gathered_value = "rank",
-     na.rm = TRUE,negate = TRUE
-   )
+  # or use:
+  billboard \%>\%
+    longer_dt(
+      artist,track,date.entered,
+      gathered_name = "week",
+      gathered_value = "rank",
+      na.rm = TRUE
+    )
 
- # or use:
- billboard \%>\%
-   longer_dt(
-     group_to_keep = 1:3,
-     gathered_name = "week",
-     gathered_value = "rank",
-     na.rm = TRUE,negate = TRUE
-   )
+  # or use:
+  billboard \%>\%
+    longer_dt(
+      1:3,
+      gathered_name = "week",
+      gathered_value = "rank",
+      na.rm = TRUE
+    )
 }
 }
 \seealso{

@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
 <a class="sourceLine" id="cb1-4" title="4"></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># nest by "cyl" column</span></a>
 <a class="sourceLine" id="cb1-6" title="6">mtcars_nested &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="st">  </span><span class="kw"><a href="../reference/nest.html">nest_by</a></span>(<span class="st">"cyl"</span>)</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="st">  </span><span class="kw"><a href="../reference/nest.html">nest_by</a></span>(cyl) <span class="co"># you can use "cyl" too, very flexible</span></a>
 <a class="sourceLine" id="cb1-8" title="8"></a>
 <a class="sourceLine" id="cb1-9" title="9"><span class="co"># inspect the output data.table</span></a>
 <a class="sourceLine" id="cb1-10" title="10">mtcars_nested</a>

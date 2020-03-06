@@ -2,23 +2,23 @@
 % Please edit documentation in R/nest_dt.R
 \name{nest_by}
 \alias{nest_by}
+\alias{nest_cols}
 \alias{unnest_col}
 \title{Nest and unnest}
 \usage{
-nest_by(data, group = NULL, negate = FALSE)
+nest_by(data, ...)
 
-unnest_col(data, col)
+nest_cols(data, ...)
+
+unnest_col(data, ...)
 }
 \arguments{
 \item{data}{data.table, nested or unnested}
 
-\item{group}{The variable for nest group, could recieve character vector or
-regular expression.}
-
-\item{negate}{Applicable when the "group" parameter uses regular expression,
-if \code{TRUE}, return non-matching elements.}
-
-\item{col}{The single variable of nested data to be unnested}
+\item{...}{The variables for nest group(for \code{nest_by}),
+columns to be nested(for \code{nest_cols}),
+or column to be unnested(for \code{unnest_col}).
+Could recieve anything that \code{\link[tidyfst]{select_dt}} could receive.}
 }
 \value{
 data.table, nested or unnested
@@ -26,20 +26,38 @@ data.table, nested or unnested
 \description{
 Analogous function for \code{nest} and \code{unnest} in \pkg{tidyr}.
 \code{unnest_col} will automatically remove other list-columns except for the
-target list-column (which would be unnested later).
+target list-column (which would be unnested later). Also, \code{nest_cols} is
+designed to merge multiple columns into list column.
 }
 \details{
 In the \code{nest_dt}, the data would be nested to a column named `ndt`,
  which is short for nested data.table.
+
+The \code{nest_cols} would not remove the originial columns.
 }
 \examples{
 
-mtcars \%>\% nest_by("cyl")
-mtcars \%>\% nest_by("cyl|vs")
-mtcars \%>\% nest_by(c("cyl","vs"))
+# examples for nest_by
+# nest by which columns?
+ mtcars \%>\% nest_by(cyl)
+ mtcars \%>\% nest_by("cyl")
+ mtcars \%>\% nest_by(cyl,vs)
+ mtcars \%>\% nest_by(vs:am)
+ mtcars \%>\% nest_by("cyl|vs")
+ mtcars \%>\% nest_by(c("cyl","vs"))
 
-mtcars \%>\% nest_by("cyl|vs") \%>\%
-  unnest_col(ndt)
+# examples for unnest_col
+# unnest which column?
+ mtcars \%>\% nest_by("cyl|vs") \%>\%
+   unnest_col(ndt)
+ mtcars \%>\% nest_by("cyl|vs") \%>\%
+   unnest_col("ndt")
+
+# examples for nest_cols
+# nest which columns?
+iris \%>\% nest_cols(1:2)
+iris \%>\% nest_cols("Se")
+iris \%>\% nest_cols(Sepal.Length:Petal.Width)
 }
 \references{
 https://www.r-bloggers.com/much-faster-unnesting-with-data-table/

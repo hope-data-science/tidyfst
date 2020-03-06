@@ -4,13 +4,14 @@
 \alias{mutate_when}
 \title{Conditional update of columns in data.table}
 \usage{
-mutate_when(data, ...)
+mutate_when(data, when, ...)
 }
 \arguments{
 \item{data}{data.frame}
 
-\item{...}{the first argument (contents before the first comma) should be the condition,
-other should be equation(s) just like `mutate_dt`.}
+\item{when}{An object which can be coerced to logical mode}
+
+\item{...}{Name-value pairs of expressions}
 }
 \value{
 data.table

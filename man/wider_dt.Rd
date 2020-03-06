@@ -4,20 +4,13 @@
 \alias{wider_dt}
 \title{Pivot data from long to wide}
 \usage{
-wider_dt(
-  data,
-  group_to_keep = NULL,
-  name_to_spread,
-  value_to_spread = NULL,
-  fill = NA
-)
+wider_dt(data, ..., name_to_spread, value_to_spread = NULL, fill = NA)
 }
 \arguments{
 \item{data}{data.table}
 
-\item{group_to_keep}{The unchanged group in the transformation.
-Could use integer vector, character vector or regular expression(to match
-the column names). If \code{NULL}, use all other variables.}
+\item{...}{Optional. The unchanged group in the transformation.
+Could use integer vector, could receive what \code{select_dt} receives.}
 
 \item{name_to_spread}{Chracter.One column name of class to spread}
 
@@ -32,6 +25,10 @@ data.table
 \description{
 Analogous function for \code{pivot_wider} in \pkg{tidyr}.
 }
+\details{
+The parameter of `name_to_spread` and `value_to_spread` should always
+be provided and should be explicit called (with the parameter names attached).
+}
 \examples{
  stocks = data.frame(
    time = as.Date('2009-01-01') + 0:9,
@@ -44,12 +41,15 @@ Analogous function for \code{pivot_wider} in \pkg{tidyr}.
  longer_stocks
 
  longer_stocks \%>\%
-   wider_dt("time","variable","value")
+   wider_dt("time",
+            name_to_spread = "name",
+            value_to_spread = "value")
 
  longer_stocks \%>\%
    mutate_dt(one = 1) \%>\%
-   wider_dt("time","variable","one")
-
+   wider_dt("time",
+            name_to_spread = "name",
+            value_to_spread = "one")
 }
 \seealso{
 \code{\link[data.table]{dcast}}

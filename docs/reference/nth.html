@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mutate columns in data.frame — mutate_dt • tidyfst</title>
+<title>Extract the nth value from a vector — nth • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Mutate columns in data.frame — mutate_dt" />
-<meta property="og:description" content="Analogous function for mutate and transmute in dplyr." />
+<meta property="og:title" content="Extract the nth value from a vector — nth" />
+<meta property="og:description" content="Get the value from a vector with its position." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -140,67 +140,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Mutate columns in data.frame</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/mutate_dt.R'><code>R/mutate_dt.R</code></a></small>
-    <div class="hidden name"><code>mutate.Rd</code></div>
+    <h1>Extract the nth value from a vector</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/nth.R'><code>R/nth.R</code></a></small>
+    <div class="hidden name"><code>nth.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Analogous function for <code>mutate</code> and <code>transmute</code> in <span class="pkg">dplyr</span>.</p>
+    <p>Get the value from a vector with its position.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mutate_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>)
-
-<span class='fu'>transmute_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>nth</span>(<span class='no'>v</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>data.frame</p></td>
+      <th>v</th>
+      <td><p>A vector</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>List of variables or name-value pairs of summary/modifications
-functions.</p></td>
+      <th>n</th>
+      <td><p>A single integer specifying the position. Default uses <code>1</code>.
+Negative integers index from the end
+ (i.e. -1L will return the last value in the vector).
+ If a double is supplied, it will be silently truncated.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.table</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></code></p></div>
+    <p>A single value.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>mutate_dt</span>(<span class='kw'>one</span> <span class='kw'>=</span> <span class='fl'>1</span>,<span class='kw'>Sepal.Length</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span> + <span class='fl'>1</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species   one
-#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;num&gt;
-#&gt;   1:          6.1         3.5          1.4         0.2    setosa     1
-#&gt;   2:          5.9         3.0          1.4         0.2    setosa     1
-#&gt;   3:          5.7         3.2          1.3         0.2    setosa     1
-#&gt;   4:          5.6         3.1          1.5         0.2    setosa     1
-#&gt;   5:          6.0         3.6          1.4         0.2    setosa     1
-#&gt;  ---                                                                  
-#&gt; 146:          7.7         3.0          5.2         2.3 virginica     1
-#&gt; 147:          7.3         2.5          5.0         1.9 virginica     1
-#&gt; 148:          7.5         3.0          5.2         2.0 virginica     1
-#&gt; 149:          7.2         3.4          5.4         2.3 virginica     1
-#&gt; 150:          6.9         3.0          5.1         1.8 virginica     1</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>transmute_dt</span>(<span class='kw'>one</span> <span class='kw'>=</span> <span class='fl'>1</span>,<span class='kw'>Sepal.Length</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span> + <span class='fl'>1</span>)</div><div class='output co'>#&gt;        one Sepal.Length
-#&gt;      &lt;num&gt;        &lt;num&gt;
-#&gt;   1:     1          6.1
-#&gt;   2:     1          5.9
-#&gt;   3:     1          5.7
-#&gt;   4:     1          5.6
-#&gt;   5:     1          6.0
-#&gt;  ---                   
-#&gt; 146:     1          7.7
-#&gt; 147:     1          7.3
-#&gt; 148:     1          7.5
-#&gt; 149:     1          7.2
-#&gt; 150:     1          6.9</div><div class='input'>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>
+<span class='fu'>nth</span>(<span class='no'>x</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>nth</span>(<span class='no'>x</span>, <span class='fl'>5</span>)</div><div class='output co'>#&gt; [1] 5</div><div class='input'><span class='fu'>nth</span>(<span class='no'>x</span>, -<span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 9</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -208,7 +182,6 @@ functions.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

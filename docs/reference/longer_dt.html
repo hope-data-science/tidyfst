@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
       </span>
     </div>
 
@@ -152,10 +152,8 @@
     <pre class="usage"><span class='fu'>longer_dt</span>(
   <span class='no'>data</span>,
   <span class='no'>...</span>,
-  <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"variable"</span>,
+  <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
   <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>group_to_keep</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
@@ -169,28 +167,18 @@
     <tr>
       <th>...</th>
       <td><p>Pattern for unchanged group or unquoted names. Pattern can accept
-regular expression to match column names. If set `negate = TRUE`,
-return non-matching columns.</p></td>
+regular expression to match column names. It can recieve what <code>select_dt</code>
+recieves.</p></td>
     </tr>
     <tr>
       <th>gathered_name</th>
       <td><p>name for the measured variable names column.
-The default name is 'variable'.</p></td>
+The default name is 'name'.</p></td>
     </tr>
     <tr>
       <th>gathered_value</th>
       <td><p>name for the molten data values column(s).
 The default name is 'value'.</p></td>
-    </tr>
-    <tr>
-      <th>group_to_keep</th>
-      <td><p>Group to keep, namely vector of unchanged variables.
-Can be integer (corresponding id column numbers) or
-character (id column names) vector.</p></td>
-    </tr>
-    <tr>
-      <th>negate</th>
-      <td><p>If <code>TRUE</code>, return non-matching elements.</p></td>
     </tr>
     <tr>
       <th>na.rm</th>
@@ -228,84 +216,85 @@ character (id column names) vector.</p></td>
 #&gt; 9  2009-01-09 -0.244199607  1.0859927 -3.30715581
 #&gt; 10 2009-01-10 -0.282705449 -1.8281497 -6.04959861</div><div class='input'>
 <span class='no'>stocks</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>longer_dt</span>(<span class='no'>time</span>)</div><div class='output co'>#&gt;           time variable        value
-#&gt;         &lt;Date&gt;   &lt;fctr&gt;        &lt;num&gt;
-#&gt;  1: 2009-01-01        X -1.400043517
-#&gt;  2: 2009-01-02        X  0.255317055
-#&gt;  3: 2009-01-03        X -2.437263611
-#&gt;  4: 2009-01-04        X -0.005571287
-#&gt;  5: 2009-01-05        X  0.621552721
-#&gt;  6: 2009-01-06        X  1.148411606
-#&gt;  7: 2009-01-07        X -1.821817661
-#&gt;  8: 2009-01-08        X -0.247325302
-#&gt;  9: 2009-01-09        X -0.244199607
-#&gt; 10: 2009-01-10        X -0.282705449
-#&gt; 11: 2009-01-01        Y -1.107398767
-#&gt; 12: 2009-01-02        Y  1.257964084
-#&gt; 13: 2009-01-03        Y  4.130049791
-#&gt; 14: 2009-01-04        Y -3.261978804
-#&gt; 15: 2009-01-05        Y  1.024853900
-#&gt; 16: 2009-01-06        Y -3.726022984
-#&gt; 17: 2009-01-07        Y -1.044025029
-#&gt; 18: 2009-01-08        Y -0.105203820
-#&gt; 19: 2009-01-09        Y  1.085992685
-#&gt; 20: 2009-01-10        Y -1.828149655
-#&gt; 21: 2009-01-01        Z  1.872617682
-#&gt; 22: 2009-01-02        Z  1.451805023
-#&gt; 23: 2009-01-03        Z -5.218174180
-#&gt; 24: 2009-01-04        Z  2.951105285
-#&gt; 25: 2009-01-05        Z  7.554019717
-#&gt; 26: 2009-01-06        Z -0.389780418
-#&gt; 27: 2009-01-07        Z -3.743389414
-#&gt; 28: 2009-01-08        Z -0.063801245
-#&gt; 29: 2009-01-09        Z -3.307155815
-#&gt; 30: 2009-01-10        Z -6.049598605
-#&gt;           time variable        value</div><div class='input'>
+  <span class='fu'>longer_dt</span>(<span class='no'>time</span>)</div><div class='output co'>#&gt;           time   name        value
+#&gt;         &lt;Date&gt; &lt;fctr&gt;        &lt;num&gt;
+#&gt;  1: 2009-01-01      X -1.400043517
+#&gt;  2: 2009-01-02      X  0.255317055
+#&gt;  3: 2009-01-03      X -2.437263611
+#&gt;  4: 2009-01-04      X -0.005571287
+#&gt;  5: 2009-01-05      X  0.621552721
+#&gt;  6: 2009-01-06      X  1.148411606
+#&gt;  7: 2009-01-07      X -1.821817661
+#&gt;  8: 2009-01-08      X -0.247325302
+#&gt;  9: 2009-01-09      X -0.244199607
+#&gt; 10: 2009-01-10      X -0.282705449
+#&gt; 11: 2009-01-01      Y -1.107398767
+#&gt; 12: 2009-01-02      Y  1.257964084
+#&gt; 13: 2009-01-03      Y  4.130049791
+#&gt; 14: 2009-01-04      Y -3.261978804
+#&gt; 15: 2009-01-05      Y  1.024853900
+#&gt; 16: 2009-01-06      Y -3.726022984
+#&gt; 17: 2009-01-07      Y -1.044025029
+#&gt; 18: 2009-01-08      Y -0.105203820
+#&gt; 19: 2009-01-09      Y  1.085992685
+#&gt; 20: 2009-01-10      Y -1.828149655
+#&gt; 21: 2009-01-01      Z  1.872617682
+#&gt; 22: 2009-01-02      Z  1.451805023
+#&gt; 23: 2009-01-03      Z -5.218174180
+#&gt; 24: 2009-01-04      Z  2.951105285
+#&gt; 25: 2009-01-05      Z  7.554019717
+#&gt; 26: 2009-01-06      Z -0.389780418
+#&gt; 27: 2009-01-07      Z -3.743389414
+#&gt; 28: 2009-01-08      Z -0.063801245
+#&gt; 29: 2009-01-09      Z -3.307155815
+#&gt; 30: 2009-01-10      Z -6.049598605
+#&gt;           time   name        value</div><div class='input'>
 <span class='no'>stocks</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>longer_dt</span>(<span class='st'>"ti"</span>)</div><div class='output co'>#&gt;           time variable        value
-#&gt;         &lt;Date&gt;   &lt;fctr&gt;        &lt;num&gt;
-#&gt;  1: 2009-01-01        X -1.400043517
-#&gt;  2: 2009-01-02        X  0.255317055
-#&gt;  3: 2009-01-03        X -2.437263611
-#&gt;  4: 2009-01-04        X -0.005571287
-#&gt;  5: 2009-01-05        X  0.621552721
-#&gt;  6: 2009-01-06        X  1.148411606
-#&gt;  7: 2009-01-07        X -1.821817661
-#&gt;  8: 2009-01-08        X -0.247325302
-#&gt;  9: 2009-01-09        X -0.244199607
-#&gt; 10: 2009-01-10        X -0.282705449
-#&gt; 11: 2009-01-01        Y -1.107398767
-#&gt; 12: 2009-01-02        Y  1.257964084
-#&gt; 13: 2009-01-03        Y  4.130049791
-#&gt; 14: 2009-01-04        Y -3.261978804
-#&gt; 15: 2009-01-05        Y  1.024853900
-#&gt; 16: 2009-01-06        Y -3.726022984
-#&gt; 17: 2009-01-07        Y -1.044025029
-#&gt; 18: 2009-01-08        Y -0.105203820
-#&gt; 19: 2009-01-09        Y  1.085992685
-#&gt; 20: 2009-01-10        Y -1.828149655
-#&gt; 21: 2009-01-01        Z  1.872617682
-#&gt; 22: 2009-01-02        Z  1.451805023
-#&gt; 23: 2009-01-03        Z -5.218174180
-#&gt; 24: 2009-01-04        Z  2.951105285
-#&gt; 25: 2009-01-05        Z  7.554019717
-#&gt; 26: 2009-01-06        Z -0.389780418
-#&gt; 27: 2009-01-07        Z -3.743389414
-#&gt; 28: 2009-01-08        Z -0.063801245
-#&gt; 29: 2009-01-09        Z -3.307155815
-#&gt; 30: 2009-01-10        Z -6.049598605
-#&gt;           time variable        value</div><div class='input'>
+  <span class='fu'>longer_dt</span>(<span class='st'>"ti"</span>)</div><div class='output co'>#&gt;           time   name        value
+#&gt;         &lt;Date&gt; &lt;fctr&gt;        &lt;num&gt;
+#&gt;  1: 2009-01-01      X -1.400043517
+#&gt;  2: 2009-01-02      X  0.255317055
+#&gt;  3: 2009-01-03      X -2.437263611
+#&gt;  4: 2009-01-04      X -0.005571287
+#&gt;  5: 2009-01-05      X  0.621552721
+#&gt;  6: 2009-01-06      X  1.148411606
+#&gt;  7: 2009-01-07      X -1.821817661
+#&gt;  8: 2009-01-08      X -0.247325302
+#&gt;  9: 2009-01-09      X -0.244199607
+#&gt; 10: 2009-01-10      X -0.282705449
+#&gt; 11: 2009-01-01      Y -1.107398767
+#&gt; 12: 2009-01-02      Y  1.257964084
+#&gt; 13: 2009-01-03      Y  4.130049791
+#&gt; 14: 2009-01-04      Y -3.261978804
+#&gt; 15: 2009-01-05      Y  1.024853900
+#&gt; 16: 2009-01-06      Y -3.726022984
+#&gt; 17: 2009-01-07      Y -1.044025029
+#&gt; 18: 2009-01-08      Y -0.105203820
+#&gt; 19: 2009-01-09      Y  1.085992685
+#&gt; 20: 2009-01-10      Y -1.828149655
+#&gt; 21: 2009-01-01      Z  1.872617682
+#&gt; 22: 2009-01-02      Z  1.451805023
+#&gt; 23: 2009-01-03      Z -5.218174180
+#&gt; 24: 2009-01-04      Z  2.951105285
+#&gt; 25: 2009-01-05      Z  7.554019717
+#&gt; 26: 2009-01-06      Z -0.389780418
+#&gt; 27: 2009-01-07      Z -3.743389414
+#&gt; 28: 2009-01-08      Z -0.063801245
+#&gt; 29: 2009-01-09      Z -3.307155815
+#&gt; 30: 2009-01-10      Z -6.049598605
+#&gt;           time   name        value</div><div class='input'>
 <span class='co'># Example 2:</span>
-<span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tidyr</span>)
 
-<span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>longer_dt</span>(
-    <span class='st'>"wk"</span>,
-    <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
-    <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
-    <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,<span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-  )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
+<span class='co'># \donttest{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tidyr</span>)
+
+  <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
+    <span class='fu'>longer_dt</span>(
+      <span class='st'>"wk"</span>,<span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
+      <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
+      <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+    )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
 #&gt;             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;
 #&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26    wk1    87
 #&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02    wk1    91
@@ -318,14 +307,14 @@ character (id column names) vector.</p></td>
 #&gt; 5305:        Creed                  Higher   1999-09-11   wk64    50
 #&gt; 5306:     Lonestar                  Amazed   1999-06-05   wk64    50
 #&gt; 5307:        Creed                  Higher   1999-09-11   wk65    49</div><div class='input'>
-<span class='co'># or use:</span>
- <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
-   <span class='fu'>longer_dt</span>(
-     <span class='no'>artist</span>,<span class='no'>track</span>,<span class='no'>date.entered</span>,
-     <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
-     <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
-     <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,<span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-   )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
+  <span class='co'># or use:</span>
+  <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
+    <span class='fu'>longer_dt</span>(
+      <span class='no'>artist</span>,<span class='no'>track</span>,<span class='no'>date.entered</span>,
+      <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
+      <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
+      <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+    )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
 #&gt;             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;
 #&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26    wk1    87
 #&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02    wk1    91
@@ -338,14 +327,14 @@ character (id column names) vector.</p></td>
 #&gt; 5305:        Creed                  Higher   1999-09-11   wk64    50
 #&gt; 5306:     Lonestar                  Amazed   1999-06-05   wk64    50
 #&gt; 5307:        Creed                  Higher   1999-09-11   wk65    49</div><div class='input'>
- <span class='co'># or use:</span>
- <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
-   <span class='fu'>longer_dt</span>(
-     <span class='kw'>group_to_keep</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
-     <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
-     <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
-     <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,<span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-   )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
+  <span class='co'># or use:</span>
+  <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
+    <span class='fu'>longer_dt</span>(
+      <span class='fl'>1</span>:<span class='fl'>3</span>,
+      <span class='kw'>gathered_name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
+      <span class='kw'>gathered_value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
+      <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+    )</div><div class='output co'>#&gt; <span class='warning'>Warning: 'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
 #&gt;             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;
 #&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26    wk1    87
 #&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02    wk1    91
