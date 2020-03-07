@@ -80,6 +80,8 @@ iris[3:8,] %>%
 
 ```
 
+## Note
+The functions for nesting and unnesting are undergoing more updates recently, you can utilize the new features from the GitHub version (v0.8.8).
 
 
 ## Future plans
