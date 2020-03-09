@@ -3,12 +3,11 @@
 #' @description Analogous function for \code{select} and \code{select_if} in \pkg{dplyr}.
 #' @param data data.frame
 #' @param ... List of variables or name-value pairs of summary/modifications
-#'   functions.
+#'   functions. It can also recieve conditional function to select columns.
+#'   When starts with `-`(minus symbol) or `!`, return the negative columns.
 #' @param cols (Optional)A numeric or character vector.
 #' @param negate Applicable when regular expression is used.
 #' If \code{TRUE}, return the non-matched pattern. Default uses \code{FALSE}.
-#' @param .if Conditional function to select columns.
-#' When starts with `-`(minus symbol), return the negative columns.
 #' @return data.table
 #' @seealso \code{\link[dplyr]{select}}, \code{\link[dplyr]{select_if}}
 #' @examples
@@ -25,13 +24,15 @@
 #' iris %>% select_dt(-(1:3))
 #' iris %>% select_dt(1,3)
 #' iris %>% select_dt("Pe")
+#' iris %>% select_dt(-"Se")
+#' iris %>% select_dt(!"Se")
 #' iris %>% select_dt("Pe",negate = TRUE)
 #' iris %>% select_dt("Pe|Sp")
 #' iris %>% select_dt(cols = 2:3)
 #' iris %>% select_dt(cols = names(iris)[2:3])
 #'
-#' iris %>% select_if_dt(is.factor)
-#' iris %>% select_if_dt(-is.factor)
+#' iris %>% select_dt(is.factor)
+#' iris %>% select_dt(-is.factor)
 
 #' @rdname select
 #' @export
@@ -44,7 +45,11 @@ select_dt = function(data,...,cols = NULL,negate =FALSE){
       str_extract("\\(.+\\)") %>%
       str_sub(2,-2)-> dot_string
     if(is.na(dot_string)) dt
-    else if(str_detect(dot_string,"^\"")){
+    else if(str_detect(dot_string,"^[-!]?\"")){
+      if(dot_string %like% "^[-!]") {
+        dot_string = str_remove(dot_string,"^-|^!")
+        negate = TRUE
+      }
       str_remove_all(dot_string,"\"") %>%
         str_subset(names(dt),.,negate = negate) %>%
         str_c(collapse = ",") -> dot_string
@@ -54,6 +59,8 @@ select_dt = function(data,...,cols = NULL,negate =FALSE){
       eval(parse(text = str_glue("dt[,c({dot_string})]")))
     else if(str_detect(dot_string,"^c\\(")|str_count(dot_string,":") == 1)
       eval(parse(text = str_glue("dt[,{dot_string}]")))
+    else if(dot_string %like% "^[-!]?is\\.")
+      eval(parse(text = str_glue("select_if_dt(dt,{dot_string})")))
     else if(str_detect(dot_string,"^-")){
       dot_string = str_remove_all(dot_string,"-") %>% str_squish()
       if(!str_detect(dot_string,","))
@@ -68,9 +75,6 @@ select_dt = function(data,...,cols = NULL,negate =FALSE){
   else dt[,.SD,.SDcols = cols]
 }
 
-
-#' @rdname select
-#' @export
 select_if_dt = function(data,.if){
   dt = as_dt(data)
   if_name = substitute(.if) %>% deparse()

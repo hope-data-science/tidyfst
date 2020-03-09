@@ -41,27 +41,69 @@ complete_dt = function(data,...,fill = NA){
      deparse() %>%
      str_detect("=")
   ) {
-    suppressWarnings(data.table(...)) %>%
-      unique() %>%
-      expand.grid() %>%
-      as.data.table(key=names(.)) %>%
+    list(...) %>%
+      lapply(unique) %>%
+      deparse() %>%
+      str_replace("list","CJ") %>%
+      parse(text = .) %>%
+      eval() %>%
       merge(setorder(dt),all = TRUE) %>%
       replace_na_dt(to=fill) %>%
       unique()
   }else
     setorder(dt)%>%
     select_dt(...) %>%
-    unique() %>%
-    expand.grid() %>%
-    as.data.table(key = names(.)) %>%
+    lapply(unique) %>%
+    deparse() %>%
+    str_replace("list","CJ") %>%
+    parse(text = .) %>%
+    eval() %>%
     merge(dt,all = TRUE) %>%
     replace_na_dt(to=fill) %>%
     unique()
 }
 
+# speed test
+# sys_time_print(
+#   list(a=1:2e5,b = 2:4,c = 3:9) %>%
+#     lapply(unique) %>%
+#     deparse() %>%
+#     str_replace("list","CJ") %>%
+#     parse(text = .) %>%
+#     eval() -> a
+# )
+#
+# sys_time_print(
+#   list(a=1:2e5,b = 2:4,c = 3:9) %>%
+#     lapply(unique) %>%
+#     expand.grid() -> b
+# )
 
-
-
-
+# past codes
+# complete_dt = function(data,...,fill = NA){
+#   dt = as_dt(data)
+#
+#   if(
+#     substitute(list(...)) %>%
+#     deparse() %>%
+#     str_detect("=")
+#   ) {
+#     suppressWarnings(data.table(...)) %>%
+#       lapply(unique) %>%
+#       expand.grid() %>%
+#       as.data.table(key=names(.)) %>%
+#       merge(setorder(dt),all = TRUE) %>%
+#       replace_na_dt(to=fill) %>%
+#       unique()
+#   }else
+#     setorder(dt)%>%
+#     select_dt(...) %>%
+#     lapply(unique) %>%
+#     expand.grid() %>%
+#     as.data.table(key = names(.)) %>%
+#     merge(dt,all = TRUE) %>%
+#     replace_na_dt(to=fill) %>%
+#     unique()
+# }
 
 

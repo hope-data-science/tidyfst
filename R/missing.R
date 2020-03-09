@@ -9,6 +9,9 @@
 #' @param direction Direction in which to fill missing values.
 #' Currently either "down" (the default) or "up".
 #' @return data.table
+#' @details \code{drop_all_na_cols} could drop the columns with only NAs,
+#' while \code{drop_all_na_rows} could drop the rows with only NAs.
+#' @references https://stackoverflow.com/questions/2643939/remove-columns-from-dataframe-where-all-values-are-na
 #' @references https://stackoverflow.com/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table
 #' @seealso \code{\link[tidyr]{drop_na}},\code{\link[tidyr]{replace_na}},
 #' \code{\link[tidyr]{fill}}
@@ -47,6 +50,18 @@ drop_na_dt = function(data,...){
 
 #' @rdname missing
 #' @export
+drop_all_na_cols = function(data){
+  dt = as_dt(data)
+  dt[,which(unlist(lapply(dt, function(x)!all(is.na(x))))),with=F]
+}
+
+drop_all_na_rows = function(data){
+  dt = as_dt(data)
+  dt[complete.cases(dt)]
+}
+
+#' @rdname missing
+#' @export
 
 # https://stackoverflow.com/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table
 replace_na_dt = function(data,...,to){
@@ -70,14 +85,14 @@ replace_na_dt = function(data,...,to){
 #' @rdname missing
 #' @export
 fill_na_dt = function(data,...,direction = c("down","up")){
-  data = as_dt(data)
+  dt = as_dt(data)
   if(substitute(list(...)) %>% deparse() == "list()")
-    update_cols <- names(data)
+    update_cols <- names(dt)
   else
-    data %>%
+    dt[0] %>%
       select_dt(...) %>%
       names() -> update_cols
-  data[,(update_cols) := lapply(.SD, get(paste0(direction,"_fill"))),
+  dt[,(update_cols) := lapply(.SD, get(paste0(direction,"_fill"))),
                                 .SDcols = update_cols][]
 
 }

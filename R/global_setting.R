@@ -1,4 +1,3 @@
-
 #' @import data.table
 #' @import fst
 #' @import stringr
@@ -33,18 +32,20 @@ data.table::funion
 data.table::fsetequal
 
 #' @export
+data.table::rbindlist
+
+#' @export
 data.table::frollapply
+
+#' @export
+data.table::between
 
 #' @export
 data.table::fcoalesce
 
 #' @export
-data.table::rbindlist
-
-#' @export
 data.table::tables
 
 #' @export
-data.table::between
-
+data.table::like
 

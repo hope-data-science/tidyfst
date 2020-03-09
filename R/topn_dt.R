@@ -20,33 +20,31 @@
 #' @rdname topn
 #' @export
 
+
 top_n_dt = function(data,n,wt = NULL){
   dt = as_dt(data)
-  if(is.null(substitute(wt))) wt = as.symbol(names(dt)[length(dt)])
-  if(n > 0)
-    eval(substitute(dt[wt >= fsort(dt[,wt]) %>% .[length(.)-n + 1]]))
-  else if(n < 0)
-    eval(substitute(dt[wt <= fsort(dt[,wt]) %>% .[-n]]))
-  else
-    dt[0]
+  n_ = n
+  wt = fifelse(is.null(substitute(wt)),
+               names(dt)[length(dt)],
+               deparse(substitute(wt)))
+
+  if(n_ > 0) dt[frankv(dt,cols = wt,order = -1,ties.method = "min") <= n_]
+  else if(n_ < 0) dt[frankv(dt,cols = wt,order = 1,ties.method = "min") <= -n_]
+  else dt[0]
 }
 
 # top_n_dt = function(data,n,wt = NULL){
 #   dt = as_dt(data)
-#   wt = substitute(wt)
-#   if(n > 0){
-#     if(is.null(wt)) wt = names(dt)[length(dt)]
-#     else wt = deparse(wt)
-#     dt[[wt]] %>% sort(decreasing = TRUE) %>% .[n] -> value
-#     "dt[{wt} >= value]" %>% str_glue() %>% parse(text = .) %>% eval()
-#   } else{
-#     n = -n
-#     if(is.null(wt)) wt = names(dt)[length(dt)]
-#     else wt = deparse(wt)
-#     dt[[wt]] %>% sort() %>% .[n] -> value
-#     "dt[{wt} <= value]" %>% str_glue() %>% parse(text = .) %>% eval()
-#   }
+#   if(is.null(substitute(wt))) wt = as.symbol(names(dt)[length(dt)])
+#   if(n > 0)
+#     eval(substitute(dt[wt >= fsort(dt[,wt]) %>% .[length(.)-n + 1]]))
+#   else if(n < 0)
+#     eval(substitute(dt[wt <= fsort(dt[,wt]) %>% .[-n]]))
+#   else
+#     dt[0]
 # }
+
+
 
 #' @rdname topn
 #' @export

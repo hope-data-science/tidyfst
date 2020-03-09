@@ -25,8 +25,24 @@ in_dt = function(data,...){
 
 #' @rdname dt
 #' @export
-as_dt = function(data){
-  if(!is.data.frame(data)) stop("Only a data.frame could be received.")
+
+as_dt = function (data) {
+  if (!is.data.frame(data))
+    stop("Only a data.frame could be received.")
   as.data.table(data)
 }
+
+# optional as_dt for future
+# as_dt = function(data){
+#   fifelse(
+#     is.data.table(data),
+#     data,
+#     fifelse(is.data.frame(data),
+#             as.data.table(data),
+#             stop("Only a data.frame could be received."))
+#   )
+# }
+
+
+
 
