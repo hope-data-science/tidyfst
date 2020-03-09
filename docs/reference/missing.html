@@ -153,6 +153,8 @@ fill in tidyr, but with a different API." />
 
     <pre class="usage"><span class='fu'>drop_na_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>)
 
+<span class='fu'>drop_all_na_cols</span>(<span class='no'>data</span>)
+
 <span class='fu'>replace_na_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='no'>to</span>)
 
 <span class='fu'>fill_na_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"down"</span>, <span class='st'>"up"</span>))</pre>
@@ -182,9 +184,14 @@ Currently either "down" (the default) or "up".</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data.table</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>drop_all_na_cols</code> could drop the columns with only NAs,
+while <code>drop_all_na_rows</code> could drop the rows with only NAs.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>https://stackoverflow.com/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table</p>
+    <p>https://stackoverflow.com/questions/2643939/remove-columns-from-dataframe-where-all-values-are-na</p>
+<p>https://stackoverflow.com/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></code>,<code><a href='https://tidyr.tidyverse.org/reference/replace_na.html'>replace_na</a></code>,
@@ -239,6 +246,7 @@ Currently either "down" (the default) or "up".</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>

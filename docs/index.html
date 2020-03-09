@@ -114,8 +114,8 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p><em>tidyfst</em> is a toolkit of tidy data manipulation verbs with <em>data.table</em> as the backend . Combining the merits of syntax elegance from <em>dplyr</em> and computing performance from <em>data.table</em>, <em>tidyfst</em> intends to provide users with state-of-the-art data manipulation tools with least pain. This package is inspired by <em>maditr</em>, but follows a different philosophy of design, such as prohibiting in place replacement and used a "_dt" suffix API. Also, <em>tidyfst</em> would introduce more tidy data verbs from other packages, including but not limited to <em>tidyverse</em> and <em>data.table</em>. If you are a <em>dplyr</em> user but have to use <em>data.table</em> for speedy computation, or <em>data.table</em> user looking for readable coding syntax, <em>tidyfst</em> is designed for you (and me of course). For further details and tutorials, see <a href="https://hope-data-science.github.io/tidyfst/">vignettes</a>.</p>
-<p>Enjoy the data science in <em>tidyfst</em> !</p>
+<p><em>tidyfst</em> is a toolkit of tidy data manipulation verbs with <em>data.table</em> as the backend . Combining the merits of syntax elegance from <em>dplyr</em> and computing performance from <em>data.table</em>, <em>tidyfst</em> intends to provide users with state-of-the-art data manipulation tools with least pain. This package is an extention of <em>data.table</em>, while enjoying a tidy syntax, it also wraps combinations of efficient functions to facilitate frequently repetitive data operations. Also, <em>tidyfst</em> would introduce more tidy data verbs from other packages, including but not limited to <em>tidyverse</em> and <em>data.table</em>. If you are a <em>dplyr</em> user but have to use <em>data.table</em> for speedy computation, or <em>data.table</em> user looking for readable coding syntax, <em>tidyfst</em> is designed for you (and me of course). For further details and tutorials, see <a href="https://hope-data-science.github.io/tidyfst/">vignettes</a>.</p>
+<p>Till now, <em>tidyfst</em> has an API that might even transcend its predecessors (e.g. <a href="https://hope-data-science.github.io/tidyfst/reference/select.html"><code>select_dt</code></a> could accept nearly anything for super selection of columns). Enjoy the efficient data operations in <em>tidyfst</em> !</p>
 </div>
 <div id="features" class="section level2">
 <h2 class="hasAnchor">
@@ -123,8 +123,8 @@
 <ul>
 <li>Receives any data.frame (tibble/data.table/data.frame) and returns a data.table.</li>
 <li>Show the variable class of data.table as default.</li>
-<li>Never use in place replacement.</li>
-<li>Use suffix rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).</li>
+<li>Never use in place replacement (also known as “modify-by-reference”).</li>
+<li>Use suffix ("_dt") rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).</li>
 <li>More flexible verbs for big data manipulation.</li>
 <li>For some useful functions in <em>data.table</em>, if <em>tidyfst</em> could not optimize the API syntax, never rewrite but export them directly to guarantee the performance.</li>
 <li>Supporting data importing and parsing with <em>fst</em>, details see <a href="https://hope-data-science.github.io/tidyfst/reference/fst.html">parse_fst/select_fst/filter_fst</a> and <a href="https://hope-data-science.github.io/tidyfst/reference/fst_io.html">import_fst/export_fst</a>.</li>
@@ -182,7 +182,6 @@
 <div id="future-plans" class="section level2">
 <h2 class="hasAnchor">
 <a href="#future-plans" class="anchor"></a>Future plans</h2>
-<p><em>unnest_dt</em> is now fast enough to beat the <em>tidyr::unnest</em>, but the <em>nest_dt</em> function would build a nested data.table with <em>data.table</em> inside. How to use such data structure is remained to be seen, and the performance is still to be explored.</p>
 <p><em>tidyfst</em> will keep up with the <a href="https://github.com/Rdatatable/data.table/blob/master/NEWS.md">updates</a> of <em>data.table</em> , in the next step would introduce more new features to improve the performance and flexibility to facilitate fast data manipulation in tidy syntax.</p>
 </div>
 <div id="vignettes" class="section level2">
@@ -201,12 +200,10 @@
 <h2 class="hasAnchor">
 <a href="#related-work" class="anchor"></a>Related work</h2>
 <ul>
-<li><a href="https://github.com/gdemin/maditr">maditr</a></li>
-<li><a href="https://github.com/fstpackage/fst">fst</a></li>
 <li><a href="https://github.com/Rdatatable/data.table">data.table</a></li>
+<li><a href="https://github.com/fstpackage/fst">fst</a></li>
 <li><a href="https://github.com/tidyverse/dplyr">dplyr</a></li>
 <li><a href="https://github.com/tidyverse/dtplyr">dtplyr</a></li>
-<li><a href="https://github.com/asardaes/table.express">table.express</a></li>
 <li><a href="https://github.com/TysonStanley/tidyfast">tidyfast</a></li>
 <li><a href="https://github.com/markfairbanks/tidytable">tidytable</a></li>
 </ul>
