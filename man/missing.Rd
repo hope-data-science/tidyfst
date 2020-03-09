@@ -2,11 +2,14 @@
 % Please edit documentation in R/missing.R
 \name{drop_na_dt}
 \alias{drop_na_dt}
+\alias{drop_all_na_cols}
 \alias{replace_na_dt}
 \alias{fill_na_dt}
 \title{Dump, replace and fill missing values in data.frame}
 \usage{
 drop_na_dt(data, ...)
+
+drop_all_na_cols(data)
 
 replace_na_dt(data, ..., to)
 
@@ -29,6 +32,10 @@ data.table
 Analogous function for \code{drop_na}, \code{replace_na} and
 \code{fill} in \pkg{tidyr}, but with a different API.
 }
+\details{
+\code{drop_all_na_cols} could drop the columns with only NAs,
+while \code{drop_all_na_rows} could drop the rows with only NAs.
+}
 \examples{
 df <- data.table(x = c(1, 2, NA), y = c("a", NA, "b"))
  df \%>\% drop_na_dt()
@@ -46,6 +53,8 @@ df <- data.table(x = c(1, 2, NA), y = c("a", NA, "b"))
  df \%>\% fill_na_dt(y,direction = "up")
 }
 \references{
+https://stackoverflow.com/questions/2643939/remove-columns-from-dataframe-where-all-values-are-na
+
 https://stackoverflow.com/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table
 }
 \seealso{
