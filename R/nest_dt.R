@@ -9,10 +9,13 @@
 #' columns to be nested(for \code{squeeze_dt} and \code{chop_dt}),
 #' or column(s) to be unnested(for \code{unnest_dt}).
 #' Could recieve anything that \code{\link[tidyfst]{select_dt}} could receive.
+#' @param mcols Name-variable pairs in the list, form like
+#' \code{list(petal="^Pe",sepal="^Se")}, see example.
 #' @return data.table, nested or unnested
 #' @details In the \code{nest_dt}, the data would be nested to a column named `ndt`,
 #'  which is short for nested data.table.
 #' @details The \code{squeeze_dt} would not remove the originial columns.
+#' @details The \code{unchop_dt} is the reverse operation of \code{chop_dt}.
 #' @details These functions are experiencing the experimental stage, especially
 #' the \code{unnest_dt}. If they don't work on some circumtances, try \pkg{tidyr}
 #' package.
@@ -31,7 +34,7 @@
 #'  mtcars %>% nest_dt(c("cyl","vs"))
 #'
 #' # nest two columns directly
-#' iris %>% nest_dt(cols = list(petal="^Pe",sepal="^Se"))
+#' iris %>% nest_dt(mcols = list(petal="^Pe",sepal="^Se"))
 #'
 #' # examples for unnest_dt
 #' # unnest which column?
@@ -67,20 +70,21 @@
 #' # examples for chop_dt
 #' df <- data.table(x = c(1, 1, 1, 2, 2, 3), y = 1:6, z = 6:1)
 #' df %>% chop_dt(y,z)
+#' df %>% chop_dt(y,z) %>% unchop_dt(y,z)
 
 #' @rdname nest
 #' @export
 
 # nest by which columns?
 
-nest_dt = function(data,...,cols = NULL){
+nest_dt = function(data,...,mcols = NULL){
   dt = as_dt(data)
-  if(is.null(cols)) nest_by(dt,...)
+  if(is.null(mcols)) nest_by(dt,...)
   else{
     names(dt) %>%
-      str_subset(str_c(cols,collapse = "|"),
+      str_subset(str_c(mcols,collapse = "|"),
                  negate = TRUE) -> group_names
-    lapply(cols,function(x) str_subset(names(dt),x)) %>%
+    lapply(mcols,function(x) str_subset(names(dt),x)) %>%
       lapply(function(x) c(x,group_names)) %>%
       lapply(function(x) select_dt(dt,cols = x)) %>%
       lapply(function(x) nest_by(dt,cols = group_names)) %>%
@@ -158,6 +162,18 @@ chop_dt = function(data,...){
                              by = {group_names}]")))
 }
 
+#' @rdname nest
+#' @export
+unchop_dt = function(data,...){
+  dt = as_dt(data)
+  col_names = dt[0] %>% select_dt(...) %>% names()
+  group_names = setdiff(names(dt),col_names)
+  if(length(col_names) == 1) unnest_col(dt,...)
+  else
+    lapply(col_names,function(x) unnest_col(dt,cols = x)) %>%
+    Reduce(x = ., f = function(x,y) cbind(x,y)) %>%
+    .[,unique(names(.)),with=FALSE]
+}
 
 
 
