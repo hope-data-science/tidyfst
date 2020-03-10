@@ -5,15 +5,18 @@
 \alias{unnest_dt}
 \alias{squeeze_dt}
 \alias{chop_dt}
+\alias{unchop_dt}
 \title{Nest and unnest}
 \usage{
-nest_dt(data, ..., cols = NULL)
+nest_dt(data, ..., mcols = NULL)
 
 unnest_dt(data, ...)
 
 squeeze_dt(data, ...)
 
 chop_dt(data, ...)
+
+unchop_dt(data, ...)
 }
 \arguments{
 \item{data}{data.table, nested or unnested}
@@ -22,6 +25,9 @@ chop_dt(data, ...)
 columns to be nested(for \code{squeeze_dt} and \code{chop_dt}),
 or column(s) to be unnested(for \code{unnest_dt}).
 Could recieve anything that \code{\link[tidyfst]{select_dt}} could receive.}
+
+\item{mcols}{Name-variable pairs in the list, form like
+\code{list(petal="^Pe",sepal="^Se")}, see example.}
 }
 \value{
 data.table, nested or unnested
@@ -37,6 +43,8 @@ In the \code{nest_dt}, the data would be nested to a column named `ndt`,
  which is short for nested data.table.
 
 The \code{squeeze_dt} would not remove the originial columns.
+
+The \code{unchop_dt} is the reverse operation of \code{chop_dt}.
 
 These functions are experiencing the experimental stage, especially
 the \code{unnest_dt}. If they don't work on some circumtances, try \pkg{tidyr}
@@ -54,7 +62,7 @@ package.
  mtcars \%>\% nest_dt(c("cyl","vs"))
 
 # nest two columns directly
-iris \%>\% nest_dt(cols = list(petal="^Pe",sepal="^Se"))
+iris \%>\% nest_dt(mcols = list(petal="^Pe",sepal="^Se"))
 
 # examples for unnest_dt
 # unnest which column?
@@ -90,6 +98,7 @@ iris \%>\% squeeze_dt(Sepal.Length:Petal.Width)
 # examples for chop_dt
 df <- data.table(x = c(1, 1, 1, 2, 2, 3), y = 1:6, z = 6:1)
 df \%>\% chop_dt(y,z)
+df \%>\% chop_dt(y,z) \%>\% unchop_dt(y,z)
 }
 \references{
 https://www.r-bloggers.com/much-faster-unnesting-with-data-table/
