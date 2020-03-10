@@ -2,9 +2,12 @@
 % Please edit documentation in R/group_dt.R
 \name{group_dt}
 \alias{group_dt}
+\alias{rowwise_dt}
 \title{Data manipulation within groups}
 \usage{
 group_dt(data, by = NULL, ...)
+
+rowwise_dt(data, ...)
 }
 \arguments{
 \item{data}{A data.frame}
@@ -17,8 +20,8 @@ group_dt(data, by = NULL, ...)
 data.table
 }
 \description{
-Analogous function for \code{group_by} in \pkg{dplyr},
-but in another efficient way.
+Analogous function for \code{group_by} and \code{rowwise}
+ in \pkg{dplyr}, but in another efficient way.
 }
 \examples{
 iris \%>\% group_dt(by = Species,slice_dt(1:2))
@@ -55,4 +58,16 @@ mtcars \%>\%
  mtcars \%>\%
    group_dt(by =list(vs,am),
             summarise_dt(avg = mean(mpg)))
+
+# examples for `rowwise_dt`
+df <- data.table(x = 1:2, y = 3:4, z = 4:5)
+
+df \%>\% mutate_dt(m = mean(c(x, y, z)))
+
+df \%>\% rowwise_dt(
+  mutate_dt(m = mean(c(x, y, z)))
+)
+}
+\references{
+https://stackoverflow.com/questions/36802385/use-by-each-row-for-data-table
 }

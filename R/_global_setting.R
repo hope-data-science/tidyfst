@@ -45,6 +45,6 @@ data.table::rbindlist
 data.table::tables
 
 #' @export
-data.table::between
+data.table::like
 
 

@@ -1,11 +1,12 @@
 
 #' @title Data manipulation within groups
-#' @description Analogous function for \code{group_by} in \pkg{dplyr},
-#' but in another efficient way.
+#' @description Analogous function for \code{group_by} and \code{rowwise}
+#'  in \pkg{dplyr}, but in another efficient way.
 #' @param data A data.frame
 #' @param by Variables to group by,unquoted name of grouping variable of list of unquoted names of grouping variables.
 #' @param ... Any data manipulation arguments that could be implemented on a data.frame.
 #' @return data.table
+#' @references https://stackoverflow.com/questions/36802385/use-by-each-row-for-data-table
 #' @examples
 #' iris %>% group_dt(by = Species,slice_dt(1:2))
 #' iris %>% group_dt(Species,filter_dt(Sepal.Length == max(Sepal.Length)))
@@ -41,9 +42,18 @@
 #'  mtcars %>%
 #'    group_dt(by =list(vs,am),
 #'             summarise_dt(avg = mean(mpg)))
+#'
+#' # examples for `rowwise_dt`
+#' df <- data.table(x = 1:2, y = 3:4, z = 4:5)
+#'
+#' df %>% mutate_dt(m = mean(c(x, y, z)))
+#'
+#' df %>% rowwise_dt(
+#'   mutate_dt(m = mean(c(x, y, z)))
+#' )
 
 
-
+#' @rdname group_dt
 #' @export
 
 group_dt = function(data,by = NULL,...){
@@ -98,6 +108,18 @@ group_dt = function(data,by = NULL,...){
 #     eval(parse(text = str_glue("dt[,(.SD %>% {dot_string}),by = {by}]")))
 #   }
 # }
+
+#' @rdname group_dt
+#' @export
+rowwise_dt = function(data,...){
+  dt = as_dt(data)
+  dt %>%
+    group_dt(
+      by = row.names(dt),
+      ...
+    ) %>%
+    select_dt(-row.names)
+}
 
 dot_convert = function(string){
   if(str_detect(string,",\\s*\\.\\s*,"))
