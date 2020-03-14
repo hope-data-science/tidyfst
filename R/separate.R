@@ -23,8 +23,8 @@ separate_dt = function(data,separated_colname,into,
     tstrsplit(split = sep) %>%
     setNames(into) %>%
     as.data.table() -> split_columns
-  if(remove) rbind(dt[,.SD,.SDcols = -separated_colname],split_columns)
-  else rbind(dt,split_columns)
+  if(remove) cbind(dt[,.SD,.SDcols = -separated_colname],split_columns)
+  else cbind(dt,split_columns)
 
 }
 

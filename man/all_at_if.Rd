@@ -20,7 +20,7 @@ if_dt(data, .if, .func, .funcs, ...)
 \item{.funcs}{Function to be run within each column, should return a value or
 vectors with same length.}
 
-\item{...}{Parameters to be passed to parameter *.funcs*.}
+\item{...}{Parameters to be passed to parameter '.funcs'.}
 
 \item{.at}{Variables to select, could use regular expression or numeric/character
 vector.}

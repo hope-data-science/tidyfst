@@ -23,7 +23,7 @@ Performs the opposite operation to `dplyr::count()`,
 
 df <- data.table(x = c("a", "b"), n = c(1, 2))
 uncount_dt(df, n)
-uncount_dt(df,n,F)
+uncount_dt(df,n,FALSE)
 }
 \seealso{
 \code{\link[dplyr]{count}}, \code{\link[tidyr]{uncount}}

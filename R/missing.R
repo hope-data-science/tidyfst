@@ -55,6 +55,8 @@ drop_all_na_cols = function(data){
   dt[,which(unlist(lapply(dt, function(x)!all(is.na(x))))),with=F]
 }
 
+#' @rdname missing
+#' @export
 drop_all_na_rows = function(data){
   dt = as_dt(data)
   dt[complete.cases(dt)]

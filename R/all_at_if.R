@@ -8,7 +8,7 @@
 #' @param .func Main function name,either "mutate(_dt)" or "summarise(_dt)"
 #' @param .funcs Function to be run within each column, should return a value or
 #' vectors with same length.
-#' @param ... Parameters to be passed to parameter *.funcs*.
+#' @param ... Parameters to be passed to parameter '.funcs'.
 #' @param .at Variables to select, could use regular expression or numeric/character
 #' vector.
 #' @param .if Conditional function to select columns.

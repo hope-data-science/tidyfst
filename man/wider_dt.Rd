@@ -4,7 +4,14 @@
 \alias{wider_dt}
 \title{Pivot data from long to wide}
 \usage{
-wider_dt(data, ..., name_to_spread, value_to_spread = NULL, fill = NA)
+wider_dt(
+  data,
+  ...,
+  name_to_spread,
+  value_to_spread = NULL,
+  fun = identity,
+  fill = NA
+)
 }
 \arguments{
 \item{data}{data.table}
@@ -16,6 +23,11 @@ Could use integer vector, could receive what \code{select_dt} receives.}
 
 \item{value_to_spread}{Chracter.One column name of value to spread.
 If \code{NULL}, use all other variables.}
+
+\item{fun}{Should the data be aggregated before casting?
+If the formula doesn't identify a single observation for each cell,
+then aggregation defaults to \code{length} with a message.
+To use multiple aggregation functions, pass a list.}
 
 \item{fill}{Value with which to fill missing cells. Default uses \code{NA}.}
 }
@@ -50,9 +62,21 @@ be provided and should be explicit called (with the parameter names attached).
    wider_dt("time",
             name_to_spread = "name",
             value_to_spread = "one")
+
+## using "fun" parameter for aggregation
+DT <- data.table(v1 = rep(1:2, each = 6),
+                 v2 = rep(rep(1:3, 2), each = 2),
+                 v3 = rep(1:2, 6),
+                 v4 = rnorm(6))
+## for each combination of (v1, v2), add up all values of v4
+DT \%>\%
+  wider_dt(v1,v2,
+           value_to_spread = "v4",
+           name_to_spread = ".",
+           fun = sum)
 }
 \seealso{
-\code{\link[data.table]{dcast}}
-
-\code{\link[tidyr]{pivot_wider}}
+\code{\link[tidyfst]{longer_dt}},
+ \code{\link[data.table]{dcast}},
+ \code{\link[tidyr]{pivot_wider}}
 }

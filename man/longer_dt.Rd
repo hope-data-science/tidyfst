@@ -84,7 +84,7 @@ stocks \%>\%
 }
 }
 \seealso{
-\code{\link[data.table]{melt}}
-
-\code{\link[tidyr]{pivot_longer}}
+\code{\link[tidyfst]{wider_dt}},
+  \code{\link[data.table]{melt}},
+  \code{\link[tidyr]{pivot_longer}}
 }

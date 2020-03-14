@@ -3,6 +3,7 @@
 \name{drop_na_dt}
 \alias{drop_na_dt}
 \alias{drop_all_na_cols}
+\alias{drop_all_na_rows}
 \alias{replace_na_dt}
 \alias{fill_na_dt}
 \title{Dump, replace and fill missing values in data.frame}
@@ -10,6 +11,8 @@
 drop_na_dt(data, ...)
 
 drop_all_na_cols(data)
+
+drop_all_na_rows(data)
 
 replace_na_dt(data, ..., to)
 

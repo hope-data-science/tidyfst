@@ -121,6 +121,8 @@ rowwise_dt = function(data,...){
     select_dt(-row.names)
 }
 
+
+
 dot_convert = function(string){
   if(str_detect(string,",\\s*\\.\\s*,"))
     str_replace(string,",\\s*\\.\\s*,",",.SD,") -> string

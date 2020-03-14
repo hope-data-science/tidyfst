@@ -47,4 +47,5 @@ data.table::tables
 #' @export
 data.table::like
 
-
+#' @export
+data.table::copy

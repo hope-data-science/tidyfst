@@ -12,7 +12,7 @@
 #'
 #' df <- data.table(x = c("a", "b"), n = c(1, 2))
 #' uncount_dt(df, n)
-#' uncount_dt(df,n,F)
+#' uncount_dt(df,n,FALSE)
 #' @export
 
 uncount_dt = function(data,wt,.remove = TRUE){

@@ -3,11 +3,13 @@
 #' @description Analogous function for \code{top_n} and \code{top_frac} in \pkg{dplyr}, but with a different API.
 #'
 #' @param data data.frame
-#' @param n number of rows to return for `topn_dt()`, fraction of rows to return for `topfrac_dt()`.
+#' @param n number of rows to return for `top_n_dt()`, fraction of rows to return for `topfrac_dt()`.
 #'  Will include more rows if there are ties.
 #' @param n  If \code{n} is positive, selects the top rows. If negative, selects the bottom rows.
 #' @param wt (Optional). The variable to use for ordering.
 #' If not specified, defaults to the last variable in the data.frame.
+#' @description In \code{top_dt}, you can use a different API for both
+#' functionalities in `top_n_dt()` and `top_frac_dt()`.
 #' @return data.table
 #' @seealso \code{\link[dplyr]{top_n}}
 #' @examples
@@ -16,11 +18,23 @@
 #' iris %>% top_frac_dt(.1,Sepal.Length)
 #' iris %>% top_frac_dt(-.1,Sepal.Length)
 #'
+#' # For `top_dt`, you can use both modes above
+#' iris %>% top_dt(Sepal.Length,n = 10)
+#' iris %>% top_dt(Sepal.Length,prop = .1)
 
 #' @rdname topn
 #' @export
+top_dt = function(data,wt,n = NULL,prop = NULL){
+  dt = as_dt(data)
+  if(is.null(n) & !is.null(prop))
+    eval(substitute(top_frac_dt(dt,prop,wt)))
+  else if(!is.null(n) & is.null(prop))
+    eval(substitute(top_n_dt(dt,n,wt)))
+  else stop("Both or none of `n` and `prop` are provided!")
+}
 
-
+#' @rdname topn
+#' @export
 top_n_dt = function(data,n,wt = NULL){
   dt = as_dt(data)
   n_ = n

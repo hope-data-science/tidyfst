@@ -45,6 +45,7 @@ relocate_dt = function(data,...,
   names(dt) %>% setdiff(sel_names) -> rest_names
   dt %>% select_dt(cols = rest_names) -> rest_dt
   substitute(where) %>% deparse() -> where_n
+  if(str_detect(where_n,"^\"|^'")) where_n = where
 
   if(how == "first") c(sel_dt,rest_dt) %>% as.data.table()
   else if(how == "last") c(rest_dt,sel_dt) %>% as.data.table()

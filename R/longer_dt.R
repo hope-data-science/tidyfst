@@ -11,8 +11,9 @@
 #' The default name is 'value'.
 #' @param na.rm If \code{TRUE}, \code{NA} values will be removed from the molten data.
 #' @return A data.table
-#' @seealso \code{\link[data.table]{melt}}
-#' @seealso \code{\link[tidyr]{pivot_longer}}
+#' @seealso \code{\link[tidyfst]{wider_dt}},
+#'   \code{\link[data.table]{melt}},
+#'   \code{\link[tidyr]{pivot_longer}}
 #' @examples
 #'
 #' ## Example 1:
