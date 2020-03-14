@@ -45,7 +45,7 @@
 #'
 #' df <- data.table(
 #'   a = list(c("a", "b"), "c"),
-#'   b = list(c(T,T),F),
+#'   b = list(c(TRUE,TRUE),FALSE),
 #'   c = list(3,c(1,2)),
 #'   d = c(11, 22)
 #' )

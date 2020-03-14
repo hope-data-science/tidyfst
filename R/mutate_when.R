@@ -7,11 +7,11 @@
 #' @param when An object which can be coerced to logical mode
 #' @param ... Name-value pairs of expressions for \code{mutate_when}.
 #' Additional parameters to be passed to parameter '.func' in \code{mutate_vars}.
-#' @param .cols Any types that can be accepted by \code{\link[tidyfst]{select_if}}.
+#' @param .cols Any types that can be accepted by \code{\link[tidyfst]{select_dt}}.
 #' @param .func Function to be run within each column, should return a value or
 #' vectors with same length.
 #' @return data.table
-#' @seealso \code{\link[tidyfst]{select_if}}, \code{\link[dplyr]{case_when}}
+#' @seealso \code{\link[tidyfst]{select_dt}}, \code{\link[dplyr]{case_when}}
 #' @examples
 #' iris[3:8,]
 #' iris[3:8,] %>%

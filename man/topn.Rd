@@ -6,11 +6,11 @@
 \alias{top_frac_dt}
 \title{Select top (or bottom) n rows (by value)}
 \usage{
-top_dt(data, wt, n = NULL, prop = NULL)
+top_dt(data, wt = NULL, n = NULL, prop = NULL)
 
 top_n_dt(data, n, wt = NULL)
 
-top_frac_dt(data, n, wt = NULL)
+top_frac_dt(data, prop, wt = NULL)
 }
 \arguments{
 \item{data}{data.frame}
@@ -18,7 +18,15 @@ top_frac_dt(data, n, wt = NULL)
 \item{wt}{(Optional). The variable to use for ordering.
 If not specified, defaults to the last variable in the data.frame.}
 
-\item{n}{If \code{n} is positive, selects the top rows. If negative, selects the bottom rows.}
+\item{n}{Number of rows to return.
+Will include more rows if there are ties.
+If \code{n} is positive, selects the top rows.
+If negative, select the bottom rows.}
+
+\item{prop}{Fraction of rows to return.
+Will include more rows if there are ties.
+If \code{prop} is positive, selects the top rows.
+If negative, select the bottom rows.}
 }
 \value{
 data.table
@@ -26,7 +34,7 @@ data.table
 \description{
 Analogous function for \code{top_n} and \code{top_frac} in \pkg{dplyr}, but with a different API.
 
-In \code{top_dt}, you can use a different API for both
+In \code{top_dt}, you can use an API for both
 functionalities in `top_n_dt()` and `top_frac_dt()`.
 }
 \examples{

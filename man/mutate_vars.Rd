@@ -17,7 +17,7 @@ mutate_vars(data, .cols = NULL, .func, ...)
 \item{...}{Name-value pairs of expressions for \code{mutate_when}.
 Additional parameters to be passed to parameter '.func' in \code{mutate_vars}.}
 
-\item{.cols}{Any types that can be accepted by \code{\link[tidyfst]{select_if}}.}
+\item{.cols}{Any types that can be accepted by \code{\link[tidyfst]{select_dt}}.}
 
 \item{.func}{Function to be run within each column, should return a value or
 vectors with same length.}
@@ -42,5 +42,5 @@ iris \%>\% mutate_vars(1:2,scale)
 iris \%>\% mutate_vars(.func = as.character)
 }
 \seealso{
-\code{\link[tidyfst]{select_if}}, \code{\link[dplyr]{case_when}}
+\code{\link[tidyfst]{select_dt}}, \code{\link[dplyr]{case_when}}
 }

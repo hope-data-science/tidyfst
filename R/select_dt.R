@@ -8,6 +8,7 @@
 #' @param cols (Optional)A numeric or character vector.
 #' @param negate Applicable when regular expression is used.
 #' If \code{TRUE}, return the non-matched pattern. Default uses \code{FALSE}.
+#' @param rm.dup Should duplicated columns be removed? Defaults to \code{TRUE}.
 #' @return data.table
 #' @seealso \code{\link[dplyr]{select}}, \code{\link[dplyr]{select_if}}
 #' @examples
@@ -33,6 +34,14 @@
 #'
 #' iris %>% select_dt(is.factor)
 #' iris %>% select_dt(-is.factor)
+#'
+#' # select_mix could provide flexible mix selection
+#' select_mix(iris, Species,"Sepal.Length")
+#' select_mix(iris,1:2,is.factor)
+#'
+#' select_mix(iris,Sepal.Length,is.numeric)
+#' # set rm.dup to FALSE could save the duplicated column names
+#' select_mix(iris,Sepal.Length,is.numeric,rm.dup = FALSE)
 
 #' @rdname select
 #' @export
@@ -87,5 +96,26 @@ select_if_dt = function(data,.if){
 
   dt[,.SD, .SDcols = sel_name]
 }
+
+#' @rdname select
+#' @export
+select_mix = function(data,...,rm.dup = TRUE){
+  dt = as_dt(data)
+
+  substitute(list(...)) %>%
+    lapply(deparse) %>%
+    .[-1] %>%
+    lapply(function(col) eval(parse(text = str_glue("select_dt(dt,{col})")))) %>%
+    Reduce(f = cbind,x = .) -> res
+
+  if(rm.dup) res = res[,unique(names(res)),with=FALSE]
+
+  res
+
+}
+
+
+
+
 
 

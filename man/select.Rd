@@ -2,9 +2,12 @@
 % Please edit documentation in R/select_dt.R
 \name{select_dt}
 \alias{select_dt}
+\alias{select_mix}
 \title{Select column from data.frame}
 \usage{
 select_dt(data, ..., cols = NULL, negate = FALSE)
+
+select_mix(data, ..., rm.dup = TRUE)
 }
 \arguments{
 \item{data}{data.frame}
@@ -17,6 +20,8 @@ When starts with `-`(minus symbol) or `!`, return the negative columns.}
 
 \item{negate}{Applicable when regular expression is used.
 If \code{TRUE}, return the non-matched pattern. Default uses \code{FALSE}.}
+
+\item{rm.dup}{Should duplicated columns be removed? Defaults to \code{TRUE}.}
 }
 \value{
 data.table
@@ -47,6 +52,14 @@ iris \%>\% select_dt(cols = names(iris)[2:3])
 
 iris \%>\% select_dt(is.factor)
 iris \%>\% select_dt(-is.factor)
+
+# select_mix could provide flexible mix selection
+select_mix(iris, Species,"Sepal.Length")
+select_mix(iris,1:2,is.factor)
+
+select_mix(iris,Sepal.Length,is.numeric)
+# set rm.dup to FALSE could save the duplicated column names
+select_mix(iris,Sepal.Length,is.numeric,rm.dup = FALSE)
 }
 \seealso{
 \code{\link[dplyr]{select}}, \code{\link[dplyr]{select_if}}

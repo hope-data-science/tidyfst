@@ -2,7 +2,7 @@
 #' @import data.table
 #' @import fst
 #' @import stringr
-#' @importFrom stats na.omit setNames
+#' @importFrom stats na.omit setNames complete.cases
 
 
 #' @export
@@ -49,3 +49,6 @@ data.table::like
 
 #' @export
 data.table::copy
+
+#' @export
+data.table::key
