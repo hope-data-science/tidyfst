@@ -22,7 +22,7 @@ Till now, *tidyfst* has an API that might even transcend its predecessors (e.g. 
 - Never use in place replacement (also known as "modify-by-reference"). 
 - Use suffix ("_dt") rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
 - More flexible verbs for big data manipulation.
-- For some useful functions in *data.table*, if *tidyfst* could not optimize the API syntax, never rewrite but export them directly to guarantee the performance.
+- For some useful functions in *data.table*, if *tidyfst* could not provide the alternative tidy syntax, never rewrite but export them directly to guarantee the performance.
 - Supporting data importing and parsing with *fst*, details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
 - Flagship functions: [group_dt](https://hope-data-science.github.io/tidyfst/reference/group_dt.html), [nest_dt](https://hope-data-science.github.io/tidyfst/reference/nest.html), [mutate_when](https://hope-data-science.github.io/tidyfst/reference/mutate_when.html), etc.
 
