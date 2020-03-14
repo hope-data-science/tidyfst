@@ -88,5 +88,5 @@ df1 %>% semi_join_dt(df2, by = "x") %>% nrow()
 * funion(x, y, all = FALSE)
 * fsetequal(x, y, all = TRUE)
 
-  For details, just find the help from `data.table` using `?setops`.
+For details, just find the help from `data.table` using `?setops`.
 

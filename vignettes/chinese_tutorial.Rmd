@@ -1,0 +1,205 @@
+---
+title: "tidyfst包实例分析"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{tidyfst包实例分析}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,eval = FALSE)
+```
+
+我的R语言小伙伴最近分享了自己使用R来做工业级数据清洗的[经验](https://mp.weixin.qq.com/s/NVlCPss32j6Ohdrc9Edx-A)，最近我自己在不断测试我的新包tidyfst，因此就拿这个data.table的案例来尝试一下。
+
+## 测试数据构造
+  本次测试，将不会加载data.table包，但是其实tidyfst里面无处不是data.table的元素，而且也导出了很多内置的data.table函数，比如as.data.table和data.table。所以这些代码在tidyfst中就可以自如地使用。
+```{r}
+library(tidyfst)
+diamonds <- ggplot2::diamonds
+n = 10000000
+set.seed(1234)
+dtranges <- seq.Date(from = as.Date("2011-01-01"),
+                     to = as.Date("2020-01-01"),
+                     by = 1)
+n1 <- sample(nrow(diamonds), n, replace = TRUE)
+dat1 <- as.data.table(diamonds[n1, ])
+dat1[, "dt"] <- sample(dtranges, n, replace = TRUE)  # 增加dt列
+n2 <- sample(nrow(dat1), nrow(dat1)/1000)
+dat1[n2, "price"] <- NA # price列构造千分之一缺失值
+dat2 <- data.table(dt = sample(dtranges, min(n/1000, length(dtranges))),
+                   price1 = sample(1000, min(n/1000, length(dtranges)), replace = TRUE))
+
+dat3 <- data.table(dt = sample(dtranges, min(n/1000, length(dtranges))),
+                   price2 = sample(1000, min(n/1000, length(dtranges)), replace = TRUE))
+
+print(dat1)
+```
+
+## 基础
+### 小技巧
+后面的分析，经常要根据日期进行计算。所以，先对日期进行排序，就能够提高运行速度。在tidyfst中，可以使用`set_dt`函数来对数据进行原位的各种操作，其中就包括排序。
+```{r}
+set_dt(dat1,order_by = "dt")
+dat1
+```
+那么，现在dat1的数据就按照日期排好序了。
+
+### 聚合
+#### 1.求每种切割类型、每种颜色钻石的平均价格、中位数价格与最高价格
+在tidyfst中，我设置了一个`sys_time_print`函数，可以方便地输出`system.time()`函数返回的结果。
+```{r}
+sys_time_print({
+  r1_1 <- dat1 %>% 
+    summarise_dt(
+      by = .(cut,color),
+      mean_price = mean(price, na.rm = TRUE),
+      median_price = median(price, na.rm = TRUE),
+      max_price = max(price, na.rm = TRUE)
+    )
+})
+r1_1
+```
+
+tidyfst是永远不可能比data.table快的，但是如果你觉得上面的代码更容易掌握、更容易读懂，而在日常工作中多花零点几秒的运行时间没有太大问题（实际上节省了大家的交流时间，甚至就是节省将来自己再次读懂自己代码的时间），tidyfst就值得拥有。
+
+#### 2.求每天最高出售价格对应的那笔订单
+
+```{r}
+sys_time_print({
+  r1_2 <- dat1 %>% 
+    arrange_dt(dt,-price) %>% 
+    drop_na_dt(price) %>% 
+    group_dt(
+      by = dt,
+      head(1)
+    )
+})
+r1_2
+```
+### join
+#### 1.dat1与dat2以dt列左连接
+实质上，merge函数已经优化得很好。tidyfst设计`*_join`系列函数的时候，只是为了一种不一样的语法结构来帮助实现不同的连接，因为它确实更加直观一些。但是实质上它还是merge.data.table函数的包装版本。
+```{r}
+sys_time_print({
+  r2_1 <- dat1 %>% 
+    left_join_dt(dat2,by = "dt")
+})
+r2_1
+```
+#### 2.多重join
+  
+```{r}
+sys_time_print({
+  mymerge <- function(x, y) left_join_dt(x, y, by = "dt")
+  r2_2 <- Reduce(mymerge, list(dat1, dat2, dat3))
+})
+r2_2
+```
+### 长宽表转换
+#### 1.长表转宽表
+
+```{r}
+sys_time_print({
+  mean1 <- function(x) mean(x, na.rm = TRUE)
+  max1 <- function(x) max(x, na.rm = TRUE)
+  r3_1 <-dat1 %>% 
+    wider_dt(cut,
+             value_to_spread = c("depth", "price"),
+             name_to_spread = "color",
+             fun = list(mean1,max1))
+})
+r3_1
+```
+
+#### 2.宽表转长表
+
+```{r}
+sys_time_print({
+  r3_2 <-dat1 %>% 
+    select_dt(cut,color,x,y,z) %>% 
+    longer_dt(cut,color,
+              gathered_name = "xyz",
+              gathered_value = "xyzvalue")
+})
+
+r3_2 
+```
+
+## 高阶
+### 向上/下填充空值
+对于填充空值来说，如果想要原位填充，目前只支持数值型，可以这样操作：
+```{r}
+sys_time_print({
+  dat1 %>%
+    set_dt(fill_cols = "price")
+})
+dat1
+
+```
+
+
+### 添加子维度聚合结果为新列
+
+#### 1.以dat1为例，添加两列，一列为以cut、color聚合求price的均值，另一列是求标准差
+
+```{r}
+
+sys_time_print({
+  mutate_ref(dat1,
+           mean_price = mean(price, na.rm = TRUE),
+           sd_price = sd(price, na.rm = TRUE),
+           by = .(cut, color))
+})
+
+set_dt(dat1,order_by = c("cut","color"))
+dat1
+```
+
+#### 2.以dat1为例，以dt分组添加一列序号id
+```{r}
+set_dt(dat1,order_by = "dt")
+
+sys_time_print({
+  dat1 %>% 
+  group_dt(
+    by = dt,
+    mutate_dt(id = seq(.N))
+  ) -> dat1
+})
+dat1
+```
+
+### 移动函数
+
+```{r}
+set_dt(dat1,order_by = "color")
+
+sys_time_print({
+  dat1 %>% 
+    group_dt(
+      by = color,
+      mutate_dt(
+        MA10_price = frollmean(price, 10),
+        MSD10_price = frollapply(price, 10, FUN = sd)
+      )
+    ) -> dat1
+})
+
+dat1
+```
+
+
+## 系统参数
+```{r}
+sessionInfo()
+```
+

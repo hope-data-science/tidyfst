@@ -1,16 +1,30 @@
 
 ## 0.8.8
+Date: 20200314
+0. Reason for update: Check every function in `data.table`, `dplyr` and `tidyr`, optimize and add functionalities when possible, and keep up with the updates of `dplyr` (the upcoming v1.0.0). This package is driving to a stable stage now, and the next minor updates will only come after the major updates of data.table (waiting for the release of v1.12.9) and the potential new bugs reported by users. 
 1. Get better understanding on non-standard evaluation, update functions that could be optimized. The updated functions include: `mutate_dt`, `transmute_dt`,`arrange_dt`,`distinct_dt`,`slice_dt`,`top_n_dt`,`top_frac_dt`,`mutate_when`. Therefore, now these functions should be faster than before.
 2. Add `nth` to extract element of vector via position, useful when we want a single element from the bottom.
 3. The API of `longer_dt` has been changed to be more powerful, and update the examples in `wider_dt`. Update the `Example 3: Reshape` vignette.
-4. Change the APIs of `nest_by` and `unnest_col` with enhancement of `select_dt`. The historical examples still works, but it is more powerful for other selection.
-5. Add `nest_cols` function for another nesting method.
+4. Rewrite the nest part, `nest_by` and `unnest_col` are deprecated, switch to `nest_dt` and `unnest_dt` for new APIs and features. 
+5. Design `squeeze_dt` and add `chop_dt`/`unchop_dt` for new usage of nesting.
 6. Exporting `frollapply` from data.table, this is a powerful function for aggregation on sliding window.
-
+7. Enhances `select_dt` once more, does not export `select_if_dt` now, merges this functionality directly into `select_dt`. Also, we could now use `-` or `!` to select the negative columns for regular expressions.
+8. Optimize `top_n` using `frank` (faster with less memory).
+9. Add `sys_time_print` to get the running time more intuitively.
+10. Add `uncount_dt`, works just like `tidyr::uncount`.
+11. Add `rowwise_dt`, could carry out analysis like `dplyr::rowwise`.
+12. Add `relocate_dt` to rearrange columns in data.table.
+13. Add `top_dt` and `sample_dt` for convenience.
+14. Add `mutate_vars` to complement `all_dt`/`if_dt`/`at_dt`.
+15. Add `set_dt` and `mutate_ref` for fast operation by reference of data.table.
+16. Add "fun" paramter to `wider_dt` for multiple aggregation.
+17. Debug `separate_dt`.
+18. Add a Chinese vignette for folks in China (titled as "tidyfst包实例分析").
+19. Shorten the description file to be more specific.
 
 ## 0.7.7
 Date: 20200305
-0. Reason for update: I've been using `tidyfst` on my daily work by adding `_dt` to many past and current tasks. In these experience, I debug some important functions (they runs well on simple tasks, but not on complicated ones), and add more functions. These features are so many that I think an update is necessary for users to get a better tookit earlier. If the update is too frequent, please accept my apology.
+0. Reason for update: I've been using `tidyfst` on my daily work by adding `_dt` to many past and current tasks. In these experience, I debug some important functions (they run well on simple tasks, but not on complicated ones), and add more functions. These features are so many that I think an update is necessary for users to get a better tookit earlier. If the update is too frequent, please accept my apology.
 1. Optimize `group_dt`. First, it is faster than before because I use `[][]` instead of ` %>% `. (Using `%>%` for `.SD` is slow) Second, I design an alternative to use `.SD` directly in `group_dt`, which might improve the efficiency further.
 2. Debug `filter_dt`.
 3. Add `fill_na_dt` to fill NAs in data.table. Debug all missing functions. Examples are refreshed.
@@ -77,13 +91,4 @@ Done in the mailing list, keep moving. [20200129]
 6. Add `mutate_when` for another advanced `case_when` utility.
 7. Fix according to CRAN suggestions.
 
-## Test environments
-* local OS X install, R 3.6.2
-* ubuntu 14.04 (on travis-ci), R 3.6.2
-* win-builder (devel and release)
 
-## R CMD check results
-
-0 errors | 0 warnings | 1 note
-
-* This is a new release.

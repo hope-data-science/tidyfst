@@ -19,7 +19,7 @@ library(tidyfst)
 
 # nest by "cyl" column
 mtcars_nested <- mtcars %>% 
-  nest_by(cyl) # you can use "cyl" too, very flexible
+  nest_dt(cyl) # you can use "cyl" too, very flexible
 
 # inspect the output data.table
 mtcars_nested
@@ -43,6 +43,6 @@ mtcars_nested3$model_predict
 ```
   We could find that the "model_predict" is a list of numeric vectors. Let's try to unnest the target column "model_predict". 
 ```{r}
-mtcars_nested3 %>% unnest_col(model_predict)
+mtcars_nested3 %>% unnest_dt(model_predict)
 ```
   This process would remove all the other list column automatically. For instance, in our case, the column "ndt" is removed.

@@ -1,5 +1,6 @@
 # tidyfst: Tidy Verbs for Fast Data Manipulation<img src="man/figures/logo.png" align="right" alt="" width="120" />
 
+
 [![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) [![](https://img.shields.io/badge/devel%20version-0.8.8-yellow.svg)](https://github.com/hope-data-science/tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
 
 
@@ -8,9 +9,9 @@
 
 ## Overview
 
-*tidyfst* is a toolkit of tidy data manipulation verbs with *data.table* as the backend . Combining the merits of syntax elegance from *dplyr* and computing performance from *data.table*,  *tidyfst* intends to provide users with state-of-the-art data manipulation tools with least pain. This package is inspired by *maditr*, but follows a different philosophy of design,  such as prohibiting in place replacement and used a "_dt" suffix API. Also, *tidyfst* would introduce more tidy data verbs from other packages, including but not limited to *tidyverse* and *data.table*. If you are a *dplyr* user but have to use *data.table* for speedy computation,  or *data.table* user looking for readable coding syntax, *tidyfst* is designed for you (and me of course). For further details and tutorials, see [vignettes](https://hope-data-science.github.io/tidyfst/).
+*tidyfst* is a toolkit of tidy data manipulation verbs with *data.table* as the backend . Combining the merits of syntax elegance from *dplyr* and computing performance from *data.table*,  *tidyfst* intends to provide users with state-of-the-art data manipulation tools with least pain. This package is an extention of *data.table*, while enjoying a tidy syntax, it also wraps combinations of efficient functions to facilitate frequently repetitive data operations.  Also, *tidyfst* would introduce more tidy data verbs from other packages, including but not limited to *tidyverse* and *data.table*. If you are a *dplyr* user but have to use *data.table* for speedy computation,  or *data.table* user looking for readable coding syntax, *tidyfst* is designed for you (and me of course). For further details and tutorials, see [vignettes](https://hope-data-science.github.io/tidyfst/).
 
-Enjoy the data science in *tidyfst* !
+Till now, *tidyfst* has an API that might even transcend its predecessors (e.g. [`select_dt`](https://hope-data-science.github.io/tidyfst/reference/select.html) could accept nearly anything for super column selection). Enjoy the efficient data operations in *tidyfst* !
 
 
 
@@ -18,12 +19,12 @@ Enjoy the data science in *tidyfst* !
 
 - Receives any data.frame (tibble/data.table/data.frame) and returns a data.table.
 - Show the variable class of data.table as default.
-- Never use in place replacement. 
-- Use suffix rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
+- Never use in place replacement (also known as "modify-by-reference"). 
+- Use suffix ("_dt") rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
 - More flexible verbs for big data manipulation.
 - For some useful functions in *data.table*, if *tidyfst* could not optimize the API syntax, never rewrite but export them directly to guarantee the performance.
 - Supporting data importing and parsing with *fst*, details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
-- Flagship functions: [group_dt](https://hope-data-science.github.io/tidyfst/reference/group_dt.html), [unnest_dt](https://hope-data-science.github.io/tidyfst/reference/nest.html), [mutate_when](https://hope-data-science.github.io/tidyfst/reference/mutate_when.html), etc.
+- Flagship functions: [group_dt](https://hope-data-science.github.io/tidyfst/reference/group_dt.html), [nest_dt](https://hope-data-science.github.io/tidyfst/reference/nest.html), [mutate_when](https://hope-data-science.github.io/tidyfst/reference/mutate_when.html), etc.
 
 
 
@@ -80,15 +81,13 @@ iris[3:8,] %>%
 
 ```
 
-## Note
-The functions for nesting and unnesting are undergoing more updates recently, you can utilize the new features from the GitHub version (v0.8.8).
 
 
 ## Future plans
 
-*unnest_dt* is now fast enough to beat the *tidyr::unnest*, but the *nest_dt* function would build a nested data.table with *data.table* inside. How to use such data structure is remained to be seen, and the performance is still to be explored.
-
 *tidyfst* will keep up with the [updates](https://github.com/Rdatatable/data.table/blob/master/NEWS.md) of *data.table* , in the next step would introduce more new features to improve the performance and flexibility to facilitate fast data manipulation in tidy syntax. 
+
+
 
 ## Vignettes
 - [Example 1: Basic usage](https://hope-data-science.github.io/tidyfst/articles/example1_intro.html)
@@ -100,16 +99,12 @@ The functions for nesting and unnesting are undergoing more updates recently, yo
 
 ## Related work
 
-- [maditr](https://github.com/gdemin/maditr)
-- [fst](https://github.com/fstpackage/fst)
 - [data.table](https://github.com/Rdatatable/data.table)
+- [fst](https://github.com/fstpackage/fst)
 - [dplyr](https://github.com/tidyverse/dplyr)
 - [dtplyr](https://github.com/tidyverse/dtplyr)
-- [table.express](https://github.com/asardaes/table.express)
 - [tidyfast](https://github.com/TysonStanley/tidyfast)
 - [tidytable](https://github.com/markfairbanks/tidytable)
-
-
 
 ## Acknowledgement
 
