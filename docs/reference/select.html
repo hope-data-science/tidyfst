@@ -152,7 +152,9 @@
     <p>Analogous function for <code>select</code> and <code>select_if</code> in <span class="pkg">dplyr</span>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>select_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>select_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>select_mix</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='kw'>rm.dup</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -175,6 +177,10 @@ When starts with `-`(minus symbol) or `!`, return the negative columns.</p></td>
       <th>negate</th>
       <td><p>Applicable when regular expression is used.
 If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>rm.dup</th>
+      <td><p>Should duplicated columns be removed? Defaults to <code>TRUE</code>.</p></td>
     </tr>
     </table>
 
@@ -439,7 +445,59 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3         2.5          5.0         1.9
 #&gt; 148:          6.5         3.0          5.2         2.0
 #&gt; 149:          6.2         3.4          5.4         2.3
-#&gt; 150:          5.9         3.0          5.1         1.8</div></pre>
+#&gt; 150:          5.9         3.0          5.1         1.8</div><div class='input'>
+<span class='co'># select_mix could provide flexible mix selection</span>
+<span class='fu'>select_mix</span>(<span class='no'>iris</span>, <span class='no'>Species</span>,<span class='st'>"Sepal.Length"</span>)</div><div class='output co'>#&gt;        Species Sepal.Length
+#&gt;         &lt;fctr&gt;        &lt;num&gt;
+#&gt;   1:    setosa          5.1
+#&gt;   2:    setosa          4.9
+#&gt;   3:    setosa          4.7
+#&gt;   4:    setosa          4.6
+#&gt;   5:    setosa          5.0
+#&gt;  ---                       
+#&gt; 146: virginica          6.7
+#&gt; 147: virginica          6.3
+#&gt; 148: virginica          6.5
+#&gt; 149: virginica          6.2
+#&gt; 150: virginica          5.9</div><div class='input'><span class='fu'>select_mix</span>(<span class='no'>iris</span>,<span class='fl'>1</span>:<span class='fl'>2</span>,<span class='no'>is.factor</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width   Species
+#&gt;             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
+#&gt;   1:          5.1         3.5    setosa
+#&gt;   2:          4.9         3.0    setosa
+#&gt;   3:          4.7         3.2    setosa
+#&gt;   4:          4.6         3.1    setosa
+#&gt;   5:          5.0         3.6    setosa
+#&gt;  ---                                   
+#&gt; 146:          6.7         3.0 virginica
+#&gt; 147:          6.3         2.5 virginica
+#&gt; 148:          6.5         3.0 virginica
+#&gt; 149:          6.2         3.4 virginica
+#&gt; 150:          5.9         3.0 virginica</div><div class='input'>
+<span class='fu'>select_mix</span>(<span class='no'>iris</span>,<span class='no'>Sepal.Length</span>,<span class='no'>is.numeric</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
+#&gt;   1:          5.1         3.5          1.4         0.2
+#&gt;   2:          4.9         3.0          1.4         0.2
+#&gt;   3:          4.7         3.2          1.3         0.2
+#&gt;   4:          4.6         3.1          1.5         0.2
+#&gt;   5:          5.0         3.6          1.4         0.2
+#&gt;  ---                                                  
+#&gt; 146:          6.7         3.0          5.2         2.3
+#&gt; 147:          6.3         2.5          5.0         1.9
+#&gt; 148:          6.5         3.0          5.2         2.0
+#&gt; 149:          6.2         3.4          5.4         2.3
+#&gt; 150:          5.9         3.0          5.1         1.8</div><div class='input'><span class='co'># set rm.dup to FALSE could save the duplicated column names</span>
+<span class='fu'>select_mix</span>(<span class='no'>iris</span>,<span class='no'>Sepal.Length</span>,<span class='no'>is.numeric</span>,<span class='kw'>rm.dup</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;             &lt;num&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
+#&gt;   1:          5.1          5.1         3.5          1.4         0.2
+#&gt;   2:          4.9          4.9         3.0          1.4         0.2
+#&gt;   3:          4.7          4.7         3.2          1.3         0.2
+#&gt;   4:          4.6          4.6         3.1          1.5         0.2
+#&gt;   5:          5.0          5.0         3.6          1.4         0.2
+#&gt;  ---                                                               
+#&gt; 146:          6.7          6.7         3.0          5.2         2.3
+#&gt; 147:          6.3          6.3         2.5          5.0         1.9
+#&gt; 148:          6.5          6.5         3.0          5.2         2.0
+#&gt; 149:          6.2          6.2         3.4          5.4         2.3
+#&gt; 150:          5.9          5.9         3.0          5.1         1.8</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

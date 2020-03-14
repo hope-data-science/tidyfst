@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convenient print of time taken — sys_time_print • tidyfst</title>
+<title>Group by variable(s) and implement operations — group_by_dt • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,9 +42,10 @@
 
 
 
-<meta property="og:title" content="Convenient print of time taken — sys_time_print" />
-<meta property="og:description" content="Convenient printing of time elapsed. A wrapper of
-data.table::timetaken, but showing the results more directly." />
+<meta property="og:title" content="Group by variable(s) and implement operations — group_by_dt" />
+<meta property="og:description" content="Using setkey and setkeyv in data.table
+to carry out group_by-like functionalities in dplyr. This is
+not only convenient but also efficient in computation." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -144,62 +145,90 @@ data.table::timetaken, but showing the results more directly." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convenient print of time taken</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/sys_time_print.R'><code>R/sys_time_print.R</code></a></small>
-    <div class="hidden name"><code>sys_time_print.Rd</code></div>
+    <h1>Group by variable(s) and implement operations</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/group_by.R'><code>R/group_by.R</code></a></small>
+    <div class="hidden name"><code>group_by.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convenient printing of time elapsed. A wrapper of
-<code><a href='https://rdrr.io/pkg/data.table/man/timetaken.html'>data.table::timetaken</a></code>, but showing the results more directly.</p>
+    <p>Using <code>setkey</code> and <code>setkeyv</code> in <span class="pkg">data.table</span>
+to carry out <code>group_by</code>-like functionalities in <span class="pkg">dplyr</span>. This is
+not only convenient but also efficient in computation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sys_time_print</span>(<span class='no'>expr</span>)</pre>
+    <pre class="usage"><span class='fu'>group_by_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inplace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>group_exe_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>expr</th>
-      <td><p>Valid R expression to be timed.</p></td>
+      <th>data</th>
+      <td><p>A data frame</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Variables to group by for <code>group_by_dt</code>,
+namely the columns to sort by. Do not quote the column names.
+Any data manipulation arguments that could be
+implemented on a data.frame for <code>group_exe_dt</code>.</p></td>
+    </tr>
+    <tr>
+      <th>cols</th>
+      <td><p>A character vector of column names to group by.</p></td>
+    </tr>
+    <tr>
+      <th>inplace</th>
+      <td><p>Should the grouping implemented by reference?
+(Modify the original data.frame) Default uses <code>FALSE</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character vector of the form HH:MM:SS,
-or SS.MMMsec if under 60 seconds. See examples.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>A data.table</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/data.table/man/timetaken.html'>timetaken</a></code>, <code><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></code></p></div>
+    <p><code>group_by_dt</code> and <code>group_exe_dt</code> are a pair of functions
+to be used in combination. It utilizes the feature of key setting in data.table,
+which provides high performance for group operations, especially when you have
+to operate by specific groups frequently.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>sys_time_print</span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt; [1] "Finished in 1.000s elapsed (0.000s cpu)"</div><div class='input'>
-<span class='no'>a</span> <span class='kw'>=</span> <span class='no'>iris</span>
-<span class='fu'>sys_time_print</span>({
-  <span class='no'>res</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='mutate.html'>mutate_dt</a></span>(<span class='kw'>one</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-})</div><div class='output co'>#&gt; [1] "Finished in 0.000s elapsed (0.000s cpu)"</div><div class='input'><span class='no'>res</span></div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species   one
-#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;num&gt;
-#&gt;   1:          5.1         3.5          1.4         0.2    setosa     1
-#&gt;   2:          4.9         3.0          1.4         0.2    setosa     1
-#&gt;   3:          4.7         3.2          1.3         0.2    setosa     1
-#&gt;   4:          4.6         3.1          1.5         0.2    setosa     1
-#&gt;   5:          5.0         3.6          1.4         0.2    setosa     1
-#&gt;  ---                                                                  
-#&gt; 146:          6.7         3.0          5.2         2.3 virginica     1
-#&gt; 147:          6.3         2.5          5.0         1.9 virginica     1
-#&gt; 148:          6.5         3.0          5.2         2.0 virginica     1
-#&gt; 149:          6.2         3.4          5.4         2.3 virginica     1
-#&gt; 150:          5.9         3.0          5.1         1.8 virginica     1</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># group by Species in iris data set</span>
+<span class='fu'><a href='https://rdrr.io/pkg/data.table/man/as.data.table.html'>as.data.table</a></span>(<span class='no'>iris</span>) <span class='kw'>-&gt;</span> <span class='no'>a</span>
+<span class='fu'><a href='https://rdrr.io/pkg/data.table/man/setkey.html'>key</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'>group_by_dt</span>(<span class='no'>a</span>,<span class='no'>Species</span>,<span class='kw'>inplace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/data.table/man/setkey.html'>key</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
+<span class='co'># use inplace operation to group by reference</span>
+<span class='fu'><a href='https://rdrr.io/pkg/data.table/man/as.data.table.html'>as.data.table</a></span>(<span class='no'>iris</span>) <span class='kw'>-&gt;</span> <span class='no'>a</span>
+<span class='fu'><a href='https://rdrr.io/pkg/data.table/man/setkey.html'>key</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'>group_by_dt</span>(<span class='no'>a</span>,<span class='no'>Species</span>,<span class='kw'>inplace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in setkey(a, Species): object 'a' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/data.table/man/setkey.html'>key</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
+<span class='co'># aggregation after grouping using group_exe_dt</span>
+<span class='fu'><a href='https://rdrr.io/pkg/data.table/man/as.data.table.html'>as.data.table</a></span>(<span class='no'>iris</span>) <span class='kw'>-&gt;</span> <span class='no'>a</span>
+<span class='no'>a</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>group_by_dt</span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>group_exe_dt</span>(<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
+#&gt; 1:     setosa          5.1         3.5          1.4         0.2
+#&gt; 2: versicolor          7.0         3.2          4.7         1.4
+#&gt; 3:  virginica          6.3         3.3          6.0         2.5</div><div class='input'>
+<span class='no'>a</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>group_by_dt</span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>group_exe_dt</span>(
+    <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='summarise_dt.html'>summarise_dt</a></span>(<span class='kw'>sum</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>Sepal.Length</span>))
+  )</div><div class='output co'>#&gt;       Species   sum
+#&gt;        &lt;fctr&gt; &lt;num&gt;
+#&gt; 1:     setosa  14.7
+#&gt; 2: versicolor  20.3
+#&gt; 3:  virginica  19.2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

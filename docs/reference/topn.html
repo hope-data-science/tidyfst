@@ -44,7 +44,7 @@
 
 <meta property="og:title" content="Select top (or bottom) n rows (by value) — top_dt" />
 <meta property="og:description" content="Analogous function for top_n and top_frac in dplyr, but with a different API.
-In top_dt, you can use a different API for both
+In top_dt, you can use an API for both
 functionalities in `top_n_dt()` and `top_frac_dt()`." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -152,15 +152,15 @@ functionalities in `top_n_dt()` and `top_frac_dt()`." />
 
     <div class="ref-description">
     <p>Analogous function for <code>top_n</code> and <code>top_frac</code> in <span class="pkg">dplyr</span>, but with a different API.</p>
-<p>In <code>top_dt</code>, you can use a different API for both
+<p>In <code>top_dt</code>, you can use an API for both
 functionalities in `top_n_dt()` and `top_frac_dt()`.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>top_dt</span>(<span class='no'>data</span>, <span class='no'>wt</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>top_dt</span>(<span class='no'>data</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>top_n_dt</span>(<span class='no'>data</span>, <span class='no'>n</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>top_frac_dt</span>(<span class='no'>data</span>, <span class='no'>n</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>top_frac_dt</span>(<span class='no'>data</span>, <span class='no'>prop</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,7 +176,17 @@ If not specified, defaults to the last variable in the data.frame.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>If <code>n</code> is positive, selects the top rows. If negative, selects the bottom rows.</p></td>
+      <td><p>Number of rows to return.
+Will include more rows if there are ties.
+If <code>n</code> is positive, selects the top rows.
+If negative, select the bottom rows.</p></td>
+    </tr>
+    <tr>
+      <th>prop</th>
+      <td><p>Fraction of rows to return.
+Will include more rows if there are ties.
+If <code>prop</code> is positive, selects the top rows.
+If negative, select the bottom rows.</p></td>
     </tr>
     </table>
 
