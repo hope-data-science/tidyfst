@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sample n rows from a table — sample_n_dt • tidyfst</title>
+<title>Sample n rows from a table — sample_dt • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,10 @@
 
 
 
-<meta property="og:title" content="Sample n rows from a table — sample_n_dt" />
-<meta property="og:description" content="Analogous function for sample_n and sample_frac in dplyr." />
+<meta property="og:title" content="Sample n rows from a table — sample_dt" />
+<meta property="og:description" content="Analogous function for sample_n and sample_frac in dplyr.
+sample_dt is a merged version of sample_n_dt and
+sample_frac_dt, this could be convenient." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -100,6 +102,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
     </li>
     <li>
@@ -147,9 +152,13 @@
 
     <div class="ref-description">
     <p>Analogous function for <code>sample_n</code> and <code>sample_frac</code> in <span class="pkg">dplyr</span>.</p>
+<p><code>sample_dt</code> is a merged version of <code>sample_n_dt</code> and
+<code>sample_frac_dt</code>, this could be convenient.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sample_n_dt</span>(<span class='no'>data</span>, <span class='no'>size</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>sample_dt</span>(<span class='no'>data</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>sample_n_dt</span>(<span class='no'>data</span>, <span class='no'>size</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>sample_frac_dt</span>(<span class='no'>data</span>, <span class='no'>size</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
@@ -158,16 +167,24 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data.frame</p></td>
+      <td><p>A data.frame</p></td>
     </tr>
     <tr>
-      <th>size</th>
-      <td><p><code>sample_n_dt()</code>, the number of rows to select.
-For <code>sample_frac_dt</code>, the fraction of rows to select.</p></td>
+      <th>n</th>
+      <td><p>Number of rows to select</p></td>
+    </tr>
+    <tr>
+      <th>prop</th>
+      <td><p>Fraction of rows to select</p></td>
     </tr>
     <tr>
       <th>replace</th>
       <td><p>Sample with or without replacement? Default uses <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>For <code>sample_n_dt</code>, the number of rows to select.
+For <code>sample_frac_dt</code>, the fraction of rows to select.</p></td>
     </tr>
     </table>
 
@@ -297,7 +314,22 @@ For <code>sample_frac_dt</code>, the fraction of rows to select.</p></td>
 #&gt; 47:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3     4
 #&gt; 48:  17.8     6 167.6   123  3.92 3.440 18.90     1     0     4     4
 #&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</div><div class='input'>
-
+<span class='fu'>sample_dt</span>(<span class='no'>mtcars</span>,<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>10</span>)</div><div class='output co'>#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt;  1:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4     4
+#&gt;  2:  24.4     4 146.7    62  3.69 3.190 20.00     1     0     4     2
+#&gt;  3:  15.5     8 318.0   150  2.76 3.520 16.87     0     0     3     2
+#&gt;  4:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3     4
+#&gt;  5:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3     3
+#&gt;  6:  33.9     4  71.1    65  4.22 1.835 19.90     1     1     4     1
+#&gt;  7:  10.4     8 472.0   205  2.93 5.250 17.98     0     0     3     4
+#&gt;  8:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4     1
+#&gt;  9:  30.4     4  95.1   113  3.77 1.513 16.90     1     1     5     2
+#&gt; 10:  19.7     6 145.0   175  3.62 2.770 15.50     0     1     5     6</div><div class='input'><span class='fu'>sample_dt</span>(<span class='no'>mtcars</span>,<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)</div><div class='output co'>#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt; 1:  21.5     4 120.1    97  3.70 2.465 20.01     1     0     3     1
+#&gt; 2:  27.3     4  79.0    66  4.08 1.935 18.90     1     1     4     1
+#&gt; 3:  15.8     8 351.0   264  4.22 3.170 14.50     0     1     5     4</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

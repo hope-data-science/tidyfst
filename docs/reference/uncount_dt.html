@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parse,inspect and extract data.table from fst file — fst • tidyfst</title>
+<title>"Uncount" a data frame — uncount_dt • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,10 @@
 
 
 
-<meta property="og:title" content="Parse,inspect and extract data.table from fst file — fst" />
-<meta property="og:description" content="An API for reading fst file as data.table." />
+<meta property="og:title" content=""Uncount" a data frame — uncount_dt" />
+<meta property="og:description" content="Performs the opposite operation to `dplyr::count()`,
+ duplicating rows according to a weighting variable (or expression).
+ Analogous to `tidyr::uncount`." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -143,86 +145,58 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parse,inspect and extract data.table from fst file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/fst.R'><code>R/fst.R</code></a></small>
-    <div class="hidden name"><code>fst.Rd</code></div>
+    <h1>"Uncount" a data frame</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/uncount.R'><code>R/uncount.R</code></a></small>
+    <div class="hidden name"><code>uncount_dt.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>An API for reading fst file as data.table.</p>
+    <p>Performs the opposite operation to `dplyr::count()`,
+ duplicating rows according to a weighting variable (or expression).
+ Analogous to `tidyr::uncount`.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>parse_fst</span>(<span class='no'>path</span>)
-
-<span class='fu'>slice_fst</span>(<span class='no'>ft</span>, <span class='no'>row_no</span>)
-
-<span class='fu'>select_fst</span>(<span class='no'>ft</span>, <span class='no'>...</span>)
-
-<span class='fu'>filter_fst</span>(<span class='no'>ft</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>uncount_dt</span>(<span class='no'>data</span>, <span class='no'>wt</span>, <span class='kw'>.remove</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>path to fst file</p></td>
+      <th>data</th>
+      <td><p>A data.frame</p></td>
     </tr>
     <tr>
-      <th>ft</th>
-      <td><p>An object of class fst_table, returned by <code>parse_fst</code></p></td>
+      <th>wt</th>
+      <td><p>A vector of weights.</p></td>
     </tr>
     <tr>
-      <th>row_no</th>
-      <td><p>An integer vector (Positive)</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>The filter conditions</p></td>
+      <th>.remove</th>
+      <td><p>Should the column for <code>weights</code> be removed?
+Default uses <code>TRUE</code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>parse_fst</code> returns a fst_table class.</p>
-<p><code>select_fst</code> and <code>filter_fst</code> returns a data.table.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='http://www.fstpackage.org/reference/fst.html'>fst</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/tally.html'>count</a></code>, <code><a href='https://tidyr.tidyverse.org/reference/uncount.html'>uncount</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='kw pkg'>fst</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.fstpackage.org/reference/write_fst.html'>write_fst</a></span>(<span class='no'>iris</span>,<span class='st'>"iris_test.fst"</span>)
-  <span class='co'># parse the file but not reading it</span>
-  <span class='fu'>parse_fst</span>(<span class='st'>"iris_test.fst"</span>) <span class='kw'>-&gt;</span> <span class='no'>ft</span>
-  <span class='no'>ft</span>
-
-  <span class='co'># get the data by query</span>
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>slice_fst</span>(<span class='fl'>1</span>:<span class='fl'>3</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>slice_fst</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>))
-
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_fst</span>(<span class='no'>Sepal.Length</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_fst</span>(<span class='no'>Sepal.Length</span>,<span class='no'>Sepal.Width</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_fst</span>(<span class='st'>"Sepal.Length"</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_fst</span>(<span class='fl'>1</span>:<span class='fl'>3</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_fst</span>(<span class='fl'>1</span>,<span class='fl'>3</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_fst</span>(<span class='st'>"Se"</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_fst</span>(<span class='st'>"nothing"</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_fst</span>(<span class='st'>"Se|Sp"</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_fst</span>(<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>iris</span>)[<span class='fl'>2</span>:<span class='fl'>3</span>])
-
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_fst</span>(<span class='no'>Sepal.Width</span> <span class='kw'>&gt;</span> <span class='fl'>3</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_fst</span>(<span class='no'>Sepal.Length</span> <span class='kw'>&gt;</span> <span class='fl'>6</span> , <span class='no'>Species</span> <span class='kw'>==</span> <span class='st'>"virginica"</span>)
-  <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_fst</span>(<span class='no'>Sepal.Length</span> <span class='kw'>&gt;</span> <span class='fl'>6</span> <span class='kw'>&amp;</span> <span class='no'>Species</span> <span class='kw'>==</span> <span class='st'>"virginica"</span> <span class='kw'>&amp;</span> <span class='no'>Sepal.Width</span> <span class='kw'>&lt;</span> <span class='fl'>3</span>)
-
-  <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"iris_test.fst"</span>)
-}</div></pre>
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>))
+<span class='fu'>uncount_dt</span>(<span class='no'>df</span>, <span class='no'>n</span>)</div><div class='output co'>#&gt;         x
+#&gt;    &lt;char&gt;
+#&gt; 1:      a
+#&gt; 2:      b
+#&gt; 3:      b</div><div class='input'><span class='fu'>uncount_dt</span>(<span class='no'>df</span>,<span class='no'>n</span>,<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;         x     n
+#&gt;    &lt;char&gt; &lt;num&gt;
+#&gt; 1:      a     1
+#&gt; 2:      b     2
+#&gt; 3:      b     2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

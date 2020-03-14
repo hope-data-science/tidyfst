@@ -2,6 +2,7 @@ pandoc: 2.7.2
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
+  chinese_tutorial: chinese_tutorial.html
   example1_intro: example1_intro.html
   example2_join: example2_join.html
   example3_reshape: example3_reshape.html

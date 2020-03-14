@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dump, replace and fill missing values in data.frame — drop_na_dt • tidyfst</title>
+<title>Fast operations of data.table by reference — set_dt • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,9 +42,9 @@
 
 
 
-<meta property="og:title" content="Dump, replace and fill missing values in data.frame — drop_na_dt" />
-<meta property="og:description" content="Analogous function for drop_na, replace_na and
-fill in tidyr, but with a different API." />
+<meta property="og:title" content="Fast operations of data.table by reference — set_dt" />
+<meta property="og:description" content="Combination of set* functions provided by data.table.
+ This is memeroy efficient because no copy is made at all." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -101,9 +101,6 @@ fill in tidyr, but with a different API." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
-    </li>
-    <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
     </li>
     <li>
@@ -144,107 +141,118 @@ fill in tidyr, but with a different API." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Dump, replace and fill missing values in data.frame</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/missing.R'><code>R/missing.R</code></a></small>
-    <div class="hidden name"><code>missing.Rd</code></div>
+    <h1>Fast operations of data.table by reference</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/set_dt.R'><code>R/set_dt.R</code></a></small>
+    <div class="hidden name"><code>set_dt.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Analogous function for <code>drop_na</code>, <code>replace_na</code> and
-<code>fill</code> in <span class="pkg">tidyr</span>, but with a different API.</p>
+    <p>Combination of <code>set*</code> functions provided by <span class="pkg">data.table</span>.
+ This is memeroy efficient because no copy is made at all.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>drop_na_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>)
-
-<span class='fu'>drop_all_na_cols</span>(<span class='no'>data</span>)
-
-<span class='fu'>drop_all_na_rows</span>(<span class='no'>data</span>)
-
-<span class='fu'>replace_na_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='no'>to</span>)
-
-<span class='fu'>fill_na_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"down"</span>, <span class='st'>"up"</span>))</pre>
+    <pre class="usage"><span class='fu'>set_dt</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>col_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>order_by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>order_dirc</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
+  <span class='kw'>old_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>new_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fill_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fill_type</span> <span class='kw'>=</span> <span class='st'>"down"</span>,
+  <span class='kw'>fill_value</span> <span class='kw'>=</span> <span class='fl'>NA</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data.frame</p></td>
+      <td><p>A data.frame</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Colunms to be replaced or filled. If not specified, use all columns.</p></td>
+      <th>col_order</th>
+      <td><p>(Optional) Character vector of the new column name ordering.
+May also be column numbers. This parameter will pass to "neworder" parameter
+in <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setcolorder.html'>setcolorder</a></code>.</p></td>
     </tr>
     <tr>
-      <th>to</th>
-      <td><p>What value should NA replace by?</p></td>
+      <th>order_by</th>
+      <td><p>(Optional) A character vector of column names by which to order.
+This parameter will pass to "cols" parameter in <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setorder.html'>setorder</a></code>.</p></td>
     </tr>
     <tr>
-      <th>direction</th>
-      <td><p>Direction in which to fill missing values.
-Currently either "down" (the default) or "up".</p></td>
+      <th>order_dirc</th>
+      <td><p>(Optional) An integer vector with only possible values of 1 and -1,
+corresponding to ascending and descending order. This parameter will pass to
+"order" parameter in <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setorder.html'>setorder</a></code>. Default uses 1.</p></td>
+    </tr>
+    <tr>
+      <th>old_name</th>
+      <td><p>(Optional) When <code>new_name</code> is provided,
+character names or numeric positions of column names to change.
+This parameter will pass to "old" parameter in
+<code><a href='https://Rdatatable.gitlab.io/data.table/reference/setattr.html'>setnames</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>new_name</th>
+      <td><p>(Optional) It can be a function or the new column names.
+This parameter will pass to "new" parameter in
+<code><a href='https://Rdatatable.gitlab.io/data.table/reference/setattr.html'>setnames</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>fill_cols</th>
+      <td><p>(Optional)
+Numeric or character vector specifying columns to be updated.</p></td>
+    </tr>
+    <tr>
+      <th>fill_type</th>
+      <td><p>(Optional)
+Character, one of "down", "up" or "replace". Defaults to "down".</p></td>
+    </tr>
+    <tr>
+      <th>fill_value</th>
+      <td><p>(Optional)
+Numeric or integer, value to be used to fill when
+<code>fill_type=="replace"</code>. Defaults to <code>NA</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.table</p>
+    <p>The input is modified by reference, and returned (invisibly)
+so it can be used in compound statements.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>drop_all_na_cols</code> could drop the columns with only NAs,
-while <code>drop_all_na_rows</code> could drop the rows with only NAs.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>https://stackoverflow.com/questions/2643939/remove-columns-from-dataframe-where-all-values-are-na</p>
-<p>https://stackoverflow.com/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table</p>
+    <p>This function will first set any data.frame to a data.table,
+then rename, fill NAs, arrange row order, arrange column order. If you
+want to do the operation in another order, use it separately in multiple
+<code>set_dt</code> functions in the desired order.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></code>,<code><a href='https://tidyr.tidyverse.org/reference/replace_na.html'>replace_na</a></code>,
-<code><a href='https://tidyr.tidyverse.org/reference/fill.html'>fill</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://Rdatatable.gitlab.io/data.table/reference/setcolorder.html'>setcolorder</a></code>,
+<code><a href='https://Rdatatable.gitlab.io/data.table/reference/setorder.html'>setorder</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setattr.html'>setnames</a></code>,
+<code><a href='https://Rdatatable.gitlab.io/data.table/reference/nafill.html'>setnafill</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
- <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>()</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a
-#&gt; 2:     2   &lt;NA&gt;</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>y</span>)</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a
-#&gt; 2:    NA      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a</div><div class='input'>
- <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a
-#&gt; 2:     2      0
-#&gt; 3:     0      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>x</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a
-#&gt; 2:     2   &lt;NA&gt;
-#&gt; 3:     0      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>y</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a
-#&gt; 2:     2      0
-#&gt; 3:    NA      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>x</span>,<span class='no'>y</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a
-#&gt; 2:     2      0
-#&gt; 3:     0      b</div><div class='input'>
- <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>fill_na_dt</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a
-#&gt; 2:     2   &lt;NA&gt;
-#&gt; 3:     2      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>fill_na_dt</span>() <span class='co'># not specified, fill all columns</span></div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a
-#&gt; 2:     2      a
-#&gt; 3:     2      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>fill_na_dt</span>(<span class='no'>y</span>,<span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"up"</span>)</div><div class='output co'>#&gt;        x      y
-#&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a
-#&gt; 2:     2      b
-#&gt; 3:    NA      b</div></pre>
+    <pre class="examples"><div class='input'>
+<span class='no'>dt</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>v1</span><span class='kw'>=</span><span class='no'>x</span>, <span class='kw'>v2</span><span class='kw'>=</span><span class='fu'><a href='lag_lead.html'>lag_dt</a></span>(<span class='no'>x</span>)/<span class='fl'>2</span>, <span class='kw'>v3</span><span class='kw'>=</span><span class='fu'><a href='lag_lead.html'>lead_dt</a></span>(<span class='no'>x</span>, <span class='fl'>1L</span>)/<span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in data.table(v1 = x, v2 = lag_dt(x)/2, v3 = lead_dt(x, 1L)/2): object 'x' not found</span></div><div class='input'><span class='no'>dt</span></div><div class='output co'>#&gt; function (x, df, ncp, log = FALSE) 
+#&gt; {
+#&gt;     if (missing(ncp)) 
+#&gt;         .Call(C_dt, x, df, log)
+#&gt;     else .Call(C_dnt, x, df, ncp, log)
+#&gt; }
+#&gt; &lt;bytecode: 0x000000001e99f4d0&gt;
+#&gt; &lt;environment: namespace:stats&gt;</div><div class='input'><span class='fu'>set_dt</span>(<span class='no'>dt</span>,<span class='kw'>new_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>,<span class='st'>"B"</span>,<span class='st'>"C"</span>),<span class='kw'>fill_cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>dt</span>),
+       <span class='kw'>order_by</span> <span class='kw'>=</span> <span class='st'>"A"</span>,<span class='kw'>order_dirc</span> <span class='kw'>=</span> -<span class='fl'>1</span>,<span class='kw'>col_order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"B"</span>,<span class='st'>"A"</span>,<span class='st'>"C"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in setDT(data): Argument 'x' to 'setDT' should be a 'list', 'data.frame' or 'data.table'</span></div><div class='input'><span class='no'>dt</span></div><div class='output co'>#&gt; function (x, df, ncp, log = FALSE) 
+#&gt; {
+#&gt;     if (missing(ncp)) 
+#&gt;         .Call(C_dt, x, df, log)
+#&gt;     else .Call(C_dnt, x, df, ncp, log)
+#&gt; }
+#&gt; &lt;bytecode: 0x000000001e99f4d0&gt;
+#&gt; &lt;environment: namespace:stats&gt;</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -252,7 +260,6 @@ while <code>drop_all_na_rows</code> could drop the rows with only NAs.</p>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
