@@ -27,5 +27,6 @@ Suggests:
     knitr,
     rmarkdown,
     nycflights13,
-    tidyr
+    tidyr,
+    ggplot2
 VignetteBuilder: knitr

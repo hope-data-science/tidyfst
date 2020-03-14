@@ -1,7 +1,7 @@
 
 ## 0.8.8
 Date: 20200314
-0. Reason for update: Check every function in `data.table`, `dplyr` and `tidyr`, optimize and add functionalities when possible, and keep up with the updates of `dplyr` (the upcoming v1.0.0). This package is driving to a stable stage now, and the next minor updates will only come after the major updates of data.table (waiting for the release of v1.12.9) and the potential new bugs reported by users. 
+0. Reason for update: Check every function in `data.table`, `dplyr` and `tidyr`, optimize and add functionalities when possible, and keep up with the updates of `dplyr` (the upcoming v1.0.0). There are so many substantial updates, so I think an upgrade of version should be proposed. This package is driving to a stable stage later (if no fatal bugs coming after weeks), and the next minor updates will only come after the major updates of data.table (waiting for the release of v1.12.9) and the potential new bugs reported by users. 
 1. Get better understanding on non-standard evaluation, update functions that could be optimized. The updated functions include: `mutate_dt`, `transmute_dt`,`arrange_dt`,`distinct_dt`,`slice_dt`,`top_n_dt`,`top_frac_dt`,`mutate_when`. Therefore, now these functions should be faster than before.
 2. Add `nth` to extract element of vector via position, useful when we want a single element from the bottom.
 3. The API of `longer_dt` has been changed to be more powerful, and update the examples in `wider_dt`. Update the `Example 3: Reshape` vignette.
@@ -21,6 +21,8 @@ Date: 20200314
 17. Debug `separate_dt`.
 18. Add a Chinese vignette for folks in China (titled as "tidyfst包实例分析").
 19. Shorten the description file to be more specific.
+20. Add `group_by_dt` and `group_exe_dt` to perform more convenient and efficient group operation.
+21. Add `select_mix` for super selection of columns.
 
 ## 0.7.7
 Date: 20200305
