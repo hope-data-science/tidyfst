@@ -11,8 +11,8 @@ Authors@R:
 Description: A toolkit of tidy data manipulation verbs with 'data.table' as the backend.
   Combining the merits of syntax elegance from 'dplyr' and computing performance from 'data.table', 
   'tidyfst' intends to provide users with state-of-the-art data manipulation tools with least pain.
-  This package is an extention of 'data.table'. While enjoying a tidy syntax, 
-  it also wraps combinations of efficient functions to facilitate frequently repetitive data operations.  
+  This package is an extension of 'data.table'. While enjoying a tidy syntax, 
+  it also wraps combinations of efficient functions to facilitate frequently-used data operations.  
 URL: https://github.com/hope-data-science/tidyfst, https://hope-data-science.github.io/tidyfst/
 BugReports: https://github.com/hope-data-science/tidyfst/issues
 License: MIT + file LICENSE
