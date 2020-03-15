@@ -1,7 +1,7 @@
 # tidyfst: Tidy Verbs for Fast Data Manipulation<img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 
-[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) [![](https://img.shields.io/badge/devel%20version-0.8.8-yellow.svg)](https://github.com/hope-data-science/tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
+[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
 
 
 
@@ -19,7 +19,6 @@ Till now, *tidyfst* has an API that might even transcend its predecessors (e.g. 
 
 - Receives any data.frame (tibble/data.table/data.frame) and returns a data.table.
 - Show the variable class of data.table as default.
-- Never use in place replacement (also known as "modify-by-reference"). 
 - Use suffix ("_dt") rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
 - More flexible verbs for big data manipulation.
 - For some useful functions in *data.table*, if *tidyfst* could not provide the alternative tidy syntax, never rewrite but export them directly to guarantee the performance.
