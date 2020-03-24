@@ -2,7 +2,7 @@
 title: "tidyfst包实例分析"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{tidyfst包实例分析}
+  %\VignetteIndexEntry{chinese_tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

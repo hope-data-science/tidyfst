@@ -1,6 +1,6 @@
 Package: tidyfst
 Title: Tidy Verbs for Fast Data Manipulation
-Version: 0.8.8
+Version: 0.9.3
 Depends: R (>= 3.3.0)
 Authors@R: 
     person(given = "Tian-Yuan",
@@ -18,7 +18,7 @@ BugReports: https://github.com/hope-data-science/tidyfst/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Imports: 
     data.table (>= 1.12.8),
     fst (>= 0.9.0),
@@ -27,6 +27,6 @@ Suggests:
     knitr,
     rmarkdown,
     nycflights13,
-    tidyr,
-    ggplot2
+    pryr,
+    tidyr
 VignetteBuilder: knitr

@@ -1,9 +1,6 @@
 # tidyfst: Tidy Verbs for Fast Data Manipulation<img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-
-[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994)
-
-
+[![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) [![](https://img.shields.io/badge/devel%20version-0.9.3-yellow.svg)](https://github.com/hope-data-science/tidyfst) ![](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=green)  ![](https://img.shields.io/badge/lifecycle-maturing-purple.svg) [![](https://img.shields.io/github/last-commit/hope-data-science/tidyfst.svg)](https://github.com/hope-data-science/tidyfst/commits/master) [![DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994) [![download](https://cranlogs.r-pkg.org/badges/tidyfst?color=red)](https://www.rdocumentation.org/trends)
 
 
 
@@ -21,8 +18,7 @@ Till now, *tidyfst* has an API that might even transcend its predecessors (e.g. 
 - Show the variable class of data.table as default.
 - Use suffix ("_dt") rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
 - More flexible verbs for big data manipulation.
-- For some useful functions in *data.table*, if *tidyfst* could not provide the alternative tidy syntax, never rewrite but export them directly to guarantee the performance.
-- Supporting data importing and parsing with *fst*, details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
+- Supporting data importing and parsing with *fst*, which saves both time and memory. Details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
 - Flagship functions: [group_dt](https://hope-data-science.github.io/tidyfst/reference/group_dt.html), [nest_dt](https://hope-data-science.github.io/tidyfst/reference/nest.html), [mutate_when](https://hope-data-science.github.io/tidyfst/reference/mutate_when.html), etc.
 
 
@@ -100,6 +96,7 @@ iris[3:8,] %>%
 
 - [data.table](https://github.com/Rdatatable/data.table)
 - [fst](https://github.com/fstpackage/fst)
+- [tidyr](https://github.com/tidyverse/tidyr)
 - [dplyr](https://github.com/tidyverse/dplyr)
 - [dtplyr](https://github.com/tidyverse/dtplyr)
 - [tidyfast](https://github.com/TysonStanley/tidyfast)

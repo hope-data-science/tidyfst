@@ -1,7 +1,7 @@
 
 #' @title Filter entries in data.frame
 #' @description Analogous function for \code{filter} in \pkg{dplyr}.
-#' @param data data.frame
+#' @param .data data.frame
 #' @param ... List of variables or name-value pairs of summary/modifications
 #'   functions.
 #' @return data.table
@@ -13,8 +13,8 @@
 #' iris %>% filter_dt(Sepal.Length == max(Sepal.Length))
 
 #' @export
-filter_dt = function(data,...){
-  dt = as_dt(data)
+filter_dt = function(.data,...){
+  dt = as_dt(.data)
  substitute(list(...)) %>%
     lapply(deparse) %>%
     .[-1] %>%
@@ -23,15 +23,4 @@ filter_dt = function(data,...){
   eval(parse(text = str_glue("dt[{dot_string}]")))
 }
 
-# past version of filter_dt
-# filter_dt = function(data,...){
-#   dt = as_dt(data)
-#   substitute(list(...)) %>%
-#     deparse() %>%
-#     str_c(collapse = "") %>%
-#     str_squish() %>%
-#     str_extract("\\(.+\\)") %>%
-#     str_sub(2,-2) -> dot_string
-#   eval(parse(text = str_glue("dt[{dot_string}]")))
-# }
 

@@ -2,7 +2,7 @@
 #' @title Short cut to data.table
 #' @description To use facilities provided by \pkg{data.table}, but do not have to
 #' load \pkg{data.table} package.
-#' @param data A data.frame
+#' @param .data A data.frame
 #' @param ... Recieve \code{B} in data.table's \code{A[B]} syntax.
 #' @details The \code{as_dt} could turn any data frame to data.table class. If the data is
 #' not a data frame, return error.
@@ -18,27 +18,28 @@
 
 #' @rdname dt
 #' @export
-in_dt = function(data,...){
-  dt = as_dt(data)
+in_dt = function(.data,...){
+  dt = as_dt(.data)
   dt[...][]
 }
 
 #' @rdname dt
 #' @export
 
-as_dt = function (data) {
-  if (!is.data.frame(data))
-    stop("Only a data.frame could be received.")
-  as.data.table(data)
+as_dt = function (.data) {
+  if (is.data.frame(.data) || ("fst_table" %chin% class(.data)))
+    as.data.table(.data)
+  else
+    stop("Only a data.frame or fst_table could be received.")
 }
 
 # optional as_dt for future
-# as_dt = function(data){
+# as_dt = function(.data){
 #   fifelse(
-#     is.data.table(data),
+#     is.data.table(.data),
 #     data,
-#     fifelse(is.data.frame(data),
-#             as.data.table(data),
+#     fifelse(is.data.frame(.data),
+#             as.data.table(.data),
 #             stop("Only a data.frame could be received."))
 #   )
 # }

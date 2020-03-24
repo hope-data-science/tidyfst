@@ -2,7 +2,7 @@
 #' @import data.table
 #' @import fst
 #' @import stringr
-#' @importFrom stats na.omit setNames complete.cases
+#' @importFrom stats na.omit setNames
 
 
 #' @export
@@ -39,6 +39,9 @@ data.table::frollapply
 data.table::fcoalesce
 
 #' @export
+data.table::uniqueN
+
+#' @export
 data.table::rbindlist
 
 #' @export
@@ -52,3 +55,5 @@ data.table::copy
 
 #' @export
 data.table::key
+
+

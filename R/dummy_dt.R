@@ -2,7 +2,7 @@
 #' @title Fast creation of dummy variables
 #' @description Quickly create dummy (binary) columns from character and factor type columns in the inputted data (and numeric columns if specified.)
 #' This function is useful for statistical analysis when you want binary columns rather than character columns.
-#' @param data data.frame
+#' @param .data data.frame
 #' @param ... Columns you want to create dummy variables from.
 #' Very flexible, find in the examples.
 #' @param longname logical. Should the output column labeled with the
@@ -21,12 +21,12 @@
 #' mtcars %>% head() %>% dummy_dt("cyl|gear")
 
 #' @export
-dummy_dt = function(data,...,longname = TRUE){
-  dt = as_dt(data)
+dummy_dt = function(.data,...,longname = TRUE){
+  dt = as_dt(.data)
   if((substitute(list(...)) %>% deparse())=="list()")
     warning("No columns provided, return the orginal data.")
   else{
-    dt %>%
+    dt[0] %>%
       select_dt(...) %>%
       names() -> col_names
     for(i in col_names){
@@ -38,8 +38,8 @@ dummy_dt = function(data,...,longname = TRUE){
 
 globalVariables("id_")
 
-dummy_col = function(data,col_name,longname){
-  dt = as_dt(data)
+dummy_col = function(.data,col_name,longname){
+  dt = as_dt(.data)
   #substitute(col) %>% deparse() -> col_name
   dt[, `:=`(one_=1,id_=1:.N) ]
 

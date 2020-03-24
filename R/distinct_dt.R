@@ -2,7 +2,7 @@
 
 #' @title Select distinct/unique rows in data.frame
 #' @description Analogous function for \code{distinct} in \pkg{dplyr}
-#' @param data data.frame
+#' @param .data data.frame
 #' @param ... Optional variables to use when determining uniqueness.
 #'  If there are multiple rows for a given combination of inputs,
 #'  only the first row will be preserved.
@@ -20,8 +20,8 @@
 #'
 #' @export
 
-distinct_dt = function(data,...,.keep_all = FALSE){
-  dt = as_dt(data)
+distinct_dt = function(.data,...,.keep_all = FALSE){
+  dt = as_dt(.data)
   if(length(substitute(...)) == 0) unique(dt)
   else{
     if(.keep_all) eval(substitute(dt[,.SD[1],by = .(...)]))
@@ -29,19 +29,6 @@ distinct_dt = function(data,...,.keep_all = FALSE){
   }
 }
 
-# distinct_dt = function(data,...,.keep_all = FALSE){
-#   dt = as_dt(data)
-#   substitute(list(...)) %>%
-#     deparse() %>%
-#     str_extract("\\(.+\\)") %>%
-#     str_c(".",.)-> dot_string
-#   if(is.na(dot_string)) unique(dt)
-#   else{
-#     if(!.keep_all)
-#       dt %>% select_dt(...) %>% unique()
-#     else eval(parse(text = str_glue("dt[,.SD[1],by = {dot_string}]")))
-#   }
-# }
 
 
 

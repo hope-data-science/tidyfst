@@ -2,7 +2,7 @@
 #' @title Data manipulation within groups
 #' @description Analogous function for \code{group_by} and \code{rowwise}
 #'  in \pkg{dplyr}, but in another efficient way.
-#' @param data A data.frame
+#' @param .data A data.frame
 #' @param by Variables to group by,unquoted name of grouping variable of list of unquoted names of grouping variables.
 #' @param ... Any data manipulation arguments that could be implemented on a data.frame.
 #' @return data.table
@@ -56,8 +56,8 @@
 #' @rdname group_dt
 #' @export
 
-group_dt = function(data,by = NULL,...){
-  dt = as_dt(data)
+group_dt = function(.data,by = NULL,...){
+  dt = as_dt(.data)
 
   by = substitute(by)
   deparse(by) -> by_deparse
@@ -88,31 +88,12 @@ group_dt = function(data,by = NULL,...){
   eval(parse(text = str_glue(to_eval)))
 }
 
-# previous method, slow
-# group_dt = function(data,by = NULL,...){
-#   dt = as_dt(data)
-#   by = substitute(by)
-#   substitute(list(...)) %>%
-#     deparse() %>%
-#     str_c(collapse = "") %>%
-#    # str_squish() %>%
-#     str_extract("\\(.+\\)") %>%
-#     str_sub(2,-2) -> dot_string
-#   deparse(by) -> by_deparse
-#   if(by_deparse == "NULL") stop("Please provide the group(s).")
-#   else if(by_deparse %>% str_detect("^\\.|^list\\("))
-#     eval(parse(text = str_glue("dt[,(.SD %>% {dot_string}),by = by]")))
-#   else {
-#     by_deparse %>%
-#       str_c(".(",.,")") -> by
-#     eval(parse(text = str_glue("dt[,(.SD %>% {dot_string}),by = {by}]")))
-#   }
-# }
+
 
 #' @rdname group_dt
 #' @export
-rowwise_dt = function(data,...){
-  dt = as_dt(data)
+rowwise_dt = function(.data,...){
+  dt = as_dt(.data)
   dt %>%
     group_dt(
       by = row.names(dt),

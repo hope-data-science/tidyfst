@@ -1,6 +1,28 @@
 
+## 0.9.3
+Date: 20200324
+0. Reason for update: The rmarkdown has a poor support of Chinese, which makes the vignette name messy on the CRAN page (see the vignette part of <https://CRAN.R-project.org/package=tidyfst>). Therefore, have to change it to an English name. Also, as many new adjustments coming in, there are some substantial changes for tidyfst to be safer (robust), faster, simpler and feature richer.
+1. Improve `group_by_dt` to let it be more flexiable. Now it can receive what `select_dt` receives.
+2. Improve `select_fst`, can select one single column by number now.
+3. Improve `fill_na_dt` to make it faster with `setnafill`, `shift` and `fcoalesce`.
+4. Change the parameter `data` to `.data`. This change of API would be applied to all functions and some other parameters too (start with dot).
+5. Remove `drop_all_na_cols` and `drop_all_na_rows`, use `delete_na_cols` and `delete_na_rows` instead to remove columns or rows with NAs larger than a threshold in proportion or number.
+6. Rewrite `rename_dt` to be safer.
+7. Improve `relocate_dt` to make it faster, by moving names but not data.frame itself, only move at the final step.
+8. Remove `mutate_ref`. Design a new family for `set_` to modify by reference. Details see `?set_in_dt`.
+9. Add `as_fst` to save a data.frame  as "fst" in tempfile and parse it back in fst_table. 
+10. Improve `longer_dt` and `wider_dt` by using `select_mix` to select unchanged columns. Also, change the parameter API to make it more concise. Now it should be easier to use. The vignette of reshape(example 3) is updated too.
+11. Make `separate_dt` to be more robust by receiving non-character as column. This means you can use `df %>% separate_dt(x, c("A", "B"))` now. See examples in `?separate_dt`.
+12. Give a "by" parameter to `mutate_dt` and `transmute_dt` to mutate by group.
+13. Fix a bug in `select_dt`.
+14. Remove`all-at-if` collection, use `mutate_vars` and `summarise_vars` instead.
+15. Add `replace_dt` to replace any value(s) in data.table.
+16. Add an english tutorial and test many basic and complicated examples.
+17. Debug `wider_dt` and add a new functionality to take `list` as aggregated function and unchop automatically.
+18. Improve `mutate_vars` with raw data.table codes, which is faster.
+
 ## 0.8.8
-Date: 20200314
+Date: 20200315
 0. Reason for update: Check every function in `data.table`, `dplyr` and `tidyr`, optimize and add functionalities when possible, and keep up with the updates of `dplyr` (the upcoming v1.0.0). There are so many substantial updates, so I think an upgrade of version should be proposed. This package is driving to a stable stage later (if no fatal bugs coming after weeks), and the next minor updates will only come after the major updates of data.table (waiting for the release of v1.12.9) and the potential new bugs reported by users. 
 1. Get better understanding on non-standard evaluation, update functions that could be optimized. The updated functions include: `mutate_dt`, `transmute_dt`,`arrange_dt`,`distinct_dt`,`slice_dt`,`top_n_dt`,`top_frac_dt`,`mutate_when`. Therefore, now these functions should be faster than before.
 2. Add `nth` to extract element of vector via position, useful when we want a single element from the bottom.
@@ -23,6 +45,7 @@ Date: 20200314
 19. Shorten the description file to be more specific.
 20. Add `group_by_dt` and `group_exe_dt` to perform more convenient and efficient group operation.
 21. Add `select_mix` for super selection of columns.
+22. Fix typos in description.
 
 ## 0.7.7
 Date: 20200305

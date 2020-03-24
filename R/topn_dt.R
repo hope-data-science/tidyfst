@@ -2,7 +2,7 @@
 #' @title Select top (or bottom) n rows (by value)
 #' @description Analogous function for \code{top_n} and \code{top_frac} in \pkg{dplyr}, but with a different API.
 #'
-#' @param data data.frame
+#' @param .data data.frame
 #' @param wt (Optional). The variable to use for ordering.
 #' If not specified, defaults to the last variable in the data.frame.
 #' @param n Number of rows to return.
@@ -29,8 +29,8 @@
 
 #' @rdname topn
 #' @export
-top_dt = function(data,wt = NULL,n = NULL,prop = NULL){
-  dt = as_dt(data)
+top_dt = function(.data,wt = NULL,n = NULL,prop = NULL){
+  dt = as_dt(.data)
   if(is.null(n) & !is.null(prop))
     eval(substitute(top_frac_dt(dt,prop,wt)))
   else if(!is.null(n) & is.null(prop))
@@ -40,8 +40,8 @@ top_dt = function(data,wt = NULL,n = NULL,prop = NULL){
 
 #' @rdname topn
 #' @export
-top_n_dt = function(data,n,wt = NULL){
-  dt = as_dt(data)
+top_n_dt = function(.data,n,wt = NULL){
+  dt = as_dt(.data)
   n_ = n
   wt = fifelse(is.null(substitute(wt)),
                names(dt)[length(dt)],
@@ -58,8 +58,8 @@ top_n_dt = function(data,n,wt = NULL){
 #' @export
 #'
 ## put column name in front of number
-top_frac_dt = function(data,prop,wt = NULL){
-  dt = as_dt(data)
+top_frac_dt = function(.data,prop,wt = NULL){
+  dt = as_dt(.data)
   n = nrow(dt) * prop
   eval(substitute(top_n_dt(dt,n,wt)))
 }

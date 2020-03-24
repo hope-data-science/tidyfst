@@ -5,11 +5,6 @@ library(pacman)
 p_load(devtools,usethis,roxygen2,pkgdown,badger)
 p_load(fst,stringr,data.table,tidyfst)
 
-## general
-as_dt = function(data){
-  if(!is.data.frame(data)) stop("Only a data.frame could be received.")
-  as.data.table(data)
-}
 
 # use_r("global_setting")
 # use_r("select_dt")
@@ -58,3 +53,30 @@ iris %>%
   arrange_dt(group,sl) %>%
   distinct_dt(sl,keep_all = T) %>%
   summarise_dt(sw = max(sw),by = group)
+
+
+
+
+usethis::create_package
+
+
+
+
+
+
+
+
+
+library(cranlogs)
+library(tidyfst)
+
+end_date = "2020-03-23"
+
+cran_downloads(package = "tidyfst", from = "2020-02-10",to = end_date) -> a
+
+cran_downloads(package = "tidytable", from = "2020-02-10",to = end_date) -> b
+
+a %>%
+  inner_join_dt(b,by = "date") %>%
+  filter_dt(count.x != 0 & count.y != 0) %>%
+  summarise_dt(sum.x = sum(count.x),sum.y = sum(count.y))

@@ -2,7 +2,7 @@
 
 #' @title Sample n rows from a table
 #' @description Analogous function for \code{sample_n} and \code{sample_frac} in \pkg{dplyr}.
-#' @param data A data.frame
+#' @param .data A data.frame
 #' @param n Number of rows to select
 #' @param prop Fraction of rows to select
 #' @param size 	For \code{sample_n_dt}, the number of rows to select.
@@ -23,8 +23,8 @@
 #'
 #' @rdname sample
 #' @export
-sample_dt = function(data,n = NULL,prop = NULL,replace = FALSE){
-  dt = as_dt(data)
+sample_dt = function(.data,n = NULL,prop = NULL,replace = FALSE){
+  dt = as_dt(.data)
   if(is.null(n) & !is.null(prop))
     sample_frac_dt(dt,size = prop,replace = replace)
   else if(!is.null(n) & is.null(prop))
@@ -35,17 +35,17 @@ sample_dt = function(data,n = NULL,prop = NULL,replace = FALSE){
 #' @rdname sample
 #' @export
 #'
-sample_n_dt = function(data,size,replace = FALSE){
-  dt = as_dt(data)
-  if(size > nrow(data) & replace == FALSE) stop("Sample size is too large.")
+sample_n_dt = function(.data,size,replace = FALSE){
+  dt = as_dt(.data)
+  if(size > nrow(.data) & replace == FALSE) stop("Sample size is too large.")
   index = sample(nrow(dt),size = size,replace = replace)
   dt[index]
 }
 
 #' @rdname sample
 #' @export
-sample_frac_dt = function(data,size,replace = FALSE){
-  dt = as_dt(data)
+sample_frac_dt = function(.data,size,replace = FALSE){
+  dt = as_dt(.data)
   if(!between(size,0,1) & replace == FALSE) stop("The fraction is invalid.")
   size = as.integer(nrow(dt) * size)
   index = sample(nrow(dt),size = size,replace = replace)

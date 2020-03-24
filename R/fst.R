@@ -17,6 +17,11 @@
 #'   parse_fst("iris_test.fst") -> ft
 #'   ft
 #'
+#'   class(ft)
+#'   lapply(ft,class)
+#'   names(ft)
+#'   dim(ft)
+#'
 #'   # get the data by query
 #'   ft %>% slice_fst(1:3)
 #'   ft %>% slice_fst(c(1,3))
@@ -40,8 +45,6 @@
 
 
 
-
-
 globalVariables(c("."))
 
 
@@ -50,6 +53,7 @@ globalVariables(c("."))
 parse_fst = function(path){
   fst(path)
 }
+
 
 #' @rdname fst
 #' @export
@@ -65,7 +69,9 @@ select_fst = function(ft,...){
     deparse() %>%
     str_extract("\\(.+\\)") %>%
     str_sub(2,-2)-> dot_string
-  if(str_detect(dot_string,"^\"") | str_detect(dot_string,"^[a-zA-Z0-9_.]+$")){
+  if(dot_string %like% "^[0-9]+$")
+    eval(parse(text = str_glue("ft[{dot_string}] %>% as.data.table()")))
+  else if(str_detect(dot_string,"^\"") | str_detect(dot_string,"^[a-zA-Z0-9_.]+$")){
     dot_string = str_remove_all(dot_string,"\"")
     str_detect(names(ft),dot_string) -> logical_vec
     if(all(logical_vec == FALSE)) {

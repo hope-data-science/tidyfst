@@ -32,7 +32,7 @@ relig_income %>%
   In `tidyfst`, we have:
 ```{r,warning=FALSE}
 relig_income %>% 
-  longer_dt("religion",gathered_name = "income",gathered_value = "count")
+  longer_dt("religion",name = "income",value = "count")
 ```
   Another example from `tidyr`:
 ```{r,eval=FALSE}
@@ -49,12 +49,12 @@ billboard
 
 # tidyfst way:
 billboard %>% 
-  longer_dt("wk",negate = TRUE,  
-            gathered_name = "week",
-            gathered_value = "rank",
+  longer_dt(-"wk",
+            name = "week",
+            value = "rank",
             na.rm = TRUE
             )
-# regex should select group_to_keep, negate could reverse that
+# regex could select the groups to keep, and minus could select the reverse
 ```
 A warning would could come out because the merging column has different data types and do the coercion automatically.
     
@@ -70,15 +70,65 @@ fish_encounters %>%
 
 ## tidyfst way:
 fish_encounters %>% 
-  wider_dt(name_to_spread = "station",value_to_spread = "seen")
+  wider_dt(name = "station",value = "seen")
+
+# if no keeped groups are selected, use all except for name and value columns
 ```
     
   If you want to fill with 0s, use:
 ```{r}
 fish_encounters %>% 
-  wider_dt(name_to_spread = "station",value_to_spread = "seen",fill = 0)
+  wider_dt(name = "station",value = "seen",fill = 0)
 ```
-  Note that the parameter of `name_to_spread` and `value_to_spread` should always be provided and should be explicit called (with the parameter names attached).
+  Note that the parameter of `name` and `value` should always be provided and should be explicit called (with the parameter names attached).
+
+## More complicated example
+This example comes from data.table (<https://rdatatable.gitlab.io/data.table/articles/datatable-reshape.html>), and has been used in tidyr too. We'll try to do it in tidyfst in this example.
+If we have a data.frame as below:
+```{r}
+family <- fread("family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3
+1         30 1998-11-26 2000-01-29         NA             1             2            NA
+2         27 1996-06-22         NA         NA             2            NA            NA
+3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1
+4         32 2004-10-10 2009-08-27 2012-07-21             1             1             1
+5         29 2000-12-05 2005-02-28         NA             2             1            NA")
+
+family
+```
+And want to reshape the data.table to be like this:
+```{r}
+#     family_id age_mother  child        dob gender
+#         <int>      <int> <char>     <char> <char>
+#  1:         1         30 child1 1998-11-26      1
+#  2:         1         30 child2 2000-01-29      2
+#  3:         1         30 child3       <NA>   <NA>
+#  4:         2         27 child1 1996-06-22      2
+#  5:         2         27 child2       <NA>   <NA>
+#  6:         2         27 child3       <NA>   <NA>
+#  7:         3         26 child1 2002-07-11      2
+#  8:         3         26 child2 2004-04-05      2
+#  9:         3         26 child3 2007-09-02      1
+# 10:         4         32 child1 2004-10-10      1
+# 11:         4         32 child2 2009-08-27      1
+# 12:         4         32 child3 2012-07-21      1
+# 13:         5         29 child1 2000-12-05      2
+# 14:         5         29 child2 2005-02-28      1
+# 15:         5         29 child3       <NA>   <NA>
+```
+
+The `data.table::dcast` and `tidyr::pivot_longer` could transfer it in one step, however, not so easy to understand. Here we'll do it step by step to see what actually happens in this transfer.
+
+```{r,warning=FALSE}
+family %>% 
+  longer_dt(1:2) %>% 
+  separate_dt("name",into = c("class","child")) %>% 
+  wider_dt(-"class|value",
+           name = "class",
+           value = "value")
+```
+
+In such a process, we could find that we actually get a longer table, then separate it, and wider it later. *tidyfst* is not going to support the complicated transfer in one step, because it might be easier to implement, but much harder to understand 3 procedures in 1 step. If you still prefer that way, use `data.table::dcast` and `tidyr::pivot_longer` instead.
+
 
 
 

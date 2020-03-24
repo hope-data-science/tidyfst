@@ -3,11 +3,12 @@
 #' @description Using \code{setkey} and \code{setkeyv} in \pkg{data.table}
 #' to carry out \code{group_by}-like functionalities in \pkg{dplyr}. This is
 #' not only convenient but also efficient in computation.
-#' @param data A data frame
+#' @param .data A data frame
 #' @param ... Variables to group by for \code{group_by_dt},
 #'  namely the columns to sort by. Do not quote the column names.
 #'  Any data manipulation arguments that could be
 #'  implemented on a data.frame for \code{group_exe_dt}.
+#'  It can receive what \code{select_dt} receives.
 #' @param cols A character vector of column names to group by.
 #' @param inplace Should the grouping implemented by reference?
 #' (Modify the original data.frame) Default uses \code{FALSE}.
@@ -41,32 +42,58 @@
 #'     head(3) %>%
 #'       summarise_dt(sum = sum(Sepal.Length))
 #'   )
-
+#'
+#' mtcars %>%
+#'   group_by_dt("cyl|am") %>%
+#'   group_exe_dt(
+#'     summarise_dt(mpg_sum = sum(mpg))
+#'   )
+#' # equals to
+#' mtcars %>%
+#'   group_by_dt(cols = c("cyl","am")) %>%
+#'   group_exe_dt(
+#'     summarise_dt(mpg_sum = sum(mpg))
+#'   )
 
 #' @rdname group_by
 #' @export
-group_by_dt = function(data,...,cols = NULL,inplace = FALSE){
 
-  if(inplace) setDT(data)
-  else data = as_dt(data)
+group_by_dt = function(.data,...,cols = NULL,inplace = FALSE){
 
-  if(!is.null(cols)) setkeyv(data,cols)
-  else eval(substitute(setkey(data,...)))
+  if(inplace) setDT(.data)
+  else .data = as_dt(.data)
 
+  if(!is.null(cols)) setkeyv(.data,cols)
+  else {
+    .data[0] %>% select_dt(...) %>% names() -> cols
+    setkeyv(.data,cols)
+  }
+
+  .data
 }
 
+# group_by_dt = function(data,...,cols = NULL,inplace = FALSE){
+#
+#   if(inplace) setDT(data)
+#   else data = as_dt(data)
+#
+#   if(!is.null(cols)) setkeyv(data,cols)
+#   else eval(substitute(setkey(data,...)))
+#
+# }
+
 #' @rdname group_by
 #' @export
-group_exe_dt = function(data,...){
-  dt_keys = key(data)
+group_exe_dt = function(.data,...){
+  dt_keys = key(.data)
   if(is.null(dt_keys))
     stop("`group_exe_dt` must receive a data.table with key(s).")
   else
     dt_keys = str_c(dt_keys,collapse = ",") %>%
       str_c(".(",.,")")
 
-  dt = as_dt(data)
-  eval(parse(text = str_glue("group_dt(data = dt,by = {dt_keys},...)")))
+  dt = as_dt(.data)
+  eval(parse(text = str_glue("group_dt(.data = dt,by = {dt_keys},...)")))
 }
 
 

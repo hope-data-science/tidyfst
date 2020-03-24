@@ -1,0 +1,640 @@
+---
+title: "Use data.table the tidy way: An ultimate tutorial of tidyfst"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{english_tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  eval = FALSE,
+  comment = "#>"
+)
+```
+
+  I love the tidy syntax of dplyr and the ultimate speed of data.table. Why not take the both? That is why I have started the work of tidyfst, bridging the tidy syntax and computation performance via translation. This tool is especially friendly for dplyr users who want to learn some data.table, but data.table could also benefit from it (more or less).<br><br>
+  A great comparison of data.table and dplyr was displayed at <https://atrebas.github.io/post/2019-03-03-datatable-dplyr/> (thanks to Atrebas). I love this tutorial very much because it dig rather deep into many features from both packages. Here I'll try to implement all operations from that tutorial, and the potential users could find why they would prefer tidyfst for some tasks.<br><br>
+  The below examples have all been checked with tidyfst. Now let's begin.
+
+## Create example data
+```{r setup}
+library(tidyfst)
+
+set.seed(1L)
+
+## Create a data table
+DF <- data.table(V1 = rep(c(1L, 2L), 5)[-10],
+                V2 = 1:9,
+                V3 = c(0.5, 1.0, 1.5),
+                V4 = rep(LETTERS[1:3], 3))
+copy(DF) -> DT
+
+class(DF)
+DF
+```
+
+# Basic operations
+## Filter rows
+```{r}
+### Filter rows using indices
+slice_dt(DF, 3:4)
+
+### Discard rows using negative indices
+slice_dt(DF, -(3:7))
+
+### Filter rows using a logical expression
+filter_dt(DF, V2 > 5)
+filter_dt(DF, V4 %in% c("A", "C"))
+filter_dt(DF, V4 %chin% c("A", "C")) # fast %in% for character
+
+### Filter rows using multiple conditions
+filter_dt(DF, V1 == 1, V4 == "A")
+# equals to
+filter_dt(DF, V1 == 1 & V4 == "A")
+
+### Filter unique rows
+distinct_dt(DF) # unique(DF)
+distinct_dt(DF, V1,V4)
+
+### Discard rows with missing values
+drop_na_dt(DF) # na.omit(DF)
+
+### Other filters
+sample_n_dt(DF, 3)      # n random rows
+sample_frac_dt(DF, 0.5) # fraction of random rows
+top_n_dt(DF, 1, V1)     # top n entries (includes equals)
+
+filter_dt(DT,V4 %like% "^B")
+filter_dt(DT,V2 %between% c(3, 5))
+filter_dt(DT,between(V2, 3, 5, incbounds = FALSE))
+filter_dt(DT,V2 %inrange% list(-1:1, 1:3))  # see also ?inrange
+```
+
+## Sort rows
+```{r}
+### Sort rows by column
+arrange_dt(DF, V3)
+
+### Sort rows in decreasing order
+arrange_dt(DF, -V3)
+
+### Sort rows based on several columns
+arrange_dt(DF, V1, -V2)
+```
+
+## Select columns
+```{r}
+### Select one column using an index (not recommended)
+pull_dt(DT,3) # returns a vector
+select_dt(DT,3) # returns a data.table
+
+### Select one column using column name
+select_dt(DF, V2) # returns a data.table
+pull_dt(DF, V2)   # returns a vector
+
+### Select several columns
+select_dt(DF, V2, V3, V4)
+select_dt(DF, V2:V4) # select columns between V2 and V4
+
+### Exclude columns
+select_dt(DF, -V2, -V3)
+
+### Select/Exclude columns using a character vector
+cols <- c("V2", "V3")
+select_dt(DF,cols = cols)
+select_dt(DF,cols = cols,negate = TRUE)
+
+### Other selections
+select_dt(DF, cols = paste0("V", 1:2))
+relocate_dt(DF, V4) # reorder columns
+select_dt(DF, "V")
+select_dt(DF, "3$")
+select_dt(DF, ".2")
+select_dt(DF, "V1|X")
+select_dt(DF, -"^V2")
+# remove variables using "-" prior to function
+```
+
+## Summarise data
+```{r}
+### Summarise one column
+summarise_dt(DF, sum(V1)) # returns a data.table
+summarise_dt(DF, sumV1 = sum(V1)) # returns a data.table
+
+### Summarise several columns
+summarise_dt(DF, sum(V1), sd(V3))
+
+### Summarise several columns and assign column names
+DF %>%
+  summarise_dt(sumv1 = sum(V1),
+              sdv3  = sd(V3))
+
+### Summarise a subset of rows
+DT[1:4, sum(V1)]
+DF %>%
+  slice_dt(1:4) %>%
+  summarise_dt(sum(V1))
+
+### Misc
+summarise_dt(DF, nth(V3,1))
+summarise_dt(DF, nth(V3,-1))
+summarise_dt(DF, nth(V3, 5))
+summarise_dt(DF, uniqueN(V4))
+uniqueN(DF)
+```
+
+## Add/update/delete columns
+```{r}
+### Modify a column
+DT[, V1 := V1^2]
+DT
+DF %>% set_mutate(V1 = V1^2)
+DF
+fsetequal(DT,DF)
+
+### Add one column
+DT[, v5 := log(V1)][] # adding [] prints the result
+set_mutate(DF, v5 = log(V1))
+fsetequal(DT,DF)
+
+### Add several columns
+DT[, c("v6", "v7") := .(sqrt(V1), "X")]
+DT[, ':='(v6 = sqrt(V1),
+          v7 = "X")]     # same, functional form
+
+set_mutate(DF, v6 = sqrt(V1), v7 = "X")
+
+fsetequal(DT,DF)
+
+### Create one column and remove the others
+DT[, .(v8 = V3 + 1)]
+transmute_dt(DF, v8 = V3 + 1)
+
+### Remove one column
+DT[, v5 := NULL]
+set_mutate(DF, v5 = NULL)
+fsetequal(DT,DF)
+
+### Remove several columns
+DT[, c("v6", "v7") := NULL]
+set_mutate(DF, v6 = NULL,v7 = NULL)
+fsetequal(DT,DF)
+
+### Remove columns using a vector of colnames
+cols <- c("V3")
+DT[, (cols) := NULL] # ! not DT[, cols := NULL]
+DF <- select_dt(DF, cols = cols,negate = TRUE)
+fsetequal(DT,DF)
+
+### Replace values for rows matching a condition
+DT[V2 < 4, V2 := 0L]
+DT
+DF = mutate_when(DF,V2 < 4, V2 = 0L)
+DF
+fsetequal(DT,DF)
+```
+
+## group computation (by)
+```{r}
+### By group
+DF %>%
+  group_dt(
+    by = V4,
+    summarise_dt(sumV2 = sum(V2))
+  )
+
+### By several groups
+DF %>%
+  group_dt(
+    by = .(V4,V1),
+    summarise_dt(sumV2 = sum(V2))
+  )
+
+### Calling function in by
+DF %>% 
+  group_dt(
+    by = tolower(V4),
+    summarise_dt(sumV1 = sum(V1))
+  )
+
+### Assigning column name in by
+DF %>% 
+  group_dt(
+    by = .(abc = tolower(V4)),
+    summarise_dt(sumV1 = sum(V1))
+  )
+
+### Using a condition in by
+DF %>% 
+  group_dt(
+    by = V4 == "A",
+    summarise_dt(sum(V1))
+  )
+
+### By on a subset of rows
+DF %>% 
+  slice_dt(1:5) %>% 
+  group_dt(
+    by = V4,
+    summarise_dt(sumV1 = sum(V1))
+  )
+
+### Count number of observations for each group
+count_dt(DF, V4)
+
+### Add a column with number of observations for each group
+add_count_dt(DF, V1)
+
+### Retrieve the first/last/nth observation for each group
+DF %>% summarise_dt(by = V4,nth(V2,1))
+DF %>% summarise_dt(by = V4,nth(V2,-1))
+DF %>% summarise_dt(by = V4,nth(V2,2))
+
+```
+
+# Going further
+
+## Advanced columns manipulation
+
+```{r}
+### Summarise all the columns
+summarise_vars(DT,.func = max)
+
+### Summarise several columns
+summarise_vars(DT,c("V1", "V2"),mean)
+
+### Summarise several columns by group
+DT %>% 
+  group_dt(
+    by = V4,
+    summarise_vars(c("V1", "V2"),mean)
+  )
+
+## using patterns (regex)
+DT %>% 
+  group_dt(
+    by = V4,
+    summarise_vars("V1|V2",mean)
+  )
+
+## Summarise with more than one function by group
+# when you can't find a way, you can always use `in_dt` to use data.table
+DT %>% 
+  in_dt(, by = V4, 
+     c(lapply(.SD, sum),
+       lapply(.SD, mean)))
+
+### Summarise using a condition
+summarise_vars(DF, is.numeric, mean)
+
+### Modify all the columns
+mutate_vars(DF, .func = rev)
+
+### Modify several columns (dropping the others)
+DF %>% 
+  select_dt(cols = c("V1", "V2")) %>% 
+  mutate_vars(.func = sqrt)
+DF %>% 
+  select_dt(-V4) %>% 
+  mutate_vars(.func = exp)
+
+### Modify several columns (keeping the others)
+DF %>% 
+  mutate_vars(c("V1", "V2"), sqrt)
+cols <- setdiff(names(DT), "V4")
+DF %>% 
+  mutate_vars(cols, exp)
+
+### Modify columns using a condition (dropping the others)
+select_dt(DT,is.numeric)
+
+### Modify columns using a condition (keeping the others)
+mutate_vars(DT,is.numeric,as.integer)
+
+### Use a complex expression
+DF %>% 
+  group_dt(
+    by = V4,
+    slice_dt(1:2) %>% 
+      transmute_dt(V1 = V1,
+            V2 = "X")
+  )
+
+### Use multiple expressions (with DT[,{j}])
+DT %>% 
+  in_dt(,{
+      print(V1) #  comments here!
+      print(summary(V1))
+      x <- V1 + sum(V2)
+     .(A = 1:.N, B = x) # last list returned as a data.table
+     }
+  )
+
+```
+
+## Indexing and Keys
+```{r}
+### Set the key
+group_by_dt(DF,V4,inplace = TRUE)
+data.table::setkey(DT,V4)
+
+### Select the matching rows
+filter_dt(DF, V4 == "A")
+filter_dt(DF, V4 %chin% c("A", "C"))
+
+### Select the first matching row
+DF %>%
+  filter_dt(V4 == "B") %>%
+  slice_dt(1)
+
+### Select the last matching row
+DF %>%
+  filter_dt(V4 == "A") %>%
+  slice_dt(.N)
+
+### Nomatch argument
+filter_dt(DF, V4 %chin% c("A", "D"))
+
+### Apply a function on the matching rows
+DF %>%
+  filter_dt(V4 %chin% c("A", "C")) %>%
+  summarise_dt(sum(V1))
+
+### Modify values for matching rows
+DT["A", V1 := 0, on = "V4"]
+DT
+DF <- DF %>%
+  mutate_when(V4 == "A",V1 = 0)
+DF
+fsetequal(DT,DF)
+
+### Use keys in by
+DF %>%
+  filter_dt(V4 != "B") %>%
+  group_by_dt(V4) %>%
+  group_exe_dt(
+    summarise_dt(sum(V1))
+  )
+
+### Set keys for multiple columns
+group_by_dt(DT,V4,V1,inplace = TRUE)
+DF <- arrange_dt(DF, V4, V1) 
+fsetequal(DT,DF)
+
+### Subset using multiple keys/indices
+filter_dt(DF, V1 == 1, V4 == "C")
+filter_dt(DF, V1 == 1, V4 %chin% c("B", "C"))
+
+### Remove keys
+tables()
+data.table::setkey(DT, NULL)
+```
+## set*() modifications
+```{r}
+### Replace values
+data.table::set(DT, i = 1L, j = 2L, value = 3L)
+DF[1, 2] <- 3L
+
+### Reorder rows
+set_dt(DT,order_by =c("V4", "V1"), order_dirc = c(1, -1) )
+set_arrange(DF,V4,-V1)
+fsetequal(DT,DF)
+
+### Modify colnames
+set_dt(DT,old_name = "V2",new_name = "v2")
+set_rename(DF,v2 = V2)
+fsetequal(DT,DF)
+# change back
+set_dt(DT,new_name = toupper(names(DT)))
+set_dt(DF,new_name = toupper(names(DF)))
+
+### Reorder columns
+set_dt(DT,col_order = c("V4", "V1", "V2"))
+set_relocate(DF,c("V4", "V1", "V2"))
+fsetequal(DT,DF)
+
+### Convert data
+?as_dt # data.frame to data.table
+?set_dt # data.frame to data.table by reference
+
+# 
+```
+
+## Advanced use of by
+
+```{r}
+### Select first/last/… row by group
+DT %>% 
+  group_dt(
+    by = V4,
+    head(1)
+  )
+
+DT %>% 
+  group_dt(
+    by = V4,
+    tail(2)
+  )
+
+DT %>% 
+  group_dt(
+    by = V4,
+    slice_dt(1,.N)
+  )
+
+### Select rows using a nested query
+DF %>% 
+  group_dt(
+    by = V4,
+    arrange_dt(V2) %>% 
+      slice_dt(1)
+  )
+
+### Add a group counter column
+DT %>% 
+  mutate_dt(Grp = .GRP,by = .(V4, V1))
+
+### Get row number of first (and last) observation by group
+DT %>% transmute_dt(I = .I,by = V4)
+DT %>% transmute_dt(I = .I[1],by = V4)
+DT %>% transmute_dt(I = .I[c(1,.N)],by = V4)
+
+### Handle list-columns by group
+
+DT %>% 
+  select_dt(V1,V4) %>% 
+  chop_dt(V1) # return V1 as a list
+DT %>% nest_dt(V4) # subsets of the data
+
+### Grouping sets (multiple by at once)
+# use data.table directly, tidyfst does not provide new methods for it yet
+data.table::rollup(DT,
+       .(SumV2 = sum(V2)),
+       by = c("V1", "V4"))
+
+data.table::rollup(DT,
+       .(SumV2 = sum(V2), .N),
+       by = c("V1", "V4"),
+       id = TRUE)
+
+data.table::cube(DT,
+     .(SumV2 = sum(V2), .N),
+     by = c("V1", "V4"),
+     id = TRUE)
+
+data.table::groupingsets(DT,
+             .(SumV2 = sum(V2), .N),
+             by   = c("V1", "V4"),
+             sets = list("V1", c("V1", "V4")),
+             id   = TRUE)
+
+```
+
+# Miscellaneous
+
+## Read / Write data
+tidyfst exports `data.table::fread` and `data.table::fwrite` directly.
+
+```{r,eval=FALSE}
+### Write data to a csv file
+fwrite(DT, "DT.csv")
+
+### Write data to a tab-delimited file
+fwrite(DT, "DT.txt", sep = "\t")
+
+### Write list-column data to a csv file
+fwrite(setDT(list(0, list(1:5))), "DT2.csv")
+#
+### Read a csv / tab-delimited file
+fread("DT.csv")
+# fread("DT.csv", verbose = TRUE) # full details
+fread("DT.txt", sep = "\t")
+
+### Read a csv file selecting / droping columns
+fread("DT.csv", select = c("V1", "V4"))
+fread("DT.csv", drop = "V4")
+# NA
+### Read and rbind several files
+rbindlist(lapply(c("DT.csv", "DT.csv"), fread))
+# c("DT.csv", "DT.csv") %>% lapply(fread) %>% rbindlist
+
+```
+
+## Reshape data
+
+```{r}
+### Melt data (from wide to long)
+fsetequal(DT,DF)
+
+mDT = DT %>% longer_dt(V4)
+mDF = DF %>% longer_dt(-"V1|V2")
+
+fsetequal(mDT,mDF)
+mDT
+
+### Cast data (from long to wide)
+mDT %>% 
+  wider_dt(V4,name = "name",value = "value")
+# below is a special case and could only be done in tidyfst
+mDT %>% 
+  wider_dt(V4,name = "name",value = "value",fun = list)
+
+mDT %>% 
+  wider_dt(V4,name = "name",value = "value",fun = sum)
+
+### Split
+split(DT, by = "V4")
+
+```
+
+## Other
+```{r}
+### Lead/Lag
+lag_dt(1:10,n = 1)
+lag_dt(1:10,n = 1:2)
+lead_dt(1:10,n = 1)
+
+```
+
+# Join/Bind data sets
+
+## Join
+```{r}
+x <- data.table(Id  = c("A", "B", "C", "C"),
+                X1  = c(1L, 3L, 5L, 7L),
+                XY  = c("x2", "x4", "x6", "x8"),
+                key = "Id")
+
+y <- data.table(Id  = c("A", "B", "B", "D"),
+                Y1  = c(1L, 3L, 5L, 7L),
+                XY  = c("y1", "y3", "y5", "y7"),
+                key = "Id")
+
+### left join
+left_join_dt(x, y, by = "Id")
+
+### right join
+right_join_dt(x, y, by = "Id")
+
+### inner join
+inner_join_dt(x, y, by = "Id")
+
+### full join
+full_join_dt(x, y, by = "Id")
+
+### semi join
+semi_join_dt(x, y, by = "Id")
+
+### anti join
+anti_join_dt(x, y, by = "Id")
+
+```
+
+## Bind
+```{r}
+x <- data.table(1:3)
+y <- data.table(4:6)
+z <- data.table(7:9, 0L)
+### Bind rows
+rbind(x, y)
+rbind(x, z, fill = TRUE)
+
+### Bind rows using a list
+rbindlist(list(x, y), idcol = TRUE)
+
+### Bind columns
+cbind(x, y)
+
+```
+
+## Set operations
+```{r}
+x <- data.table(c(1, 2, 2, 3, 3))
+y <- data.table(c(2, 2, 3, 4, 4))
+### Intersection
+fintersect(x, y)
+fintersect(x, y, all = TRUE)
+
+### Difference
+fsetdiff(x, y)
+fsetdiff(x, y, all = TRUE)
+
+### Union
+funion(x, y)
+funion(x, y, all = TRUE)
+
+### Equality
+fsetequal(x, x[order(-V1),])
+all.equal(x, x) # S3 method
+setequal(x, x[order(-V1),])
+
+```
+
+# Summary
+To break all these codes through, tidyfst has improved bit by bit. If you are using tidyfst frequently, you'll find that while it enjoys a tidy syntax, it is more like you are using data.table in another style. Compared with many other packages with similar goals, tidyfst sticks to many principles of data.table (and is more like data.table in many ways). However, the ultimate goal is still clear: providing users with state-of-the-art data manipulation tools with least pain. Therefore, keep it simple and make it fast. Enjoy tidyfst~
+
+
+

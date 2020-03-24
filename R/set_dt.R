@@ -1,5 +1,4 @@
-
-#' @title Fast operations of data.table by reference
+#' @title Fast operations of data.table by reference (I)
 #' @description Combination of \code{set*} functions provided by \pkg{data.table}.
 #'  This is memeroy efficient because no copy is made at all.
 #' @param data A data.frame
@@ -25,19 +24,16 @@
 #' @param fill_value (Optional)
 #' Numeric or integer, value to be used to fill when
 #' \code{fill_type=="replace"}. Defaults to \code{NA}.
-#' @param ... List of variables or name-value pairs of modifications functions.
-#' @param by Mutate by which group(s)?
 #' @return The input is modified by reference, and returned (invisibly)
 #' so it can be used in compound statements.
 #' @details The \code{set_dt()} will first set any data.frame to a data.table,
 #' then rename, fill NAs, arrange row order, arrange column order. If you
 #' want to do the operation in another order, use it separately in multiple
 #' \code{set_dt} functions in the desired order.
-#' @details The \code{mutate_ref()} will first set any data.frame to a data.table,
-#' then mutate values by reference.
 #' @seealso \code{\link[data.table]{setcolorder}},
 #' \code{\link[data.table]{setorder}}, \code{\link[data.table]{setnames}},
 #' \code{\link[data.table]{setnafill}}
+#' @seealso \code{\link[tidyfst]{set_in_dt}}
 #' @examples
 #'
 #' # set_dt
@@ -49,13 +45,8 @@
 #'         order_by = "A",order_dirc = -1,col_order = c("B","A","C"))
 #' dt
 #'
-#'  # mutate_ref
-#'  copy(iris) -> a
-#'  # never use pipe(%>%) for the `mutate_ref` function
-#'  mutate_ref(a,one = 1,two = 2)
-#'  a
 
-#' @rdname set
+
 #' @export
 set_dt = function(data,
                   col_order = NULL,
@@ -89,14 +80,6 @@ set_dt = function(data,
   if(!is.null(col_order)) setcolorder(data,neworder = col_order)
 
 }
-
-#' @rdname set
-#' @export
-
-mutate_ref = function (data, ..., by)
-  eval(substitute(setDT(data)[, `:=`(...),by]))
-
-
 
 
 

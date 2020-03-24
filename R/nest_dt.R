@@ -4,7 +4,7 @@
 #' \code{unnest_dt} will automatically remove other list-columns except for the
 #' target list-columns (which would be unnested later). Also, \code{squeeze_dt} is
 #' designed to merge multiple columns into list column.
-#' @param data data.table, nested or unnested
+#' @param .data data.table, nested or unnested
 #' @param ... The variables for nest group(for \code{nest_dt}),
 #' columns to be nested(for \code{squeeze_dt} and \code{chop_dt}),
 #' or column(s) to be unnested(for \code{unnest_dt}).
@@ -77,8 +77,8 @@
 
 # nest by which columns?
 
-nest_dt = function(data,...,mcols = NULL){
-  dt = as_dt(data)
+nest_dt = function(.data,...,mcols = NULL){
+  dt = as_dt(.data)
   if(is.null(mcols)) nest_by(dt,...)
   else{
     names(dt) %>%
@@ -97,8 +97,8 @@ nest_dt = function(data,...,mcols = NULL){
   }
 }
 
-nest_by = function(data,...){
-  dt = as_dt(data)
+nest_by = function(.data,...){
+  dt = as_dt(.data)
   dt[0] %>% select_dt(...) %>% names() %>%
     str_c(collapse = ",")-> group
   eval(parse(text = str_glue("dt[,.(ndt = list(.SD)),by = .({group})]")))
@@ -109,8 +109,8 @@ nest_by = function(data,...){
 
 # unnest which column(s)?
 
-unnest_dt = function(data,...){
-  dt = as_dt(data)
+unnest_dt = function(.data,...){
+  dt = as_dt(.data)
   col_names = dt[0] %>% select_dt(...) %>% names()
   if(length(col_names) == 1) unnest_col(dt,...)
   else
@@ -118,8 +118,8 @@ unnest_dt = function(data,...){
     Reduce(x = ., f = function(x,y) merge(x,y))
 }
 
-unnest_col = function(data,...){
-  dt = as_dt(data)
+unnest_col = function(.data,...){
+  dt = as_dt(.data)
   col_name = dt[0] %>% select_dt(...) %>% names()
   lapply(dt,class) -> dt_class
   names(subset(dt_class,dt_class != "list")) -> valid_col_names
@@ -140,8 +140,8 @@ unnest_col = function(data,...){
 
 # nest which columns?
 
-squeeze_dt = function(data,...){
-  dt = as_dt(data)
+squeeze_dt = function(.data,...){
+  dt = as_dt(.data)
   dt %>% select_dt(...) %>%
     setNames(NULL) %>%
     apply(1,list) %>%
@@ -151,8 +151,8 @@ squeeze_dt = function(data,...){
 
 #' @rdname nest
 #' @export
-chop_dt = function(data,...){
-  dt = as_dt(data)
+chop_dt = function(.data,...){
+  dt = as_dt(.data)
   dt[0] %>% select_dt(...) %>% names() -> data_cols
   setdiff(names(dt),data_cols) -> group_cols
   group_cols %>%
@@ -164,8 +164,8 @@ chop_dt = function(data,...){
 
 #' @rdname nest
 #' @export
-unchop_dt = function(data,...){
-  dt = as_dt(data)
+unchop_dt = function(.data,...){
+  dt = as_dt(.data)
   col_names = dt[0] %>% select_dt(...) %>% names()
   group_names = setdiff(names(dt),col_names)
   if(length(col_names) == 1) unnest_col(dt,...)

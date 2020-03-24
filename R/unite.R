@@ -2,7 +2,7 @@
 #' @title Unite multiple columns into one by pasting strings together
 #' @description Convenience function to paste together multiple columns into one.
 #' Analogous to \code{tidyr::unite}.
-#' @param data A data frame.
+#' @param .data A data frame.
 #' @param united_colname The name of the new column, string only.
 #' @param ... A selection of columns. If want to select all columns,
 #' pass "" to the parameter. See example.
@@ -27,10 +27,10 @@
 #' iris %>% unite_dt("merged_name","")
 
 #' @export
-unite_dt = function(data,united_colname,...,
+unite_dt = function(.data,united_colname,...,
                     sep = "_",remove = TRUE,
                     na.rm = FALSE){
-  dt = as_dt(data)
+  dt = as_dt(.data)
 
   dt %>%
     select_dt(...) -> selected_cols

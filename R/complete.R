@@ -2,7 +2,7 @@
 #' @title Complete a data frame with missing combinations of data
 #' @description Turns implicit missing values into explicit missing values.
 #' Analogous function for \code{complete} function in \pkg{tidyr}.
-#' @param data data.frame
+#' @param .data data.frame
 #' @param ... Specification of columns to expand.The selection of columns is
 #' supported by the flexible \code{\link[tidyfst]{select_dt}}.
 #' To find all unique combinations of provided columns, including those not found in the data,
@@ -33,8 +33,8 @@
 #' df %>% complete_dt(item_id=1:3,group=1:3,item_name=c("a","b","c"))
 
 #' @export
-complete_dt = function(data,...,fill = NA){
-  dt = as_dt(data)
+complete_dt = function(.data,...,fill = NA){
+  dt = as_dt(.data)
 
   if(
     substitute(list(...)) %>%
@@ -62,48 +62,5 @@ complete_dt = function(data,...,fill = NA){
     replace_na_dt(to=fill) %>%
     unique()
 }
-
-# speed test
-# sys_time_print(
-#   list(a=1:2e5,b = 2:4,c = 3:9) %>%
-#     lapply(unique) %>%
-#     deparse() %>%
-#     str_replace("list","CJ") %>%
-#     parse(text = .) %>%
-#     eval() -> a
-# )
-#
-# sys_time_print(
-#   list(a=1:2e5,b = 2:4,c = 3:9) %>%
-#     lapply(unique) %>%
-#     expand.grid() -> b
-# )
-
-# past codes
-# complete_dt = function(data,...,fill = NA){
-#   dt = as_dt(data)
-#
-#   if(
-#     substitute(list(...)) %>%
-#     deparse() %>%
-#     str_detect("=")
-#   ) {
-#     suppressWarnings(data.table(...)) %>%
-#       lapply(unique) %>%
-#       expand.grid() %>%
-#       as.data.table(key=names(.)) %>%
-#       merge(setorder(dt),all = TRUE) %>%
-#       replace_na_dt(to=fill) %>%
-#       unique()
-#   }else
-#     setorder(dt)%>%
-#     select_dt(...) %>%
-#     lapply(unique) %>%
-#     expand.grid() %>%
-#     as.data.table(key = names(.)) %>%
-#     merge(dt,all = TRUE) %>%
-#     replace_na_dt(to=fill) %>%
-#     unique()
-# }
 
 
