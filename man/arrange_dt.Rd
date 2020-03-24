@@ -4,13 +4,13 @@
 \alias{arrange_dt}
 \title{Arrange entries in data.frame}
 \usage{
-arrange_dt(data, ...)
+arrange_dt(.data, ...)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
-\item{...}{List of variables or name-value pairs of summary/modifications
-functions.}
+\item{...}{Arrange by what group? Minus symbol means arrange by
+descending order.}
 }
 \value{
 data.table

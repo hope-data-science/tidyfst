@@ -5,12 +5,12 @@
 \alias{select_mix}
 \title{Select column from data.frame}
 \usage{
-select_dt(data, ..., cols = NULL, negate = FALSE)
+select_dt(.data, ..., cols = NULL, negate = FALSE)
 
-select_mix(data, ..., rm.dup = TRUE)
+select_mix(.data, ..., rm.dup = TRUE)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{List of variables or name-value pairs of summary/modifications
 functions. It can also recieve conditional function to select columns.
@@ -18,7 +18,7 @@ When starts with `-`(minus symbol) or `!`, return the negative columns.}
 
 \item{cols}{(Optional)A numeric or character vector.}
 
-\item{negate}{Applicable when regular expression is used.
+\item{negate}{Applicable when regular expression and "cols" is used.
 If \code{TRUE}, return the non-matched pattern. Default uses \code{FALSE}.}
 
 \item{rm.dup}{Should duplicated columns be removed? Defaults to \code{TRUE}.}
@@ -48,6 +48,7 @@ iris \%>\% select_dt(!"Se")
 iris \%>\% select_dt("Pe",negate = TRUE)
 iris \%>\% select_dt("Pe|Sp")
 iris \%>\% select_dt(cols = 2:3)
+iris \%>\% select_dt(cols = 2:3,negate = TRUE)
 iris \%>\% select_dt(cols = names(iris)[2:3])
 
 iris \%>\% select_dt(is.factor)

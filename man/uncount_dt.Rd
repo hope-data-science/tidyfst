@@ -4,10 +4,10 @@
 \alias{uncount_dt}
 \title{"Uncount" a data frame}
 \usage{
-uncount_dt(data, wt, .remove = TRUE)
+uncount_dt(.data, wt, .remove = TRUE)
 }
 \arguments{
-\item{data}{A data.frame}
+\item{.data}{A data.frame}
 
 \item{wt}{A vector of weights.}
 

@@ -4,10 +4,10 @@
 \alias{unite_dt}
 \title{Unite multiple columns into one by pasting strings together}
 \usage{
-unite_dt(data, united_colname, ..., sep = "_", remove = TRUE, na.rm = FALSE)
+unite_dt(.data, united_colname, ..., sep = "_", remove = TRUE, na.rm = FALSE)
 }
 \arguments{
-\item{data}{A data frame.}
+\item{.data}{A data frame.}
 
 \item{united_colname}{The name of the new column, string only.}
 

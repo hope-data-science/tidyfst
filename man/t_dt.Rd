@@ -4,10 +4,10 @@
 \alias{t_dt}
 \title{Efficient transpose of data.frame}
 \usage{
-t_dt(data)
+t_dt(.data)
 }
 \arguments{
-\item{data}{A data.frame/data.table/tibble}
+\item{.data}{A data.frame/data.table/tibble}
 }
 \value{
 A transposed data.frame

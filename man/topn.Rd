@@ -6,14 +6,14 @@
 \alias{top_frac_dt}
 \title{Select top (or bottom) n rows (by value)}
 \usage{
-top_dt(data, wt = NULL, n = NULL, prop = NULL)
+top_dt(.data, wt = NULL, n = NULL, prop = NULL)
 
-top_n_dt(data, n, wt = NULL)
+top_n_dt(.data, n, wt = NULL)
 
-top_frac_dt(data, prop, wt = NULL)
+top_frac_dt(.data, prop, wt = NULL)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{wt}{(Optional). The variable to use for ordering.
 If not specified, defaults to the last variable in the data.frame.}

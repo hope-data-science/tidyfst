@@ -4,10 +4,10 @@
 \alias{distinct_dt}
 \title{Select distinct/unique rows in data.frame}
 \usage{
-distinct_dt(data, ..., .keep_all = FALSE)
+distinct_dt(.data, ..., .keep_all = FALSE)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{Optional variables to use when determining uniqueness.
 If there are multiple rows for a given combination of inputs,

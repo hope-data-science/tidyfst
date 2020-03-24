@@ -4,10 +4,10 @@
 \alias{dummy_dt}
 \title{Fast creation of dummy variables}
 \usage{
-dummy_dt(data, ..., longname = TRUE)
+dummy_dt(.data, ..., longname = TRUE)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{Columns you want to create dummy variables from.
 Very flexible, find in the examples.}

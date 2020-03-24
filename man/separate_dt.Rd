@@ -6,7 +6,7 @@
 a regular expression separator}
 \usage{
 separate_dt(
-  data,
+  .data,
   separated_colname,
   into,
   sep = "[^[:alnum:]]+",
@@ -14,7 +14,7 @@ separate_dt(
 )
 }
 \arguments{
-\item{data}{A data frame.}
+\item{.data}{A data frame.}
 
 \item{separated_colname}{Column name, string only.}
 
@@ -31,6 +31,8 @@ Analogous to \code{tidyr::separate}, but only split into two columns only.
 }
 \examples{
 df <- data.frame(x = c(NA, "a.b", "a.d", "b.c"))
+df \%>\% separate_dt(x, c("A", "B"))
+# equals to
 df \%>\% separate_dt("x", c("A", "B"))
 }
 \seealso{

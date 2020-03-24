@@ -5,19 +5,19 @@
 \alias{add_count_dt}
 \title{Count observations by group}
 \usage{
-count_dt(data, ..., sort = TRUE, name = "n")
+count_dt(.data, ..., sort = TRUE, .name = "n")
 
-add_count_dt(data, ..., name = "n")
+add_count_dt(.data, ..., .name = "n")
 }
 \arguments{
-\item{data}{data.table/data.frame data.frame will be automatically converted
+\item{.data}{data.table/data.frame data.frame will be automatically converted
 to data.table.}
 
 \item{...}{variables to group by.}
 
 \item{sort}{logical. If TRUE result will be sorted in desending order by resulting variable.}
 
-\item{name}{character. Name of resulting variable. Default uses "n".}
+\item{.name}{character. Name of resulting variable. Default uses "n".}
 }
 \value{
 data.table
@@ -27,9 +27,9 @@ Analogous function for \code{count} and \code{add_count} in \pkg{dplyr}.
 }
 \examples{
 iris \%>\% count_dt(Species)
-iris \%>\% count_dt(Species,name = "count")
+iris \%>\% count_dt(Species,.name = "count")
 iris \%>\% add_count_dt(Species)
-iris \%>\% add_count_dt(Species,name = "N")
+iris \%>\% add_count_dt(Species,.name = "N")
 
 mtcars \%>\% count_dt(cyl,vs)
 mtcars \%>\% add_count_dt(cyl,vs)

@@ -4,10 +4,10 @@
 \alias{pull_dt}
 \title{Pull out a single variable}
 \usage{
-pull_dt(data, col)
+pull_dt(.data, col)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{col}{A name of column or index (should be positive).}
 }

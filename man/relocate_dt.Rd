@@ -4,10 +4,10 @@
 \alias{relocate_dt}
 \title{Change column order}
 \usage{
-relocate_dt(data, ..., how = "first", where = NULL)
+relocate_dt(.data, ..., how = "first", where = NULL)
 }
 \arguments{
-\item{data}{A data.frame}
+\item{.data}{A data.frame}
 
 \item{...}{Columns to move}
 

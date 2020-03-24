@@ -4,10 +4,10 @@
 \alias{filter_dt}
 \title{Filter entries in data.frame}
 \usage{
-filter_dt(data, ...)
+filter_dt(.data, ...)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{List of variables or name-value pairs of summary/modifications
 functions.}

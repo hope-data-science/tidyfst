@@ -14,6 +14,7 @@
 \alias{fsetequal}
 \alias{frollapply}
 \alias{fcoalesce}
+\alias{uniqueN}
 \alias{rbindlist}
 \alias{tables}
 \alias{like}
@@ -26,7 +27,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{data.table}{\code{\link[data.table]{as.data.table}}, \code{\link[data.table]{copy}}, \code{\link[data.table]{data.table}}, \code{\link[data.table]{fcoalesce}}, \code{\link[data.table]{fintersect}}, \code{\link[data.table]{fread}}, \code{\link[data.table]{frollapply}}, \code{\link[data.table]{fsetdiff}}, \code{\link[data.table]{fsetequal}}, \code{\link[data.table]{funion}}, \code{\link[data.table]{fwrite}}, \code{\link[data.table]{key}}, \code{\link[data.table]{like}}, \code{\link[data.table]{rbindlist}}, \code{\link[data.table]{tables}}}
+  \item{data.table}{\code{\link[data.table]{as.data.table}}, \code{\link[data.table]{copy}}, \code{\link[data.table]{data.table}}, \code{\link[data.table]{fcoalesce}}, \code{\link[data.table]{fintersect}}, \code{\link[data.table]{fread}}, \code{\link[data.table]{frollapply}}, \code{\link[data.table]{fsetdiff}}, \code{\link[data.table]{fsetequal}}, \code{\link[data.table]{funion}}, \code{\link[data.table]{fwrite}}, \code{\link[data.table]{key}}, \code{\link[data.table]{like}}, \code{\link[data.table]{rbindlist}}, \code{\link[data.table]{tables}}, \code{\link[data.table]{uniqueN}}}
 
   \item{stringr}{\code{\link[stringr]{\%>\%}}}
 }}

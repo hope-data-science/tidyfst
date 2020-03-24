@@ -4,10 +4,10 @@
 \alias{complete_dt}
 \title{Complete a data frame with missing combinations of data}
 \usage{
-complete_dt(data, ..., fill = NA)
+complete_dt(.data, ..., fill = NA)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{Specification of columns to expand.The selection of columns is
 supported by the flexible \code{\link[tidyfst]{select_dt}}.

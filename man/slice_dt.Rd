@@ -4,10 +4,10 @@
 \alias{slice_dt}
 \title{Slice rows in data.frame}
 \usage{
-slice_dt(data, ...)
+slice_dt(.data, ...)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{Integer row values.}
 }

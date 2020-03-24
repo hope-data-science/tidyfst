@@ -2,31 +2,40 @@
 % Please edit documentation in R/missing.R
 \name{drop_na_dt}
 \alias{drop_na_dt}
-\alias{drop_all_na_cols}
-\alias{drop_all_na_rows}
+\alias{delete_na_cols}
+\alias{delete_na_rows}
 \alias{replace_na_dt}
 \alias{fill_na_dt}
+\alias{shift_fill}
 \title{Dump, replace and fill missing values in data.frame}
 \usage{
-drop_na_dt(data, ...)
+drop_na_dt(.data, ...)
 
-drop_all_na_cols(data)
+delete_na_cols(.data, prop = NULL, n = NULL)
 
-drop_all_na_rows(data)
+delete_na_rows(.data, prop = NULL, n = NULL)
 
-replace_na_dt(data, ..., to)
+replace_na_dt(.data, ..., to)
 
-fill_na_dt(data, ..., direction = c("down", "up"))
+fill_na_dt(.data, ..., direction = "down")
+
+shift_fill(x, direction = "down")
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{Colunms to be replaced or filled. If not specified, use all columns.}
+
+\item{prop}{If proportion of NAs is larger than or equal to "prop", would be deleted.}
+
+\item{n}{If number of NAs is larger than or equal to "n", would be deleted.}
 
 \item{to}{What value should NA replace by?}
 
 \item{direction}{Direction in which to fill missing values.
 Currently either "down" (the default) or "up".}
+
+\item{x}{A vector with missing values to be filled.}
 }
 \value{
 data.table
@@ -36,8 +45,16 @@ Analogous function for \code{drop_na}, \code{replace_na} and
 \code{fill} in \pkg{tidyr}, but with a different API.
 }
 \details{
-\code{drop_all_na_cols} could drop the columns with only NAs,
-while \code{drop_all_na_rows} could drop the rows with only NAs.
+\code{drop_na_dt} drops the entries with NAs in specific columns.
+\code{fill_na_dt} fill NAs with observations ahead ("down") or below ("up"),
+which is also known as last observation carried forward (LOCF) and
+next observation carried backward(NOCB).
+
+\code{delete_na_cols} could drop the columns with NA proportion larger
+than or equal to "prop" or NA number larger than or equal to "n",
+\code{delete_na_rows} works alike but deals with rows.
+
+\code{shift_fill} could fill a vector with missing values.
 }
 \examples{
 df <- data.table(x = c(1, 2, NA), y = c("a", NA, "b"))
@@ -54,8 +71,29 @@ df <- data.table(x = c(1, 2, NA), y = c("a", NA, "b"))
  df \%>\% fill_na_dt(x)
  df \%>\% fill_na_dt() # not specified, fill all columns
  df \%>\% fill_na_dt(y,direction = "up")
+
+x = data.frame(x = c(1, 2, NA, 3), y = c(NA, NA, 4, 5),z = rep(NA,4))
+x
+x \%>\% delete_na_cols()
+x \%>\% delete_na_cols(prop = 0.75)
+x \%>\% delete_na_cols(prop = 0.5)
+x \%>\% delete_na_cols(prop = 0.24)
+x \%>\% delete_na_cols(n = 2)
+
+x \%>\% delete_na_rows(prop = 0.6)
+x \%>\% delete_na_rows(n = 2)
+
+# shift_fill
+y = c("a",NA,"b",NA,"c")
+
+shift_fill(y) # equals to
+shift_fill(y,"down")
+
+shift_fill(y,"up")
 }
 \references{
+https://stackoverflow.com/questions/23597140/how-to-find-the-percentage-of-nas-in-a-data-frame
+
 https://stackoverflow.com/questions/2643939/remove-columns-from-dataframe-where-all-values-are-na
 
 https://stackoverflow.com/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table

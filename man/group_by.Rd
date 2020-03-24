@@ -5,17 +5,18 @@
 \alias{group_exe_dt}
 \title{Group by variable(s) and implement operations}
 \usage{
-group_by_dt(data, ..., cols = NULL, inplace = FALSE)
+group_by_dt(.data, ..., cols = NULL, inplace = FALSE)
 
-group_exe_dt(data, ...)
+group_exe_dt(.data, ...)
 }
 \arguments{
-\item{data}{A data frame}
+\item{.data}{A data frame}
 
 \item{...}{Variables to group by for \code{group_by_dt},
 namely the columns to sort by. Do not quote the column names.
 Any data manipulation arguments that could be
-implemented on a data.frame for \code{group_exe_dt}.}
+implemented on a data.frame for \code{group_exe_dt}.
+It can receive what \code{select_dt} receives.}
 
 \item{cols}{A character vector of column names to group by.}
 
@@ -60,5 +61,17 @@ a \%>\%
   group_exe_dt(
     head(3) \%>\%
       summarise_dt(sum = sum(Sepal.Length))
+  )
+
+mtcars \%>\%
+  group_by_dt("cyl|am") \%>\%
+  group_exe_dt(
+    summarise_dt(mpg_sum = sum(mpg))
+  )
+# equals to
+mtcars \%>\%
+  group_by_dt(cols = c("cyl","am")) \%>\%
+  group_exe_dt(
+    summarise_dt(mpg_sum = sum(mpg))
   )
 }

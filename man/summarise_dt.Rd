@@ -3,26 +3,40 @@
 \name{summarise_dt}
 \alias{summarise_dt}
 \alias{summarize_dt}
+\alias{summarise_vars}
+\alias{summarize_vars}
 \title{Summarise columns to single values}
 \usage{
-summarise_dt(data, ..., by = NULL)
+summarise_dt(.data, ..., by = NULL)
 
-summarize_dt(data, ..., by = NULL)
+summarize_dt(.data, ..., by = NULL)
+
+summarise_vars(.data, .cols = NULL, .func, ...)
+
+summarize_vars(.data, .cols = NULL, .func, ...)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{List of variables or name-value pairs of summary/modifications
-functions.}
+functions for \code{summarise_dt}.Additional parameters to be passed to
+ parameter '.func' in \code{summarise_vars}.}
 
 \item{by}{unquoted name of grouping variable of list of unquoted names of
 grouping variables. For details see \link[data.table]{data.table}}
+
+\item{.cols}{Columns to be summarised.}
+
+\item{.func}{Function to be run within each column, should return a value or vectors with same length.}
 }
 \value{
 data.table
 }
 \description{
 Analogous function for \code{summarise}  in \pkg{dplyr}.
+}
+\details{
+\code{summarise_vars} could complete summarise on specific columns.
 }
 \examples{
 iris \%>\% summarise_dt(avg = mean(Sepal.Length))
@@ -32,8 +46,10 @@ mtcars \%>\% summarise_dt(avg = mean(hp),by = .(cyl,vs))
 # the data.table way
 mtcars \%>\% summarise_dt(cyl_n = .N, by = .(cyl, vs)) # `.`` is short for list
 
-
-
+iris \%>\% summarise_vars(is.numeric,min)
+iris \%>\% summarise_vars(-is.factor,min)
+iris \%>\% summarise_vars(1:4,min)
+iris \%>\% summarise_vars(.func = as.character)
 }
 \seealso{
 \code{\link[dplyr]{summarise}}

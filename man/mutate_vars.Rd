@@ -5,12 +5,12 @@
 \alias{mutate_vars}
 \title{Conditional update of columns in data.table}
 \usage{
-mutate_when(data, when, ...)
+mutate_when(.data, when, ...)
 
-mutate_vars(data, .cols = NULL, .func, ...)
+mutate_vars(.data, .cols = NULL, .func, ...)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{when}{An object which can be coerced to logical mode}
 
@@ -38,6 +38,7 @@ iris[3:8,] \%>\%
 
 iris \%>\% mutate_vars("Pe",scale)
 iris \%>\% mutate_vars(is.numeric,scale)
+iris \%>\% mutate_vars(-is.factor,scale)
 iris \%>\% mutate_vars(1:2,scale)
 iris \%>\% mutate_vars(.func = as.character)
 }

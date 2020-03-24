@@ -5,15 +5,17 @@
 \alias{transmute_dt}
 \title{Mutate columns in data.frame}
 \usage{
-mutate_dt(data, ...)
+mutate_dt(.data, ..., by)
 
-transmute_dt(data, ...)
+transmute_dt(.data, ..., by)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{List of variables or name-value pairs of summary/modifications
 functions.}
+
+\item{by}{(Optional) Mutate by what group?}
 }
 \value{
 data.table
@@ -25,6 +27,8 @@ Analogous function for \code{mutate} and \code{transmute} in \pkg{dplyr}.
 
 iris \%>\% mutate_dt(one = 1,Sepal.Length = Sepal.Length + 1)
 iris \%>\% transmute_dt(one = 1,Sepal.Length = Sepal.Length + 1)
+# add group number with symbol `.GRP`
+iris \%>\% mutate_dt(id = 1:.N,grp = .GRP,by = Species)
 
 }
 \seealso{

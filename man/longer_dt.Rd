@@ -4,25 +4,19 @@
 \alias{longer_dt}
 \title{Pivot data from wide to long}
 \usage{
-longer_dt(
-  data,
-  ...,
-  gathered_name = "name",
-  gathered_value = "value",
-  na.rm = FALSE
-)
+longer_dt(.data, ..., name = "name", value = "value", na.rm = FALSE)
 }
 \arguments{
-\item{data}{A data.frame}
+\item{.data}{A data.frame}
 
 \item{...}{Pattern for unchanged group or unquoted names. Pattern can accept
 regular expression to match column names. It can recieve what \code{select_dt}
 recieves.}
 
-\item{gathered_name}{name for the measured variable names column.
+\item{name}{Name for the measured variable names column.
 The default name is 'name'.}
 
-\item{gathered_value}{name for the molten data values column(s).
+\item{value}{Name for the molten data values column(s).
 The default name is 'value'.}
 
 \item{na.rm}{If \code{TRUE}, \code{NA} values will be removed from the molten data.}
@@ -58,9 +52,9 @@ stocks \%>\%
 
   billboard \%>\%
     longer_dt(
-      "wk",negate = TRUE,
-      gathered_name = "week",
-      gathered_value = "rank",
+      -"wk",
+      name = "week",
+      value = "rank",
       na.rm = TRUE
     )
 
@@ -68,8 +62,8 @@ stocks \%>\%
   billboard \%>\%
     longer_dt(
       artist,track,date.entered,
-      gathered_name = "week",
-      gathered_value = "rank",
+      name = "week",
+      value = "rank",
       na.rm = TRUE
     )
 
@@ -77,8 +71,8 @@ stocks \%>\%
   billboard \%>\%
     longer_dt(
       1:3,
-      gathered_name = "week",
-      gathered_value = "rank",
+      name = "week",
+      value = "rank",
       na.rm = TRUE
     )
 }

@@ -6,14 +6,14 @@
 \alias{sample_frac_dt}
 \title{Sample n rows from a table}
 \usage{
-sample_dt(data, n = NULL, prop = NULL, replace = FALSE)
+sample_dt(.data, n = NULL, prop = NULL, replace = FALSE)
 
-sample_n_dt(data, size, replace = FALSE)
+sample_n_dt(.data, size, replace = FALSE)
 
-sample_frac_dt(data, size, replace = FALSE)
+sample_frac_dt(.data, size, replace = FALSE)
 }
 \arguments{
-\item{data}{A data.frame}
+\item{.data}{A data.frame}
 
 \item{n}{Number of rows to select}
 

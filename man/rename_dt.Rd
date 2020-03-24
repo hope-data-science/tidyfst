@@ -4,10 +4,10 @@
 \alias{rename_dt}
 \title{Rename column in data.frame}
 \usage{
-rename_dt(data, ...)
+rename_dt(.data, ...)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{...}{staments of rename, e.g. `sl = Sepal.Length` means the column named
 as "Sepal.Length" would be renamed to "sl"}
@@ -22,6 +22,7 @@ Analogous function for \code{rename} in \pkg{dplyr}
 iris \%>\%
   rename_dt(sl = Sepal.Length,sw = Sepal.Width) \%>\%
   head()
+
 }
 \seealso{
 \code{\link[dplyr]{rename}}

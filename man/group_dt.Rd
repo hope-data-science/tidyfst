@@ -5,12 +5,12 @@
 \alias{rowwise_dt}
 \title{Data manipulation within groups}
 \usage{
-group_dt(data, by = NULL, ...)
+group_dt(.data, by = NULL, ...)
 
-rowwise_dt(data, ...)
+rowwise_dt(.data, ...)
 }
 \arguments{
-\item{data}{A data.frame}
+\item{.data}{A data.frame}
 
 \item{by}{Variables to group by,unquoted name of grouping variable of list of unquoted names of grouping variables.}
 

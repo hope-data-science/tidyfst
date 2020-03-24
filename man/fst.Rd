@@ -41,6 +41,11 @@ An API for reading fst file as data.table.
   parse_fst("iris_test.fst") -> ft
   ft
 
+  class(ft)
+  lapply(ft,class)
+  names(ft)
+  dim(ft)
+
   # get the data by query
   ft \%>\% slice_fst(1:3)
   ft \%>\% slice_fst(c(1,3))

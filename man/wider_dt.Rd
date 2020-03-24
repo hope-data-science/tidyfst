@@ -4,30 +4,22 @@
 \alias{wider_dt}
 \title{Pivot data from long to wide}
 \usage{
-wider_dt(
-  data,
-  ...,
-  name_to_spread,
-  value_to_spread = NULL,
-  fun = identity,
-  fill = NA
-)
+wider_dt(.data, ..., name, value = NULL, fun = NULL, fill = NA)
 }
 \arguments{
-\item{data}{data.table}
+\item{.data}{A data.frame}
 
 \item{...}{Optional. The unchanged group in the transformation.
 Could use integer vector, could receive what \code{select_dt} receives.}
 
-\item{name_to_spread}{Chracter.One column name of class to spread}
+\item{name}{Chracter.One column name of class to spread}
 
-\item{value_to_spread}{Chracter.One column name of value to spread.
+\item{value}{Chracter.One column name of value to spread.
 If \code{NULL}, use all other variables.}
 
 \item{fun}{Should the data be aggregated before casting?
-If the formula doesn't identify a single observation for each cell,
-then aggregation defaults to \code{length} with a message.
-To use multiple aggregation functions, pass a list.}
+Defaults to \code{NULL}, which do not carry out aggregation.
+If a function is provided, with aggregated by this function.}
 
 \item{fill}{Value with which to fill missing cells. Default uses \code{NA}.}
 }
@@ -38,7 +30,7 @@ data.table
 Analogous function for \code{pivot_wider} in \pkg{tidyr}.
 }
 \details{
-The parameter of `name_to_spread` and `value_to_spread` should always
+The parameter of `name` and `value` should always
 be provided and should be explicit called (with the parameter names attached).
 }
 \examples{
@@ -54,14 +46,14 @@ be provided and should be explicit called (with the parameter names attached).
 
  longer_stocks \%>\%
    wider_dt("time",
-            name_to_spread = "name",
-            value_to_spread = "value")
+            name = "name",
+            value = "value")
 
  longer_stocks \%>\%
    mutate_dt(one = 1) \%>\%
    wider_dt("time",
-            name_to_spread = "name",
-            value_to_spread = "one")
+            name = "name",
+            value = "one")
 
 ## using "fun" parameter for aggregation
 DT <- data.table(v1 = rep(1:2, each = 6),
@@ -71,8 +63,8 @@ DT <- data.table(v1 = rep(1:2, each = 6),
 ## for each combination of (v1, v2), add up all values of v4
 DT \%>\%
   wider_dt(v1,v2,
-           value_to_spread = "v4",
-           name_to_spread = ".",
+           value = "v4",
+           name = ".",
            fun = sum)
 }
 \seealso{

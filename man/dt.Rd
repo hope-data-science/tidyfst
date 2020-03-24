@@ -5,12 +5,12 @@
 \alias{as_dt}
 \title{Short cut to data.table}
 \usage{
-in_dt(data, ...)
+in_dt(.data, ...)
 
-as_dt(data)
+as_dt(.data)
 }
 \arguments{
-\item{data}{A data.frame}
+\item{.data}{A data.frame}
 
 \item{...}{Recieve \code{B} in data.table's \code{A[B]} syntax.}
 }

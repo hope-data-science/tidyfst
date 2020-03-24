@@ -8,18 +8,18 @@
 \alias{unchop_dt}
 \title{Nest and unnest}
 \usage{
-nest_dt(data, ..., mcols = NULL)
+nest_dt(.data, ..., mcols = NULL)
 
-unnest_dt(data, ...)
+unnest_dt(.data, ...)
 
-squeeze_dt(data, ...)
+squeeze_dt(.data, ...)
 
-chop_dt(data, ...)
+chop_dt(.data, ...)
 
-unchop_dt(data, ...)
+unchop_dt(.data, ...)
 }
 \arguments{
-\item{data}{data.table, nested or unnested}
+\item{.data}{data.table, nested or unnested}
 
 \item{...}{The variables for nest group(for \code{nest_dt}),
 columns to be nested(for \code{squeeze_dt} and \code{chop_dt}),
