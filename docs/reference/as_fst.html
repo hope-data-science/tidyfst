@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Objects exported from other packages — reexports • tidyfst</title>
+<title>Save a data.frame as a fst table — as_fst • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,15 +42,9 @@
 
 
 
-<meta property="og:title" content="Objects exported from other packages — reexports" />
-<meta property="og:description" content="These objects are imported from other packages. Follow the links
-below to see their documentation.
-
-  data.tableas.data.table, copy, data.table, fcoalesce, fintersect, fread, frollapply, fsetdiff, fsetequal, funion, fwrite, key, like, rbindlist, tables, uniqueN
-
-  stringr%&amp;gt;%
-
-" />
+<meta property="og:title" content="Save a data.frame as a fst table — as_fst" />
+<meta property="og:description" content="This function first export the data.frame to a temporal file,
+and then parse it back as a fst table (class name is &quot;fst_table&quot;)." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -153,29 +147,45 @@ below to see their documentation.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Objects exported from other packages</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/_global_setting.R'><code>R/_global_setting.R</code></a></small>
-    <div class="hidden name"><code>reexports.Rd</code></div>
+    <h1>Save a data.frame as a fst table</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/as_fst.R'><code>R/as_fst.R</code></a></small>
+    <div class="hidden name"><code>as_fst.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These objects are imported from other packages. Follow the links
-below to see their documentation.</p>
-<dl class='dl-horizontal'>
-  <dt>data.table</dt><dd><p><code><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/copy.html'>copy</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/coalesce.html'>fcoalesce</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setops.html'>fintersect</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>fread</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/froll.html'>frollapply</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setops.html'>fsetdiff</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setops.html'>fsetequal</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setops.html'>funion</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fwrite.html'>fwrite</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setkey.html'>key</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/like.html'>like</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html'>rbindlist</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/tables.html'>tables</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/duplicated.html'>uniqueN</a></code></p></dd>
-
-  <dt>stringr</dt><dd><p><code>%&gt;%</code></p></dd>
-
-</dl>
+    <p>This function first export the data.frame to a temporal file,
+and then parse it back as a fst table (class name is "fst_table").</p>
     </div>
 
+    <pre class="usage"><span class='fu'>as_fst</span>(<span class='no'>.data</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>.data</th>
+      <td><p>A data.frame</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>An object of class <code>fst_table</code></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+  <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+    <span class='fu'>as_fst</span>() <span class='kw'>-&gt;</span> <span class='no'>iris_fst</span>
+  <span class='no'>iris_fst</span>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

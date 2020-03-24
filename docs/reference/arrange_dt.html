@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -101,6 +101,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -152,19 +155,19 @@
     <p>Analogous function for <code>arrange</code> in <span class="pkg">dplyr</span>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>arrange_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>arrange_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
+      <th>.data</th>
       <td><p>data.frame</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>List of variables or name-value pairs of summary/modifications
-functions.</p></td>
+      <td><p>Arrange by what group? Minus symbol means arrange by
+descending order.</p></td>
     </tr>
     </table>
 

@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -101,6 +101,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -192,10 +195,15 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='kw pkg'>fst</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.fstpackage.org/reference/write_fst.html'>write_fst</a></span>(<span class='no'>iris</span>,<span class='st'>"iris_test.fst"</span>)
+  <span class='kw pkg'>fst</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fst/man/write_fst.html'>write_fst</a></span>(<span class='no'>iris</span>,<span class='st'>"iris_test.fst"</span>)
   <span class='co'># parse the file but not reading it</span>
   <span class='fu'>parse_fst</span>(<span class='st'>"iris_test.fst"</span>) <span class='kw'>-&gt;</span> <span class='no'>ft</span>
   <span class='no'>ft</span>
+
+  <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>ft</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>ft</span>,<span class='no'>class</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>ft</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>ft</span>)
 
   <span class='co'># get the data by query</span>
   <span class='no'>ft</span> <span class='kw'>%&gt;%</span> <span class='fu'>slice_fst</span>(<span class='fl'>1</span>:<span class='fl'>3</span>)

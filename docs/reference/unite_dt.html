@@ -78,7 +78,7 @@ Analogous to tidyr::unite." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -102,6 +102,9 @@ Analogous to tidyr::unite." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -154,13 +157,13 @@ Analogous to tidyr::unite." />
 Analogous to <code><a href='https://tidyr.tidyverse.org/reference/unite.html'>tidyr::unite</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>unite_dt</span>(<span class='no'>data</span>, <span class='no'>united_colname</span>, <span class='no'>...</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>, <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>unite_dt</span>(<span class='no'>.data</span>, <span class='no'>united_colname</span>, <span class='no'>...</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>, <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
+      <th>.data</th>
       <td><p>A data frame.</p></td>
     </tr>
     <tr>

@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -62,6 +62,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -122,7 +125,7 @@
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(data.table)</a>
 <a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(flights)</a></code></pre></div>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(flights)</a></code></pre></div>
 <div id="filter-rows-with-filter_dt" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filter-rows-with-filter_dt" class="anchor"></a>Filter rows with <code>filter_dt()</code>
@@ -203,7 +206,7 @@
 <a class="sourceLine" id="cb16-5" title="5"><span class="co">#   flights = n()</span></a>
 <a class="sourceLine" id="cb16-6" title="6"><span class="co"># )</span></a>
 <a class="sourceLine" id="cb16-7" title="7"></a>
-<a class="sourceLine" id="cb16-8" title="8"><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(flights,<span class="dt">planes =</span> <span class="kw">uniqueN</span>(tailnum),<span class="dt">flights =</span> .N,<span class="dt">by =</span> dest) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-8" title="8"><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(flights,<span class="dt">planes =</span> <span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">uniqueN</a></span>(tailnum),<span class="dt">flights =</span> .N,<span class="dt">by =</span> dest) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb16-9" title="9"><span class="st">  </span><span class="kw"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(dest)</a></code></pre></div>
 <p>If you need to group by many variables, use:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># the dplyr syntax:</span></a>
@@ -237,7 +240,7 @@
 <a class="sourceLine" id="cb18-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(data.table)</a>
 <a class="sourceLine" id="cb18-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
 <a class="sourceLine" id="cb18-4" title="4"></a>
-<a class="sourceLine" id="cb18-5" title="5">flights =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(flights) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb18-5" title="5">flights =<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(flights) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>()</a></code></pre></div>
 </div>
 <div id="subset-rows" class="section level2">
 <h2 class="hasAnchor">
@@ -369,14 +372,14 @@
 <a class="sourceLine" id="cb25-9" title="9"><span class="st">  </span><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(carrier <span class="op">==</span><span class="st"> "AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb25-10" title="10"><span class="st">  </span><span class="kw"><a href="../reference/group_dt.html">group_dt</a></span>(</a>
 <a class="sourceLine" id="cb25-11" title="11">    <span class="dt">by =</span> .(origin, dest, month),</a>
-<a class="sourceLine" id="cb25-12" title="12">    <span class="kw"><a href="../reference/all_at_if.html">at_dt</a></span>(<span class="st">"_delay"</span>,summarise_dt,mean)</a>
+<a class="sourceLine" id="cb25-12" title="12">    <span class="kw">at_dt</span>(<span class="st">"_delay"</span>,summarise_dt,mean)</a>
 <a class="sourceLine" id="cb25-13" title="13">           )</a></code></pre></div>
 <p>Let me explain what happens here, especially in <code>group_dt</code>. First filter by condition <code>carrier == "AA"</code>, then group by three variables, which are <code>origin, dest, month</code>. Last, summarise by columns with "_delay" in the column names and get the mean value of all such variables(with "_delay" in their column names). This is a very creative design, utilizing <code>.SD</code> in <em>data.table</em> and upgrade the <code>group_by</code> function in <em>dplyr</em> (because you never need to <code>ungroup</code> now, just put the group operations in the <code>group_dt</code>). And <strong>you can pipe in the group_dt function</strong>. Let’s play with it a little bit further:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb26-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(carrier <span class="op">==</span><span class="st"> "AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/group_dt.html">group_dt</a></span>(</a>
 <a class="sourceLine" id="cb26-4" title="4">    <span class="dt">by =</span> .(origin, dest, month),</a>
-<a class="sourceLine" id="cb26-5" title="5">    <span class="kw"><a href="../reference/all_at_if.html">at_dt</a></span>(<span class="st">"_delay"</span>,summarise_dt,mean) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-5" title="5">    <span class="kw">at_dt</span>(<span class="st">"_delay"</span>,summarise_dt,mean) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb26-6" title="6"><span class="st">      </span><span class="kw"><a href="../reference/mutate.html">mutate_dt</a></span>(<span class="dt">sum =</span> dep_delay <span class="op">+</span><span class="st"> </span>arr_delay)</a>
 <a class="sourceLine" id="cb26-7" title="7">           )</a></code></pre></div>
 <p>However, I don’t recommend using it if you don’t acutually need it for group computation (just start another pipe follows <code>group_dt</code>). Now let’s end with some easy examples:</p>

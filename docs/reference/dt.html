@@ -78,7 +78,7 @@ load data.table package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -102,6 +102,9 @@ load data.table package." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -154,15 +157,15 @@ load data.table package." />
 load <span class="pkg">data.table</span> package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>in_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>in_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
-<span class='fu'>as_dt</span>(<span class='no'>data</span>)</pre>
+<span class='fu'>as_dt</span>(<span class='no'>.data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
+      <th>.data</th>
       <td><p>A data.frame</p></td>
     </tr>
     <tr>
@@ -182,7 +185,7 @@ and returns a data.table. Therefore, the in place functions like <code>:=</code>
 return the results.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>as_dt</span>()</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species

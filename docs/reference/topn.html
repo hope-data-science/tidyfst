@@ -79,7 +79,7 @@ functionalities in `top_n_dt()` and `top_frac_dt()`." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -103,6 +103,9 @@ functionalities in `top_n_dt()` and `top_frac_dt()`." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -156,17 +159,17 @@ functionalities in `top_n_dt()` and `top_frac_dt()`." />
 functionalities in `top_n_dt()` and `top_frac_dt()`.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>top_dt</span>(<span class='no'>data</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>top_dt</span>(<span class='no'>.data</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>top_n_dt</span>(<span class='no'>data</span>, <span class='no'>n</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>top_n_dt</span>(<span class='no'>.data</span>, <span class='no'>n</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>top_frac_dt</span>(<span class='no'>data</span>, <span class='no'>prop</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>top_frac_dt</span>(<span class='no'>.data</span>, <span class='no'>prop</span>, <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
+      <th>.data</th>
       <td><p>data.frame</p></td>
     </tr>
     <tr>

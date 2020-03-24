@@ -76,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -100,6 +100,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -163,15 +166,15 @@
       <tr>
         
         <td>
-          <p><code><a href="all_at_if.html">all_dt()</a></code> <code><a href="all_at_if.html">at_dt()</a></code> <code><a href="all_at_if.html">if_dt()</a></code> </p>
-        </td>
-        <td><p>Wise mutate or summarise with "all-at-if"</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="arrange_dt.html">arrange_dt()</a></code> </p>
         </td>
         <td><p>Arrange entries in data.frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_fst.html">as_fst()</a></code> </p>
+        </td>
+        <td><p>Save a data.frame as a fst table</p></td>
       </tr><tr>
         
         <td>
@@ -259,7 +262,7 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="missing.html">drop_na_dt()</a></code> <code><a href="missing.html">drop_all_na_cols()</a></code> <code><a href="missing.html">drop_all_na_rows()</a></code> <code><a href="missing.html">replace_na_dt()</a></code> <code><a href="missing.html">fill_na_dt()</a></code> </p>
+          <p><code><a href="missing.html">drop_na_dt()</a></code> <code><a href="missing.html">delete_na_cols()</a></code> <code><a href="missing.html">delete_na_rows()</a></code> <code><a href="missing.html">replace_na_dt()</a></code> <code><a href="missing.html">fill_na_dt()</a></code> <code><a href="missing.html">shift_fill()</a></code> </p>
         </td>
         <td><p>Dump, replace and fill missing values in data.frame</p></td>
       </tr><tr>
@@ -307,6 +310,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="replace_dt.html">replace_dt()</a></code> </p>
+        </td>
+        <td><p>Fast value replacement in data frame</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="sample.html">sample_dt()</a></code> <code><a href="sample.html">sample_n_dt()</a></code> <code><a href="sample.html">sample_frac_dt()</a></code> </p>
         </td>
         <td><p>Sample n rows from a table</p></td>
@@ -326,9 +335,15 @@ a regular expression separator</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="set.html">set_dt()</a></code> <code><a href="set.html">mutate_ref()</a></code> </p>
+          <p><code><a href="set.html">set_in_dt()</a></code> <code><a href="set.html">set_mutate()</a></code> <code><a href="set.html">set_arrange()</a></code> <code><a href="set.html">set_rename()</a></code> <code><a href="set.html">set_relocate()</a></code> <code><a href="set.html">set_add_count()</a></code> <code><a href="set.html">set_replace_na()</a></code> <code><a href="set.html">set_fill_na()</a></code> </p>
         </td>
-        <td><p>Fast operations of data.table by reference</p></td>
+        <td><p>Fast operations of data.table by reference (II)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_dt.html">set_dt()</a></code> </p>
+        </td>
+        <td><p>Fast operations of data.table by reference (I)</p></td>
       </tr><tr>
         
         <td>
@@ -338,7 +353,7 @@ a regular expression separator</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="summarise_dt.html">summarise_dt()</a></code> <code><a href="summarise_dt.html">summarize_dt()</a></code> </p>
+          <p><code><a href="summarise_dt.html">summarise_dt()</a></code> <code><a href="summarise_dt.html">summarize_dt()</a></code> <code><a href="summarise_dt.html">summarise_vars()</a></code> <code><a href="summarise_dt.html">summarize_vars()</a></code> </p>
         </td>
         <td><p>Summarise columns to single values</p></td>
       </tr><tr>

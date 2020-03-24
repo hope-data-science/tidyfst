@@ -78,7 +78,7 @@ fill in tidyr, but with a different API." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -102,6 +102,9 @@ fill in tidyr, but with a different API." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -154,26 +157,36 @@ fill in tidyr, but with a different API." />
 <code>fill</code> in <span class="pkg">tidyr</span>, but with a different API.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>drop_na_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>drop_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
-<span class='fu'>drop_all_na_cols</span>(<span class='no'>data</span>)
+<span class='fu'>delete_na_cols</span>(<span class='no'>.data</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>drop_all_na_rows</span>(<span class='no'>data</span>)
+<span class='fu'>delete_na_rows</span>(<span class='no'>.data</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>replace_na_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='no'>to</span>)
+<span class='fu'>replace_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='no'>to</span>)
 
-<span class='fu'>fill_na_dt</span>(<span class='no'>data</span>, <span class='no'>...</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"down"</span>, <span class='st'>"up"</span>))</pre>
+<span class='fu'>fill_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"down"</span>)
+
+<span class='fu'>shift_fill</span>(<span class='no'>x</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"down"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
+      <th>.data</th>
       <td><p>data.frame</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Colunms to be replaced or filled. If not specified, use all columns.</p></td>
+    </tr>
+    <tr>
+      <th>prop</th>
+      <td><p>If proportion of NAs is larger than or equal to "prop", would be deleted.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>If number of NAs is larger than or equal to "n", would be deleted.</p></td>
     </tr>
     <tr>
       <th>to</th>
@@ -184,6 +197,10 @@ fill in tidyr, but with a different API." />
       <td><p>Direction in which to fill missing values.
 Currently either "down" (the default) or "up".</p></td>
     </tr>
+    <tr>
+      <th>x</th>
+      <td><p>A vector with missing values to be filled.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -191,11 +208,18 @@ Currently either "down" (the default) or "up".</p></td>
     <p>data.table</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>drop_all_na_cols</code> could drop the columns with only NAs,
-while <code>drop_all_na_rows</code> could drop the rows with only NAs.</p>
+    <p><code>drop_na_dt</code> drops the entries with NAs in specific columns.
+<code>fill_na_dt</code> fill NAs with observations ahead ("down") or below ("up"),
+which is also known as last observation carried forward (LOCF) and
+next observation carried backward(NOCB).</p>
+<p><code>delete_na_cols</code> could drop the columns with NA proportion larger
+than or equal to "prop" or NA number larger than or equal to "n",
+<code>delete_na_rows</code> works alike but deals with rows.</p>
+<p><code>shift_fill</code> could fill a vector with missing values.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>https://stackoverflow.com/questions/2643939/remove-columns-from-dataframe-where-all-values-are-na</p>
+    <p>https://stackoverflow.com/questions/23597140/how-to-find-the-percentage-of-nas-in-a-data-frame</p>
+<p>https://stackoverflow.com/questions/2643939/remove-columns-from-dataframe-where-all-values-are-na</p>
 <p>https://stackoverflow.com/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -203,7 +227,7 @@ while <code>drop_all_na_rows</code> could drop the rows with only NAs.</p>
 <code><a href='https://tidyr.tidyverse.org/reference/fill.html'>fill</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
  <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>()</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;        x      y
@@ -244,7 +268,43 @@ while <code>drop_all_na_rows</code> could drop the rows with only NAs.</p>
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
 #&gt; 2:     2      b
-#&gt; 3:    NA      b</div></pre>
+#&gt; 3:    NA      b</div><div class='input'>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>, <span class='fl'>5</span>),<span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>NA</span>,<span class='fl'>4</span>))
+<span class='no'>x</span></div><div class='output co'>#&gt;    x  y  z
+#&gt; 1  1 NA NA
+#&gt; 2  2 NA NA
+#&gt; 3 NA  4 NA
+#&gt; 4  3  5 NA</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>()</div><div class='output co'>#&gt;        x     y
+#&gt;    &lt;num&gt; &lt;num&gt;
+#&gt; 1:     1    NA
+#&gt; 2:     2    NA
+#&gt; 3:    NA     4
+#&gt; 4:     3     5</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>(<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.75</span>)</div><div class='output co'>#&gt;        x     y
+#&gt;    &lt;num&gt; &lt;num&gt;
+#&gt; 1:     1    NA
+#&gt; 2:     2    NA
+#&gt; 3:    NA     4
+#&gt; 4:     3     5</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>(<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='output co'>#&gt;        x
+#&gt;    &lt;num&gt;
+#&gt; 1:     1
+#&gt; 2:     2
+#&gt; 3:    NA
+#&gt; 4:     3</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>(<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.24</span>)</div><div class='output co'>#&gt; Null data.table (0 rows and 0 cols)</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt;        x
+#&gt;    &lt;num&gt;
+#&gt; 1:     1
+#&gt; 2:     2
+#&gt; 3:    NA
+#&gt; 4:     3</div><div class='input'>
+<span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_rows</span>(<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.6</span>)</div><div class='output co'>#&gt;        x     y      z
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;lgcl&gt;
+#&gt; 1:     3     5     NA</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_rows</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt;        x     y      z
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;lgcl&gt;
+#&gt; 1:     3     5     NA</div><div class='input'>
+<span class='co'># shift_fill</span>
+<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>,<span class='fl'>NA</span>,<span class='st'>"b"</span>,<span class='fl'>NA</span>,<span class='st'>"c"</span>)
+
+<span class='fu'>shift_fill</span>(<span class='no'>y</span>) <span class='co'># equals to</span></div><div class='output co'>#&gt; [1] "a" "a" "b" "b" "c"</div><div class='input'><span class='fu'>shift_fill</span>(<span class='no'>y</span>,<span class='st'>"down"</span>)</div><div class='output co'>#&gt; [1] "a" "a" "b" "b" "c"</div><div class='input'>
+<span class='fu'>shift_fill</span>(<span class='no'>y</span>,<span class='st'>"up"</span>)</div><div class='output co'>#&gt; [1] "a" "b" "b" "c" "c"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

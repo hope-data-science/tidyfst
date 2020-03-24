@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -62,6 +62,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -121,8 +124,8 @@
 <li>slice_fst: Select the target rows by number</li>
 <li>select_fst: Select the target columns for the task</li>
 <li>filter_fst: Conditional selection of rows</li>
-<li>import_fst: Read a fst file like <code><a href="http://www.fstpackage.org/reference/write_fst.html">fst::read_fst</a></code> but always return a data.table</li>
-<li>export_fst: Write a fst file like <code><a href="http://www.fstpackage.org/reference/write_fst.html">fst::write_fst</a></code> but always use largest compress factor (which yields smallest file)</li>
+<li>import_fst: Read a fst file like <code><a href="https://rdrr.io/pkg/fst/man/write_fst.html">fst::read_fst</a></code> but always return a data.table</li>
+<li>export_fst: Write a fst file like <code><a href="https://rdrr.io/pkg/fst/man/write_fst.html">fst::write_fst</a></code> but always use largest compress factor (which yields smallest file)</li>
 </ul>
 <p>In such a workflow, you never need to read the whole data.frame into your RAM, you just select the target data, process them instantly and get the results all at once. You do not have to read the data to know the structure of data.frame, because we have <code>parse_fst</code>(a wrapper for <code>fst</code> in <em>fst</em> package). Now let’s give it a try.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyfst)</a>

@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
       </span>
     </div>
 
@@ -62,6 +62,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
+    </li>
+    <li>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
       <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
@@ -127,14 +130,14 @@
 <a class="sourceLine" id="cb1-6" title="6">                     <span class="dt">to =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2020-01-01"</span>),</a>
 <a class="sourceLine" id="cb1-7" title="7">                     <span class="dt">by =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb1-8" title="8">n1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(diamonds), n, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9">dat1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html">as.data.table</a></span>(diamonds[n1, ])</a>
+<a class="sourceLine" id="cb1-9" title="9">dat1 &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span>(diamonds[n1, ])</a>
 <a class="sourceLine" id="cb1-10" title="10">dat1[, <span class="st">"dt"</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, n, <span class="dt">replace =</span> <span class="ot">TRUE</span>)  <span class="co"># 增加dt列</span></a>
 <a class="sourceLine" id="cb1-11" title="11">n2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(dat1), <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(dat1)<span class="op">/</span><span class="dv">1000</span>)</a>
 <a class="sourceLine" id="cb1-12" title="12">dat1[n2, <span class="st">"price"</span>] &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># price列构造千分之一缺失值</span></a>
-<a class="sourceLine" id="cb1-13" title="13">dat2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dt">dt =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges))),</a>
+<a class="sourceLine" id="cb1-13" title="13">dat2 &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dt">dt =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges))),</a>
 <a class="sourceLine" id="cb1-14" title="14">                   <span class="dt">price1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges)), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb1-15" title="15"></a>
-<a class="sourceLine" id="cb1-16" title="16">dat3 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dt">dt =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges))),</a>
+<a class="sourceLine" id="cb1-16" title="16">dat3 &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dt">dt =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges))),</a>
 <a class="sourceLine" id="cb1-17" title="17">                   <span class="dt">price2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges)), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb1-18" title="18"></a>
 <a class="sourceLine" id="cb1-19" title="19"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(dat1)</a></code></pre></div>
@@ -146,7 +149,7 @@
 <h3 class="hasAnchor">
 <a href="#%E5%B0%8F%E6%8A%80%E5%B7%A7" class="anchor"></a>小技巧</h3>
 <p>后面的分析，经常要根据日期进行计算。所以，先对日期进行排序，就能够提高运行速度。在tidyfst中，可以使用<code>set_dt</code>函数来对数据进行原位的各种操作，其中就包括排序。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/set.html">set_dt</a></span>(dat1,<span class="dt">order_by =</span> <span class="st">"dt"</span>)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/set_dt.html">set_dt</a></span>(dat1,<span class="dt">order_by =</span> <span class="st">"dt"</span>)</a>
 <a class="sourceLine" id="cb2-2" title="2">dat1</a></code></pre></div>
 <p>那么，现在dat1的数据就按照日期排好序了。</p>
 </div>
@@ -248,7 +251,7 @@
 <p>对于填充空值来说，如果想要原位填充，目前只支持数值型，可以这样操作：</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="../reference/sys_time_print.html">sys_time_print</a></span>({</a>
 <a class="sourceLine" id="cb9-2" title="2">  dat1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="st">    </span><span class="kw"><a href="../reference/set.html">set_dt</a></span>(<span class="dt">fill_cols =</span> <span class="st">"price"</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="st">    </span><span class="kw"><a href="../reference/set_dt.html">set_dt</a></span>(<span class="dt">fill_cols =</span> <span class="st">"price"</span>)</a>
 <a class="sourceLine" id="cb9-4" title="4">})</a>
 <a class="sourceLine" id="cb9-5" title="5">dat1</a></code></pre></div>
 </div>
@@ -260,19 +263,19 @@
 <a href="#%E4%BB%A5dat1%E4%B8%BA%E4%BE%8B%E6%B7%BB%E5%8A%A0%E4%B8%A4%E5%88%97%E4%B8%80%E5%88%97%E4%B8%BA%E4%BB%A5cutcolor%E8%81%9A%E5%90%88%E6%B1%82price%E7%9A%84%E5%9D%87%E5%80%BC%E5%8F%A6%E4%B8%80%E5%88%97%E6%98%AF%E6%B1%82%E6%A0%87%E5%87%86%E5%B7%AE" class="anchor"></a>1.以dat1为例，添加两列，一列为以cut、color聚合求price的均值，另一列是求标准差</h4>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"></a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="../reference/sys_time_print.html">sys_time_print</a></span>({</a>
-<a class="sourceLine" id="cb10-3" title="3">  <span class="kw"><a href="../reference/set.html">mutate_ref</a></span>(dat1,</a>
+<a class="sourceLine" id="cb10-3" title="3">  <span class="kw">mutate_ref</span>(dat1,</a>
 <a class="sourceLine" id="cb10-4" title="4">           <span class="dt">mean_price =</span> <span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(price, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
 <a class="sourceLine" id="cb10-5" title="5">           <span class="dt">sd_price =</span> <span class="kw"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(price, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
 <a class="sourceLine" id="cb10-6" title="6">           <span class="dt">by =</span> .(cut, color))</a>
 <a class="sourceLine" id="cb10-7" title="7">})</a>
 <a class="sourceLine" id="cb10-8" title="8"></a>
-<a class="sourceLine" id="cb10-9" title="9"><span class="kw"><a href="../reference/set.html">set_dt</a></span>(dat1,<span class="dt">order_by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cut"</span>,<span class="st">"color"</span>))</a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="kw"><a href="../reference/set_dt.html">set_dt</a></span>(dat1,<span class="dt">order_by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cut"</span>,<span class="st">"color"</span>))</a>
 <a class="sourceLine" id="cb10-10" title="10">dat1</a></code></pre></div>
 </div>
 <div id="以dat1为例以dt分组添加一列序号id" class="section level4">
 <h4 class="hasAnchor">
 <a href="#%E4%BB%A5dat1%E4%B8%BA%E4%BE%8B%E4%BB%A5dt%E5%88%86%E7%BB%84%E6%B7%BB%E5%8A%A0%E4%B8%80%E5%88%97%E5%BA%8F%E5%8F%B7id" class="anchor"></a>2.以dat1为例，以dt分组添加一列序号id</h4>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="../reference/set.html">set_dt</a></span>(dat1,<span class="dt">order_by =</span> <span class="st">"dt"</span>)</a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="../reference/set_dt.html">set_dt</a></span>(dat1,<span class="dt">order_by =</span> <span class="st">"dt"</span>)</a>
 <a class="sourceLine" id="cb11-2" title="2"></a>
 <a class="sourceLine" id="cb11-3" title="3"><span class="kw"><a href="../reference/sys_time_print.html">sys_time_print</a></span>({</a>
 <a class="sourceLine" id="cb11-4" title="4">  dat1 <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -287,7 +290,7 @@
 <div id="移动函数" class="section level3">
 <h3 class="hasAnchor">
 <a href="#%E7%A7%BB%E5%8A%A8%E5%87%BD%E6%95%B0" class="anchor"></a>移动函数</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="../reference/set.html">set_dt</a></span>(dat1,<span class="dt">order_by =</span> <span class="st">"color"</span>)</a>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="../reference/set_dt.html">set_dt</a></span>(dat1,<span class="dt">order_by =</span> <span class="st">"color"</span>)</a>
 <a class="sourceLine" id="cb12-2" title="2"></a>
 <a class="sourceLine" id="cb12-3" title="3"><span class="kw"><a href="../reference/sys_time_print.html">sys_time_print</a></span>({</a>
 <a class="sourceLine" id="cb12-4" title="4">  dat1 <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -295,7 +298,7 @@
 <a class="sourceLine" id="cb12-6" title="6">      <span class="dt">by =</span> color,</a>
 <a class="sourceLine" id="cb12-7" title="7">      <span class="kw"><a href="../reference/mutate.html">mutate_dt</a></span>(</a>
 <a class="sourceLine" id="cb12-8" title="8">        <span class="dt">MA10_price =</span> <span class="kw">frollmean</span>(price, <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb12-9" title="9">        <span class="dt">MSD10_price =</span> <span class="kw"><a href="https://rdrr.io/pkg/data.table/man/froll.html">frollapply</a></span>(price, <span class="dv">10</span>, <span class="dt">FUN =</span> sd)</a>
+<a class="sourceLine" id="cb12-9" title="9">        <span class="dt">MSD10_price =</span> <span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/froll.html">frollapply</a></span>(price, <span class="dv">10</span>, <span class="dt">FUN =</span> sd)</a>
 <a class="sourceLine" id="cb12-10" title="10">      )</a>
 <a class="sourceLine" id="cb12-11" title="11">    ) -&gt;<span class="st"> </span>dat1</a>
 <a class="sourceLine" id="cb12-12" title="12">})</a>
