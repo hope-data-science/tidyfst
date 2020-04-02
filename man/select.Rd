@@ -37,6 +37,7 @@ iris \%>\% select_dt(-Sepal.Length)
 iris \%>\% select_dt(-Sepal.Length,-Petal.Length)
 iris \%>\% select_dt(-(Sepal.Length:Petal.Length))
 iris \%>\% select_dt(c("Sepal.Length","Sepal.Width"))
+iris \%>\% select_dt(-c("Sepal.Length","Sepal.Width"))
 iris \%>\% select_dt(1)
 iris \%>\% select_dt(-1)
 iris \%>\% select_dt(1:3)
@@ -49,10 +50,12 @@ iris \%>\% select_dt("Pe",negate = TRUE)
 iris \%>\% select_dt("Pe|Sp")
 iris \%>\% select_dt(cols = 2:3)
 iris \%>\% select_dt(cols = 2:3,negate = TRUE)
+iris \%>\% select_dt(cols = c("Sepal.Length","Sepal.Width"))
 iris \%>\% select_dt(cols = names(iris)[2:3])
 
 iris \%>\% select_dt(is.factor)
 iris \%>\% select_dt(-is.factor)
+iris \%>\% select_dt(!is.factor)
 
 # select_mix could provide flexible mix selection
 select_mix(iris, Species,"Sepal.Length")
@@ -61,6 +64,7 @@ select_mix(iris,1:2,is.factor)
 select_mix(iris,Sepal.Length,is.numeric)
 # set rm.dup to FALSE could save the duplicated column names
 select_mix(iris,Sepal.Length,is.numeric,rm.dup = FALSE)
+
 }
 \seealso{
 \code{\link[dplyr]{select}}, \code{\link[dplyr]{select_if}}

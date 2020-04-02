@@ -18,7 +18,7 @@ vector
 Analogous function for \code{pull} in \pkg{dplyr}
 }
 \examples{
-mtcars \%>\% pull_dt(1)
+mtcars \%>\% pull_dt(2)
 mtcars \%>\% pull_dt(cyl)
 mtcars \%>\% pull_dt("cyl")
 }

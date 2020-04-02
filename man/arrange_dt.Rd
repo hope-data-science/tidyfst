@@ -30,5 +30,5 @@ iris \%>\% arrange_dt(Sepal.Length,Petal.Length)
 
 }
 \seealso{
-\code{\link[dplyr]{arrange}},\code{\link[maditr]{dt_arrange}}
+\code{\link[dplyr]{arrange}}
 }

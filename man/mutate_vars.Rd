@@ -7,7 +7,7 @@
 \usage{
 mutate_when(.data, when, ...)
 
-mutate_vars(.data, .cols = NULL, .func, ...)
+mutate_vars(.data, .cols = NULL, .func, ..., by)
 }
 \arguments{
 \item{.data}{data.frame}
@@ -21,6 +21,8 @@ Additional parameters to be passed to parameter '.func' in \code{mutate_vars}.}
 
 \item{.func}{Function to be run within each column, should return a value or
 vectors with same length.}
+
+\item{by}{(Optional) Mutate by what group?}
 }
 \value{
 data.table

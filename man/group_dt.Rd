@@ -23,6 +23,12 @@ data.table
 Analogous function for \code{group_by} and \code{rowwise}
  in \pkg{dplyr}, but in another efficient way.
 }
+\details{
+If you want to use \code{summarise_dt} and \code{mutate_dt} in
+\code{group_dt}, it is better to use the "by" parameter in those functions,
+that would be much faster because you don't have to use \code{.SD} (which takes
+extra time to copy).
+}
 \examples{
 iris \%>\% group_dt(by = Species,slice_dt(1:2))
 iris \%>\% group_dt(Species,filter_dt(Sepal.Length == max(Sepal.Length)))

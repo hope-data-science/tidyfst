@@ -11,9 +11,9 @@ summarise_dt(.data, ..., by = NULL)
 
 summarize_dt(.data, ..., by = NULL)
 
-summarise_vars(.data, .cols = NULL, .func, ...)
+summarise_vars(.data, .cols = NULL, .func, ..., by)
 
-summarize_vars(.data, .cols = NULL, .func, ...)
+summarize_vars(.data, .cols = NULL, .func, ..., by)
 }
 \arguments{
 \item{.data}{data.frame}
@@ -50,6 +50,9 @@ iris \%>\% summarise_vars(is.numeric,min)
 iris \%>\% summarise_vars(-is.factor,min)
 iris \%>\% summarise_vars(1:4,min)
 iris \%>\% summarise_vars(.func = as.character)
+
+iris \%>\% summarise_vars(is.numeric,min,by ="Species")
+mtcars \%>\% summarise_vars(is.numeric,mean,by = "vs,am")
 }
 \seealso{
 \code{\link[dplyr]{summarise}}

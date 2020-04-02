@@ -2,20 +2,20 @@
 % Please edit documentation in R/missing.R
 \name{drop_na_dt}
 \alias{drop_na_dt}
+\alias{replace_na_dt}
 \alias{delete_na_cols}
 \alias{delete_na_rows}
-\alias{replace_na_dt}
 \alias{fill_na_dt}
 \alias{shift_fill}
 \title{Dump, replace and fill missing values in data.frame}
 \usage{
 drop_na_dt(.data, ...)
 
+replace_na_dt(.data, ..., to)
+
 delete_na_cols(.data, prop = NULL, n = NULL)
 
 delete_na_rows(.data, prop = NULL, n = NULL)
-
-replace_na_dt(.data, ..., to)
 
 fill_na_dt(.data, ..., direction = "down")
 
@@ -26,11 +26,11 @@ shift_fill(x, direction = "down")
 
 \item{...}{Colunms to be replaced or filled. If not specified, use all columns.}
 
+\item{to}{What value should NA replace by?}
+
 \item{prop}{If proportion of NAs is larger than or equal to "prop", would be deleted.}
 
 \item{n}{If number of NAs is larger than or equal to "n", would be deleted.}
-
-\item{to}{What value should NA replace by?}
 
 \item{direction}{Direction in which to fill missing values.
 Currently either "down" (the default) or "up".}

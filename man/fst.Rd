@@ -58,7 +58,7 @@ An API for reading fst file as data.table.
   ft \%>\% select_fst("Se")
   ft \%>\% select_fst("nothing")
   ft \%>\% select_fst("Se|Sp")
-  ft \%>\% select_fst(names(iris)[2:3])
+  ft \%>\% select_fst(cols = names(iris)[2:3])
 
   ft \%>\% filter_fst(Sepal.Width > 3)
   ft \%>\% filter_fst(Sepal.Length > 6 , Species == "virginica")

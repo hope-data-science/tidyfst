@@ -5,7 +5,7 @@
 \alias{group_exe_dt}
 \title{Group by variable(s) and implement operations}
 \usage{
-group_by_dt(.data, ..., cols = NULL, inplace = FALSE)
+group_by_dt(.data, ..., cols = NULL)
 
 group_exe_dt(.data, ...)
 }
@@ -19,12 +19,9 @@ implemented on a data.frame for \code{group_exe_dt}.
 It can receive what \code{select_dt} receives.}
 
 \item{cols}{A character vector of column names to group by.}
-
-\item{inplace}{Should the grouping implemented by reference?
-(Modify the original data.frame) Default uses \code{FALSE}.}
 }
 \value{
-A data.table
+A data.table with keys
 }
 \description{
 Using \code{setkey} and \code{setkeyv} in \pkg{data.table}
@@ -38,17 +35,6 @@ which provides high performance for group operations, especially when you have
 to operate by specific groups frequently.
 }
 \examples{
-# group by Species in iris data set
-as.data.table(iris) -> a
-key(a)
-group_by_dt(a,Species,inplace = FALSE)
-key(a)
-
-# use inplace operation to group by reference
-as.data.table(iris) -> a
-key(a)
-group_by_dt(a,Species,inplace = TRUE)
-key(a)
 
 # aggregation after grouping using group_exe_dt
 as.data.table(iris) -> a

@@ -32,6 +32,7 @@ iris \%>\% add_count_dt(Species)
 iris \%>\% add_count_dt(Species,.name = "N")
 
 mtcars \%>\% count_dt(cyl,vs)
+mtcars \%>\% count_dt(cyl,vs,.name = "N",sort = FALSE)
 mtcars \%>\% add_count_dt(cyl,vs)
 
 }
