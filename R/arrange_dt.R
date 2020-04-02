@@ -5,7 +5,7 @@
 #' @param ... Arrange by what group? Minus symbol means arrange by
 #' descending order.
 #' @return data.table
-#' @seealso \code{\link[dplyr]{arrange}},\code{\link[maditr]{dt_arrange}}
+#' @seealso \code{\link[dplyr]{arrange}}
 #' @examples
 #'
 #' iris %>% arrange_dt(Sepal.Length)

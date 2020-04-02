@@ -74,5 +74,16 @@ avg_info
 # delete the output file
 unlink("fst_test.fst")
 ```
+ After (>=) version 0.9.3, tidyfst has also added a function `as_fst()`, which can turn any data.frame into a fst table and saved the data in the temporary file. This means that we might never have to save the object in the RAM ever (as long as it is a data.frame)! A small example:
+```{r}
+iris %>% as_fst() -> iris_fst
+mtcars %>% as_fst() -> mtcars_fst
+
+iris_fst
+mtcars_fst
+```
+ So when you have generated a pretty large data.frame and do not want it to consume the cache in your computer, just save it and read it when needed using `as_fst`.
+ 
+ 
  
 

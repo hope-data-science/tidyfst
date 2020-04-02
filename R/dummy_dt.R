@@ -38,9 +38,7 @@ dummy_dt = function(.data,...,longname = TRUE){
 
 globalVariables("id_")
 
-dummy_col = function(.data,col_name,longname){
-  dt = as_dt(.data)
-  #substitute(col) %>% deparse() -> col_name
+dummy_col = function(dt,col_name,longname){
   dt[, `:=`(one_=1,id_=1:.N) ]
 
   if(longname){
@@ -55,10 +53,6 @@ dummy_col = function(.data,col_name,longname){
   }
   dt[,id_:=NULL][]
 }
-
-
-
-
 
 
 

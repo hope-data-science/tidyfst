@@ -25,6 +25,11 @@
 #' iris %>% summarise_vars(-is.factor,min)
 #' iris %>% summarise_vars(1:4,min)
 #' iris %>% summarise_vars(.func = as.character)
+#'
+#' iris %>% summarise_vars(is.numeric,min,by ="Species")
+#' mtcars %>% summarise_vars(is.numeric,mean,by = "vs,am")
+
+globalVariables("res")
 
 #' @rdname summarise_dt
 #' @export
@@ -42,9 +47,10 @@ summarize_dt = summarise_dt
 #' @rdname summarise_dt
 #' @export
 
-summarise_vars = function (.data, .cols = NULL, .func, ...) {
+summarise_vars = function (.data, .cols = NULL, .func, ...,by) {
   dt = as_dt(.data)
   deparse(substitute(.cols)) -> .cols
+  deparse(substitute(by)) -> .by
   if (.cols == "NULL")
     sel_name = names(dt[0])
   else{
@@ -53,8 +59,25 @@ summarise_vars = function (.data, .cols = NULL, .func, ...) {
         text =
           str_glue("select_dt(dt[0],{.cols}) %>% names() -> sel_name")))
   }
-  dt[,lapply(.SD, .func, ...), .SDcols = sel_name]
+
+  eval(parse(text = str_glue(
+  "res = dt[,lapply(.SD, .func, ...), by = {.by},.SDcols = sel_name]")))
+  res[, unique(names(res)), with = FALSE]
 }
+
+# summarise_vars = function (.data, .cols = NULL, .func, ...) {
+#   dt = as_dt(.data)
+#   deparse(substitute(.cols)) -> .cols
+#   if (.cols == "NULL")
+#     sel_name = names(dt[0])
+#   else{
+#     eval(
+#       parse(
+#         text =
+#           str_glue("select_dt(dt[0],{.cols}) %>% names() -> sel_name")))
+#   }
+#   dt[,lapply(.SD, .func, ...), .SDcols = sel_name]
+# }
 
 #' @rdname summarise_dt
 #' @export

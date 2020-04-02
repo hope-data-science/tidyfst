@@ -1,4 +1,16 @@
 
+## 0.9.4
+Date: 20200402
+0. Reason for update: The former introduction of modification by reference is violating the principals of the package, remove them. Modification by reference might be good, I build another package named 'tidyft' to realize it.
+1. Add `mat_df` and `df_mat` to covert between named matrix and tidy data.frame, using base-r only.
+2. Add `rn_col` and `col_rn`.
+3. Add "by" parameter for `summarise_vars` and `mutate_vars`.
+4. Make `filter_fst` more robust.
+5. Update the vignette of `fst`.
+6. Add a new set of join functions with another syntax.
+7. Improve `select_fst` with `select_dt`
+8. Remove facilities of modification by reference in tidyfst, including `set*` family and "inplace" parameter in `group_by_dt`
+
 ## 0.9.3
 Date: 20200324
 0. Reason for update: The rmarkdown has a poor support of Chinese, which makes the vignette name messy on the CRAN page (see the vignette part of <https://CRAN.R-project.org/package=tidyfst>). Therefore, have to change it to an English name. Also, as many new adjustments coming in, there are some substantial changes for tidyfst to be safer (robust), faster, simpler and feature richer.

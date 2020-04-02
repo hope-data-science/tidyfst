@@ -25,25 +25,8 @@ in_dt = function(.data,...){
 
 #' @rdname dt
 #' @export
-
 as_dt = function (.data) {
   if (is.data.frame(.data) || ("fst_table" %chin% class(.data)))
     as.data.table(.data)
-  else
-    stop("Only a data.frame or fst_table could be received.")
+  else stop("Only a data.frame or fst_table could be received.")
 }
-
-# optional as_dt for future
-# as_dt = function(.data){
-#   fifelse(
-#     is.data.table(.data),
-#     data,
-#     fifelse(is.data.frame(.data),
-#             as.data.table(.data),
-#             stop("Only a data.frame could be received."))
-#   )
-# }
-
-
-
-

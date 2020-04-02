@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ```
 
   I love the tidy syntax of dplyr and the ultimate speed of data.table. Why not take the both? That is why I have started the work of tidyfst, bridging the tidy syntax and computation performance via translation. This tool is especially friendly for dplyr users who want to learn some data.table, but data.table could also benefit from it (more or less).<br><br>
-  A great comparison of data.table and dplyr was displayed at <https://atrebas.github.io/post/2019-03-03-datatable-dplyr/> (thanks to Atrebas). I love this tutorial very much because it dig rather deep into many features from both packages. Here I'll try to implement all operations from that tutorial, and the potential users could find why they would prefer tidyfst for some tasks.<br><br>
+  A great comparison of data.table and dplyr was displayed at <https://atrebas.github.io/post/2019-03-03-datatable-dplyr/> (thanks to Atrebas). I love this tutorial very much because it dig rather deep into many features from both packages. Here I'll try to implement all operations from that tutorial, and the potential users could find why they would prefer tidyfst for some (if not most) tasks.<br><br>
   The below examples have all been checked with tidyfst. Now let's begin.
 
 ## Create example data

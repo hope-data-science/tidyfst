@@ -6,16 +6,14 @@
 #' @return vector
 #' @seealso \code{\link[dplyr]{pull}}
 #' @examples
-#' mtcars %>% pull_dt(1)
+#' mtcars %>% pull_dt(2)
 #' mtcars %>% pull_dt(cyl)
 #' mtcars %>% pull_dt("cyl")
 #' @export
 
 
-pull_dt = function(.data,col){
-  dt = as_dt(.data)
-  dt[[substitute(col)]]
-}
+pull_dt = function(.data,col) .data[[substitute(col)]]
+
 
 
 

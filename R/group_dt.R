@@ -6,6 +6,10 @@
 #' @param by Variables to group by,unquoted name of grouping variable of list of unquoted names of grouping variables.
 #' @param ... Any data manipulation arguments that could be implemented on a data.frame.
 #' @return data.table
+#' @details If you want to use \code{summarise_dt} and \code{mutate_dt} in
+#' \code{group_dt}, it is better to use the "by" parameter in those functions,
+#' that would be much faster because you don't have to use \code{.SD} (which takes
+#' extra time to copy).
 #' @references https://stackoverflow.com/questions/36802385/use-by-each-row-for-data-table
 #' @examples
 #' iris %>% group_dt(by = Species,slice_dt(1:2))
@@ -89,7 +93,6 @@ group_dt = function(.data,by = NULL,...){
 }
 
 
-
 #' @rdname group_dt
 #' @export
 rowwise_dt = function(.data,...){
@@ -112,6 +115,5 @@ dot_convert = function(string){
   else str_replace(string,"\\(","\\(.SD,") -> string
   string
 }
-
 
 

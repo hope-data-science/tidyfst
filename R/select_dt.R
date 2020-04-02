@@ -19,6 +19,7 @@
 #' iris %>% select_dt(-Sepal.Length,-Petal.Length)
 #' iris %>% select_dt(-(Sepal.Length:Petal.Length))
 #' iris %>% select_dt(c("Sepal.Length","Sepal.Width"))
+#' iris %>% select_dt(-c("Sepal.Length","Sepal.Width"))
 #' iris %>% select_dt(1)
 #' iris %>% select_dt(-1)
 #' iris %>% select_dt(1:3)
@@ -31,10 +32,12 @@
 #' iris %>% select_dt("Pe|Sp")
 #' iris %>% select_dt(cols = 2:3)
 #' iris %>% select_dt(cols = 2:3,negate = TRUE)
+#' iris %>% select_dt(cols = c("Sepal.Length","Sepal.Width"))
 #' iris %>% select_dt(cols = names(iris)[2:3])
 #'
 #' iris %>% select_dt(is.factor)
 #' iris %>% select_dt(-is.factor)
+#' iris %>% select_dt(!is.factor)
 #'
 #' # select_mix could provide flexible mix selection
 #' select_mix(iris, Species,"Sepal.Length")
@@ -43,6 +46,8 @@
 #' select_mix(iris,Sepal.Length,is.numeric)
 #' # set rm.dup to FALSE could save the duplicated column names
 #' select_mix(iris,Sepal.Length,is.numeric,rm.dup = FALSE)
+#'
+
 
 #' @rdname select
 #' @export
@@ -67,7 +72,7 @@ select_dt = function(.data,...,cols = NULL,negate =FALSE){
         str_c(collapse = ",") -> dot_string
       eval(parse(text = str_glue("dt[,.({dot_string})]")))
     }
-    else if(str_detect(dot_string,"^c\\(")|str_count(dot_string,":") == 1)
+    else if(str_detect(dot_string,"^[-!]?c\\(")|str_count(dot_string,":") == 1)
       eval(parse(text = str_glue("dt[,{dot_string}]")))
     else if(dot_string %like% "^[-!]?is\\.")
       eval(parse(text = str_glue("select_if_dt(dt,{dot_string})")))
@@ -88,11 +93,11 @@ select_dt = function(.data,...,cols = NULL,negate =FALSE){
   }
 }
 
-select_if_dt = function(.data,.if){
-  dt = as_dt(.data)
+
+select_if_dt = function(dt,.if){
   if_name = substitute(.if) %>% deparse()
-  if(str_detect(if_name,"^-")){
-    .if = str_remove(if_name,"-")
+  if(str_detect(if_name,"^[-!]")){
+    .if = str_remove(if_name,"[-!]")
     eval(parse(text = str_glue("sel_name = subset(sapply(dt,{.if}),
                         sapply(dt,{.if}) == FALSE) %>% names()")))
   } else
@@ -117,9 +122,6 @@ select_mix = function(.data,...,rm.dup = TRUE){
   res
 
 }
-
-
-
 
 
 

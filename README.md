@@ -18,6 +18,7 @@ Till now, *tidyfst* has an API that might even transcend its predecessors (e.g. 
 
 - Receives any data.frame (tibble/data.table/data.frame) and returns a data.table.
 - Show the variable class of data.table as default.
+- Never use in place replacement (also known as modification by reference, which means the original variable would not be modified without notification).
 - Use suffix ("_dt") rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
 - More flexible verbs for big data manipulation.
 - Supporting data importing and parsing with *fst*, which saves both time and memory. Details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
@@ -29,8 +30,6 @@ Till now, *tidyfst* has an API that might even transcend its predecessors (e.g. 
 
 ```R
 install.packages("tidyfst")
-# or
-devtools::install_github("hope-data-science/tidyfst")
 ```
 
 
@@ -78,8 +77,7 @@ iris[3:8,] %>%
 
 ```
 
-## Notification
-Currently, some functions include modification by reference (`set_`). They might be fast but violates the principles of the package (never modify without notifying). Therefore, they might be removed later. Please don't put them in long-term maintained codes.
+
 
 ## Future plans
 

@@ -20,23 +20,12 @@ rename_dt = function(.data,...){
     .[-1] -> dot_string
   new_names = names(dot_string)
   old_names = as.character(dot_string)
-  setnames(dt,old = old_names,new = new_names) %>% as.data.table()
+  setnames(dt,old = old_names,new = new_names)[]
 }
 
 
 
 
-# rename_dt = function(.data, ...){
-#   dt = as_dt(.data)
-#   substitute(list(...)) %>%
-#     deparse() %>%
-#     str_extract("(?<=\\().+?(?=\\))") %>%
-#     strsplit(",") %>%
-#     unlist() -> dot_string
-#   old_names = str_extract(dot_string,"(?<=\\=).+$") %>% str_trim()
-#   new_names = str_extract(dot_string,"^.+(?=\\=)") %>% str_trim()
-#   setnames(dt,old = old_names,new = new_names) %>% as.data.table()
-# }
 
 
 

@@ -80,6 +80,29 @@ drop_na_dt = function(.data,...){
 #' @rdname missing
 #' @export
 
+replace_na_dt = function(.data,...,to){
+  if(is.na(to)) return(.data)
+  dt = as_dt(.data)
+  if(substitute(list(...)) %>% deparse() == "list()")
+    dot_string <- NULL
+  else
+    dt[0] %>%
+      select_dt(...) %>%
+      names() -> dot_string
+  if(is.null(dot_string)) {
+    for (j in seq_len(ncol(dt)))
+      set(dt,which(is.na(dt[[j]])),j,to)
+  } else{
+    for (j in dot_string)
+      set(dt,which(is.na(dt[[j]])),j,to)
+  }
+  dt
+}
+
+
+#' @rdname missing
+#' @export
+
 delete_na_cols = function(.data,prop = NULL, n = NULL){
   dt = as_dt(.data)
 
@@ -119,29 +142,6 @@ delete_na_rows = function(.data,prop = NULL, n = NULL){
   else stop("Inputs are invalid.")
 }
 
-
-
-#' @rdname missing
-#' @export
-
-replace_na_dt = function(.data,...,to){
-  if(is.na(to)) return(.data)
-  dt = as_dt(.data)
-  if(substitute(list(...)) %>% deparse() == "list()")
-    dot_string <- NULL
-  else
-    dt[0] %>%
-      select_dt(...) %>%
-      names() -> dot_string
-  if(is.null(dot_string)) {
-    for (j in seq_len(ncol(dt)))
-      set(dt,which(is.na(dt[[j]])),j,to)
-  } else{
-    for (j in dot_string)
-      set(dt,which(is.na(dt[[j]])),j,to)
-  }
-  dt
-}
 
 #' @rdname missing
 #' @export
@@ -183,43 +183,6 @@ shift_fill = function(x,direction = "down"){
   }
   x
 }
-
-
-
-
-# fill_na_dt = function(data,...,direction = c("down","up")){
-#   dt = as_dt(data)
-#   if(substitute(list(...)) %>% deparse() == "list()")
-#     update_cols <- names(dt)
-#   else
-#     dt[0] %>%
-#       select_dt(...) %>%
-#       names() -> update_cols
-#   dt[,(update_cols) := lapply(.SD, get(paste0(direction,"_fill"))),
-#                                 .SDcols = update_cols][]
-#
-# }
-#
-#
-# down_fill = function(x){
-#   for(i in seq_along(x)){
-#     if(!is.na(x[i]) | i == 1) next
-#     else if(is.na(x[i]) & is.na(x[i-1])) next
-#     else x[i] <- x[i-1]
-#   }
-#   x
-# }
-#
-# up_fill = function(x){
-#   rev(x) %>%
-#     down_fill() %>%
-#     rev()
-# }
-
-
-
-
-
 
 
 

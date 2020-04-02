@@ -10,6 +10,7 @@
 #' @param .cols Any types that can be accepted by \code{\link[tidyfst]{select_dt}}.
 #' @param .func Function to be run within each column, should return a value or
 #' vectors with same length.
+#' @param by (Optional) Mutate by what group?
 #' @return data.table
 #' @seealso \code{\link[tidyfst]{select_dt}}, \code{\link[dplyr]{case_when}}
 #' @examples
@@ -34,9 +35,10 @@ mutate_when = function(.data,when,...){
 
 #' @rdname mutate_vars
 #' @export
-mutate_vars = function(.data,.cols = NULL,.func,...){
+mutate_vars = function(.data,.cols = NULL,.func,...,by){
   dt = as_dt(.data)
   deparse(substitute(.cols)) -> .cols
+  deparse(substitute(by)) -> .by
   if (.cols == "NULL")
     sel_name = names(dt[0])
   else{
@@ -45,9 +47,9 @@ mutate_vars = function(.data,.cols = NULL,.func,...){
         text =
           str_glue("select_dt(dt[0],{.cols}) %>% names() -> sel_name")))
   }
+  eval(parse(text = str_glue(
+  "dt[,(sel_name) := lapply(.SD,.func,...), by = {.by},.SDcols = sel_name][]")))
 
-  dt[,(sel_name) := lapply(.SD,.func,...), .SDcols = sel_name][]
 }
-
 
 

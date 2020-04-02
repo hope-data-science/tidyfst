@@ -31,15 +31,17 @@
 #' df %>% complete_dt(item_id=1:3)
 #' df %>% complete_dt(item_id=1:3,group=1:2)
 #' df %>% complete_dt(item_id=1:3,group=1:3,item_name=c("a","b","c"))
+#'
 
 #' @export
+
 complete_dt = function(.data,...,fill = NA){
   dt = as_dt(.data)
 
   if(
     substitute(list(...)) %>%
-     deparse() %>%
-     str_detect("=")
+    deparse() %>%
+    str_detect("=")
   ) {
     list(...) %>%
       lapply(unique) %>%

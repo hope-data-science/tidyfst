@@ -13,6 +13,7 @@ p_load(fst,stringr,data.table,tidyfst)
 
 document()
 install(upgrade = "never",dependencies = F)
+#install(upgrade = "never",dependencies = F,quick = T)
 #install(quick = T)
 .rs.restartR()
 rm(list = ls())
@@ -70,7 +71,7 @@ usethis::create_package
 library(cranlogs)
 library(tidyfst)
 
-end_date = "2020-03-23"
+end_date = "2020-04-01"
 
 cran_downloads(package = "tidyfst", from = "2020-02-10",to = end_date) -> a
 

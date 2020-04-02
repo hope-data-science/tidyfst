@@ -65,7 +65,7 @@
 #' }
 
 
-
+#' @rdname longer
 #' @export
 longer_dt = function(.data,...,
                      name = "name",

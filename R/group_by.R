@@ -10,25 +10,12 @@
 #'  implemented on a data.frame for \code{group_exe_dt}.
 #'  It can receive what \code{select_dt} receives.
 #' @param cols A character vector of column names to group by.
-#' @param inplace Should the grouping implemented by reference?
-#' (Modify the original data.frame) Default uses \code{FALSE}.
-#' @return A data.table
+#' @return A data.table with keys
 #' @details \code{group_by_dt} and \code{group_exe_dt} are a pair of functions
 #' to be used in combination. It utilizes the feature of key setting in data.table,
 #' which provides high performance for group operations, especially when you have
 #' to operate by specific groups frequently.
 #' @examples
-#' # group by Species in iris data set
-#' as.data.table(iris) -> a
-#' key(a)
-#' group_by_dt(a,Species,inplace = FALSE)
-#' key(a)
-#'
-#' # use inplace operation to group by reference
-#' as.data.table(iris) -> a
-#' key(a)
-#' group_by_dt(a,Species,inplace = TRUE)
-#' key(a)
 #'
 #' # aggregation after grouping using group_exe_dt
 #' as.data.table(iris) -> a
@@ -58,10 +45,8 @@
 #' @rdname group_by
 #' @export
 
-group_by_dt = function(.data,...,cols = NULL,inplace = FALSE){
-
-  if(inplace) setDT(.data)
-  else .data = as_dt(.data)
+group_by_dt = function(.data,...,cols = NULL){
+  .data = as_dt(.data)
 
   if(!is.null(cols)) setkeyv(.data,cols)
   else {
@@ -71,16 +56,6 @@ group_by_dt = function(.data,...,cols = NULL,inplace = FALSE){
 
   .data
 }
-
-# group_by_dt = function(data,...,cols = NULL,inplace = FALSE){
-#
-#   if(inplace) setDT(data)
-#   else data = as_dt(data)
-#
-#   if(!is.null(cols)) setkeyv(data,cols)
-#   else eval(substitute(setkey(data,...)))
-#
-# }
 
 #' @rdname group_by
 #' @export
@@ -95,11 +70,5 @@ group_exe_dt = function(.data,...){
   dt = as_dt(.data)
   eval(parse(text = str_glue("group_dt(.data = dt,by = {dt_keys},...)")))
 }
-
-
-
-
-
-
 
 

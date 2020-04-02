@@ -34,7 +34,7 @@
 #'   ft %>% select_fst("Se")
 #'   ft %>% select_fst("nothing")
 #'   ft %>% select_fst("Se|Sp")
-#'   ft %>% select_fst(names(iris)[2:3])
+#'   ft %>% select_fst(cols = names(iris)[2:3])
 #'
 #'   ft %>% filter_fst(Sepal.Width > 3)
 #'   ft %>% filter_fst(Sepal.Length > 6 , Species == "virginica")
@@ -44,9 +44,7 @@
 #' }
 
 
-
 globalVariables(c("."))
-
 
 #' @rdname fst
 #' @export
@@ -59,53 +57,37 @@ parse_fst = function(path){
 #' @export
 
 slice_fst = function(ft,row_no){
-  ft[row_no,] %>% as.data.table()
+  setDT(ft[row_no,])[]
 }
 
 #' @rdname fst
 #' @export
 select_fst = function(ft,...){
-  substitute(list(...)) %>%
-    deparse() %>%
-    str_extract("\\(.+\\)") %>%
-    str_sub(2,-2)-> dot_string
-  if(dot_string %like% "^[0-9]+$")
-    eval(parse(text = str_glue("ft[{dot_string}] %>% as.data.table()")))
-  else if(str_detect(dot_string,"^\"") | str_detect(dot_string,"^[a-zA-Z0-9_.]+$")){
-    dot_string = str_remove_all(dot_string,"\"")
-    str_detect(names(ft),dot_string) -> logical_vec
-    if(all(logical_vec == FALSE)) {
-      warning("No matched columns,try other patterns. Names of the `fst_table` are listed.")
-      names(ft)
-    } else
-      ft[,logical_vec] %>% as.data.table()
-  }
-  else if(str_detect(dot_string,"^[0-9]") &
-          str_detect(dot_string,"[0-9]$"))
-    eval(parse(text = str_glue("ft[,c({dot_string})] %>% as.data.table()")))
-  else if(str_detect(dot_string,",")){
-    dot_string %>%
-      str_split(",",simplify = TRUE) %>%
-      str_trim() %>%
-      str_c("'",.,"'") %>%
-      str_c(collapse = ",") %>%
-      str_c("c(",.,")") -> dot_string
-    eval(parse(text = str_glue("ft[,{dot_string}] %>% as.data.table()")))
-  }  else
-    eval(parse(text = str_glue("ft[,{dot_string}] %>% as.data.table()")))
+
+  setDT(ft[1,])[0] %>% select_dt(...) %>% names() -> sel_names
+  setDT(ft[names(ft) %chin% sel_names])[]
+
 }
 
+select_fst = function(ft,...){
+
+  setDT(ft[1,])[0] %>% select_dt(...) %>% names() -> sel_names
+  names(ft) %chin% sel_names -> logical_vec
+  if(all(logical_vec == FALSE)) {
+    warning("No matched columns,try other patterns. Names of the `fst_table` are listed.")
+    names(ft)
+  } else setDT(ft[logical_vec])[]
+
+}
 
 #' @rdname fst
 #' @export
 
 filter_fst = function(ft,...){
   substitute(list(...)) %>%
-    deparse() %>%
-    paste0(collapse = "") %>%
-    trimws() %>%
-    str_extract("(?<=\\().+?(?=\\))") %>%
-    gsub(",","&",.)-> dot_string
+    lapply(deparse) %>%
+    .[-1] %>%
+    str_c(collapse = " & ")-> dot_string
   names(ft) -> ft_names
   ft_names[str_detect(dot_string,ft_names)] -> old
   paste0("ft$",old) -> new

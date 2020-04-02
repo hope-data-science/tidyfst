@@ -1,6 +1,6 @@
 Package: tidyfst
 Title: Tidy Verbs for Fast Data Manipulation
-Version: 0.9.3
+Version: 0.9.4
 Depends: R (>= 3.3.0)
 Authors@R: 
     person(given = "Tian-Yuan",
@@ -28,5 +28,6 @@ Suggests:
     rmarkdown,
     nycflights13,
     pryr,
-    tidyr
+    tidyr,
+    ggplot2
 VignetteBuilder: knitr

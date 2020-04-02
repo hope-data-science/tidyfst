@@ -18,6 +18,7 @@
 #' iris %>% add_count_dt(Species,.name = "N")
 #'
 #' mtcars %>% count_dt(cyl,vs)
+#' mtcars %>% count_dt(cyl,vs,.name = "N",sort = FALSE)
 #' mtcars %>% add_count_dt(cyl,vs)
 #'
 #' @rdname count
@@ -26,10 +27,11 @@
 count_dt = function(.data,...,sort = TRUE,.name = "n"){
   dt = as_dt(.data)
   dot_string = substitute(list(...))
-  if(sort == TRUE) dt[,.(n = .N),by = dot_string][order(-n)] -> dt
-  else dt[,.(n = .N),by = dot_string] -> dt
-  if(.name != "n")  setnames(dt,old = "n",new = .name)
-  as.data.table(dt)
+  if(sort)
+    eval(parse(text =
+                 str_glue("dt[,.({.name} = .N),by = dot_string][order(-{.name})]")))
+  else
+    eval(parse(text = str_glue("dt[,.({.name} = .N),by = dot_string]")))
 }
 
 #' @rdname count
@@ -37,10 +39,9 @@ count_dt = function(.data,...,sort = TRUE,.name = "n"){
 add_count_dt = function(.data,...,.name = "n"){
   dt = as_dt(.data)
   dot_string = substitute(list(...))
-  dt[,mutate_dt(.SD,n = .N),by = dot_string] -> dt
-  if(.name != "n")  setnames(dt,old = "n",new = .name)
-  as.data.table(dt)
+  dt[,(.name):=.N,by = dot_string][]
 }
 
 
-globalVariables("n")
+
+
