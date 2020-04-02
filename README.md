@@ -78,7 +78,8 @@ iris[3:8,] %>%
 
 ```
 
-
+## Notification
+Currently, some functions include modification by reference (`set_`). They might be fast but violates the principles of the package (never modify without notifying). Therefore, they might be removed later. Therefore, don't put them in long-term maintained codes.
 
 ## Future plans
 
