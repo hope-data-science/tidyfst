@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -261,13 +261,13 @@ to be memory efficient.</p>
 
 <span class='no'>nr_of_rows</span> <span class='kw'>&lt;-</span> <span class='fl'>1e5</span>
 
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(
   <span class='kw'>Logical</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>, <span class='fl'>NA</span>),
                    <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.85</span>, <span class='fl'>0.1</span>, <span class='fl'>0.05</span>),
                    <span class='no'>nr_of_rows</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 )
 
-<span class='fu'><a href='https://rdrr.io/pkg/pryr/man/mem_change.html'>mem_change</a></span>(<span class='fu'><a href='mutate.html'>mutate_dt</a></span>(<span class='no'>df</span>,<span class='kw'>one</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>-&gt;</span> <span class='no'>res</span>)</div><div class='output co'>#&gt; 1.25 MB</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/pkg/pryr/man/mem_change.html'>mem_change</a></span>(<span class='fu'><a href='mutate.html'>mutate_dt</a></span>(<span class='no'>df</span>,<span class='kw'>one</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>-&gt;</span> <span class='no'>res</span>)</div><div class='output co'>#&gt; 1.22 MB</div><div class='input'>
 <span class='co'># makes no copy, update on "df" directly</span>
 <span class='fu'><a href='https://rdrr.io/pkg/pryr/man/mem_change.html'>mem_change</a></span>(<span class='fu'>set_mutate</span>(<span class='no'>df</span>,<span class='kw'>one</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='output co'>#&gt; 821 kB</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>res</span>,<span class='no'>df</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>

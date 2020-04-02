@@ -79,7 +79,7 @@ in dplyr and make a new tidy verb for data.table. mutate_vars is
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -161,7 +161,7 @@ in <span class="pkg">dplyr</span> and make a new tidy verb for data.table. <code
 
     <pre class="usage"><span class='fu'>mutate_when</span>(<span class='no'>.data</span>, <span class='no'>when</span>, <span class='no'>...</span>)
 
-<span class='fu'>mutate_vars</span>(<span class='no'>.data</span>, <span class='kw'>.cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>.func</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>mutate_vars</span>(<span class='no'>.data</span>, <span class='kw'>.cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>.func</span>, <span class='no'>...</span>, <span class='no'>by</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,6 +187,10 @@ Additional parameters to be passed to parameter '.func' in <code>mutate_vars</co
       <th>.func</th>
       <td><p>Function to be run within each column, should return a value or
 vectors with same length.</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>(Optional) Mutate by what group?</p></td>
     </tr>
     </table>
 

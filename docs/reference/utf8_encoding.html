@@ -6,15 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Page not found (404) • tidyfst</title>
+<title>Use UTF-8 for character encoding in a data frame — utf8_encoding • tidyfst</title>
 
 <!-- favicons -->
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png" />
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,13 +36,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Page not found (404)" />
+<meta property="og:title" content="Use UTF-8 for character encoding in a data frame — utf8_encoding" />
+<meta property="og:description" content="fread from data.table could not recognize the encoding
+and return the correct form, this could be unconvenient for text mining tasks. The
+utf8-encoding could use &quot;UTF-8&quot; as the encoding to override the current
+encoding of characters in a data frame." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -63,7 +67,7 @@
   </head>
 
   <body>
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -75,7 +79,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">tidyfst</a>
+        <a class="navbar-link" href="../index.html">tidyfst</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
@@ -83,13 +87,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -99,28 +103,28 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/chinese_tutorial.html">tidyfst包实例分析</a>
+      <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
     </li>
     <li>
-      <a href="articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
+      <a href="../articles/english_tutorial.html">Use data.table the tidy way: An ultimate tutorial of tidyfst</a>
     </li>
     <li>
-      <a href="articles/example1_intro.html">Example 1: Basic usage</a>
+      <a href="../articles/example1_intro.html">Example 1: Basic usage</a>
     </li>
     <li>
-      <a href="articles/example2_join.html">Example 2: Join tables</a>
+      <a href="../articles/example2_join.html">Example 2: Join tables</a>
     </li>
     <li>
-      <a href="articles/example3_reshape.html">Example 3: Reshape</a>
+      <a href="../articles/example3_reshape.html">Example 3: Reshape</a>
     </li>
     <li>
-      <a href="articles/example4_nest.html">Example 4: Nest</a>
+      <a href="../articles/example4_nest.html">Example 4: Nest</a>
     </li>
     <li>
-      <a href="articles/example5_fst.html">Example 5: Fst</a>
+      <a href="../articles/example5_fst.html">Example 5: Fst</a>
     </li>
     <li>
-      <a href="articles/example6_dt.html">Example 6: Dt</a>
+      <a href="../articles/example6_dt.html">Example 6: Dt</a>
     </li>
   </ul>
 </li>
@@ -143,17 +147,45 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Page not found (404)</h1>
+    <h1>Use UTF-8 for character encoding in a data frame</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/utf8_encoding.R'><code>R/utf8_encoding.R</code></a></small>
+    <div class="hidden name"><code>utf8_encoding.Rd</code></div>
     </div>
 
-Content not found. Please use links in the navbar.
+    <div class="ref-description">
+    <p><code>fread</code> from <span class="pkg">data.table</span> could not recognize the encoding
+and return the correct form, this could be unconvenient for text mining tasks. The
+<code>utf8-encoding</code> could use "UTF-8" as the encoding to override the current
+encoding of characters in a data frame.</p>
+    </div>
+
+    <pre class="usage"><span class='fu'>utf8_encoding</span>(<span class='no'>.data</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>.data</th>
+      <td><p>A data.frame.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data.table with characters in UTF-8 encoding</p>
 
   </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+    </ul>
 
+  </div>
 </div>
-
 
 
       <footer>

@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -181,6 +181,12 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data.table</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If you want to use <code>summarise_dt</code> and <code>mutate_dt</code> in
+<code>group_dt</code>, it is better to use the "by" parameter in those functions,
+that would be much faster because you don't have to use <code>.SD</code> (which takes
+extra time to copy).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>https://stackoverflow.com/questions/36802385/use-by-each-row-for-data-table</p>
@@ -254,7 +260,7 @@
 #&gt; 3:     1     0 20.74286
 #&gt; 4:     0     0 15.05000</div><div class='input'>
 <span class='co'># examples for `rowwise_dt`</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>3</span>:<span class='fl'>4</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>5</span>)
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>3</span>:<span class='fl'>4</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>5</span>)
 
 <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='mutate.html'>mutate_dt</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>)))</div><div class='output co'>#&gt;        x     y     z        m
 #&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;num&gt;
@@ -272,6 +278,7 @@
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

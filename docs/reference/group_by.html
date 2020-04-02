@@ -79,7 +79,7 @@ not only convenient but also efficient in computation." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -159,7 +159,7 @@ to carry out <code>group_by</code>-like functionalities in <span class="pkg">dpl
 not only convenient but also efficient in computation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>group_by_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inplace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>group_by_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>group_exe_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)</pre>
 
@@ -182,16 +182,11 @@ It can receive what <code>select_dt</code> receives.</p></td>
       <th>cols</th>
       <td><p>A character vector of column names to group by.</p></td>
     </tr>
-    <tr>
-      <th>inplace</th>
-      <td><p>Should the grouping implemented by reference?
-(Modify the original data.frame) Default uses <code>FALSE</code>.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.table</p>
+    <p>A data.table with keys</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>group_by_dt</code> and <code>group_exe_dt</code> are a pair of functions
@@ -200,38 +195,9 @@ which provides high performance for group operations, especially when you have
 to operate by specific groups frequently.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># group by Species in iris data set</span>
-<span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span>(<span class='no'>iris</span>) <span class='kw'>-&gt;</span> <span class='no'>a</span>
-<span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setkey.html'>key</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'>group_by_dt</span>(<span class='no'>a</span>,<span class='no'>Species</span>,<span class='kw'>inplace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
-#&gt;   1:          5.1         3.5          1.4         0.2    setosa
-#&gt;   2:          4.9         3.0          1.4         0.2    setosa
-#&gt;   3:          4.7         3.2          1.3         0.2    setosa
-#&gt;   4:          4.6         3.1          1.5         0.2    setosa
-#&gt;   5:          5.0         3.6          1.4         0.2    setosa
-#&gt;  ---                                                            
-#&gt; 146:          6.7         3.0          5.2         2.3 virginica
-#&gt; 147:          6.3         2.5          5.0         1.9 virginica
-#&gt; 148:          6.5         3.0          5.2         2.0 virginica
-#&gt; 149:          6.2         3.4          5.4         2.3 virginica
-#&gt; 150:          5.9         3.0          5.1         1.8 virginica</div><div class='input'><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setkey.html'>key</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
-<span class='co'># use inplace operation to group by reference</span>
-<span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span>(<span class='no'>iris</span>) <span class='kw'>-&gt;</span> <span class='no'>a</span>
-<span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setkey.html'>key</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'>group_by_dt</span>(<span class='no'>a</span>,<span class='no'>Species</span>,<span class='kw'>inplace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
-#&gt;   1:          5.1         3.5          1.4         0.2    setosa
-#&gt;   2:          4.9         3.0          1.4         0.2    setosa
-#&gt;   3:          4.7         3.2          1.3         0.2    setosa
-#&gt;   4:          4.6         3.1          1.5         0.2    setosa
-#&gt;   5:          5.0         3.6          1.4         0.2    setosa
-#&gt;  ---                                                            
-#&gt; 146:          6.7         3.0          5.2         2.3 virginica
-#&gt; 147:          6.3         2.5          5.0         1.9 virginica
-#&gt; 148:          6.5         3.0          5.2         2.0 virginica
-#&gt; 149:          6.2         3.4          5.4         2.3 virginica
-#&gt; 150:          5.9         3.0          5.1         1.8 virginica</div><div class='input'><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/setkey.html'>key</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; [1] "Species"</div><div class='input'>
+    <pre class="examples"><div class='input'>
 <span class='co'># aggregation after grouping using group_exe_dt</span>
-<span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span>(<span class='no'>iris</span>) <span class='kw'>-&gt;</span> <span class='no'>a</span>
+<span class='fu'><a href='https://rdrr.io/pkg/data.table/man/as.data.table.html'>as.data.table</a></span>(<span class='no'>iris</span>) <span class='kw'>-&gt;</span> <span class='no'>a</span>
 <span class='no'>a</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>group_by_dt</span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>group_exe_dt</span>(<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width

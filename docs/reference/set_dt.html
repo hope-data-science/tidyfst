@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -180,7 +180,7 @@
       <th>col_order</th>
       <td><p>(Optional) Character vector of the new column name ordering.
 May also be column numbers. This parameter will pass to "neworder" parameter
-in <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setcolorder.html'>setcolorder</a></code>.</p></td>
+in <code><a href='https://rdrr.io/pkg/data.table/man/setcolorder.html'>setcolorder</a></code>.</p></td>
     </tr>
     <tr>
       <th>order_by</th>
@@ -246,7 +246,7 @@ want to do the operation in another order, use it separately in multiple
 <span class='co'># set_dt</span>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>
 <span class='no'>x</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>5</span>:<span class='fl'>6</span>, <span class='fl'>9</span>:<span class='fl'>10</span>)] <span class='kw'>=</span> <span class='fl'>NA</span>
-<span class='no'>dt</span> <span class='kw'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>v1</span><span class='kw'>=</span><span class='no'>x</span>, <span class='kw'>v2</span><span class='kw'>=</span><span class='fu'><a href='lag_lead.html'>lag_dt</a></span>(<span class='no'>x</span>)/<span class='fl'>2</span>, <span class='kw'>v3</span><span class='kw'>=</span><span class='fu'><a href='lag_lead.html'>lead_dt</a></span>(<span class='no'>x</span>, <span class='fl'>1L</span>)/<span class='fl'>2</span>)
+<span class='no'>dt</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>v1</span><span class='kw'>=</span><span class='no'>x</span>, <span class='kw'>v2</span><span class='kw'>=</span><span class='fu'><a href='lag_lead.html'>lag_dt</a></span>(<span class='no'>x</span>)/<span class='fl'>2</span>, <span class='kw'>v3</span><span class='kw'>=</span><span class='fu'><a href='lag_lead.html'>lead_dt</a></span>(<span class='no'>x</span>, <span class='fl'>1L</span>)/<span class='fl'>2</span>)
 <span class='no'>dt</span></div><div class='output co'>#&gt;        v1    v2    v3
 #&gt;     &lt;int&gt; &lt;num&gt; &lt;num&gt;
 #&gt;  1:    NA    NA    NA

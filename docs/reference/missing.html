@@ -78,7 +78,7 @@ fill in tidyr, but with a different API." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -159,11 +159,11 @@ fill in tidyr, but with a different API." />
 
     <pre class="usage"><span class='fu'>drop_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
+<span class='fu'>replace_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='no'>to</span>)
+
 <span class='fu'>delete_na_cols</span>(<span class='no'>.data</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>delete_na_rows</span>(<span class='no'>.data</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='fu'>replace_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='no'>to</span>)
 
 <span class='fu'>fill_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"down"</span>)
 
@@ -181,16 +181,16 @@ fill in tidyr, but with a different API." />
       <td><p>Colunms to be replaced or filled. If not specified, use all columns.</p></td>
     </tr>
     <tr>
+      <th>to</th>
+      <td><p>What value should NA replace by?</p></td>
+    </tr>
+    <tr>
       <th>prop</th>
       <td><p>If proportion of NAs is larger than or equal to "prop", would be deleted.</p></td>
     </tr>
     <tr>
       <th>n</th>
       <td><p>If number of NAs is larger than or equal to "n", would be deleted.</p></td>
-    </tr>
-    <tr>
-      <th>to</th>
-      <td><p>What value should NA replace by?</p></td>
     </tr>
     <tr>
       <th>direction</th>
@@ -227,7 +227,7 @@ than or equal to "prop" or NA number larger than or equal to "n",
 <code><a href='https://tidyr.tidyverse.org/reference/fill.html'>fill</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
  <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>()</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;        x      y

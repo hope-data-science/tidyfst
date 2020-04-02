@@ -44,7 +44,11 @@
 
 <meta property="og:title" content="Complete a data frame with missing combinations of data — complete_dt" />
 <meta property="og:description" content="Turns implicit missing values into explicit missing values.
-Analogous function for complete function in tidyr." />
+Analogous function for complete function in tidyr.
+The function prefixed with set_ is modification
+by reference. It only receives data.table and the result would be returned
+invisibly. These functions are fast, memory-efficient, but demands more
+caution in usage." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -149,15 +153,21 @@ Analogous function for complete function in tidyr." />
     <div class="page-header">
     <h1>Complete a data frame with missing combinations of data</h1>
     <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/complete.R'><code>R/complete.R</code></a></small>
-    <div class="hidden name"><code>complete_dt.Rd</code></div>
+    <div class="hidden name"><code>complete.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Turns implicit missing values into explicit missing values.
 Analogous function for <code>complete</code> function in <span class="pkg">tidyr</span>.</p>
+<p>The function prefixed with <code>set_</code> is modification
+by reference. It only receives data.table and the result would be returned
+invisibly. These functions are fast, memory-efficient, but demands more
+caution in usage.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>complete_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+    <pre class="usage"><span class='fu'>complete_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
+
+<span class='fu'>set_complete</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -262,8 +272,7 @@ only on unique entries, and it will always returned the unique entries.</p>
 #&gt; 25:       3     3         a     NA     NA
 #&gt; 26:       3     3         b     NA     NA
 #&gt; 27:       3     3         c     NA     NA
-#&gt;     item_id group item_name value1 value2</div><div class='input'>
-</div></pre>
+#&gt;     item_id group item_name value1 value2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

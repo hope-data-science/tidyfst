@@ -43,7 +43,11 @@
 
 
 <meta property="og:title" content="Join table by common keys — left_join_dt" />
-<meta property="og:description" content="Join operations." />
+<meta property="og:description" content="Join operations.
+For functions without suffix _dt, they use
+X[Y] syntax to join tables, and pass the &quot;by&quot; parameter to
+&quot;on&quot; in data.table. They have different features and syntax. They
+starts with first letter of left/right/full/inner/semi/anti." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -77,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -153,6 +157,10 @@
 
     <div class="ref-description">
     <p>Join operations.</p>
+<p>For functions without suffix <code>_dt</code>, they use
+<code>X[Y]</code> syntax to join tables, and pass the "by" parameter to
+"on" in data.table. They have different features and syntax. They
+starts with first letter of left/right/full/inner/semi/anti.</p>
     </div>
 
     <pre class="usage"><span class='fu'>left_join_dt</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>suffix</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>".x"</span>, <span class='st'>".y"</span>))
@@ -165,7 +173,19 @@
 
 <span class='fu'>anti_join_dt</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>semi_join_dt</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>semi_join_dt</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>ljoin</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>rjoin</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>ijoin</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>fjoin</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>ajoin</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>sjoin</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,12 +200,16 @@
     </tr>
     <tr>
       <th>by</th>
-      <td><p>a character vector of variables to join by. If NULL, the default,
-*_join() will do a natural join, using all variables with common names
-across the two tables. A message lists the variables so that you can check
-they're right (to suppress the message, simply explicitly list the
-variables that you want to join). To join by different variables on x and y
-use a named vector. For example, by = c("a" = "b") will match x.a to y.b.</p></td>
+      <td><p>For functions without suffix <code>_dt</code>,
+this parameter will pass to the
+<code>on</code> paramter to the data.table. Details could be found at
+<code><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></code>.Examples included:
+1.<code>.by = c("a","b")</code> (this is a must for <code>set_full_join</code>);
+2.<code>.by = c(x1="y1", x2="y2")</code>;
+3.<code>.by = c("x1==y1", "x2==y2")</code>;
+4.<code>.by = c("a", V2="b")</code>;
+5.<code>.by = .(a, b)</code>;
+6.<code>.by = c("x&gt;=a", "y&lt;=b")</code> or <code>.by = .(x&gt;=a, y&lt;=b)</code>.</p></td>
     </tr>
     <tr>
       <th>suffix</th>
@@ -204,14 +228,14 @@ character vector of length 2.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>workers</span> <span class='kw'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>fread</a></span>(<span class='st'>"
+<span class='no'>workers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/fread.html'>fread</a></span>(<span class='st'>"
     name company
     Nick Acme
     John Ajax
     Daniela Ajax
 "</span>)
 
-<span class='no'>positions</span> <span class='kw'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>fread</a></span>(<span class='st'>"
+<span class='no'>positions</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/fread.html'>fread</a></span>(<span class='st'>"
     name position
     John designer
     Daniela engineer
@@ -253,7 +277,20 @@ character vector of length 2.</p></td>
 <span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>inner_join_dt</span>(<span class='no'>positions2</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"name"</span> <span class='kw'>=</span> <span class='st'>"worker"</span>))</div><div class='output co'>#&gt;       name company position
 #&gt;     &lt;char&gt;  &lt;char&gt;   &lt;char&gt;
 #&gt; 1: Daniela    Ajax engineer
-#&gt; 2:    John    Ajax designer</div></pre>
+#&gt; 2:    John    Ajax designer</div><div class='input'>
+<span class='co'># the syntax of non-"_dt" suffix joins is a bit different</span>
+<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>ijoin</span>(<span class='no'>positions2</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"name==worker"</span>)</div><div class='output co'>#&gt;       name company position
+#&gt;     &lt;char&gt;  &lt;char&gt;   &lt;char&gt;
+#&gt; 1:    John    Ajax designer
+#&gt; 2: Daniela    Ajax engineer</div><div class='input'>
+<span class='no'>x</span><span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>a</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>5</span>,<span class='kw'>a1</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>6</span>,<span class='kw'>b</span><span class='kw'>=</span><span class='fl'>11</span>:<span class='fl'>15</span>)
+<span class='no'>y</span><span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>a</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>,<span class='fl'>6</span>), <span class='kw'>a1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>5</span>,<span class='fl'>1</span>),<span class='kw'>c</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>101</span>:<span class='fl'>104</span>,<span class='fl'>106</span>))
+
+<span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span>(<span class='no'>x</span>,<span class='no'>y</span>,<span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>-&gt;</span> <span class='no'>a</span>
+<span class='fu'>fjoin</span>(<span class='no'>x</span>,<span class='no'>y</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>,<span class='st'>"a1"</span>)) <span class='kw'>-&gt;</span> <span class='no'>b</span>
+<span class='kw pkg'>data.table</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/data.table/man/setcolorder.html'>setcolorder</a></span>(<span class='no'>a</span>,<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>b</span>))
+
+<span class='fu'><a href='https://rdrr.io/pkg/data.table/man/setops.html'>fsetequal</a></span>(<span class='no'>a</span>,<span class='no'>b</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
