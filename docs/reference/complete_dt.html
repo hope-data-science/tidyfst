@@ -78,7 +78,7 @@ Analogous function for complete function in tidyr." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
       </span>
     </div>
 
@@ -203,37 +203,43 @@ only on unique entries, and it will always returned the unique entries.</p>
   <span class='kw'>value2</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>6</span>
 )
 
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='no'>item_id</span>,<span class='no'>item_name</span>)</div><div class='output co'>#&gt;    item_id item_name group value1 value2
+<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='no'>item_id</span>,<span class='no'>item_name</span>)</div><div class='output co'>#&gt; Key: &lt;item_id, item_name&gt;
+#&gt;    item_id item_name group value1 value2
 #&gt;      &lt;num&gt;    &lt;char&gt; &lt;num&gt;  &lt;int&gt;  &lt;int&gt;
 #&gt; 1:       1         a     1      1      4
 #&gt; 2:       1         b    NA     NA     NA
 #&gt; 3:       2         a    NA     NA     NA
-#&gt; 4:       2         b     1      3      6
-#&gt; 5:       2         b     2      2      5</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='no'>item_id</span>,<span class='no'>item_name</span>,<span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;    item_id item_name group value1 value2
+#&gt; 4:       2         b     2      2      5
+#&gt; 5:       2         b     1      3      6</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='no'>item_id</span>,<span class='no'>item_name</span>,<span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt; Key: &lt;item_id, item_name&gt;
+#&gt;    item_id item_name group value1 value2
 #&gt;      &lt;num&gt;    &lt;char&gt; &lt;num&gt;  &lt;int&gt;  &lt;int&gt;
 #&gt; 1:       1         a     1      1      4
 #&gt; 2:       1         b     0      0      0
 #&gt; 3:       2         a     0      0      0
-#&gt; 4:       2         b     1      3      6
-#&gt; 5:       2         b     2      2      5</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='st'>"item"</span>)</div><div class='output co'>#&gt;    item_id item_name group value1 value2
+#&gt; 4:       2         b     2      2      5
+#&gt; 5:       2         b     1      3      6</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='st'>"item"</span>)</div><div class='output co'>#&gt; Key: &lt;item_id, item_name&gt;
+#&gt;    item_id item_name group value1 value2
 #&gt;      &lt;num&gt;    &lt;char&gt; &lt;num&gt;  &lt;int&gt;  &lt;int&gt;
 #&gt; 1:       1         a     1      1      4
 #&gt; 2:       1         b    NA     NA     NA
 #&gt; 3:       2         a    NA     NA     NA
-#&gt; 4:       2         b     1      3      6
-#&gt; 5:       2         b     2      2      5</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='kw'>item_id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt;    item_id group item_name value1 value2
+#&gt; 4:       2         b     2      2      5
+#&gt; 5:       2         b     1      3      6</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='kw'>item_id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt; Key: &lt;item_id&gt;
+#&gt;    item_id group item_name value1 value2
 #&gt;      &lt;int&gt; &lt;num&gt;    &lt;char&gt;  &lt;int&gt;  &lt;int&gt;
 #&gt; 1:       1     1         a      1      4
-#&gt; 2:       2     1         b      3      6
-#&gt; 3:       2     2         b      2      5
-#&gt; 4:       3    NA      &lt;NA&gt;     NA     NA</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='kw'>item_id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>group</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt;    item_id group item_name value1 value2
+#&gt; 2:       2     2         b      2      5
+#&gt; 3:       2     1         b      3      6
+#&gt; 4:       3    NA      &lt;NA&gt;     NA     NA</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='kw'>item_id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>group</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt; Key: &lt;item_id, group&gt;
+#&gt;    item_id group item_name value1 value2
 #&gt;      &lt;int&gt; &lt;int&gt;    &lt;char&gt;  &lt;int&gt;  &lt;int&gt;
 #&gt; 1:       1     1         a      1      4
 #&gt; 2:       1     2      &lt;NA&gt;     NA     NA
 #&gt; 3:       2     1         b      3      6
 #&gt; 4:       2     2         b      2      5
 #&gt; 5:       3     1      &lt;NA&gt;     NA     NA
-#&gt; 6:       3     2      &lt;NA&gt;     NA     NA</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='kw'>item_id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>group</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>item_name</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>,<span class='st'>"b"</span>,<span class='st'>"c"</span>))</div><div class='output co'>#&gt;     item_id group item_name value1 value2
+#&gt; 6:       3     2      &lt;NA&gt;     NA     NA</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>complete_dt</span>(<span class='kw'>item_id</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>group</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>3</span>,<span class='kw'>item_name</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>,<span class='st'>"b"</span>,<span class='st'>"c"</span>))</div><div class='output co'>#&gt; Key: &lt;item_id, group, item_name&gt;
+#&gt;     item_id group item_name value1 value2
 #&gt;       &lt;int&gt; &lt;int&gt;    &lt;char&gt;  &lt;int&gt;  &lt;int&gt;
 #&gt;  1:       1     1         a      1      4
 #&gt;  2:       1     1         b     NA     NA

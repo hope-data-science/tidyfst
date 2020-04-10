@@ -78,7 +78,7 @@ Analogous to tidyr::unite." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
       </span>
     </div>
 
@@ -157,7 +157,14 @@ Analogous to tidyr::unite." />
 Analogous to <code><a href='https://tidyr.tidyverse.org/reference/unite.html'>tidyr::unite</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>unite_dt</span>(<span class='no'>.data</span>, <span class='no'>united_colname</span>, <span class='no'>...</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>, <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>unite_dt</span>(
+  <span class='no'>.data</span>,
+  <span class='no'>united_colname</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>,
+  <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>na2char</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,8 +191,8 @@ pass "" to the parameter. See example.</p></td>
       <td><p>If <code>TRUE</code>, remove input columns from output data frame.</p></td>
     </tr>
     <tr>
-      <th>na.rm</th>
-      <td><p>If <code>TRUE</code>, missing values would be merged into <code>NA</code>,
+      <th>na2char</th>
+      <td><p>If <code>FALSE</code>, missing values would be merged into <code>NA</code>,
 otherwise <code>NA</code> is treated as character "NA". This is different from
 <span class="pkg">tidyr</span>.</p></td>
     </tr>
@@ -202,25 +209,25 @@ otherwise <code>NA</code> is treated as character "NA". This is different from
 #&gt; 2 &lt;NA&gt;    b
 #&gt; 3    a &lt;NA&gt;
 #&gt; 4 &lt;NA&gt; &lt;NA&gt;</div><div class='input'>
-<span class='co'># Treat missing value as character "NA"</span>
+<span class='co'># Treat missing value as NA, default</span>
 <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unite_dt</span>(<span class='st'>"z"</span>, <span class='no'>x</span>:<span class='no'>y</span>, <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;         x      y      z
-#&gt;    &lt;fctr&gt; &lt;fctr&gt; &lt;char&gt;
-#&gt; 1:      a      b    a_b
-#&gt; 2:   &lt;NA&gt;      b   NA_b
-#&gt; 3:      a   &lt;NA&gt;   a_NA
-#&gt; 4:   &lt;NA&gt;   &lt;NA&gt;  NA_NA</div><div class='input'><span class='co'># Treat missing value as NA</span>
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unite_dt</span>(<span class='st'>"z"</span>, <span class='no'>x</span>:<span class='no'>y</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;         x      y      z
 #&gt;    &lt;fctr&gt; &lt;fctr&gt; &lt;char&gt;
 #&gt; 1:      a      b    a_b
 #&gt; 2:   &lt;NA&gt;      b   &lt;NA&gt;
 #&gt; 3:      a   &lt;NA&gt;   &lt;NA&gt;
-#&gt; 4:   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>unite_dt</span>(<span class='st'>"xy"</span>, <span class='no'>x</span>:<span class='no'>y</span>)</div><div class='output co'>#&gt;         x      y     xy
+#&gt; 4:   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;</div><div class='input'><span class='co'># Treat missing value as character "NA"</span>
+<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unite_dt</span>(<span class='st'>"z"</span>, <span class='no'>x</span>:<span class='no'>y</span>, <span class='kw'>na2char</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;         x      y      z
 #&gt;    &lt;fctr&gt; &lt;fctr&gt; &lt;char&gt;
 #&gt; 1:      a      b    a_b
 #&gt; 2:   &lt;NA&gt;      b   NA_b
 #&gt; 3:      a   &lt;NA&gt;   a_NA
-#&gt; 4:   &lt;NA&gt;   &lt;NA&gt;  NA_NA</div><div class='input'>
+#&gt; 4:   &lt;NA&gt;   &lt;NA&gt;  NA_NA</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>unite_dt</span>(<span class='st'>"xy"</span>, <span class='no'>x</span>:<span class='no'>y</span>)</div><div class='output co'>#&gt;         x      y     xy
+#&gt;    &lt;fctr&gt; &lt;fctr&gt; &lt;char&gt;
+#&gt; 1:      a      b    a_b
+#&gt; 2:   &lt;NA&gt;      b   &lt;NA&gt;
+#&gt; 3:      a   &lt;NA&gt;   &lt;NA&gt;
+#&gt; 4:   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;</div><div class='input'>
 <span class='co'># Select all columns</span>
 <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>unite_dt</span>(<span class='st'>"merged_name"</span>,<span class='st'>""</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 #&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;

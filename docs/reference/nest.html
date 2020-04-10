@@ -80,7 +80,7 @@ designed to merge multiple columns into list column." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
       </span>
     </div>
 
@@ -249,11 +249,21 @@ package.</p>
 #&gt; 4:     8     0 &lt;data.table&gt;
 #&gt; 5:     4     0 &lt;data.table&gt;</div><div class='input'>
 <span class='co'># nest two columns directly</span>
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>nest_dt</span>(<span class='kw'>mcols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>petal</span><span class='kw'>=</span><span class='st'>"^Pe"</span>,<span class='kw'>sepal</span><span class='kw'>=</span><span class='st'>"^Se"</span>))</div><div class='output co'>#&gt;       Species        petal        sepal
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>nest_dt</span>(<span class='kw'>mcols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>petal</span><span class='kw'>=</span><span class='st'>"^Pe"</span>,<span class='kw'>sepal</span><span class='kw'>=</span><span class='st'>"^Se"</span>))</div><div class='output co'>#&gt; Key: &lt;Species&gt;
+#&gt;       Species        petal        sepal
 #&gt;        &lt;fctr&gt;       &lt;list&gt;       &lt;list&gt;
 #&gt; 1:     setosa &lt;data.table&gt; &lt;data.table&gt;
 #&gt; 2: versicolor &lt;data.table&gt; &lt;data.table&gt;
 #&gt; 3:  virginica &lt;data.table&gt; &lt;data.table&gt;</div><div class='input'>
+<span class='co'># nest more flexibly</span>
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>nest_dt</span>(<span class='kw'>mcols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ndt1</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
+  <span class='kw'>ndt2</span> <span class='kw'>=</span> <span class='st'>"Pe"</span>,
+  <span class='kw'>ndt3</span> <span class='kw'>=</span> <span class='no'>Sepal.Length</span>:<span class='no'>Sepal.Width</span>))</div><div class='output co'>#&gt; Key: &lt;Species&gt;
+#&gt;       Species         ndt1         ndt2         ndt3
+#&gt;        &lt;fctr&gt;       &lt;list&gt;       &lt;list&gt;       &lt;list&gt;
+#&gt; 1:     setosa &lt;data.table&gt; &lt;data.table&gt; &lt;data.table&gt;
+#&gt; 2: versicolor &lt;data.table&gt; &lt;data.table&gt; &lt;data.table&gt;
+#&gt; 3:  virginica &lt;data.table&gt; &lt;data.table&gt; &lt;data.table&gt;</div><div class='input'>
 <span class='co'># examples for unnest_dt</span>
 <span class='co'># unnest which column?</span>
  <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>nest_dt</span>(<span class='st'>"cyl|vs"</span>) <span class='kw'>%&gt;%</span>
@@ -355,21 +365,24 @@ package.</p>
 #&gt; 2:    22     1
 #&gt; 3:    22     2</div><div class='input'>
 <span class='co'># You can unnest multiple columns simultaneously</span>
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unnest_dt</span>(<span class='fl'>1</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt;        d      a      b     c
+<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unnest_dt</span>(<span class='fl'>1</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt; Key: &lt;d&gt;
+#&gt;        d      a      b     c
 #&gt;    &lt;num&gt; &lt;char&gt; &lt;lgcl&gt; &lt;num&gt;
 #&gt; 1:    11      a   TRUE     3
 #&gt; 2:    11      a   TRUE     3
 #&gt; 3:    11      b   TRUE     3
 #&gt; 4:    11      b   TRUE     3
 #&gt; 5:    22      c  FALSE     1
-#&gt; 6:    22      c  FALSE     2</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unnest_dt</span>(<span class='no'>a</span>,<span class='no'>b</span>,<span class='no'>c</span>)</div><div class='output co'>#&gt;        d      a      b     c
+#&gt; 6:    22      c  FALSE     2</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unnest_dt</span>(<span class='no'>a</span>,<span class='no'>b</span>,<span class='no'>c</span>)</div><div class='output co'>#&gt; Key: &lt;d&gt;
+#&gt;        d      a      b     c
 #&gt;    &lt;num&gt; &lt;char&gt; &lt;lgcl&gt; &lt;num&gt;
 #&gt; 1:    11      a   TRUE     3
 #&gt; 2:    11      a   TRUE     3
 #&gt; 3:    11      b   TRUE     3
 #&gt; 4:    11      b   TRUE     3
 #&gt; 5:    22      c  FALSE     1
-#&gt; 6:    22      c  FALSE     2</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unnest_dt</span>(<span class='st'>"a|b|c"</span>)</div><div class='output co'>#&gt;        d      a      b     c
+#&gt; 6:    22      c  FALSE     2</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unnest_dt</span>(<span class='st'>"a|b|c"</span>)</div><div class='output co'>#&gt; Key: &lt;d&gt;
+#&gt;        d      a      b     c
 #&gt;    &lt;num&gt; &lt;char&gt; &lt;lgcl&gt; &lt;num&gt;
 #&gt; 1:    11      a   TRUE     3
 #&gt; 2:    11      a   TRUE     3

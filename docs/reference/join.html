@@ -81,7 +81,7 @@ starts with first letter of left/right/full/inner/semi/anti." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
       </span>
     </div>
 
@@ -242,39 +242,45 @@ character vector of length 2.</p></td>
     Cathie manager
 "</span>)
 
-<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>inner_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;       name company position
+<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>inner_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt; Key: &lt;name&gt;
+#&gt;       name company position
 #&gt;     &lt;char&gt;  &lt;char&gt;   &lt;char&gt;
 #&gt; 1: Daniela    Ajax engineer
-#&gt; 2:    John    Ajax designer</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>left_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;       name company position
+#&gt; 2:    John    Ajax designer</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>left_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt; Key: &lt;name&gt;
+#&gt;       name company position
 #&gt;     &lt;char&gt;  &lt;char&gt;   &lt;char&gt;
 #&gt; 1: Daniela    Ajax engineer
 #&gt; 2:    John    Ajax designer
-#&gt; 3:    Nick    Acme     &lt;NA&gt;</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>right_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;       name company position
+#&gt; 3:    Nick    Acme     &lt;NA&gt;</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>right_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt; Key: &lt;name&gt;
+#&gt;       name company position
 #&gt;     &lt;char&gt;  &lt;char&gt;   &lt;char&gt;
 #&gt; 1:  Cathie    &lt;NA&gt;  manager
 #&gt; 2: Daniela    Ajax engineer
-#&gt; 3:    John    Ajax designer</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>full_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;       name company position
+#&gt; 3:    John    Ajax designer</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>full_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt; Key: &lt;name&gt;
+#&gt;       name company position
 #&gt;     &lt;char&gt;  &lt;char&gt;   &lt;char&gt;
 #&gt; 1:  Cathie    &lt;NA&gt;  manager
 #&gt; 2: Daniela    Ajax engineer
 #&gt; 3:    John    Ajax designer
 #&gt; 4:    Nick    Acme     &lt;NA&gt;</div><div class='input'>
 <span class='co'># filtering joins</span>
-<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>anti_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt;      name company
+<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>anti_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;      name company
 #&gt;    &lt;char&gt;  &lt;char&gt;
-#&gt; 1:   Nick    Acme</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>semi_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt;       name company
+#&gt; 1:   Nick    Acme</div><div class='input'><span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>semi_join_dt</span>(<span class='no'>positions</span>)</div><div class='output co'>#&gt; <span class='message'>Joining by: name</span></div><div class='output co'>#&gt;       name company
 #&gt;     &lt;char&gt;  &lt;char&gt;
-#&gt; 1: Daniela    Ajax
-#&gt; 2:    John    Ajax</div><div class='input'>
+#&gt; 1:    John    Ajax
+#&gt; 2: Daniela    Ajax</div><div class='input'>
 <span class='co'># To suppress the message, supply 'by' argument</span>
-<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>left_join_dt</span>(<span class='no'>positions</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"name"</span>)</div><div class='output co'>#&gt;       name company position
+<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>left_join_dt</span>(<span class='no'>positions</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"name"</span>)</div><div class='output co'>#&gt; Key: &lt;name&gt;
+#&gt;       name company position
 #&gt;     &lt;char&gt;  &lt;char&gt;   &lt;char&gt;
 #&gt; 1: Daniela    Ajax engineer
 #&gt; 2:    John    Ajax designer
 #&gt; 3:    Nick    Acme     &lt;NA&gt;</div><div class='input'>
 <span class='co'># Use a named 'by' if the join variables have different names</span>
 <span class='no'>positions2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span>(<span class='no'>positions</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"worker"</span>, <span class='st'>"position"</span>)) <span class='co'># rename first column in 'positions'</span>
-<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>inner_join_dt</span>(<span class='no'>positions2</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"name"</span> <span class='kw'>=</span> <span class='st'>"worker"</span>))</div><div class='output co'>#&gt;       name company position
+<span class='no'>workers</span> <span class='kw'>%&gt;%</span> <span class='fu'>inner_join_dt</span>(<span class='no'>positions2</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"name"</span> <span class='kw'>=</span> <span class='st'>"worker"</span>))</div><div class='output co'>#&gt; Key: &lt;name&gt;
+#&gt;       name company position
 #&gt;     &lt;char&gt;  &lt;char&gt;   &lt;char&gt;
 #&gt; 1: Daniela    Ajax engineer
 #&gt; 2:    John    Ajax designer</div><div class='input'>

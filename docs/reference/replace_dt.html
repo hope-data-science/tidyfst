@@ -79,7 +79,7 @@ value." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
       </span>
     </div>
 
@@ -159,7 +159,7 @@ value, <code>replace_dt</code> could replace any value(s) to another specific
 value.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>replace_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>NaN</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+    <pre class="usage"><span class='fu'>replace_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>is.nan</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -175,7 +175,7 @@ value.</p>
     <tr>
       <th>from</th>
       <td><p>A value, a vector of values or a function returns a logical value.
-Defaults to <code>NaN</code>.</p></td>
+Defaults to <code>is.nan</code>.</p></td>
     </tr>
     <tr>
       <th>to</th>
