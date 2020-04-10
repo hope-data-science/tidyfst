@@ -22,15 +22,19 @@
 
 distinct_dt = function(.data,...,.keep_all = FALSE){
   dt = as_dt(.data)
-  if(length(substitute(...)) == 0) unique(dt)
-  else{
-    if(.keep_all) eval(substitute(dt[,.SD[1],by = .(...)]))
-    else eval(substitute(unique(dt[,.(...),])))
-  }
+  sel_name = select_dt(dt[0],...) %>% names()
+  if(.keep_all) unique(dt,by = sel_name)
+  else unique(dt[,.SD,.SDcols = sel_name])
 }
 
-
-
+# distinct_dt = function(.data,...,.keep_all = FALSE){
+#   dt = as_dt(.data)
+#   if(length(substitute(...)) == 0) unique(dt)
+#   else{
+#     if(.keep_all) eval(substitute(dt[,.SD[1],by = .(...)]))
+#     else eval(substitute(unique(dt[,.(...),])))
+#   }
+# }
 
 
 

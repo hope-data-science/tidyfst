@@ -138,17 +138,29 @@ anti_join_dt = function(x,y,by = NULL){
   dt1 = as_dt(x)
   dt2 = as_dt(y)
   sel_by = by
-  if(is.null(by)) merge(dt1,dt2)[,1:length(dt1)] %>% fsetdiff(dt1,.)-> res
-  else if(is.null(names(by)))
-    merge(dt1,dt2[,.SD,.SDcols = sel_by],by) %>%
-     setcolorder(names(dt1)) %>%
-     fsetdiff(dt1,.)-> res
-  else
-    merge(dt1,dt2[,.SD,.SDcols = sel_by],by.x = names(by),by.y = by) %>%
-     setcolorder(names(dt1)) %>%
-     fsetdiff(dt1,.)-> res
-  unique(res)
+  if(is.null(by)) {
+    by = intersect(names(x), names(y))
+    by_name = str_c(by, collapse = ",")
+    message(str_glue("Joining by: {by_name}\n\n"))
+    dt1[!dt2, on = by]
+  } else dt1[!dt2, on = by]
 }
+
+# anti_join_dt = function(x,y,by = NULL){
+#   dt1 = as_dt(x)
+#   dt2 = as_dt(y)
+#   sel_by = by
+#   if(is.null(by)) merge(dt1,dt2)[,1:length(dt1)] %>% fsetdiff(dt1,.)-> res
+#   else if(is.null(names(by)))
+#     merge(dt1,dt2[,.SD,.SDcols = sel_by],by) %>%
+#      setcolorder(names(dt1)) %>%
+#      fsetdiff(dt1,.)-> res
+#   else
+#     merge(dt1,dt2[,.SD,.SDcols = sel_by],by.x = names(by),by.y = by) %>%
+#      setcolorder(names(dt1)) %>%
+#      fsetdiff(dt1,.)-> res
+#   unique(res)
+# }
 
 #' @rdname join
 #' @export
@@ -156,11 +168,26 @@ semi_join_dt = function(x,y,by = NULL){
   dt1 = as_dt(x)
   dt2 = as_dt(y)
   sel_by = by
-  if(is.null(by)) merge(dt1,dt2)[,1:length(dt1)] -> res
-  else if(is.null(names(by))) merge(dt1,dt2[,.SD,.SDcols = sel_by],by)-> res
-  else merge(dt1,dt2[,.SD,.SDcols = sel_by],by.x = names(by),by.y = by)-> res
-  unique(res)
+  if(is.null(by)){
+    by = intersect(names(x), names(y))
+    by_name = str_c(by, collapse = ",")
+    message(str_glue("Joining by: {by_name}\n\n"))
+  }
+  w = unique(dt1[dt2, on = by, nomatch = 0L, which = TRUE, allow.cartesian = TRUE])
+  dt1[w]
 }
+
+# semi_join_dt = function(x,y,by = NULL){
+#   dt1 = as_dt(x)
+#   dt2 = as_dt(y)
+#   sel_by = by
+#   if(is.null(by)) merge(dt1,dt2)[,1:length(dt1)] -> res
+#   else if(is.null(names(by))) merge(dt1,dt2[,.SD,.SDcols = sel_by],by)-> res
+#   else merge(dt1,dt2[,.SD,.SDcols = sel_by],by.x = names(by),by.y = by)-> res
+#   unique(res)
+# }
+
+
 
 #' @rdname join
 #' @export

@@ -61,7 +61,8 @@
 #' @export
 
 group_dt = function(.data,by = NULL,...){
-  dt = as_dt(.data)
+  #dt = as_dt(.data)
+  dt = as.data.table(.data)
 
   by = substitute(by)
   deparse(by) -> by_deparse

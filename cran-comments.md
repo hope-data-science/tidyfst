@@ -1,4 +1,17 @@
 
+## 0.9.5
+Date: 20200410
+0. Reason for update: The update of `as_dt` is very important(see point 5), becasue it is used everywhere in tidyfst. This update might be minor inside the function, but it can improve the performance by large, especially for extremly large data sets (this means in version before 0.9.5[<=0.9.4], operation on large data frames could be quite slow because copies are made in every movement). 
+1. Improve `distinct_dt` to receive variables more flexibly.
+2. Add `summary_fst` to get info of the fst table.
+3. Upgrade "mcols" in `nest_dt` to accept more flexibly by using `select_dt`.
+4. Debug `anti_join` and `semi_join` to become more efficient and robust.
+5. Update `as_dt` and many functions, which make it faster by reducing data copying when possible, but still stick to principals that never modify by reference. Suppressing the copy when possible, but copies are still made when necessary(using `as.data.table`). 
+6. Improve `separate_dt` and `unite_dt`.
+7. Improve `replace_dt`.
+8. For every `summarise_` and `mutate_`, give a "by" parameter.
+9. Add `summarise_when`.
+
 ## 0.9.4
 Date: 20200402
 0. Reason for update: The former introduction of modification by reference is violating the principals of the package, remove them. Modification by reference might be good, I build another package named 'tidyft' to realize it.

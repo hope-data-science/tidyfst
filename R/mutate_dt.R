@@ -18,7 +18,8 @@
 #' @export
 
 mutate_dt = function(.data,...,by){
-  dt = as_dt(.data)
+  #dt = as_dt(.data)
+  dt = as.data.table(.data)
   substitute(dt[,`:=`(...),by][]) %>% eval()
 }
 

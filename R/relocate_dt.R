@@ -39,7 +39,8 @@
 relocate_dt = function(.data,...,
                        how= "first",
                        where = NULL){
-  dt = as_dt(.data)
+  #dt = as_dt(.data)
+  dt = as.data.table(.data)
 
   dt[0] %>% select_dt(...) %>% names() -> sel_names
   names(dt[0]) %>% setdiff(sel_names) -> rest_names

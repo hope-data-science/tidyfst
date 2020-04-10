@@ -8,7 +8,7 @@
 #' pass "" to the parameter. See example.
 #' @param sep Separator to use between values.
 #' @param remove If \code{TRUE}, remove input columns from output data frame.
-#' @param na.rm If \code{TRUE}, missing values would be merged into \code{NA},
+#' @param na2char If \code{FALSE}, missing values would be merged into \code{NA},
 #' otherwise \code{NA} is treated as character "NA". This is different from
 #' \pkg{tidyr}.
 #' @seealso \code{\link[tidyr]{unite}},\code{\link[tidyfst]{separate_dt}}
@@ -16,10 +16,10 @@
 #' df <- expand.grid(x = c("a", NA), y = c("b", NA))
 #' df
 #'
-#' # Treat missing value as character "NA"
+#' # Treat missing value as NA, default
 #' df %>% unite_dt("z", x:y, remove = FALSE)
-#' # Treat missing value as NA
-#' df %>% unite_dt("z", x:y, na.rm = TRUE, remove = FALSE)
+#' # Treat missing value as character "NA"
+#' df %>% unite_dt("z", x:y, na2char = TRUE, remove = FALSE)
 #' df %>%
 #'   unite_dt("xy", x:y)
 #'
@@ -28,23 +28,21 @@
 
 #' @export
 unite_dt = function(.data,united_colname,...,
-                    sep = "_",remove = TRUE,
-                    na.rm = FALSE){
-  dt = as_dt(.data)
+                    sep = "_",remove = FALSE,
+                    na2char = FALSE){
+  #dt = as_dt(.data)
+  dt = as.data.table(.data)
 
   dt %>%
     select_dt(...) -> selected_cols
-  paste_fun = ifelse(na.rm,str_c,paste)
+  paste_fun = ifelse(na2char,paste,str_c)
   Reduce(function(x,y) paste_fun(x,y,sep = sep),selected_cols) -> new_col
 
-  if(!remove) dt[,c(united_colname):=new_col][]
+  if(!remove) dt[,(united_colname):=new_col][]
   else
-    dt[,.SD,.SDcols = names(selected_cols)][,c(united_colname):=new_col][]
+    dt[,names(selected_cols):=NULL][,(united_colname):=new_col][]
 
 }
-
-
-
 
 
 

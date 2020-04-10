@@ -3,7 +3,7 @@
 #' @import fst
 #' @import stringr
 #' @importFrom stats na.omit setNames
-
+#' @importFrom utils object.size
 
 #' @export
 stringr::`%>%`

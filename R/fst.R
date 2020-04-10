@@ -8,7 +8,9 @@
 #' @param ... The filter conditions
 #' @return \code{parse_fst} returns a fst_table class.
 #' @return \code{select_fst} and \code{filter_fst} returns a data.table.
-#' @seealso \code{\link[fst]{fst}}
+#' @details \code{summary_fst} could provide some basic information about
+#' the fst table.
+#' @seealso \code{\link[fst]{fst}}, \code{\link[fst]{metadata_fst}}
 #' @examples
 #'
 #' \dontrun{
@@ -21,6 +23,7 @@
 #'   lapply(ft,class)
 #'   names(ft)
 #'   dim(ft)
+#'   summary_fst(ft)
 #'
 #'   # get the data by query
 #'   ft %>% slice_fst(1:3)
@@ -62,12 +65,12 @@ slice_fst = function(ft,row_no){
 
 #' @rdname fst
 #' @export
-select_fst = function(ft,...){
-
-  setDT(ft[1,])[0] %>% select_dt(...) %>% names() -> sel_names
-  setDT(ft[names(ft) %chin% sel_names])[]
-
-}
+# select_fst = function(ft,...){
+#
+#   setDT(ft[1,])[0] %>% select_dt(...) %>% names() -> sel_names
+#   setDT(ft[names(ft) %chin% sel_names])[]
+#
+# }
 
 select_fst = function(ft,...){
 
@@ -95,7 +98,11 @@ filter_fst = function(ft,...){
   eval(parse(text = str_glue("ft[{dot_string},] %>% as.data.table()")))
 }
 
-
+#' @rdname fst
+#' @export
+summary_fst = function(ft){
+  metadata_fst(.subset2(ft, "meta")[[1]])
+}
 
 
 

@@ -82,7 +82,8 @@ drop_na_dt = function(.data,...){
 
 replace_na_dt = function(.data,...,to){
   if(is.na(to)) return(.data)
-  dt = as_dt(.data)
+  dt = as.data.table(.data)
+  # dt = as_dt(.data)
   if(substitute(list(...)) %>% deparse() == "list()")
     dot_string <- NULL
   else
@@ -147,7 +148,8 @@ delete_na_rows = function(.data,prop = NULL, n = NULL){
 #' @export
 
 fill_na_dt = function(.data,...,direction = "down"){
-  dt = as_dt(.data)
+  dt = as.data.table(.data)
+  #dt = as_dt(.data)
   if(substitute(list(...)) %>% deparse() == "list()")
     update_cols <- names(dt)
   else

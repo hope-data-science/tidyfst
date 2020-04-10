@@ -28,15 +28,17 @@
 #' @rdname mutate_vars
 #' @export
 
-mutate_when = function(.data,when,...){
-  dt = as_dt(.data)
-  eval(substitute(dt[when,`:=`(...)][]))
+mutate_when = function(.data,when,...,by){
+  #dt = as_dt(.data)
+  dt = as.data.table(.data)
+  eval(substitute(dt[when,`:=`(...),by][]))
 }
 
 #' @rdname mutate_vars
 #' @export
 mutate_vars = function(.data,.cols = NULL,.func,...,by){
-  dt = as_dt(.data)
+  #dt = as_dt(.data)
+  dt = as.data.table(.data)
   deparse(substitute(.cols)) -> .cols
   deparse(substitute(by)) -> .by
   if (.cols == "NULL")

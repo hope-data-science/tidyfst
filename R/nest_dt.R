@@ -36,6 +36,11 @@
 #' # nest two columns directly
 #' iris %>% nest_dt(mcols = list(petal="^Pe",sepal="^Se"))
 #'
+#' # nest more flexibly
+#' iris %>% nest_dt(mcols = list(ndt1 = 1:3,
+#'   ndt2 = "Pe",
+#'   ndt3 = Sepal.Length:Sepal.Width))
+#'
 #' # examples for unnest_dt
 #' # unnest which column?
 #'  mtcars %>% nest_dt("cyl|vs") %>%
@@ -78,24 +83,49 @@
 # nest by which columns?
 
 nest_dt = function(.data,...,mcols = NULL){
+
   dt = as_dt(.data)
-  if(is.null(mcols)) nest_by(dt,...)
+
+  if(substitute(mcols) %>% deparse() == "NULL") nest_by(dt,...)
   else{
-    names(dt) %>%
-      str_subset(str_c(mcols,collapse = "|"),
-                 negate = TRUE) -> group_names
-    lapply(mcols,function(x) str_subset(names(dt),x)) %>%
-      lapply(function(x) c(x,group_names)) %>%
-      lapply(function(x) select_dt(dt,cols = x)) %>%
-      lapply(function(x) nest_by(dt,cols = group_names)) %>%
-      lapply(function(x) setkeyv(x,cols = group_names))-> list_table
+    name_list = substitute(mcols)%>%
+      lapply(deparse) %>%
+      .[-1] %>%
+      lapply(function(x)
+        eval(parse(text = str_glue("names(select_dt(dt[0],{x}))"))))
+    group_names = setdiff(names(dt),unique(unlist(name_list)))
+    lapply(name_list,function(x) c(group_names,x)) %>%
+      lapply(function(x) nest_by(dt,cols = group_names)) -> list_table
     for(i in seq_along(list_table)){
       list_table[[i]] = setnames(list_table[[i]],
-                               old = "ndt",new = names(list_table[i]))
+                                 old = "ndt",new = names(list_table[i]))
     }
-    Reduce(f = merge,x = list_table)
+
+    Reduce(f = merge, x = list_table)
   }
+
 }
+
+# nest_dt = function(.data,...,mcols = NULL){
+#   dt = as_dt(.data)
+#   if(is.null(mcols)) nest_by(dt,...)
+#   else{
+#     names(dt) %>%
+#       str_subset(str_c(mcols,collapse = "|"),
+#                  negate = TRUE) -> group_names
+#     lapply(mcols,function(x) str_subset(names(dt),x)) %>%
+#       lapply(function(x) c(x,group_names)) %>%
+#       lapply(function(x) select_dt(dt,cols = x)) %>%
+#       lapply(function(x) nest_by(dt,cols = group_names)) %>%
+#       lapply(function(x) setkeyv(x,cols = group_names))-> list_table
+#     for(i in seq_along(list_table)){
+#       list_table[[i]] = setnames(list_table[[i]],
+#                                old = "ndt",new = names(list_table[i]))
+#     }
+#     Reduce(f = merge,x = list_table)
+#   }
+# }
+
 
 nest_by = function(.data,...){
   dt = as_dt(.data)
@@ -141,7 +171,8 @@ unnest_col = function(.data,...){
 # nest which columns?
 
 squeeze_dt = function(.data,...){
-  dt = as_dt(.data)
+  #dt = as_dt(.data)
+  dt = as.data.table(.data)
   dt %>% select_dt(...) %>%
     setNames(NULL) %>%
     apply(1,list) %>%

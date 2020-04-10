@@ -18,20 +18,37 @@
 
 #' @export
 separate_dt = function(.data,separated_colname,into,
-                       sep = "[^[:alnum:]]+",
-                       remove = TRUE){
-  dt = as_dt(.data)
+                    sep = "[^[:alnum:]]+",
+                    remove = TRUE){
+  dt = as.data.table(.data)
   substitute(separated_colname) %>% deparse() -> parse_name
   if(!str_detect(parse_name,"^\"")) separated_colname = parse_name
 
   dt[[separated_colname]] %>%
     tstrsplit(split = sep) %>%
-    setNames(into) %>%
-    as.data.table() -> split_columns
-  if(remove) cbind(dt[,.SD,.SDcols = -separated_colname],split_columns)
-  else cbind(dt,split_columns)
+    setDT() %>%
+    setnames(names(.),into) -> split_columns
+  if(remove)
+    dt[,(separated_colname):=NULL][,names(split_columns):=split_columns][]
+  else dt[,names(split_columns):=split_columns][]
 
 }
+
+#' separate_dt = function(.data,separated_colname,into,
+#'                        sep = "[^[:alnum:]]+",
+#'                        remove = TRUE){
+#'   dt = as_dt(.data)
+#'   substitute(separated_colname) %>% deparse() -> parse_name
+#'   if(!str_detect(parse_name,"^\"")) separated_colname = parse_name
+#'
+#'   dt[[separated_colname]] %>%
+#'     tstrsplit(split = sep) %>%
+#'     setNames(into) %>%
+#'     as.data.table() -> split_columns
+#'   if(remove) cbind(dt[,.SD,.SDcols = -separated_colname],split_columns)
+#'   else cbind(dt,split_columns)
+#'
+#' }
 
 
 

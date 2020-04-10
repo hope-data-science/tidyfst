@@ -71,7 +71,7 @@ usethis::create_package
 library(cranlogs)
 library(tidyfst)
 
-end_date = "2020-04-01"
+end_date = "2020-04-09"
 
 cran_downloads(package = "tidyfst", from = "2020-02-10",to = end_date) -> a
 

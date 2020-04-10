@@ -14,7 +14,8 @@
 #' @export
 
 rename_dt = function(.data,...){
-  dt = as_dt(.data)
+  dt = as.data.table(.data)
+  #dt = as_dt(.data)
   substitute(list(...)) %>%
     lapply(deparse) %>%
     .[-1] -> dot_string

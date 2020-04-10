@@ -8,7 +8,7 @@
 #' @param value Chracter.One column name of value to spread.
 #' If \code{NULL}, use all other variables.
 #' @param fun Should the data be aggregated before casting?
-#' Defaults to \code{NULL}, which do not carry out aggregation.
+#' Defaults to \code{NULL}, which uses \code{length} for aggregation.
 #' If a function is provided, with aggregated by this function.
 #' @param fill Value with which to fill missing cells. Default uses \code{NA}.
 #' @details The parameter of `name` and `value` should always

@@ -46,7 +46,8 @@
 #' @export
 
 group_by_dt = function(.data,...,cols = NULL){
-  .data = as_dt(.data)
+  #dt = as_dt(.data)
+  .data = as.data.table(.data)
 
   if(!is.null(cols)) setkeyv(.data,cols)
   else {

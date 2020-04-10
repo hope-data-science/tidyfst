@@ -22,7 +22,8 @@
 
 #' @export
 dummy_dt = function(.data,...,longname = TRUE){
-  dt = as_dt(.data)
+  # dt = as_dt(.data)
+  dt = as.data.table(.data)
   if((substitute(list(...)) %>% deparse())=="list()")
     warning("No columns provided, return the orginal data.")
   else{

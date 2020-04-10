@@ -31,7 +31,8 @@ rn_col = function(.data,var = "rowname"){
 #' @export
 
 col_rn = function(.data,var = "rowname"){
-  dt = as_dt(.data)
+  # dt = as_dt(.data)
+  dt = as.data.table(.data)
   setDF(dt[,(var):=NULL])
   rownames(dt) = .data[[var]]
   dt

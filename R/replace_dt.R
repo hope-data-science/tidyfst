@@ -6,7 +6,7 @@
 #' @param .data A data.frame
 #' @param ... Colunms to be replaced. If not specified, use all columns.
 #' @param from A value, a vector of values or a function returns a logical value.
-#' Defaults to \code{NaN}.
+#' Defaults to \code{is.nan}.
 #' @param to A value. Defaults to \code{NA}.
 #' @return A data.table.
 #' @seealso \code{\link[tidyfst]{replace_na_dt}}
@@ -26,11 +26,13 @@
 
 
 #' @export
-replace_dt = function (.data, ..., from = NaN,to = NA) {
-  dt = as_dt(.data)
+replace_dt = function (.data, ..., from = is.nan,to = NA) {
+  dt = as.data.table(.data)
+  #dt = as_dt(.data)
   if(!is.function(from)) {
     if (setequal(from,to)) return(.data)
-    if(is.character(from)) .func = function(x) x %chin% from
+    if(length(from) == 1) .func = function(x) x == from
+    else if(is.character(from)) .func = function(x) x %chin% from
     else .func = function(x) x %in% from
   } else .func = from
 

@@ -49,11 +49,13 @@ complete_dt = function(.data,...,fill = NA){
       str_replace("list","CJ") %>%
       parse(text = .) %>%
       eval() %>%
-      merge(setorder(dt),all = TRUE) %>%
+      merge(dt,all = TRUE) %>%
+      #merge(setorder(dt),all = TRUE) %>%
       replace_na_dt(to=fill) %>%
       unique()
   }else
-    setorder(dt)%>%
+    dt %>%
+    #setorder(dt)%>%
     select_dt(...) %>%
     lapply(unique) %>%
     deparse() %>%

@@ -37,7 +37,8 @@ count_dt = function(.data,...,sort = TRUE,.name = "n"){
 #' @rdname count
 #' @export
 add_count_dt = function(.data,...,.name = "n"){
-  dt = as_dt(.data)
+  #dt = as_dt(.data)
+  dt = as.data.table(.data)
   dot_string = substitute(list(...))
   dt[,(.name):=.N,by = dot_string][]
 }

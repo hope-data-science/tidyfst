@@ -8,6 +8,7 @@
 #'    parameter '.func' in \code{summarise_vars}.
 #' @param by unquoted name of grouping variable of list of unquoted names of
 #'   grouping variables. For details see \link[data.table]{data.table}
+#' @param when An object which can be coerced to logical mode
 #' @param .cols Columns to be summarised.
 #' @param .func Function to be run within each column, should return a value or vectors with same length.
 #' @details \code{summarise_vars} could complete summarise on specific columns.
@@ -47,6 +48,19 @@ summarize_dt = summarise_dt
 #' @rdname summarise_dt
 #' @export
 
+summarise_when = function(.data,when,...,by = NULL){
+  dt = as_dt(.data)
+  eval(substitute(dt[when,.(...),by = by]))
+}
+
+#' @rdname summarise_dt
+#' @export
+
+summarize_when = summarise_when
+
+#' @rdname summarise_dt
+#' @export
+
 summarise_vars = function (.data, .cols = NULL, .func, ...,by) {
   dt = as_dt(.data)
   deparse(substitute(.cols)) -> .cols
@@ -65,19 +79,7 @@ summarise_vars = function (.data, .cols = NULL, .func, ...,by) {
   res[, unique(names(res)), with = FALSE]
 }
 
-# summarise_vars = function (.data, .cols = NULL, .func, ...) {
-#   dt = as_dt(.data)
-#   deparse(substitute(.cols)) -> .cols
-#   if (.cols == "NULL")
-#     sel_name = names(dt[0])
-#   else{
-#     eval(
-#       parse(
-#         text =
-#           str_glue("select_dt(dt[0],{.cols}) %>% names() -> sel_name")))
-#   }
-#   dt[,lapply(.SD, .func, ...), .SDcols = sel_name]
-# }
+
 
 #' @rdname summarise_dt
 #' @export
