@@ -4,7 +4,7 @@
 \alias{replace_dt}
 \title{Fast value replacement in data frame}
 \usage{
-replace_dt(.data, ..., from = NaN, to = NA)
+replace_dt(.data, ..., from = is.nan, to = NA)
 }
 \arguments{
 \item{.data}{A data.frame}
@@ -12,7 +12,7 @@ replace_dt(.data, ..., from = NaN, to = NA)
 \item{...}{Colunms to be replaced. If not specified, use all columns.}
 
 \item{from}{A value, a vector of values or a function returns a logical value.
-Defaults to \code{NaN}.}
+Defaults to \code{is.nan}.}
 
 \item{to}{A value. Defaults to \code{NA}.}
 }

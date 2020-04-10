@@ -4,7 +4,14 @@
 \alias{unite_dt}
 \title{Unite multiple columns into one by pasting strings together}
 \usage{
-unite_dt(.data, united_colname, ..., sep = "_", remove = TRUE, na.rm = FALSE)
+unite_dt(
+  .data,
+  united_colname,
+  ...,
+  sep = "_",
+  remove = FALSE,
+  na2char = FALSE
+)
 }
 \arguments{
 \item{.data}{A data frame.}
@@ -18,7 +25,7 @@ pass "" to the parameter. See example.}
 
 \item{remove}{If \code{TRUE}, remove input columns from output data frame.}
 
-\item{na.rm}{If \code{TRUE}, missing values would be merged into \code{NA},
+\item{na2char}{If \code{FALSE}, missing values would be merged into \code{NA},
 otherwise \code{NA} is treated as character "NA". This is different from
 \pkg{tidyr}.}
 }
@@ -30,10 +37,10 @@ Analogous to \code{tidyr::unite}.
 df <- expand.grid(x = c("a", NA), y = c("b", NA))
 df
 
-# Treat missing value as character "NA"
+# Treat missing value as NA, default
 df \%>\% unite_dt("z", x:y, remove = FALSE)
-# Treat missing value as NA
-df \%>\% unite_dt("z", x:y, na.rm = TRUE, remove = FALSE)
+# Treat missing value as character "NA"
+df \%>\% unite_dt("z", x:y, na2char = TRUE, remove = FALSE)
 df \%>\%
   unite_dt("xy", x:y)
 

@@ -6,6 +6,7 @@
 \alias{slice_fst}
 \alias{select_fst}
 \alias{filter_fst}
+\alias{summary_fst}
 \title{Parse,inspect and extract data.table from fst file}
 \usage{
 parse_fst(path)
@@ -15,6 +16,8 @@ slice_fst(ft, row_no)
 select_fst(ft, ...)
 
 filter_fst(ft, ...)
+
+summary_fst(ft)
 }
 \arguments{
 \item{path}{path to fst file}
@@ -33,6 +36,10 @@ filter_fst(ft, ...)
 \description{
 An API for reading fst file as data.table.
 }
+\details{
+\code{summary_fst} could provide some basic information about
+the fst table.
+}
 \examples{
 
 \dontrun{
@@ -45,6 +52,7 @@ An API for reading fst file as data.table.
   lapply(ft,class)
   names(ft)
   dim(ft)
+  summary_fst(ft)
 
   # get the data by query
   ft \%>\% slice_fst(1:3)
@@ -68,5 +76,5 @@ An API for reading fst file as data.table.
 }
 }
 \seealso{
-\code{\link[fst]{fst}}
+\code{\link[fst]{fst}}, \code{\link[fst]{metadata_fst}}
 }

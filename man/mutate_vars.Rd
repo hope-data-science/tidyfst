@@ -5,7 +5,7 @@
 \alias{mutate_vars}
 \title{Conditional update of columns in data.table}
 \usage{
-mutate_when(.data, when, ...)
+mutate_when(.data, when, ..., by)
 
 mutate_vars(.data, .cols = NULL, .func, ..., by)
 }
@@ -17,12 +17,12 @@ mutate_vars(.data, .cols = NULL, .func, ..., by)
 \item{...}{Name-value pairs of expressions for \code{mutate_when}.
 Additional parameters to be passed to parameter '.func' in \code{mutate_vars}.}
 
+\item{by}{(Optional) Mutate by what group?}
+
 \item{.cols}{Any types that can be accepted by \code{\link[tidyfst]{select_dt}}.}
 
 \item{.func}{Function to be run within each column, should return a value or
 vectors with same length.}
-
-\item{by}{(Optional) Mutate by what group?}
 }
 \value{
 data.table

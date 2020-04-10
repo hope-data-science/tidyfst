@@ -64,6 +64,11 @@ package.
 # nest two columns directly
 iris \%>\% nest_dt(mcols = list(petal="^Pe",sepal="^Se"))
 
+# nest more flexibly
+iris \%>\% nest_dt(mcols = list(ndt1 = 1:3,
+  ndt2 = "Pe",
+  ndt3 = Sepal.Length:Sepal.Width))
+
 # examples for unnest_dt
 # unnest which column?
  mtcars \%>\% nest_dt("cyl|vs") \%>\%

@@ -3,6 +3,8 @@
 \name{summarise_dt}
 \alias{summarise_dt}
 \alias{summarize_dt}
+\alias{summarise_when}
+\alias{summarize_when}
 \alias{summarise_vars}
 \alias{summarize_vars}
 \title{Summarise columns to single values}
@@ -10,6 +12,10 @@
 summarise_dt(.data, ..., by = NULL)
 
 summarize_dt(.data, ..., by = NULL)
+
+summarise_when(.data, when, ..., by = NULL)
+
+summarize_when(.data, when, ..., by = NULL)
 
 summarise_vars(.data, .cols = NULL, .func, ..., by)
 
@@ -24,6 +30,8 @@ functions for \code{summarise_dt}.Additional parameters to be passed to
 
 \item{by}{unquoted name of grouping variable of list of unquoted names of
 grouping variables. For details see \link[data.table]{data.table}}
+
+\item{when}{An object which can be coerced to logical mode}
 
 \item{.cols}{Columns to be summarised.}
 

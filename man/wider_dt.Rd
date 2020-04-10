@@ -18,7 +18,7 @@ Could use integer vector, could receive what \code{select_dt} receives.}
 If \code{NULL}, use all other variables.}
 
 \item{fun}{Should the data be aggregated before casting?
-Defaults to \code{NULL}, which do not carry out aggregation.
+Defaults to \code{NULL}, which uses \code{length} for aggregation.
 If a function is provided, with aggregated by this function.}
 
 \item{fill}{Value with which to fill missing cells. Default uses \code{NA}.}
