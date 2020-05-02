@@ -13,8 +13,7 @@
 
 #' @export
 t_dt = function(.data){
-  dt = as_dt(.data)
-  dt = transpose(dt) %>% as.data.frame()
+  dt = transpose(.data) %>% setDF()
   rownames(dt) = colnames(.data)
   if(setequal(rownames(.data),as.character(1:nrow(.data))))
     colnames(dt) = paste0("V",rownames(.data))
@@ -22,3 +21,15 @@ t_dt = function(.data){
     colnames(dt) = rownames(.data)
   dt
 }
+
+# t_dt = function(.data){
+#   dt = as_dt(.data)
+#   dt = transpose(dt) %>% as.data.frame()
+#   rownames(dt) = colnames(.data)
+#   if(setequal(rownames(.data),as.character(1:nrow(.data))))
+#     colnames(dt) = paste0("V",rownames(.data))
+#   else
+#     colnames(dt) = rownames(.data)
+#   dt
+# }
+

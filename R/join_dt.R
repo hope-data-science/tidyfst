@@ -1,7 +1,6 @@
-
 #' @title Join table by common keys
 #' @description Join operations.
-#'
+#' @name join
 #' @param x data.frame
 #' @param y data.frame
 #' @param by
@@ -269,9 +268,4 @@ sjoin = function(x,y,by = NULL){
   w = unique(x[y, on = by, nomatch = 0L, which = TRUE, allow.cartesian = TRUE])
   x[w]
 }
-
-
-
-
-
 

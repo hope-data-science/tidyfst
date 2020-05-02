@@ -2,7 +2,7 @@
 #' @import data.table
 #' @import fst
 #' @import stringr
-#' @importFrom stats na.omit setNames
+#' @importFrom stats na.omit setNames median
 #' @importFrom utils object.size
 
 #' @export
@@ -56,4 +56,5 @@ data.table::copy
 #' @export
 data.table::key
 
-
+#' @export
+data.table::CJ

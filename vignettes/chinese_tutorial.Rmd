@@ -14,9 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,eval = FALSE)
-```
 
 我的R语言小伙伴最近分享了自己使用R来做工业级数据清洗的[经验](https://mp.weixin.qq.com/s/NVlCPss32j6Ohdrc9Edx-A)，最近我自己在不断测试我的新包tidyfst，因此就拿这个data.table的案例来尝试一下。
 
@@ -25,8 +22,8 @@ knitr::opts_chunk$set(echo = TRUE,eval = FALSE)
 ```{r}
 library(tidyfst)
 diamonds <- ggplot2::diamonds
-n = 10000000
-set.seed(1234)
+n = 1e5  #如果想做工业级测试，可以继续增加数量
+set.seed(2020)
 dtranges <- seq.Date(from = as.Date("2011-01-01"),
                      to = as.Date("2020-01-01"),
                      by = 1)
@@ -46,9 +43,9 @@ print(dat1)
 
 ## 基础
 ### 小技巧
-后面的分析，经常要根据日期进行计算。所以，先对日期进行排序，就能够提高运行速度。在tidyfst中，可以使用`set_dt`函数来对数据进行原位的各种操作，其中就包括排序。
+后面的分析，经常要根据日期进行计算。所以，先对日期进行排序，就能够提高运行速度。在tidyfst中，可以使用`arrange_dt`函数来对数据进行原位的各种操作，其中就包括排序。
 ```{r}
-set_dt(dat1,order_by = "dt")
+dat1 = arrange_dt(dat1,dt)
 dat1
 ```
 那么，现在dat1的数据就按照日期排好序了。
@@ -113,8 +110,8 @@ sys_time_print({
   max1 <- function(x) max(x, na.rm = TRUE)
   r3_1 <-dat1 %>% 
     wider_dt(cut,
-             value_to_spread = c("depth", "price"),
-             name_to_spread = "color",
+             value = c("depth", "price"),
+             name = "color",
              fun = list(mean1,max1))
 })
 r3_1
@@ -127,8 +124,8 @@ sys_time_print({
   r3_2 <-dat1 %>% 
     select_dt(cut,color,x,y,z) %>% 
     longer_dt(cut,color,
-              gathered_name = "xyz",
-              gathered_value = "xyzvalue")
+              name = "xyz",
+              value = "xyzvalue")
 })
 
 r3_2 
@@ -136,11 +133,10 @@ r3_2
 
 ## 高阶
 ### 向上/下填充空值
-对于填充空值来说，如果想要原位填充，目前只支持数值型，可以这样操作：
+对于填充空值来说，可以这样操作：
 ```{r}
 sys_time_print({
-  dat1 %>%
-    set_dt(fill_cols = "price")
+  dat1 %>% fill_na_dt(price) -> dat1
 })
 dat1
 
@@ -154,19 +150,17 @@ dat1
 ```{r}
 
 sys_time_print({
-  mutate_ref(dat1,
+  mutate_dt(dat1,
            mean_price = mean(price, na.rm = TRUE),
            sd_price = sd(price, na.rm = TRUE),
            by = .(cut, color))
 })
 
-set_dt(dat1,order_by = c("cut","color"))
 dat1
 ```
 
 #### 2.以dat1为例，以dt分组添加一列序号id
 ```{r}
-set_dt(dat1,order_by = "dt")
 
 sys_time_print({
   dat1 %>% 
@@ -181,7 +175,6 @@ dat1
 ### 移动函数
 
 ```{r}
-set_dt(dat1,order_by = "color")
 
 sys_time_print({
   dat1 %>% 

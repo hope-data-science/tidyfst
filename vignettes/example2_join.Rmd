@@ -81,12 +81,22 @@ df1 %>% semi_join_dt(df2, by = "x") %>% nrow()
 ```
   
 ## Set operations
-  For set operations, use `data.table`'s function directly. `tidyfst` have exported the following functions:
+  For set operations, wrap `data.table`'s function directly, but the functions will automatically turn any data.frame into data.table. Examples are listed as below:
   
-* fintersect(x, y, all = FALSE)
-* fsetdiff(x, y, all = FALSE)
-* funion(x, y, all = FALSE)
-* fsetequal(x, y, all = TRUE)
+```{r}
+x = iris[c(2,3,3,4),]
+x2 = iris[2:4,]
+y = iris[c(3:5),]
 
-For details, just find the help from `data.table` using `?setops`.
+intersect_dt(x, y)            # intersect
+intersect_dt(x, y, all=TRUE)  # intersect all
+setdiff_dt(x, y)              # except
+setdiff_dt(x, y, all=TRUE)    # except all
+union_dt(x, y)                # union
+union_dt(x, y, all=TRUE)      # union all
+setequal_dt(x, x2, all=FALSE) # setequal
+setequal_dt(x, x2)     
+```
+  
+For more details, just find the help from `data.table` using `?setops`.
 

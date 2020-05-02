@@ -1,4 +1,13 @@
 
+## 0.9.6
+Date:20200502
+1. Update Chinense tutorial.
+2. Add `impute_dt` to impute missing values using mean, mode and median.
+3. Improve `t_dt` to be faster.
+4. Add set operations including `union_dt`,etc. This could be used on non-data.table data.frames, which is considered to be convenient.
+5. Update "Example 2" vignette.
+
+
 ## 0.9.5
 Date: 20200410
 0. Reason for update: The update of `as_dt` is very important(see point 5), becasue it is used everywhere in tidyfst. This update might be minor inside the function, but it can improve the performance by large, especially for extremly large data sets (this means in version before 0.9.5[<=0.9.4], operation on large data frames could be quite slow because copies are made in every movement). 
