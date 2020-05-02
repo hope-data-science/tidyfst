@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Join table by common keys — left_join_dt • tidyfst</title>
+<title>Join table by common keys — join • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,7 +42,7 @@
 
 
 
-<meta property="og:title" content="Join table by common keys — left_join_dt" />
+<meta property="og:title" content="Join table by common keys — join" />
 <meta property="og:description" content="Join operations.
 For functions without suffix _dt, they use
 X[Y] syntax to join tables, and pass the &quot;by&quot; parameter to
@@ -81,7 +81,7 @@ starts with first letter of left/right/full/inner/semi/anti." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.6</span>
       </span>
     </div>
 
@@ -203,7 +203,7 @@ starts with first letter of left/right/full/inner/semi/anti.</p>
       <td><p>For functions without suffix <code>_dt</code>,
 this parameter will pass to the
 <code>on</code> paramter to the data.table. Details could be found at
-<code><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></code>.Examples included:
+<code><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></code>.Examples included:
 1.<code>.by = c("a","b")</code> (this is a must for <code>set_full_join</code>);
 2.<code>.by = c(x1="y1", x2="y2")</code>;
 3.<code>.by = c("x1==y1", "x2==y2")</code>;

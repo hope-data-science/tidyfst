@@ -79,7 +79,7 @@ not only convenient but also efficient in computation." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.6</span>
       </span>
     </div>
 
@@ -221,12 +221,28 @@ to operate by specific groups frequently.</p>
   <span class='fu'>group_by_dt</span>(<span class='st'>"cyl|am"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>group_exe_dt</span>(
     <span class='fu'><a href='summarise_dt.html'>summarise_dt</a></span>(<span class='kw'>mpg_sum</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>mpg</span>))
-  )</div><div class='output co'>#&gt; <span class='error'>Error in setkeyv(.data, cols): x is not a data.table</span></div><div class='input'><span class='co'># equals to</span>
+  )</div><div class='output co'>#&gt; Key: &lt;cyl, am&gt;
+#&gt;      cyl    am mpg_sum
+#&gt;    &lt;num&gt; &lt;num&gt;   &lt;num&gt;
+#&gt; 1:     4     0    68.7
+#&gt; 2:     4     1   224.6
+#&gt; 3:     6     0    76.5
+#&gt; 4:     6     1    61.7
+#&gt; 5:     8     0   180.6
+#&gt; 6:     8     1    30.8</div><div class='input'><span class='co'># equals to</span>
 <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>group_by_dt</span>(<span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cyl"</span>,<span class='st'>"am"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'>group_exe_dt</span>(
     <span class='fu'><a href='summarise_dt.html'>summarise_dt</a></span>(<span class='kw'>mpg_sum</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>mpg</span>))
-  )</div><div class='output co'>#&gt; <span class='error'>Error in setkeyv(.data, cols): x is not a data.table</span></div></pre>
+  )</div><div class='output co'>#&gt; Key: &lt;cyl, am&gt;
+#&gt;      cyl    am mpg_sum
+#&gt;    &lt;num&gt; &lt;num&gt;   &lt;num&gt;
+#&gt; 1:     4     0    68.7
+#&gt; 2:     4     1   224.6
+#&gt; 3:     6     0    76.5
+#&gt; 4:     6     1    61.7
+#&gt; 5:     8     0   180.6
+#&gt; 6:     8     1    30.8</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
