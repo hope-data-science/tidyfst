@@ -12,6 +12,8 @@
 
 Till now, *tidyfst* has an API that might even transcend its predecessors (e.g. [`select_dt`](https://hope-data-science.github.io/tidyfst/reference/select.html) could accept nearly anything for super column selection). Enjoy the efficient data operations in *tidyfst* !
 
+PS: For extreme performance in tidy syntax, try *tidyfst*'s mirror package [tidyft](https://github.com/hope-data-science/tidyft). 
+
 
 
 ## Features
