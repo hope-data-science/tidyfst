@@ -34,6 +34,9 @@ df <- data.frame(x = c(NA, "a.b", "a.d", "b.c"))
 df \%>\% separate_dt(x, c("A", "B"))
 # equals to
 df \%>\% separate_dt("x", c("A", "B"))
+
+# If you just want the second variable:
+df \%>\% separate_dt(x,into = c(NA,"B"))
 }
 \seealso{
 \code{\link[tidyr]{separate}}, \code{\link[tidyfst]{unite_dt}}
