@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
       </span>
     </div>
 
@@ -132,14 +132,14 @@
 <a class="sourceLine" id="cb1-8" title="8">                     <span class="dt">to =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2020-01-01"</span>),</a>
 <a class="sourceLine" id="cb1-9" title="9">                     <span class="dt">by =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb1-10" title="10">n1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(diamonds), n, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb1-11" title="11">dat1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html">as.data.table</a></span>(diamonds[n1, ])</a>
+<a class="sourceLine" id="cb1-11" title="11">dat1 &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span>(diamonds[n1, ])</a>
 <a class="sourceLine" id="cb1-12" title="12">dat1[, <span class="st">"dt"</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, n, <span class="dt">replace =</span> <span class="ot">TRUE</span>)  <span class="co"># 增加dt列</span></a>
 <a class="sourceLine" id="cb1-13" title="13">n2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(dat1), <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(dat1)<span class="op">/</span><span class="dv">1000</span>)</a>
 <a class="sourceLine" id="cb1-14" title="14">dat1[n2, <span class="st">"price"</span>] &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># price列构造千分之一缺失值</span></a>
-<a class="sourceLine" id="cb1-15" title="15">dat2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dt">dt =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges))),</a>
+<a class="sourceLine" id="cb1-15" title="15">dat2 &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dt">dt =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges))),</a>
 <a class="sourceLine" id="cb1-16" title="16">                   <span class="dt">price1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges)), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb1-17" title="17"></a>
-<a class="sourceLine" id="cb1-18" title="18">dat3 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dt">dt =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges))),</a>
+<a class="sourceLine" id="cb1-18" title="18">dat3 &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dt">dt =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(dtranges, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges))),</a>
 <a class="sourceLine" id="cb1-19" title="19">                   <span class="dt">price2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(n<span class="op">/</span><span class="dv">1000</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(dtranges)), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb1-20" title="20"></a>
 <a class="sourceLine" id="cb1-21" title="21"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(dat1)</a>
@@ -223,7 +223,7 @@
 <a class="sourceLine" id="cb3-7" title="7">      <span class="dt">max_price =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(price, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb3-8" title="8">    )</a>
 <a class="sourceLine" id="cb3-9" title="9">})</a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.030s cpu)"</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt; [1] "Finished in 0.000s elapsed (0.000s cpu)"</span></a>
 <a class="sourceLine" id="cb3-11" title="11">r1_<span class="dv">1</span></a>
 <a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;           cut color mean_price median_price max_price</span></a>
 <a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;         &lt;ord&gt; &lt;ord&gt;      &lt;num&gt;        &lt;num&gt;     &lt;int&gt;</span></a>
@@ -277,7 +277,7 @@
 <a class="sourceLine" id="cb4-7" title="7">      <span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb4-8" title="8">    )</a>
 <a class="sourceLine" id="cb4-9" title="9">})</a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; [1] "Finished in 0.040s elapsed (0.040s cpu)"</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; [1] "Finished in 0.030s elapsed (0.050s cpu)"</span></a>
 <a class="sourceLine" id="cb4-11" title="11">r1_<span class="dv">2</span></a>
 <a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;               dt carat       cut color clarity depth table price     x     y</span></a>
 <a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;           &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span></a>
@@ -318,7 +318,7 @@
 <a class="sourceLine" id="cb5-2" title="2">  r2_<span class="dv">1</span> &lt;-<span class="st"> </span>dat1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-3" title="3"><span class="st">    </span><span class="kw"><a href="../reference/join.html">left_join_dt</a></span>(dat2,<span class="dt">by =</span> <span class="st">"dt"</span>)</a>
 <a class="sourceLine" id="cb5-4" title="4">})</a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt; [1] "Finished in 0.030s elapsed (0.000s cpu)"</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.010s cpu)"</span></a>
 <a class="sourceLine" id="cb5-6" title="6">r2_<span class="dv">1</span></a>
 <a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; Key: &lt;dt&gt;</span></a>
 <a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x     y</span></a>
@@ -355,7 +355,7 @@
 <a class="sourceLine" id="cb6-2" title="2">  mymerge &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) <span class="kw"><a href="../reference/join.html">left_join_dt</a></span>(x, y, <span class="dt">by =</span> <span class="st">"dt"</span>)</a>
 <a class="sourceLine" id="cb6-3" title="3">  r2_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/funprog.html">Reduce</a></span>(mymerge, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(dat1, dat2, dat3))</a>
 <a class="sourceLine" id="cb6-4" title="4">})</a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; [1] "Finished in 0.040s elapsed (0.030s cpu)"</span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; [1] "Finished in 0.030s elapsed (0.040s cpu)"</span></a>
 <a class="sourceLine" id="cb6-6" title="6">r2_<span class="dv">2</span></a>
 <a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; Key: &lt;dt&gt;</span></a>
 <a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x     y</span></a>
@@ -401,7 +401,7 @@
 <a class="sourceLine" id="cb7-7" title="7">             <span class="dt">name =</span> <span class="st">"color"</span>,</a>
 <a class="sourceLine" id="cb7-8" title="8">             <span class="dt">fun =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(mean1,max1))</a>
 <a class="sourceLine" id="cb7-9" title="9">})</a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; [1] "Finished in 0.050s elapsed (0.060s cpu)"</span></a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; [1] "Finished in 0.050s elapsed (0.040s cpu)"</span></a>
 <a class="sourceLine" id="cb7-11" title="11">r3_<span class="dv">1</span></a>
 <a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; Key: &lt;cut&gt;</span></a>
 <a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;          cut depth_mean1_D depth_mean1_E depth_mean1_F depth_mean1_G</span></a>
@@ -457,7 +457,7 @@
 <a class="sourceLine" id="cb8-5" title="5">              <span class="dt">name =</span> <span class="st">"xyz"</span>,</a>
 <a class="sourceLine" id="cb8-6" title="6">              <span class="dt">value =</span> <span class="st">"xyzvalue"</span>)</a>
 <a class="sourceLine" id="cb8-7" title="7">})</a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.010s cpu)"</span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt; [1] "Finished in 0.000s elapsed (0.000s cpu)"</span></a>
 <a class="sourceLine" id="cb8-9" title="9"></a>
 <a class="sourceLine" id="cb8-10" title="10">r3_<span class="dv">2</span> </a>
 <a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt;               cut color    xyz xyzvalue</span></a>
@@ -528,7 +528,7 @@
 <a class="sourceLine" id="cb10-5" title="5">           <span class="dt">sd_price =</span> <span class="kw"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(price, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
 <a class="sourceLine" id="cb10-6" title="6">           <span class="dt">by =</span> .(cut, color))</a>
 <a class="sourceLine" id="cb10-7" title="7">})</a>
-<a class="sourceLine" id="cb10-8" title="8"><span class="co">#&gt; [1] "Finished in 0.010s elapsed (0.030s cpu)"</span></a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.020s cpu)"</span></a>
 <a class="sourceLine" id="cb10-9" title="9"></a>
 <a class="sourceLine" id="cb10-10" title="10">dat1</a>
 <a class="sourceLine" id="cb10-11" title="11"><span class="co">#&gt;         carat       cut color clarity depth table price     x     y     z</span></a>
@@ -569,7 +569,7 @@
 <a class="sourceLine" id="cb11-6" title="6">    <span class="kw"><a href="../reference/mutate.html">mutate_dt</a></span>(<span class="dt">id =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(.N))</a>
 <a class="sourceLine" id="cb11-7" title="7">  ) -&gt;<span class="st"> </span>dat1</a>
 <a class="sourceLine" id="cb11-8" title="8">})</a>
-<a class="sourceLine" id="cb11-9" title="9"><span class="co">#&gt; [1] "Finished in 1.850s elapsed (1.810s cpu)"</span></a>
+<a class="sourceLine" id="cb11-9" title="9"><span class="co">#&gt; [1] "Finished in 1.720s elapsed (1.690s cpu)"</span></a>
 <a class="sourceLine" id="cb11-10" title="10">dat1</a>
 <a class="sourceLine" id="cb11-11" title="11"><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x     y</span></a>
 <a class="sourceLine" id="cb11-12" title="12"><span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span></a>
@@ -609,11 +609,11 @@
 <a class="sourceLine" id="cb12-5" title="5">      <span class="dt">by =</span> color,</a>
 <a class="sourceLine" id="cb12-6" title="6">      <span class="kw"><a href="../reference/mutate.html">mutate_dt</a></span>(</a>
 <a class="sourceLine" id="cb12-7" title="7">        <span class="dt">MA10_price =</span> <span class="kw">frollmean</span>(price, <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb12-8" title="8">        <span class="dt">MSD10_price =</span> <span class="kw"><a href="https://rdrr.io/pkg/data.table/man/froll.html">frollapply</a></span>(price, <span class="dv">10</span>, <span class="dt">FUN =</span> sd)</a>
+<a class="sourceLine" id="cb12-8" title="8">        <span class="dt">MSD10_price =</span> <span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/froll.html">frollapply</a></span>(price, <span class="dv">10</span>, <span class="dt">FUN =</span> sd)</a>
 <a class="sourceLine" id="cb12-9" title="9">      )</a>
 <a class="sourceLine" id="cb12-10" title="10">    ) -&gt;<span class="st"> </span>dat1</a>
 <a class="sourceLine" id="cb12-11" title="11">})</a>
-<a class="sourceLine" id="cb12-12" title="12"><span class="co">#&gt; [1] "Finished in 0.990s elapsed (0.950s cpu)"</span></a>
+<a class="sourceLine" id="cb12-12" title="12"><span class="co">#&gt; [1] "Finished in 0.860s elapsed (0.860s cpu)"</span></a>
 <a class="sourceLine" id="cb12-13" title="13"></a>
 <a class="sourceLine" id="cb12-14" title="14">dat1</a>
 <a class="sourceLine" id="cb12-15" title="15"><span class="co">#&gt;         color         dt carat       cut clarity depth table price     x     y</span></a>
@@ -665,7 +665,7 @@
 <a class="sourceLine" id="cb13-16" title="16"><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></a>
 <a class="sourceLine" id="cb13-17" title="17"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb13-18" title="18"><span class="co">#&gt; other attached packages:</span></a>
-<a class="sourceLine" id="cb13-19" title="19"><span class="co">#&gt; [1] tidyfst_0.9.6</span></a>
+<a class="sourceLine" id="cb13-19" title="19"><span class="co">#&gt; [1] tidyfst_0.9.7</span></a>
 <a class="sourceLine" id="cb13-20" title="20"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb13-21" title="21"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
 <a class="sourceLine" id="cb13-22" title="22"><span class="co">#&gt;  [1] Rcpp_1.0.3         compiler_3.6.3     pillar_1.4.3       tools_3.6.3       </span></a>

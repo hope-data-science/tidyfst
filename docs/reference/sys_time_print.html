@@ -78,7 +78,7 @@ data.table::timetaken, but showing the results more directly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
       </span>
     </div>
 
@@ -154,7 +154,7 @@ data.table::timetaken, but showing the results more directly." />
 
     <div class="ref-description">
     <p>Convenient printing of time elapsed. A wrapper of
-<code><a href='https://rdrr.io/pkg/data.table/man/timetaken.html'>data.table::timetaken</a></code>, but showing the results more directly.</p>
+<code><a href='https://Rdatatable.gitlab.io/data.table/reference/timetaken.html'>data.table::timetaken</a></code>, but showing the results more directly.</p>
     </div>
 
     <pre class="usage"><span class='fu'>sys_time_print</span>(<span class='no'>expr</span>)</pre>
@@ -183,7 +183,7 @@ or SS.MMMsec if under 60 seconds. See examples.</p>
 <span class='fu'>sys_time_print</span>({
   <span class='no'>res</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='mutate.html'>mutate_dt</a></span>(<span class='kw'>one</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-})</div><div class='output co'>#&gt; [1] "Finished in 0.020s elapsed (0.010s cpu)"</div><div class='input'><span class='no'>res</span></div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species   one
+})</div><div class='output co'>#&gt; [1] "Finished in 0.000s elapsed (0.000s cpu)"</div><div class='input'><span class='no'>res</span></div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species   one
 #&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;num&gt;
 #&gt;   1:          5.1         3.5          1.4         0.2    setosa     1
 #&gt;   2:          4.9         3.0          1.4         0.2    setosa     1

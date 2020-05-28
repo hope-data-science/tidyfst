@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
       </span>
     </div>
 
@@ -337,7 +337,7 @@
 <h2 class="hasAnchor">
 <a href="#more-complicated-example" class="anchor"></a>More complicated example</h2>
 <p>This example comes from data.table (<a href="https://rdatatable.gitlab.io/data.table/articles/datatable-reshape.html" class="uri">https://rdatatable.gitlab.io/data.table/articles/datatable-reshape.html</a>), and has been used in tidyr too. We’ll try to do it in tidyfst in this example. If we have a data.frame as below:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">family &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/fread.html">fread</a></span>(<span class="st">"family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3</span></a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">family &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3</span></a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="st">1         30 1998-11-26 2000-01-29         NA             1             2            NA</span></a>
 <a class="sourceLine" id="cb8-3" title="3"><span class="st">2         27 1996-06-22         NA         NA             2            NA            NA</span></a>
 <a class="sourceLine" id="cb8-4" title="4"><span class="st">3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1</span></a>
@@ -377,7 +377,7 @@
 <a class="sourceLine" id="cb9-15" title="15"><span class="co"># 13:         5         29 child1 2000-12-05      2</span></a>
 <a class="sourceLine" id="cb9-16" title="16"><span class="co"># 14:         5         29 child2 2005-02-28      1</span></a>
 <a class="sourceLine" id="cb9-17" title="17"><span class="co"># 15:         5         29 child3       &lt;NA&gt;   &lt;NA&gt;</span></a></code></pre></div>
-<p>The <code><a href="https://rdrr.io/pkg/data.table/man/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> could transfer it in one step, however, not so easy to understand. Here we’ll do it step by step to see what actually happens in this transfer.</p>
+<p>The <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> could transfer it in one step, however, not so easy to understand. Here we’ll do it step by step to see what actually happens in this transfer.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">family <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/longer.html">longer_dt</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/separate_dt.html">separate_dt</a></span>(<span class="st">"name"</span>,<span class="dt">into =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"class"</span>,<span class="st">"child"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -402,7 +402,7 @@
 <a class="sourceLine" id="cb10-22" title="22"><span class="co">#&gt; 13:         5         29 child1 2000-12-05      2</span></a>
 <a class="sourceLine" id="cb10-23" title="23"><span class="co">#&gt; 14:         5         29 child2 2005-02-28      1</span></a>
 <a class="sourceLine" id="cb10-24" title="24"><span class="co">#&gt; 15:         5         29 child3       &lt;NA&gt;   &lt;NA&gt;</span></a></code></pre></div>
-<p>In such a process, we could find that we actually get a longer table, then separate it, and wider it later. <em>tidyfst</em> is not going to support the complicated transfer in one step, because it might be easier to implement, but much harder to understand 3 procedures in 1 step. If you still prefer that way, use <code><a href="https://rdrr.io/pkg/data.table/man/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> instead.</p>
+<p>In such a process, we could find that we actually get a longer table, then separate it, and wider it later. <em>tidyfst</em> is not going to support the complicated transfer in one step, because it might be easier to implement, but much harder to understand 3 procedures in 1 step. If you still prefer that way, use <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> instead.</p>
 </div>
   </div>
 

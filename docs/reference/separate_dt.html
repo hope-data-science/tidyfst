@@ -81,7 +81,7 @@ Analogous to tidyr::separate, but only split into two columns only." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
       </span>
     </div>
 
@@ -212,7 +212,14 @@ Analogous to <code><a href='https://tidyr.tidyverse.org/reference/separate.html'
 #&gt; 1:   &lt;NA&gt;   &lt;NA&gt;
 #&gt; 2:      a      b
 #&gt; 3:      a      d
-#&gt; 4:      b      c</div></pre>
+#&gt; 4:      b      c</div><div class='input'>
+<span class='co'># If you just want the second variable:</span>
+<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>separate_dt</span>(<span class='no'>x</span>,<span class='kw'>into</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>,<span class='st'>"B"</span>))</div><div class='output co'>#&gt;         B
+#&gt;    &lt;char&gt;
+#&gt; 1:   &lt;NA&gt;
+#&gt; 2:      b
+#&gt; 3:      d
+#&gt; 4:      c</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

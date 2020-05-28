@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.7</span>
       </span>
     </div>
 
@@ -126,11 +126,11 @@
 <a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(1L)</a>
 <a class="sourceLine" id="cb1-4" title="4"></a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="co">## Create a data table</span></a>
-<a class="sourceLine" id="cb1-6" title="6">DF &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dt">V1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(1L, 2L), <span class="dv">5</span>)[<span class="op">-</span><span class="dv">10</span>],</a>
+<a class="sourceLine" id="cb1-6" title="6">DF &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dt">V1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(1L, 2L), <span class="dv">5</span>)[<span class="op">-</span><span class="dv">10</span>],</a>
 <a class="sourceLine" id="cb1-7" title="7">                <span class="dt">V2 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">9</span>,</a>
 <a class="sourceLine" id="cb1-8" title="8">                <span class="dt">V3 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.5</span>),</a>
 <a class="sourceLine" id="cb1-9" title="9">                <span class="dt">V4 =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/copy.html">copy</a></span>(DF) -&gt;<span class="st"> </span>DT</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span>(DF) -&gt;<span class="st"> </span>DT</a>
 <a class="sourceLine" id="cb1-11" title="11"></a>
 <a class="sourceLine" id="cb1-12" title="12"><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(DF)</a>
 <a class="sourceLine" id="cb1-13" title="13">DF</a></code></pre></div>
@@ -142,10 +142,10 @@
 <h2 class="hasAnchor">
 <a href="#filter-rows" class="anchor"></a>Filter rows</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">### Filter rows using indices</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="../reference/slice_dt.html">slice_dt</a></span>(DF, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="../reference/slice.html">slice_dt</a></span>(DF, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3"></a>
 <a class="sourceLine" id="cb2-4" title="4"><span class="co">### Discard rows using negative indices</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="kw"><a href="../reference/slice_dt.html">slice_dt</a></span>(DF, <span class="op">-</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">7</span>))</a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="kw"><a href="../reference/slice.html">slice_dt</a></span>(DF, <span class="op">-</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">7</span>))</a>
 <a class="sourceLine" id="cb2-6" title="6"></a>
 <a class="sourceLine" id="cb2-7" title="7"><span class="co">### Filter rows using a logical expression</span></a>
 <a class="sourceLine" id="cb2-8" title="8"><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(DF, V2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>)</a>
@@ -237,15 +237,15 @@
 <a class="sourceLine" id="cb5-13" title="13"><span class="co">### Summarise a subset of rows</span></a>
 <a class="sourceLine" id="cb5-14" title="14">DT[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(V1)]</a>
 <a class="sourceLine" id="cb5-15" title="15">DF <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="st">  </span><span class="kw"><a href="../reference/slice_dt.html">slice_dt</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="st">  </span><span class="kw"><a href="../reference/slice.html">slice_dt</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-17" title="17"><span class="st">  </span><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(V1))</a>
 <a class="sourceLine" id="cb5-18" title="18"></a>
 <a class="sourceLine" id="cb5-19" title="19"><span class="co">### Misc</span></a>
 <a class="sourceLine" id="cb5-20" title="20"><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(DF, <span class="kw"><a href="../reference/nth.html">nth</a></span>(V3,<span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb5-21" title="21"><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(DF, <span class="kw"><a href="../reference/nth.html">nth</a></span>(V3,<span class="op">-</span><span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb5-22" title="22"><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(DF, <span class="kw"><a href="../reference/nth.html">nth</a></span>(V3, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb5-23" title="23"><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(DF, <span class="kw"><a href="https://rdrr.io/pkg/data.table/man/duplicated.html">uniqueN</a></span>(V4))</a>
-<a class="sourceLine" id="cb5-24" title="24"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/duplicated.html">uniqueN</a></span>(DF)</a></code></pre></div>
+<a class="sourceLine" id="cb5-23" title="23"><span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(DF, <span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">uniqueN</a></span>(V4))</a>
+<a class="sourceLine" id="cb5-24" title="24"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">uniqueN</a></span>(DF)</a></code></pre></div>
 </div>
 <div id="addupdatedelete-columns" class="section level2">
 <h2 class="hasAnchor">
@@ -255,12 +255,12 @@
 <a class="sourceLine" id="cb6-3" title="3">DT</a>
 <a class="sourceLine" id="cb6-4" title="4">DF <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_mutate</span>(<span class="dt">V1 =</span> V1<span class="op">^</span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb6-5" title="5">DF</a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb6-7" title="7"></a>
 <a class="sourceLine" id="cb6-8" title="8"><span class="co">### Add one column</span></a>
 <a class="sourceLine" id="cb6-9" title="9">DT[, v5 <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(V1)][] <span class="co"># adding [] prints the result</span></a>
 <a class="sourceLine" id="cb6-10" title="10"><span class="kw">set_mutate</span>(DF, <span class="dt">v5 =</span> <span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(V1))</a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb6-12" title="12"></a>
 <a class="sourceLine" id="cb6-13" title="13"><span class="co">### Add several columns</span></a>
 <a class="sourceLine" id="cb6-14" title="14">DT[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"v6"</span>, <span class="st">"v7"</span>) <span class="op">:</span><span class="er">=</span><span class="st"> </span>.(<span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span>(V1), <span class="st">"X"</span>)]</a>
@@ -269,7 +269,7 @@
 <a class="sourceLine" id="cb6-17" title="17"></a>
 <a class="sourceLine" id="cb6-18" title="18"><span class="kw">set_mutate</span>(DF, <span class="dt">v6 =</span> <span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span>(V1), <span class="dt">v7 =</span> <span class="st">"X"</span>)</a>
 <a class="sourceLine" id="cb6-19" title="19"></a>
-<a class="sourceLine" id="cb6-20" title="20"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb6-20" title="20"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb6-21" title="21"></a>
 <a class="sourceLine" id="cb6-22" title="22"><span class="co">### Create one column and remove the others</span></a>
 <a class="sourceLine" id="cb6-23" title="23">DT[, .(<span class="dt">v8 =</span> V3 <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)]</a>
@@ -278,25 +278,25 @@
 <a class="sourceLine" id="cb6-26" title="26"><span class="co">### Remove one column</span></a>
 <a class="sourceLine" id="cb6-27" title="27">DT[, v5 <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]</a>
 <a class="sourceLine" id="cb6-28" title="28"><span class="kw">set_mutate</span>(DF, <span class="dt">v5 =</span> <span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb6-29" title="29"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb6-29" title="29"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb6-30" title="30"></a>
 <a class="sourceLine" id="cb6-31" title="31"><span class="co">### Remove several columns</span></a>
 <a class="sourceLine" id="cb6-32" title="32">DT[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"v6"</span>, <span class="st">"v7"</span>) <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]</a>
 <a class="sourceLine" id="cb6-33" title="33"><span class="kw">set_mutate</span>(DF, <span class="dt">v6 =</span> <span class="ot">NULL</span>,<span class="dt">v7 =</span> <span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb6-34" title="34"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb6-34" title="34"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb6-35" title="35"></a>
 <a class="sourceLine" id="cb6-36" title="36"><span class="co">### Remove columns using a vector of colnames</span></a>
 <a class="sourceLine" id="cb6-37" title="37">cols &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V3"</span>)</a>
 <a class="sourceLine" id="cb6-38" title="38">DT[, (cols) <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>] <span class="co"># ! not DT[, cols := NULL]</span></a>
 <a class="sourceLine" id="cb6-39" title="39">DF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/select.html">select_dt</a></span>(DF, <span class="dt">cols =</span> cols,<span class="dt">negate =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-40" title="40"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb6-40" title="40"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb6-41" title="41"></a>
 <a class="sourceLine" id="cb6-42" title="42"><span class="co">### Replace values for rows matching a condition</span></a>
 <a class="sourceLine" id="cb6-43" title="43">DT[V2 <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>, V2 <span class="op">:</span><span class="er">=</span><span class="st"> </span>0L]</a>
 <a class="sourceLine" id="cb6-44" title="44">DT</a>
 <a class="sourceLine" id="cb6-45" title="45">DF =<span class="st"> </span><span class="kw"><a href="../reference/mutate_vars.html">mutate_when</a></span>(DF,V2 <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>, <span class="dt">V2 =</span> 0L)</a>
 <a class="sourceLine" id="cb6-46" title="46">DF</a>
-<a class="sourceLine" id="cb6-47" title="47"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a></code></pre></div>
+<a class="sourceLine" id="cb6-47" title="47"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a></code></pre></div>
 </div>
 <div id="group-computation-by" class="section level2">
 <h2 class="hasAnchor">
@@ -338,7 +338,7 @@
 <a class="sourceLine" id="cb7-35" title="35"></a>
 <a class="sourceLine" id="cb7-36" title="36"><span class="co">### By on a subset of rows</span></a>
 <a class="sourceLine" id="cb7-37" title="37">DF <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-38" title="38"><span class="st">  </span><span class="kw"><a href="../reference/slice_dt.html">slice_dt</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-38" title="38"><span class="st">  </span><span class="kw"><a href="../reference/slice.html">slice_dt</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb7-39" title="39"><span class="st">  </span><span class="kw"><a href="../reference/group_dt.html">group_dt</a></span>(</a>
 <a class="sourceLine" id="cb7-40" title="40">    <span class="dt">by =</span> V4,</a>
 <a class="sourceLine" id="cb7-41" title="41">    <span class="kw"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="dt">sumV1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(V1))</a>
@@ -420,7 +420,7 @@
 <a class="sourceLine" id="cb8-56" title="56">DF <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb8-57" title="57"><span class="st">  </span><span class="kw"><a href="../reference/group_dt.html">group_dt</a></span>(</a>
 <a class="sourceLine" id="cb8-58" title="58">    <span class="dt">by =</span> V4,</a>
-<a class="sourceLine" id="cb8-59" title="59">    <span class="kw"><a href="../reference/slice_dt.html">slice_dt</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-59" title="59">    <span class="kw"><a href="../reference/slice.html">slice_dt</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb8-60" title="60"><span class="st">      </span><span class="kw"><a href="../reference/mutate.html">transmute_dt</a></span>(<span class="dt">V1 =</span> V1,</a>
 <a class="sourceLine" id="cb8-61" title="61">            <span class="dt">V2 =</span> <span class="st">"X"</span>)</a>
 <a class="sourceLine" id="cb8-62" title="62">  )</a>
@@ -449,12 +449,12 @@
 <a class="sourceLine" id="cb9-9" title="9"><span class="co">### Select the first matching row</span></a>
 <a class="sourceLine" id="cb9-10" title="10">DF <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-11" title="11"><span class="st">  </span><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(V4 <span class="op">==</span><span class="st"> "B"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-12" title="12"><span class="st">  </span><span class="kw"><a href="../reference/slice_dt.html">slice_dt</a></span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="st">  </span><span class="kw"><a href="../reference/slice.html">slice_dt</a></span>(<span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb9-13" title="13"></a>
 <a class="sourceLine" id="cb9-14" title="14"><span class="co">### Select the last matching row</span></a>
 <a class="sourceLine" id="cb9-15" title="15">DF <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-16" title="16"><span class="st">  </span><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(V4 <span class="op">==</span><span class="st"> "A"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-17" title="17"><span class="st">  </span><span class="kw"><a href="../reference/slice_dt.html">slice_dt</a></span>(.N)</a>
+<a class="sourceLine" id="cb9-17" title="17"><span class="st">  </span><span class="kw"><a href="../reference/slice.html">slice_dt</a></span>(.N)</a>
 <a class="sourceLine" id="cb9-18" title="18"></a>
 <a class="sourceLine" id="cb9-19" title="19"><span class="co">### Nomatch argument</span></a>
 <a class="sourceLine" id="cb9-20" title="20"><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(DF, V4 <span class="op">%chin%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"D"</span>))</a>
@@ -470,7 +470,7 @@
 <a class="sourceLine" id="cb9-30" title="30">DF &lt;-<span class="st"> </span>DF <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-31" title="31"><span class="st">  </span><span class="kw"><a href="../reference/mutate_vars.html">mutate_when</a></span>(V4 <span class="op">==</span><span class="st"> "A"</span>,<span class="dt">V1 =</span> <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb9-32" title="32">DF</a>
-<a class="sourceLine" id="cb9-33" title="33"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb9-33" title="33"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb9-34" title="34"></a>
 <a class="sourceLine" id="cb9-35" title="35"><span class="co">### Use keys in by</span></a>
 <a class="sourceLine" id="cb9-36" title="36">DF <span class="op">%&gt;%</span></a>
@@ -483,14 +483,14 @@
 <a class="sourceLine" id="cb9-43" title="43"><span class="co">### Set keys for multiple columns</span></a>
 <a class="sourceLine" id="cb9-44" title="44"><span class="kw"><a href="../reference/group_by.html">group_by_dt</a></span>(DT,V4,V1,<span class="dt">inplace =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb9-45" title="45">DF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(DF, V4, V1) </a>
-<a class="sourceLine" id="cb9-46" title="46"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb9-46" title="46"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb9-47" title="47"></a>
 <a class="sourceLine" id="cb9-48" title="48"><span class="co">### Subset using multiple keys/indices</span></a>
 <a class="sourceLine" id="cb9-49" title="49"><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(DF, V1 <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, V4 <span class="op">==</span><span class="st"> "C"</span>)</a>
 <a class="sourceLine" id="cb9-50" title="50"><span class="kw"><a href="../reference/filter_dt.html">filter_dt</a></span>(DF, V1 <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, V4 <span class="op">%chin%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>))</a>
 <a class="sourceLine" id="cb9-51" title="51"></a>
 <a class="sourceLine" id="cb9-52" title="52"><span class="co">### Remove keys</span></a>
-<a class="sourceLine" id="cb9-53" title="53"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/tables.html">tables</a></span>()</a>
+<a class="sourceLine" id="cb9-53" title="53"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/tables.html">tables</a></span>()</a>
 <a class="sourceLine" id="cb9-54" title="54">data.table<span class="op">::</span><span class="kw">setkey</span>(DT, <span class="ot">NULL</span>)</a></code></pre></div>
 </div>
 <div id="set-modifications" class="section level2">
@@ -503,12 +503,12 @@
 <a class="sourceLine" id="cb10-5" title="5"><span class="co">### Reorder rows</span></a>
 <a class="sourceLine" id="cb10-6" title="6"><span class="kw">set_dt</span>(DT,<span class="dt">order_by =</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V4"</span>, <span class="st">"V1"</span>), <span class="dt">order_dirc =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">-1</span>) )</a>
 <a class="sourceLine" id="cb10-7" title="7"><span class="kw">set_arrange</span>(DF,V4,<span class="op">-</span>V1)</a>
-<a class="sourceLine" id="cb10-8" title="8"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb10-9" title="9"></a>
 <a class="sourceLine" id="cb10-10" title="10"><span class="co">### Modify colnames</span></a>
 <a class="sourceLine" id="cb10-11" title="11"><span class="kw">set_dt</span>(DT,<span class="dt">old_name =</span> <span class="st">"V2"</span>,<span class="dt">new_name =</span> <span class="st">"v2"</span>)</a>
 <a class="sourceLine" id="cb10-12" title="12"><span class="kw">set_rename</span>(DF,<span class="dt">v2 =</span> V2)</a>
-<a class="sourceLine" id="cb10-13" title="13"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb10-13" title="13"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb10-14" title="14"><span class="co"># change back</span></a>
 <a class="sourceLine" id="cb10-15" title="15"><span class="kw">set_dt</span>(DT,<span class="dt">new_name =</span> <span class="kw"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(DT)))</a>
 <a class="sourceLine" id="cb10-16" title="16"><span class="kw">set_dt</span>(DF,<span class="dt">new_name =</span> <span class="kw"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(DF)))</a>
@@ -516,7 +516,7 @@
 <a class="sourceLine" id="cb10-18" title="18"><span class="co">### Reorder columns</span></a>
 <a class="sourceLine" id="cb10-19" title="19"><span class="kw">set_dt</span>(DT,<span class="dt">col_order =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V4"</span>, <span class="st">"V1"</span>, <span class="st">"V2"</span>))</a>
 <a class="sourceLine" id="cb10-20" title="20"><span class="kw">set_relocate</span>(DF,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V4"</span>, <span class="st">"V1"</span>, <span class="st">"V2"</span>))</a>
-<a class="sourceLine" id="cb10-21" title="21"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb10-21" title="21"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb10-22" title="22"></a>
 <a class="sourceLine" id="cb10-23" title="23"><span class="co">### Convert data</span></a>
 <a class="sourceLine" id="cb10-24" title="24">?as_dt <span class="co"># data.frame to data.table</span></a>
@@ -543,7 +543,7 @@
 <a class="sourceLine" id="cb11-14" title="14">DT <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb11-15" title="15"><span class="st">  </span><span class="kw"><a href="../reference/group_dt.html">group_dt</a></span>(</a>
 <a class="sourceLine" id="cb11-16" title="16">    <span class="dt">by =</span> V4,</a>
-<a class="sourceLine" id="cb11-17" title="17">    <span class="kw"><a href="../reference/slice_dt.html">slice_dt</a></span>(<span class="dv">1</span>,.N)</a>
+<a class="sourceLine" id="cb11-17" title="17">    <span class="kw"><a href="../reference/slice.html">slice_dt</a></span>(<span class="dv">1</span>,.N)</a>
 <a class="sourceLine" id="cb11-18" title="18">  )</a>
 <a class="sourceLine" id="cb11-19" title="19"></a>
 <a class="sourceLine" id="cb11-20" title="20"><span class="co">### Select rows using a nested query</span></a>
@@ -551,7 +551,7 @@
 <a class="sourceLine" id="cb11-22" title="22"><span class="st">  </span><span class="kw"><a href="../reference/group_dt.html">group_dt</a></span>(</a>
 <a class="sourceLine" id="cb11-23" title="23">    <span class="dt">by =</span> V4,</a>
 <a class="sourceLine" id="cb11-24" title="24">    <span class="kw"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(V2) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-25" title="25"><span class="st">      </span><span class="kw"><a href="../reference/slice_dt.html">slice_dt</a></span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb11-25" title="25"><span class="st">      </span><span class="kw"><a href="../reference/slice.html">slice_dt</a></span>(<span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb11-26" title="26">  )</a>
 <a class="sourceLine" id="cb11-27" title="27"></a>
 <a class="sourceLine" id="cb11-28" title="28"><span class="co">### Add a group counter column</span></a>
@@ -599,39 +599,39 @@
 <div id="read-write-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#read-write-data" class="anchor"></a>Read / Write data</h2>
-<p>tidyfst exports <code><a href="https://rdrr.io/pkg/data.table/man/fread.html">data.table::fread</a></code> and <code><a href="https://rdrr.io/pkg/data.table/man/fwrite.html">data.table::fwrite</a></code> directly.</p>
+<p>tidyfst exports <code><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">data.table::fread</a></code> and <code><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">data.table::fwrite</a></code> directly.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co">### Write data to a csv file</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/fwrite.html">fwrite</a></span>(DT, <span class="st">"DT.csv"</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">fwrite</a></span>(DT, <span class="st">"DT.csv"</span>)</a>
 <a class="sourceLine" id="cb12-3" title="3"></a>
 <a class="sourceLine" id="cb12-4" title="4"><span class="co">### Write data to a tab-delimited file</span></a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/fwrite.html">fwrite</a></span>(DT, <span class="st">"DT.txt"</span>, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">fwrite</a></span>(DT, <span class="st">"DT.txt"</span>, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</a>
 <a class="sourceLine" id="cb12-6" title="6"></a>
 <a class="sourceLine" id="cb12-7" title="7"><span class="co">### Write list-column data to a csv file</span></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/fwrite.html">fwrite</a></span>(<span class="kw">setDT</span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">0</span>, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))), <span class="st">"DT2.csv"</span>)</a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">fwrite</a></span>(<span class="kw">setDT</span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">0</span>, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))), <span class="st">"DT2.csv"</span>)</a>
 <a class="sourceLine" id="cb12-9" title="9"><span class="co">#</span></a>
 <a class="sourceLine" id="cb12-10" title="10"><span class="co">### Read a csv / tab-delimited file</span></a>
-<a class="sourceLine" id="cb12-11" title="11"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/fread.html">fread</a></span>(<span class="st">"DT.csv"</span>)</a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"DT.csv"</span>)</a>
 <a class="sourceLine" id="cb12-12" title="12"><span class="co"># fread("DT.csv", verbose = TRUE) # full details</span></a>
-<a class="sourceLine" id="cb12-13" title="13"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/fread.html">fread</a></span>(<span class="st">"DT.txt"</span>, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb12-13" title="13"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"DT.txt"</span>, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</a>
 <a class="sourceLine" id="cb12-14" title="14"></a>
 <a class="sourceLine" id="cb12-15" title="15"><span class="co">### Read a csv file selecting / droping columns</span></a>
-<a class="sourceLine" id="cb12-16" title="16"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/fread.html">fread</a></span>(<span class="st">"DT.csv"</span>, <span class="dt">select =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V4"</span>))</a>
-<a class="sourceLine" id="cb12-17" title="17"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/fread.html">fread</a></span>(<span class="st">"DT.csv"</span>, <span class="dt">drop =</span> <span class="st">"V4"</span>)</a>
+<a class="sourceLine" id="cb12-16" title="16"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"DT.csv"</span>, <span class="dt">select =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V4"</span>))</a>
+<a class="sourceLine" id="cb12-17" title="17"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"DT.csv"</span>, <span class="dt">drop =</span> <span class="st">"V4"</span>)</a>
 <a class="sourceLine" id="cb12-18" title="18"><span class="co"># NA</span></a>
 <a class="sourceLine" id="cb12-19" title="19"><span class="co">### Read and rbind several files</span></a>
-<a class="sourceLine" id="cb12-20" title="20"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/rbindlist.html">rbindlist</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DT.csv"</span>, <span class="st">"DT.csv"</span>), fread))</a>
+<a class="sourceLine" id="cb12-20" title="20"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbindlist</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DT.csv"</span>, <span class="st">"DT.csv"</span>), fread))</a>
 <a class="sourceLine" id="cb12-21" title="21"><span class="co"># c("DT.csv", "DT.csv") %&gt;% lapply(fread) %&gt;% rbindlist</span></a></code></pre></div>
 </div>
 <div id="reshape-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reshape-data" class="anchor"></a>Reshape data</h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co">### Melt data (from wide to long)</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(DT,DF)</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(DT,DF)</a>
 <a class="sourceLine" id="cb13-3" title="3"></a>
 <a class="sourceLine" id="cb13-4" title="4">mDT =<span class="st"> </span>DT <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/longer.html">longer_dt</a></span>(V4)</a>
 <a class="sourceLine" id="cb13-5" title="5">mDF =<span class="st"> </span>DF <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/longer.html">longer_dt</a></span>(<span class="op">-</span><span class="st">"V1|V2"</span>)</a>
 <a class="sourceLine" id="cb13-6" title="6"></a>
-<a class="sourceLine" id="cb13-7" title="7"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(mDT,mDF)</a>
+<a class="sourceLine" id="cb13-7" title="7"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(mDT,mDF)</a>
 <a class="sourceLine" id="cb13-8" title="8">mDT</a>
 <a class="sourceLine" id="cb13-9" title="9"></a>
 <a class="sourceLine" id="cb13-10" title="10"><span class="co">### Cast data (from long to wide)</span></a>
@@ -662,12 +662,12 @@
 <div id="join" class="section level2">
 <h2 class="hasAnchor">
 <a href="#join" class="anchor"></a>Join</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dt">Id  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>),</a>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dt">Id  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>),</a>
 <a class="sourceLine" id="cb15-2" title="2">                <span class="dt">X1  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(1L, 3L, 5L, 7L),</a>
 <a class="sourceLine" id="cb15-3" title="3">                <span class="dt">XY  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x2"</span>, <span class="st">"x4"</span>, <span class="st">"x6"</span>, <span class="st">"x8"</span>),</a>
 <a class="sourceLine" id="cb15-4" title="4">                <span class="dt">key =</span> <span class="st">"Id"</span>)</a>
 <a class="sourceLine" id="cb15-5" title="5"></a>
-<a class="sourceLine" id="cb15-6" title="6">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dt">Id  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"D"</span>),</a>
+<a class="sourceLine" id="cb15-6" title="6">y &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dt">Id  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"D"</span>),</a>
 <a class="sourceLine" id="cb15-7" title="7">                <span class="dt">Y1  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(1L, 3L, 5L, 7L),</a>
 <a class="sourceLine" id="cb15-8" title="8">                <span class="dt">XY  =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"y1"</span>, <span class="st">"y3"</span>, <span class="st">"y5"</span>, <span class="st">"y7"</span>),</a>
 <a class="sourceLine" id="cb15-9" title="9">                <span class="dt">key =</span> <span class="st">"Id"</span>)</a>
@@ -693,15 +693,15 @@
 <div id="bind" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bind" class="anchor"></a>Bind</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb16-2" title="2">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb16-3" title="3">z &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="dv">7</span><span class="op">:</span><span class="dv">9</span>, 0L)</a>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb16-2" title="2">y &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb16-3" title="3">z &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="dv">7</span><span class="op">:</span><span class="dv">9</span>, 0L)</a>
 <a class="sourceLine" id="cb16-4" title="4"><span class="co">### Bind rows</span></a>
 <a class="sourceLine" id="cb16-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(x, y)</a>
 <a class="sourceLine" id="cb16-6" title="6"><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(x, z, <span class="dt">fill =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb16-7" title="7"></a>
 <a class="sourceLine" id="cb16-8" title="8"><span class="co">### Bind rows using a list</span></a>
-<a class="sourceLine" id="cb16-9" title="9"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/rbindlist.html">rbindlist</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(x, y), <span class="dt">idcol =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb16-9" title="9"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbindlist</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(x, y), <span class="dt">idcol =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb16-10" title="10"></a>
 <a class="sourceLine" id="cb16-11" title="11"><span class="co">### Bind columns</span></a>
 <a class="sourceLine" id="cb16-12" title="12"><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(x, y)</a></code></pre></div>
@@ -709,22 +709,22 @@
 <div id="set-operations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#set-operations" class="anchor"></a>Set operations</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb17-2" title="2">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>))</a>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb17-2" title="2">y &lt;-<span class="st"> </span><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>))</a>
 <a class="sourceLine" id="cb17-3" title="3"><span class="co">### Intersection</span></a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fintersect</a></span>(x, y)</a>
-<a class="sourceLine" id="cb17-5" title="5"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fintersect</a></span>(x, y, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb17-4" title="4"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fintersect</a></span>(x, y)</a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fintersect</a></span>(x, y, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb17-6" title="6"></a>
 <a class="sourceLine" id="cb17-7" title="7"><span class="co">### Difference</span></a>
-<a class="sourceLine" id="cb17-8" title="8"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetdiff</a></span>(x, y)</a>
-<a class="sourceLine" id="cb17-9" title="9"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetdiff</a></span>(x, y, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb17-8" title="8"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetdiff</a></span>(x, y)</a>
+<a class="sourceLine" id="cb17-9" title="9"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetdiff</a></span>(x, y, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb17-10" title="10"></a>
 <a class="sourceLine" id="cb17-11" title="11"><span class="co">### Union</span></a>
-<a class="sourceLine" id="cb17-12" title="12"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">funion</a></span>(x, y)</a>
-<a class="sourceLine" id="cb17-13" title="13"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">funion</a></span>(x, y, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb17-12" title="12"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">funion</a></span>(x, y)</a>
+<a class="sourceLine" id="cb17-13" title="13"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">funion</a></span>(x, y, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb17-14" title="14"></a>
 <a class="sourceLine" id="cb17-15" title="15"><span class="co">### Equality</span></a>
-<a class="sourceLine" id="cb17-16" title="16"><span class="kw"><a href="https://rdrr.io/pkg/data.table/man/setops.html">fsetequal</a></span>(x, x[<span class="kw"><a href="https://rdrr.io/r/base/order.html">order</a></span>(<span class="op">-</span>V1),])</a>
+<a class="sourceLine" id="cb17-16" title="16"><span class="kw"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(x, x[<span class="kw"><a href="https://rdrr.io/r/base/order.html">order</a></span>(<span class="op">-</span>V1),])</a>
 <a class="sourceLine" id="cb17-17" title="17"><span class="kw"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span>(x, x) <span class="co"># S3 method</span></a>
 <a class="sourceLine" id="cb17-18" title="18"><span class="kw"><a href="https://rdrr.io/r/base/sets.html">setequal</a></span>(x, x[<span class="kw"><a href="https://rdrr.io/r/base/order.html">order</a></span>(<span class="op">-</span>V1),])</a></code></pre></div>
 </div>
