@@ -1,4 +1,13 @@
 
+## 0.9.7
+Date:20200528
+1. Update `separate_dt` to accepte `NA` in parameter "into".
+2. Add a new collection of `slice*` function to match dplyr 1.0.0.
+3. Simplify the joining functions.
+4. Debug `complete_dt` to suppress unnecessary warning in special cases.
+5. Debug `nest_dt` to use full join to unnest multiple columns.
+6. Debug the joining functions to make it robust for non-data.table data frames.
+
 ## 0.9.6
 Date:20200502
 1. Update Chinense tutorial.

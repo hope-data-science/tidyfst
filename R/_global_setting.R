@@ -3,7 +3,7 @@
 #' @import fst
 #' @import stringr
 #' @importFrom stats na.omit setNames median
-#' @importFrom utils object.size
+#' @importFrom utils object.size head tail
 
 #' @export
 stringr::`%>%`

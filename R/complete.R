@@ -41,6 +41,7 @@ complete_dt = function(.data,...,fill = NA){
   if(
     substitute(list(...)) %>%
     deparse() %>%
+    .[1] %>%
     str_detect("=")
   ) {
     list(...) %>%
