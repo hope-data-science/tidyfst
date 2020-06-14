@@ -45,3 +45,5 @@ Hopefully, tidyfst could provide some reference for the design of dplyr and brin
 # Acknowledgement
 
 The author of [maditr](https://github.com/gdemin/maditr), [Gregory Demin](https://github.com/gdemin) and the author of [fst](https://github.com/fstpackage/fst), [Marcus Klik](https://github.com/MarcusKlik) have helped me a lot in the development of this work. It is so lucky to have them (and many other selfless contributors) in the same open source community of R.
+
+# References
