@@ -13,7 +13,7 @@ add_count_dt(.data, ..., .name = "n")
 \item{.data}{data.table/data.frame data.frame will be automatically converted
 to data.table.}
 
-\item{...}{variables to group by.}
+\item{...}{Variables to group by, could receive what `select_dt` receives.}
 
 \item{sort}{logical. If TRUE result will be sorted in desending order by resulting variable.}
 
@@ -32,8 +32,10 @@ iris \%>\% add_count_dt(Species)
 iris \%>\% add_count_dt(Species,.name = "N")
 
 mtcars \%>\% count_dt(cyl,vs)
+mtcars \%>\% count_dt("cyl|vs")
 mtcars \%>\% count_dt(cyl,vs,.name = "N",sort = FALSE)
 mtcars \%>\% add_count_dt(cyl,vs)
+mtcars \%>\% add_count_dt("cyl|vs")
 
 }
 \seealso{

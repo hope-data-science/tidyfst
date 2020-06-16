@@ -2,14 +2,17 @@
 % Please edit documentation in R/rename_dt.R
 \name{rename_dt}
 \alias{rename_dt}
+\alias{rename_with_dt}
 \title{Rename column in data.frame}
 \usage{
 rename_dt(.data, ...)
+
+rename_with_dt(.data, .fn, ...)
 }
 \arguments{
 \item{.data}{data.frame}
 
-\item{...}{staments of rename, e.g. `sl = Sepal.Length` means the column named
+\item{...}{statements of rename, e.g. `sl = Sepal.Length` means the column named
 as "Sepal.Length" would be renamed to "sl"}
 }
 \value{
@@ -22,6 +25,8 @@ Analogous function for \code{rename} in \pkg{dplyr}
 iris \%>\%
   rename_dt(sl = Sepal.Length,sw = Sepal.Width) \%>\%
   head()
+iris \%>\% rename_with_dt(toupper)
+iris \%>\% rename_with_dt(toupper,"^Pe")
 
 }
 \seealso{

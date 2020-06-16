@@ -57,6 +57,8 @@ helpers for common use cases:
 a = iris
 slice_dt(a,1,2)
 slice_dt(a,2:3)
+slice_dt(a,141:.N)
+slice_dt(a,1,.N)
 slice_head_dt(a,5)
 slice_head_dt(a,0.1)
 slice_tail_dt(a,5)
