@@ -1,4 +1,10 @@
 
+## 0.9.8
+1. Add `rename_with_dt` like dplyr's `rename_with`
+2. Update `slice_dt` to support `.N`
+3. Update vignette "english_turoial" to remove the outdated codes
+4. Improve `count_dt` by using `select_dt` inside
+
 ## 0.9.7
 Date:20200528
 1. Update `separate_dt` to accepte `NA` in parameter "into".

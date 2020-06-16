@@ -392,36 +392,6 @@ filter_dt(DF, V1 == 1, V4 %chin% c("B", "C"))
 tables()
 data.table::setkey(DT, NULL)
 ```
-## set*() modifications
-```{r}
-### Replace values
-data.table::set(DT, i = 1L, j = 2L, value = 3L)
-DF[1, 2] <- 3L
-
-### Reorder rows
-set_dt(DT,order_by =c("V4", "V1"), order_dirc = c(1, -1) )
-set_arrange(DF,V4,-V1)
-fsetequal(DT,DF)
-
-### Modify colnames
-set_dt(DT,old_name = "V2",new_name = "v2")
-set_rename(DF,v2 = V2)
-fsetequal(DT,DF)
-# change back
-set_dt(DT,new_name = toupper(names(DT)))
-set_dt(DF,new_name = toupper(names(DF)))
-
-### Reorder columns
-set_dt(DT,col_order = c("V4", "V1", "V2"))
-set_relocate(DF,c("V4", "V1", "V2"))
-fsetequal(DT,DF)
-
-### Convert data
-?as_dt # data.frame to data.table
-?set_dt # data.frame to data.table by reference
-
-# 
-```
 
 ## Advanced use of by
 

@@ -1,6 +1,6 @@
 Package: tidyfst
 Title: Tidy Verbs for Fast Data Manipulation
-Version: 0.9.7
+Version: 0.9.8
 Depends: R (>= 3.3.0)
 Authors@R: 
     person(given = "Tian-Yuan",
