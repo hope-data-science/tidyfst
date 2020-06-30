@@ -27,14 +27,7 @@ distinct_dt = function(.data,...,.keep_all = FALSE){
   else unique(dt[,.SD,.SDcols = sel_name])
 }
 
-# distinct_dt = function(.data,...,.keep_all = FALSE){
-#   dt = as_dt(.data)
-#   if(length(substitute(...)) == 0) unique(dt)
-#   else{
-#     if(.keep_all) eval(substitute(dt[,.SD[1],by = .(...)]))
-#     else eval(substitute(unique(dt[,.(...),])))
-#   }
-# }
+
 
 
 
