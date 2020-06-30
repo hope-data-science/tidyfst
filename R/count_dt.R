@@ -1,6 +1,7 @@
 
 
 #' @title Count observations by group
+#' @description Count the unique values of one or more variables.
 #' @description Analogous function for \code{count} and \code{add_count} in \pkg{dplyr}.
 #'
 #' @param .data data.table/data.frame data.frame will be automatically converted
