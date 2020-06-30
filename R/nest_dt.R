@@ -10,6 +10,7 @@
 #' or column(s) to be unnested(for \code{unnest_dt}).
 #' Could recieve anything that \code{\link[tidyfst]{select_dt}} could receive.
 #' @param mcols Name-variable pairs in the list, form like
+#' @param .name Character. The nested column name. Defaults to "ndt".
 #' \code{list(petal="^Pe",sepal="^Se")}, see example.
 #' @return data.table, nested or unnested
 #' @details In the \code{nest_dt}, the data would be nested to a column named `ndt`,
@@ -32,6 +33,9 @@
 #'  mtcars %>% nest_dt(vs:am)
 #'  mtcars %>% nest_dt("cyl|vs")
 #'  mtcars %>% nest_dt(c("cyl","vs"))
+#'
+#'  # change the nested column name
+#'  mtcars %>% nest_dt(cyl,.name = "data")
 #'
 #' # nest two columns directly
 #' iris %>% nest_dt(mcols = list(petal="^Pe",sepal="^Se"))
@@ -71,6 +75,7 @@
 #' iris %>% squeeze_dt(1:2)
 #' iris %>% squeeze_dt("Se")
 #' iris %>% squeeze_dt(Sepal.Length:Petal.Width)
+#' iris %>% squeeze_dt(1:2,.name = "data")
 #'
 #' # examples for chop_dt
 #' df <- data.table(x = c(1, 1, 1, 2, 2, 3), y = 1:6, z = 6:1)
@@ -82,11 +87,12 @@
 
 # nest by which columns?
 
-nest_dt = function(.data,...,mcols = NULL){
+nest_dt = function(.data,...,mcols = NULL,.name = "ndt"){
 
   dt = as_dt(.data)
 
-  if(substitute(mcols) %>% deparse() == "NULL") nest_by(dt,...)
+  if(substitute(mcols) %>% deparse() == "NULL")
+    setnames(nest_by(dt,...),old = "ndt",new = .name)[]
   else{
     name_list = substitute(mcols)%>%
       lapply(deparse) %>%
@@ -105,26 +111,6 @@ nest_dt = function(.data,...,mcols = NULL){
   }
 
 }
-
-# nest_dt = function(.data,...,mcols = NULL){
-#   dt = as_dt(.data)
-#   if(is.null(mcols)) nest_by(dt,...)
-#   else{
-#     names(dt) %>%
-#       str_subset(str_c(mcols,collapse = "|"),
-#                  negate = TRUE) -> group_names
-#     lapply(mcols,function(x) str_subset(names(dt),x)) %>%
-#       lapply(function(x) c(x,group_names)) %>%
-#       lapply(function(x) select_dt(dt,cols = x)) %>%
-#       lapply(function(x) nest_by(dt,cols = group_names)) %>%
-#       lapply(function(x) setkeyv(x,cols = group_names))-> list_table
-#     for(i in seq_along(list_table)){
-#       list_table[[i]] = setnames(list_table[[i]],
-#                                old = "ndt",new = names(list_table[i]))
-#     }
-#     Reduce(f = merge,x = list_table)
-#   }
-# }
 
 
 nest_by = function(.data,...){
@@ -170,14 +156,13 @@ unnest_col = function(.data,...){
 
 # nest which columns?
 
-squeeze_dt = function(.data,...){
-  #dt = as_dt(.data)
+squeeze_dt = function(.data,...,.name = "ndt"){
   dt = as.data.table(.data)
   dt %>% select_dt(...) %>%
     setNames(NULL) %>%
     apply(1,list) %>%
     lapply(unlist)-> ndt
-  dt[,ndt := ndt][]
+  dt[,(.name) := ndt][]
 }
 
 #' @rdname nest

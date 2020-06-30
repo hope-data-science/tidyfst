@@ -25,14 +25,15 @@
 #' data %>% impute_dt(is.numeric,.func = "mean")
 #' data %>% impute_dt(is.numeric,.func = "median")
 #'
-#' # use user defined function
 #' my_fun = function(x){
-#'   (max(x,na.rm = TRUE) - min(x,na.rm = TRUE))/2
+#'   x[is.na(x)] = (max(x,na.rm = TRUE) - min(x,na.rm = TRUE))/2
+#'   x
 #' }
 #' data %>% impute_dt(is.numeric,.func = my_fun)
 #'
 
 #' @export
+
 impute_dt = function(.data,...,.func = "mode"){
 
   dt = as.data.table(.data)
@@ -73,33 +74,6 @@ impute_dt = function(.data,...,.func = "mode"){
 
 
 
-# impute_dt = function(.data,...,.func = "mode"){
-#
-#   dt = as.data.table(.data)
-#   if (substitute(list(...)) %>% deparse() == "list()")
-#     sel_cols = names(dt)
-#   else
-#     dt[0] %>% select_dt(...) %>% names() -> sel_cols
-#
-#   if(!is.function(.func)){
-#     if(.func == "mode") .FUN = function(v) {
-#       uniqv <- unique(v)
-#       uniqv[which.max(tabulate(match(v, uniqv)))]
-#     }else if(.func == "mean"){
-#       .FUN = function(x) mean(x,na.rm = TRUE)
-#     }else if(.func == "median"){
-#       .FUN = function(x) median(x,na.rm = TRUE)
-#     }
-#   }else .FUN = .func
-#
-#   .func = function(x){
-#     x[which(is.na(x))] = .FUN(x)
-#     x
-#   }
-#
-#   dt[,(sel_cols):=lapply(.SD,.func),.SDcols = sel_cols][]
-#
-# }
 
 
 

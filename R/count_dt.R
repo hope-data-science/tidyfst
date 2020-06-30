@@ -3,7 +3,6 @@
 #' @title Count observations by group
 #' @description Count the unique values of one or more variables.
 #' @description Analogous function for \code{count} and \code{add_count} in \pkg{dplyr}.
-#'
 #' @param .data data.table/data.frame data.frame will be automatically converted
 #'   to data.table.
 #' @param ... Variables to group by, could receive what `select_dt` receives.
@@ -41,7 +40,6 @@ count_dt = function(.data,...,sort = TRUE,.name = "n"){
 #' @export
 add_count_dt = function(.data,...,.name = "n"){
   dt = as.data.table(.data)
-  # dot_string = substitute(list(...))
   dt[0] %>% select_dt(...) %>% names() -> dot_string
   dt[,(.name):=.N,by = dot_string][]
 }

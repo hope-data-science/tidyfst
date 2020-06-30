@@ -1,6 +1,7 @@
 
 #' @title Filter entries in data.frame
-#' @description choose rows where conditions are true. Analogous function for \code{filter} in \pkg{dplyr}.
+#' @description Choose rows where conditions are true.
+#' Analogous function for \code{filter} in \pkg{dplyr}.
 #' @param .data data.frame
 #' @param ... List of variables or name-value pairs of summary/modifications
 #'   functions.

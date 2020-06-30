@@ -58,3 +58,9 @@ data.table::key
 
 #' @export
 data.table::CJ
+
+#' @export
+data.table::rleid
+
+#' @export
+data.table::rleidv

@@ -1,7 +1,7 @@
 
 
 #' @title Select distinct/unique rows in data.frame
-#' @description Select only unique/distinct rows from a data frame. 
+#' @description Select only unique/distinct rows from a data frame.
 #' @param .data data.frame
 #' @param ... Optional variables to use when determining uniqueness.
 #'  If there are multiple rows for a given combination of inputs,
@@ -26,7 +26,6 @@ distinct_dt = function(.data,...,.keep_all = FALSE){
   if(.keep_all) unique(dt,by = sel_name)
   else unique(dt[,.SD,.SDcols = sel_name])
 }
-
 
 
 
