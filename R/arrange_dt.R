@@ -1,6 +1,6 @@
 
 #' @title Arrange entries in data.frame
-#' @description Analogous function for \code{arrange} in \pkg{dplyr}.
+#' @description Order the rows of a data frame rows by the values of selected columns.
 #' @param .data data.frame
 #' @param ... Arrange by what group? Minus symbol means arrange by
 #' descending order.
