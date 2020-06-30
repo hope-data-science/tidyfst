@@ -1,7 +1,7 @@
 
 
 #' @title Select distinct/unique rows in data.frame
-#' @description Analogous function for \code{distinct} in \pkg{dplyr}
+#' @description Select only unique/distinct rows from a data frame. 
 #' @param .data data.frame
 #' @param ... Optional variables to use when determining uniqueness.
 #'  If there are multiple rows for a given combination of inputs,
