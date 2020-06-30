@@ -29,7 +29,6 @@
 
 count_dt = function(.data,...,sort = TRUE,.name = "n"){
   dt = as_dt(.data)
-  # dot_string = substitute(list(...))
   dt[0] %>% select_dt(...) %>% names() -> dot_string
   if(sort)
     eval(parse(text =
