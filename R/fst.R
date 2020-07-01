@@ -1,7 +1,7 @@
 
 #' @title Parse,inspect and extract data.table from fst file
 #' @name fst
-#' @description An API for reading fst file as data.table.
+#' @description A tookit of APIs for reading fst file as data.table, could select by column, row and conditional filtering.
 #' @param path path to fst file
 #' @param ft An object of class fst_table, returned by \code{parse_fst}
 #' @param row_no An integer vector (Positive)
