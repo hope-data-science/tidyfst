@@ -1,7 +1,8 @@
 
 #' @title Complete a data frame with missing combinations of data
 #' @description Turns implicit missing values into explicit missing values.
-#' Analogous function for \code{complete} function in \pkg{tidyr}.
+#'  All the combinations of column values (should be unique) will be constructed.
+#'  Other columns will be filled with NAs or constant value.
 #' @param .data data.frame
 #' @param ... Specification of columns to expand.The selection of columns is
 #' supported by the flexible \code{\link[tidyfst]{select_dt}}.
