@@ -1,5 +1,6 @@
 
 #' @title Nest and unnest
+#' @description Create or melt list columns in data.frame.
 #' @description Analogous function for \code{nest} and \code{unnest} in \pkg{tidyr}.
 #' \code{unnest_dt} will automatically remove other list-columns except for the
 #' target list-columns (which would be unnested later). Also, \code{squeeze_dt} is
