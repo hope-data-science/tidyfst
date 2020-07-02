@@ -1,5 +1,6 @@
 
 #' @title Conditional update of columns in data.table
+#' @description Update or add columns when the given condition is met.
 #' @description \code{mutate_when} integrates \code{mutate} and \code{case_when}
 #' in \pkg{dplyr} and make a new tidy verb for data.table. \code{mutate_vars} is
 #'  a super function to do updates in specific columns according to conditions.
