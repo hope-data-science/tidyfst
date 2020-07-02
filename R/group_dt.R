@@ -1,7 +1,6 @@
 
 #' @title Data manipulation within groups
-#' @description Analogous function for \code{group_by} and \code{rowwise}
-#'  in \pkg{dplyr}, but in another efficient way.
+#' @description Carry out data manipulation within specified groups.
 #' @param .data A data.frame
 #' @param by Variables to group by,unquoted name of grouping variable of list of unquoted names of grouping variables.
 #' @param ... Any data manipulation arguments that could be implemented on a data.frame.
