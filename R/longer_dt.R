@@ -1,6 +1,6 @@
 
 #' @title Pivot data from wide to long
-#' @description Analogous function for \code{pivot_longer} in \pkg{tidyr}.
+#' @description Turning a wide table to its longer form.
 #' @param .data A data.frame
 #' @param ... Pattern for unchanged group or unquoted names. Pattern can accept
 #' regular expression to match column names. It can recieve what \code{select_dt}
