@@ -1,6 +1,6 @@
 
 #' @title Rename column in data.frame
-#' @description Analogous function for \code{rename} in \pkg{dplyr}
+#' @description Rename one or more columns in the data.frame.
 #' @param .data data.frame
 #' @param ... statements of rename, e.g. `sl = Sepal.Length` means the column named
 #' as "Sepal.Length" would be renamed to "sl"
