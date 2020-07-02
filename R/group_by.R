@@ -1,6 +1,7 @@
 
 #' @title Group by variable(s) and implement operations
-#' @description Carry out data manipulation within specified groups.
+#' @description Carry out data manipulation within specified groups. Different from \code{group_dt},
+#' the implementation is split into two operations, namely grouping and implementation.
 #' @description Using \code{setkey} and \code{setkeyv} in \pkg{data.table}
 #' to carry out \code{group_by}-like functionalities in \pkg{dplyr}. This is
 #' not only convenient but also efficient in computation.
