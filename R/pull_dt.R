@@ -1,6 +1,6 @@
 
 #' @title Pull out a single variable
-#' @description Analogous function for \code{pull} in \pkg{dplyr}
+#' @description Extract vector from data.frame, works likt `[[`. Analogous function for \code{pull} in \pkg{dplyr}
 #' @param .data data.frame
 #' @param col A name of column or index (should be positive).
 #' @return vector
