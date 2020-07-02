@@ -1,7 +1,7 @@
 
 #' @title Dump, replace and fill missing values in data.frame
-#' @description Analogous function for \code{drop_na}, \code{replace_na} and
-#' \code{fill} in \pkg{tidyr}, but with a different API.
+#' @description A set of tools to deal with missing values in data.frames. 
+#' It can dump, replace, fill (with next or previous observation) or delete entries according to their missing values.
 #'
 #' @param .data data.frame
 #' @param ... Colunms to be replaced or filled. If not specified, use all columns.
