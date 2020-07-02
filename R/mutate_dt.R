@@ -1,6 +1,6 @@
 
 #' @title Mutate columns in data.frame
-#' @description Analogous function for \code{mutate} and \code{transmute} in \pkg{dplyr}.
+#' @description Adds or updates columns in data.frame.
 #' @param .data data.frame
 #' @param ... List of variables or name-value pairs of summary/modifications
 #'   functions.
@@ -18,7 +18,6 @@
 #' @export
 
 mutate_dt = function(.data,...,by){
-  #dt = as_dt(.data)
   dt = as.data.table(.data)
   substitute(dt[,`:=`(...),by][]) %>% eval()
 }
@@ -28,7 +27,6 @@ mutate_dt = function(.data,...,by){
 
 transmute_dt = function(.data,...,by){
   dt = as_dt(.data)
-
   substitute(dt[,.(...),by][]) %>% eval()
 }
 
