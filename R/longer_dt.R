@@ -1,6 +1,6 @@
 
 #' @title Pivot data from wide to long
-#' @description Turning a wide table to its longer form.
+#' @description Turning a wide table to its longer form. It takes multiple columns and collapses into key-value pairs.
 #' @param .data A data.frame
 #' @param ... Pattern for unchanged group or unquoted names. Pattern can accept
 #' regular expression to match column names. It can recieve what \code{select_dt}
