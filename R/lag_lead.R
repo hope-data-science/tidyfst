@@ -1,7 +1,7 @@
 
 #' @title Fast lead/lag for vectors
-#' @description Analogous function for \code{lead} and \code{lag} in \pkg{dplyr} by
-#' wrapping \pkg{data.table}'s \code{shift}.
+#' @description Find the "next" or "previous" values in a vector.
+#' It has wrapped \pkg{data.table}'s \code{shift} function.
 #' @param x A vector
 #' @param n a positive integer of length 1,
 #' giving the number of positions to lead or lag by. Default uses 1
