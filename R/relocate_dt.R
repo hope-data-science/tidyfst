@@ -1,6 +1,6 @@
 
 #' @title Change column order
-#' @description Use `relocate_dt()` to change column positions,
+#' @description Change the position of columns,
 #'  using the same syntax as `select_dt()`. Check similar function
 #'  as `relocate` in \pkg{dplyr}.
 #' @param .data A data.frame
