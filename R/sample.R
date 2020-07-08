@@ -1,7 +1,7 @@
 
 
 #' @title Sample rows randomly from a table
-#' @description Select a number or proportion of rows randomly
+#' @description Select a number or proportion of rows randomly from the data frame
 #' @param .data A data.frame
 #' @param n Number of rows to select
 #' @param prop Fraction of rows to select
