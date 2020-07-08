@@ -1,7 +1,7 @@
 
 #' @title "Uncount" a data frame
-#' @description Performs the opposite operation to `dplyr::count()`,
-#'  duplicating rows according to a weighting variable (or expression).
+#' @description  Duplicating rows according to a weighting variable.
+#'  This is the opposite operation of `count_dt`.
 #'  Analogous to `tidyr::uncount`.
 #' @param .data A data.frame
 #' @param wt A vector of weights.
