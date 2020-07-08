@@ -1,7 +1,7 @@
 
 #' @title Select top (or bottom) n rows (by value)
-#' @description Analogous function for \code{top_n} and \code{top_frac} in \pkg{dplyr}, but with a different API.
-#'
+#' @description Get the top entries (rows) according to the values of specified columns.
+#'  One can get the top or bottom ones according to number or proportion.
 #' @param .data data.frame
 #' @param wt (Optional). The variable to use for ordering.
 #' If not specified, defaults to the last variable in the data.frame.
