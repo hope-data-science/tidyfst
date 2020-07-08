@@ -1,7 +1,7 @@
 
 
-#' @title Sample n rows from a table
-#' @description Analogous function for \code{sample_n} and \code{sample_frac} in \pkg{dplyr}.
+#' @title Sample rows randomly from a table
+#' @description Select a number or proportion of rows randomly
 #' @param .data A data.frame
 #' @param n Number of rows to select
 #' @param prop Fraction of rows to select
