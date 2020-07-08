@@ -3,7 +3,6 @@
 #' a regular expression separator
 #' @description Given either regular expression,
 #' \code{separate_dt()} turns a single character column into two columns.
-#' Analogous to \code{tidyr::separate}, but only split into two columns only.
 #' @param .data A data frame.
 #' @param separated_colname Column name, string only.
 #' @param into Character vector of length 2.
