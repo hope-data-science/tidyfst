@@ -1,6 +1,6 @@
 
 #' @title Select column from data.frame
-#' @description Analogous function for \code{select} and \code{select_if} in \pkg{dplyr}.
+#' @description Select specific column(s) via various ways. One can select columns by their column names, indexes or regular expression recognizing the column name(s).
 #' @param .data data.frame
 #' @param ... List of variables or name-value pairs of summary/modifications
 #'   functions. It can also recieve conditional function to select columns.
