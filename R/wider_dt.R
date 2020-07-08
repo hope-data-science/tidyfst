@@ -1,6 +1,6 @@
 
 #' @title Pivot data from long to wide
-#' @description Analogous function for \code{pivot_wider} in \pkg{tidyr}.
+#' @description Transform a data frame from long format to wide by increasing the number of columns and decreasing the number of rows.
 #' @param .data A data.frame
 #' @param ... Optional. The unchanged group in the transformation.
 #' Could use integer vector, could receive what \code{select_dt} receives.
