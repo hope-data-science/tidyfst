@@ -1,7 +1,6 @@
 
 #' @title Unite multiple columns into one by pasting strings together
 #' @description Convenience function to paste together multiple columns into one.
-#' Analogous to \code{tidyr::unite}.
 #' @param .data A data frame.
 #' @param united_colname The name of the new column, string only.
 #' @param ... A selection of columns. If want to select all columns,
