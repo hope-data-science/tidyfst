@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Change column order — relocate_dt" />
-<meta property="og:description" content="Use `relocate_dt()` to change column positions,
+<meta property="og:description" content="Change the position of columns,
  using the same syntax as `select_dt()`. Check similar function
  as `relocate` in dplyr." />
 <meta property="og:image" content="/logo.png" />
@@ -105,6 +105,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmark.html">Performance</a>
+    </li>
+    <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
     </li>
     <li>
@@ -157,7 +160,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Use `relocate_dt()` to change column positions,
+    <p>Change the position of columns,
  using the same syntax as `select_dt()`. Check similar function
  as `relocate` in <span class="pkg">dplyr</span>.</p>
     </div>
@@ -192,7 +195,7 @@ Applicable for "after" and "before" mode.</p></td>
     <p>A data.table with rearranged columns.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"a"</span>, <span class='kw'>e</span> <span class='kw'>=</span> <span class='st'>"a"</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='st'>"a"</span>)
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"a"</span>, <span class='kw'>e</span> <span class='kw'>=</span> <span class='st'>"a"</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='st'>"a"</span>)
 <span class='no'>df</span></div><div class='output co'>#&gt;        a     b     c      d      e      f
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt; &lt;char&gt;
 #&gt; 1:     1     1     1      a      a      a</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>f</span>)</div><div class='output co'>#&gt;         f     a     b     c      d      e
@@ -216,7 +219,7 @@ Applicable for "after" and "before" mode.</p></td>
 #&gt; 1:     1     1      a     1      a      a</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>f</span>, <span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"after"</span>,<span class='kw'>where</span> <span class='kw'>=</span> <span class='no'>c</span>)</div><div class='output co'>#&gt;        a     b     c      f      d      e
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt; &lt;char&gt;
 #&gt; 1:     1     1     1      a      a      a</div><div class='input'>
-<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='st'>"a"</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"a"</span>)
+<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='st'>"a"</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"a"</span>)
 <span class='no'>df2</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>is.numeric</span>,
                     <span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"after"</span>,
                     <span class='kw'>where</span> <span class='kw'>=</span> <span class='no'>is.character</span>)</div><div class='output co'>#&gt;         b      d     a     c

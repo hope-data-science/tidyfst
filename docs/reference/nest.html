@@ -47,7 +47,8 @@
 
 
 <meta property="og:title" content="Nest and unnest — nest_dt" />
-<meta property="og:description" content="Analogous function for nest and unnest in tidyr.
+<meta property="og:description" content="Create or melt list columns in data.frame.
+Analogous function for nest and unnest in tidyr.
 unnest_dt will automatically remove other list-columns except for the
 target list-columns (which would be unnested later). Also, squeeze_dt is
 designed to merge multiple columns into list column." />
@@ -106,6 +107,9 @@ designed to merge multiple columns into list column." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmark.html">Performance</a>
+    </li>
+    <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
     </li>
     <li>
@@ -158,17 +162,18 @@ designed to merge multiple columns into list column." />
     </div>
 
     <div class="ref-description">
-    <p>Analogous function for <code>nest</code> and <code>unnest</code> in <span class="pkg">tidyr</span>.
+    <p>Create or melt list columns in data.frame.</p>
+<p>Analogous function for <code>nest</code> and <code>unnest</code> in <span class="pkg">tidyr</span>.
 <code>unnest_dt</code> will automatically remove other list-columns except for the
 target list-columns (which would be unnested later). Also, <code>squeeze_dt</code> is
 designed to merge multiple columns into list column.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>nest_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>mcols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>nest_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>mcols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>.name</span> <span class='kw'>=</span> <span class='st'>"ndt"</span>)
 
 <span class='fu'>unnest_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
-<span class='fu'>squeeze_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+<span class='fu'>squeeze_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>.name</span> <span class='kw'>=</span> <span class='st'>"ndt"</span>)
 
 <span class='fu'>chop_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
 
@@ -190,7 +195,11 @@ Could recieve anything that <code><a href='select.html'>select_dt</a></code> cou
     </tr>
     <tr>
       <th>mcols</th>
-      <td><p>Name-variable pairs in the list, form like
+      <td><p>Name-variable pairs in the list, form like</p></td>
+    </tr>
+    <tr>
+      <th>.name</th>
+      <td><p>Character. The nested column name. Defaults to "ndt".
 <code><a href='https://rdrr.io/r/base/list.html'>list(petal="^Pe",sepal="^Se")</a></code>, see example.</p></td>
     </tr>
     </table>
@@ -251,6 +260,12 @@ package.</p>
 #&gt; 3:     6     1 &lt;data.table&gt;
 #&gt; 4:     8     0 &lt;data.table&gt;
 #&gt; 5:     4     0 &lt;data.table&gt;</div><div class='input'>
+ <span class='co'># change the nested column name</span>
+ <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>nest_dt</span>(<span class='no'>cyl</span>,<span class='kw'>.name</span> <span class='kw'>=</span> <span class='st'>"data"</span>)</div><div class='output co'>#&gt;      cyl         data
+#&gt;    &lt;num&gt;       &lt;list&gt;
+#&gt; 1:     6 &lt;data.table&gt;
+#&gt; 2:     4 &lt;data.table&gt;
+#&gt; 3:     8 &lt;data.table&gt;</div><div class='input'>
 <span class='co'># nest two columns directly</span>
 <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>nest_dt</span>(<span class='kw'>mcols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>petal</span><span class='kw'>=</span><span class='st'>"^Pe"</span>,<span class='kw'>sepal</span><span class='kw'>=</span><span class='st'>"^Se"</span>))</div><div class='output co'>#&gt; Key: &lt;Species&gt;
 #&gt;       Species        petal        sepal
@@ -340,7 +355,7 @@ package.</p>
 #&gt; 31:     8     0  15.0 301.0   335  3.54 3.570 14.60     1     5     8
 #&gt; 32:     4     0  26.0 120.3    91  4.43 2.140 16.70     1     5     2
 #&gt;       cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear  carb</div><div class='input'>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(
   <span class='kw'>a</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>), <span class='st'>"c"</span>),
   <span class='kw'>b</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>,<span class='fl'>TRUE</span>),<span class='fl'>FALSE</span>),
   <span class='kw'>c</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>3</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>)),
@@ -444,9 +459,21 @@ package.</p>
 #&gt; 147: 6.3,2.5,5.0,1.9
 #&gt; 148: 6.5,3.0,5.2,2.0
 #&gt; 149: 6.2,3.4,5.4,2.3
-#&gt; 150: 5.9,3.0,5.1,1.8</div><div class='input'>
+#&gt; 150: 5.9,3.0,5.1,1.8</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>squeeze_dt</span>(<span class='fl'>1</span>:<span class='fl'>2</span>,<span class='kw'>.name</span> <span class='kw'>=</span> <span class='st'>"data"</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species    data
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;  &lt;list&gt;
+#&gt;   1:          5.1         3.5          1.4         0.2    setosa 5.1,3.5
+#&gt;   2:          4.9         3.0          1.4         0.2    setosa 4.9,3.0
+#&gt;   3:          4.7         3.2          1.3         0.2    setosa 4.7,3.2
+#&gt;   4:          4.6         3.1          1.5         0.2    setosa 4.6,3.1
+#&gt;   5:          5.0         3.6          1.4         0.2    setosa 5.0,3.6
+#&gt;  ---                                                                    
+#&gt; 146:          6.7         3.0          5.2         2.3 virginica 6.7,3.0
+#&gt; 147:          6.3         2.5          5.0         1.9 virginica 6.3,2.5
+#&gt; 148:          6.5         3.0          5.2         2.0 virginica 6.5,3.0
+#&gt; 149:          6.2         3.4          5.4         2.3 virginica 6.2,3.4
+#&gt; 150:          5.9         3.0          5.1         1.8 virginica 5.9,3.0</div><div class='input'>
 <span class='co'># examples for chop_dt</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>6</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='fl'>6</span>:<span class='fl'>1</span>)
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>6</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='fl'>6</span>:<span class='fl'>1</span>)
 <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>chop_dt</span>(<span class='no'>y</span>,<span class='no'>z</span>)</div><div class='output co'>#&gt;        x      y      z
 #&gt;    &lt;num&gt; &lt;list&gt; &lt;list&gt;
 #&gt; 1:     1  1,2,3  6,5,4

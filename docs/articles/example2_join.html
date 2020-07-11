@@ -61,6 +61,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/benchmark.html">Performance</a>
+    </li>
+    <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
     </li>
     <li>
@@ -104,7 +107,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="example2_join_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Example 2: Join tables</h1>
@@ -303,8 +306,8 @@
 <div id="types-of-join" class="section level2">
 <h2 class="hasAnchor">
 <a href="#types-of-join" class="anchor"></a>Types of join</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>), <span class="kw">y</span> <span class="kw">=</span> <span class="fl">2</span>:<span class="fl">1</span>)
-<span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">3</span>), <span class="kw">a</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">b</span> <span class="kw">=</span> <span class="st">"a"</span>)
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>), <span class="kw">y</span> <span class="kw">=</span> <span class="fl">2</span>:<span class="fl">1</span>)
+<span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">3</span>), <span class="kw">a</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">b</span> <span class="kw">=</span> <span class="st">"a"</span>)
 
 <span class="no">df1</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span>(<span class="no">df2</span>)
 <span class="co">#&gt; Joining by: x</span>

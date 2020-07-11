@@ -48,7 +48,8 @@
 
 <meta property="og:title" content="Complete a data frame with missing combinations of data — complete_dt" />
 <meta property="og:description" content="Turns implicit missing values into explicit missing values.
-Analogous function for complete function in tidyr." />
+ All the combinations of column values (should be unique) will be constructed.
+ Other columns will be filled with NAs or constant value." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -104,6 +105,9 @@ Analogous function for complete function in tidyr." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmark.html">Performance</a>
+    </li>
+    <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
     </li>
     <li>
@@ -157,7 +161,8 @@ Analogous function for complete function in tidyr." />
 
     <div class="ref-description">
     <p>Turns implicit missing values into explicit missing values.
-Analogous function for <code>complete</code> function in <span class="pkg">tidyr</span>.</p>
+ All the combinations of column values (should be unique) will be constructed.
+ Other columns will be filled with NAs or constant value.</p>
     </div>
 
     <pre class="usage"><span class='fu'>complete_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
@@ -198,7 +203,7 @@ only on unique entries, and it will always returned the unique entries.</p>
     <div class='dont-index'><p><code><a href='https://tidyr.tidyverse.org/reference/complete.html'>complete</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(
   <span class='kw'>group</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>1</span>),
   <span class='kw'>item_id</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>2</span>),
   <span class='kw'>item_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"b"</span>),

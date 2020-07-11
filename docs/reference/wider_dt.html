@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Pivot data from long to wide — wider_dt" />
-<meta property="og:description" content="Analogous function for pivot_wider in tidyr." />
+<meta property="og:description" content="Transform a data frame from long format to wide by increasing the number of columns and decreasing the number of rows." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -103,6 +103,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmark.html">Performance</a>
+    </li>
+    <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
     </li>
     <li>
@@ -155,7 +158,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Analogous function for <code>pivot_wider</code> in <span class="pkg">tidyr</span>.</p>
+    <p>Transform a data frame from long format to wide by increasing the number of columns and decreasing the number of rows.</p>
     </div>
 
     <pre class="usage"><span class='fu'>wider_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='no'>name</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
@@ -215,55 +218,55 @@ be provided and should be explicit called (with the parameter names attached).</
  ) <span class='kw'>%&gt;%</span>
    <span class='fu'><a href='longer.html'>longer_dt</a></span>(<span class='no'>time</span>) <span class='kw'>-&gt;</span> <span class='no'>longer_stocks</span>
 
- <span class='no'>longer_stocks</span></div><div class='output co'>#&gt;           time   name       value
-#&gt;         &lt;Date&gt; &lt;fctr&gt;       &lt;num&gt;
-#&gt;  1: 2009-01-01      X  1.07283825
-#&gt;  2: 2009-01-02      X  2.03936926
-#&gt;  3: 2009-01-03      X  0.44945378
-#&gt;  4: 2009-01-04      X  1.39181405
-#&gt;  5: 2009-01-05      X  0.42656655
-#&gt;  6: 2009-01-06      X  0.10758399
-#&gt;  7: 2009-01-07      X  0.02229473
-#&gt;  8: 2009-01-08      X  0.60361101
-#&gt;  9: 2009-01-09      X -0.26265057
-#&gt; 10: 2009-01-10      X -0.52826408
-#&gt; 11: 2009-01-01      Y  0.38429884
-#&gt; 12: 2009-01-02      Y -2.29239934
-#&gt; 13: 2009-01-03      Y  1.69236933
-#&gt; 14: 2009-01-04      Y  0.16343926
-#&gt; 15: 2009-01-05      Y -2.61023402
-#&gt; 16: 2009-01-06      Y -1.88982412
-#&gt; 17: 2009-01-07      Y  0.90868319
-#&gt; 18: 2009-01-08      Y -1.71040500
-#&gt; 19: 2009-01-09      Y -0.57379044
-#&gt; 20: 2009-01-10      Y  1.78992325
-#&gt; 21: 2009-01-01      Z  0.26921776
-#&gt; 22: 2009-01-02      Z -0.65070535
-#&gt; 23: 2009-01-03      Z -3.30924068
-#&gt; 24: 2009-01-04      Z  7.50602248
-#&gt; 25: 2009-01-05      Z  3.06576080
-#&gt; 26: 2009-01-06      Z  3.91982678
-#&gt; 27: 2009-01-07      Z  5.28712397
-#&gt; 28: 2009-01-08      Z -4.47884331
-#&gt; 29: 2009-01-09      Z  2.05839927
-#&gt; 30: 2009-01-10      Z -6.03639934
-#&gt;           time   name       value</div><div class='input'>
+ <span class='no'>longer_stocks</span></div><div class='output co'>#&gt;           time   name      value
+#&gt;         &lt;Date&gt; &lt;fctr&gt;      &lt;num&gt;
+#&gt;  1: 2009-01-01      X  0.6752700
+#&gt;  2: 2009-01-02      X -0.5953490
+#&gt;  3: 2009-01-03      X  0.1100904
+#&gt;  4: 2009-01-04      X  0.3720032
+#&gt;  5: 2009-01-05      X -0.6098583
+#&gt;  6: 2009-01-06      X  1.0439389
+#&gt;  7: 2009-01-07      X -0.3027063
+#&gt;  8: 2009-01-08      X  1.4172813
+#&gt;  9: 2009-01-09      X -0.8671011
+#&gt; 10: 2009-01-10      X -2.2181411
+#&gt; 11: 2009-01-01      Y -0.5506040
+#&gt; 12: 2009-01-02      Y  0.7532902
+#&gt; 13: 2009-01-03      Y  1.9442726
+#&gt; 14: 2009-01-04      Y  0.5178050
+#&gt; 15: 2009-01-05      Y  2.4149383
+#&gt; 16: 2009-01-06      Y -0.5389727
+#&gt; 17: 2009-01-07      Y -1.3966136
+#&gt; 18: 2009-01-08      Y -2.9765119
+#&gt; 19: 2009-01-09      Y  4.9267382
+#&gt; 20: 2009-01-10      Y  1.1385962
+#&gt; 21: 2009-01-01      Z -4.4428037
+#&gt; 22: 2009-01-02      Z  4.9950201
+#&gt; 23: 2009-01-03      Z -2.6106999
+#&gt; 24: 2009-01-04      Z -0.5886773
+#&gt; 25: 2009-01-05      Z -5.0964052
+#&gt; 26: 2009-01-06      Z  1.5813100
+#&gt; 27: 2009-01-07      Z -7.7315734
+#&gt; 28: 2009-01-08      Z  4.2180118
+#&gt; 29: 2009-01-09      Z -3.2839196
+#&gt; 30: 2009-01-10      Z -2.5505241
+#&gt;           time   name      value</div><div class='input'>
  <span class='no'>longer_stocks</span> <span class='kw'>%&gt;%</span>
    <span class='fu'>wider_dt</span>(<span class='st'>"time"</span>,
             <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
             <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>)</div><div class='output co'>#&gt; Key: &lt;time&gt;
-#&gt;           time           X          Y          Z
-#&gt;         &lt;Date&gt;       &lt;num&gt;      &lt;num&gt;      &lt;num&gt;
-#&gt;  1: 2009-01-01  1.07283825  0.3842988  0.2692178
-#&gt;  2: 2009-01-02  2.03936926 -2.2923993 -0.6507053
-#&gt;  3: 2009-01-03  0.44945378  1.6923693 -3.3092407
-#&gt;  4: 2009-01-04  1.39181405  0.1634393  7.5060225
-#&gt;  5: 2009-01-05  0.42656655 -2.6102340  3.0657608
-#&gt;  6: 2009-01-06  0.10758399 -1.8898241  3.9198268
-#&gt;  7: 2009-01-07  0.02229473  0.9086832  5.2871240
-#&gt;  8: 2009-01-08  0.60361101 -1.7104050 -4.4788433
-#&gt;  9: 2009-01-09 -0.26265057 -0.5737904  2.0583993
-#&gt; 10: 2009-01-10 -0.52826408  1.7899233 -6.0363993</div><div class='input'>
+#&gt;           time          X          Y          Z
+#&gt;         &lt;Date&gt;      &lt;num&gt;      &lt;num&gt;      &lt;num&gt;
+#&gt;  1: 2009-01-01  0.6752700 -0.5506040 -4.4428037
+#&gt;  2: 2009-01-02 -0.5953490  0.7532902  4.9950201
+#&gt;  3: 2009-01-03  0.1100904  1.9442726 -2.6106999
+#&gt;  4: 2009-01-04  0.3720032  0.5178050 -0.5886773
+#&gt;  5: 2009-01-05 -0.6098583  2.4149383 -5.0964052
+#&gt;  6: 2009-01-06  1.0439389 -0.5389727  1.5813100
+#&gt;  7: 2009-01-07 -0.3027063 -1.3966136 -7.7315734
+#&gt;  8: 2009-01-08  1.4172813 -2.9765119  4.2180118
+#&gt;  9: 2009-01-09 -0.8671011  4.9267382 -3.2839196
+#&gt; 10: 2009-01-10 -2.2181411  1.1385962 -2.5505241</div><div class='input'>
  <span class='no'>longer_stocks</span> <span class='kw'>%&gt;%</span>
    <span class='fu'><a href='mutate.html'>mutate_dt</a></span>(<span class='kw'>one</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
    <span class='fu'>wider_dt</span>(<span class='st'>"time"</span>,
@@ -282,7 +285,7 @@ be provided and should be explicit called (with the parameter names attached).</
 #&gt;  9: 2009-01-09     1     1     1
 #&gt; 10: 2009-01-10     1     1     1</div><div class='input'>
 <span class='co'>## using "fun" parameter for aggregation</span>
-<span class='no'>DT</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>v1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>6</span>),
+<span class='no'>DT</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>v1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>6</span>),
                  <span class='kw'>v2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='fl'>2</span>), <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>2</span>),
                  <span class='kw'>v3</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>6</span>),
                  <span class='kw'>v4</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>6</span>))
@@ -294,12 +297,12 @@ be provided and should be explicit called (with the parameter names attached).</
            <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>sum</span>)</div><div class='output co'>#&gt; Key: &lt;v1, v2&gt;
 #&gt;       v1    v2          .
 #&gt;    &lt;int&gt; &lt;int&gt;      &lt;num&gt;
-#&gt; 1:     1     1  1.9618889
-#&gt; 2:     1     2 -1.0159090
-#&gt; 3:     1     3  0.4945234
-#&gt; 4:     2     1  1.9618889
-#&gt; 5:     2     2 -1.0159090
-#&gt; 6:     2     3  0.4945234</div></pre>
+#&gt; 1:     1     1 -1.5695311
+#&gt; 2:     1     2  0.6957101
+#&gt; 3:     1     3 -1.2574345
+#&gt; 4:     2     1 -1.5695311
+#&gt; 5:     2     2  0.6957101
+#&gt; 6:     2     3 -1.2574345</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

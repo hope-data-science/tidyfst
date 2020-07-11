@@ -47,8 +47,8 @@
 
 
 <meta property="og:title" content="Dump, replace and fill missing values in data.frame — drop_na_dt" />
-<meta property="og:description" content="Analogous function for drop_na, replace_na and
-fill in tidyr, but with a different API." />
+<meta property="og:description" content="A set of tools to deal with missing values in data.frames. 
+It can dump, replace, fill (with next or previous observation) or delete entries according to their missing values." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -104,6 +104,9 @@ fill in tidyr, but with a different API." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/benchmark.html">Performance</a>
+    </li>
+    <li>
       <a href="../articles/chinese_tutorial.html">tidyfst包实例分析</a>
     </li>
     <li>
@@ -156,8 +159,8 @@ fill in tidyr, but with a different API." />
     </div>
 
     <div class="ref-description">
-    <p>Analogous function for <code>drop_na</code>, <code>replace_na</code> and
-<code>fill</code> in <span class="pkg">tidyr</span>, but with a different API.</p>
+    <p>A set of tools to deal with missing values in data.frames. 
+It can dump, replace, fill (with next or previous observation) or delete entries according to their missing values.</p>
     </div>
 
     <pre class="usage"><span class='fu'>drop_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
@@ -230,7 +233,7 @@ than or equal to "prop" or NA number larger than or equal to "n",
 <code><a href='https://tidyr.tidyverse.org/reference/fill.html'>fill</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
  <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>()</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;        x      y
