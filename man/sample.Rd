@@ -4,7 +4,7 @@
 \alias{sample_dt}
 \alias{sample_n_dt}
 \alias{sample_frac_dt}
-\title{Sample n rows from a table}
+\title{Sample rows randomly from a table}
 \usage{
 sample_dt(.data, n = NULL, prop = NULL, replace = FALSE)
 
@@ -28,7 +28,7 @@ For \code{sample_frac_dt}, the fraction of rows to select.}
 data.table
 }
 \description{
-Analogous function for \code{sample_n} and \code{sample_frac} in \pkg{dplyr}.
+Select a number or proportion of rows randomly from the data frame
 
 \code{sample_dt} is a merged version of \code{sample_n_dt} and
 \code{sample_frac_dt}, this could be convenient.

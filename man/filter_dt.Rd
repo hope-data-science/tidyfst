@@ -16,7 +16,7 @@ functions.}
 data.table
 }
 \description{
-Analogous function for \code{filter} in \pkg{dplyr}.
+Choose rows where conditions are true.
 }
 \examples{
 iris \%>\% filter_dt(Sepal.Length > 7)

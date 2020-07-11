@@ -22,8 +22,8 @@ Default uses \code{NA}}
 A vector
 }
 \description{
-Analogous function for \code{lead} and \code{lag} in \pkg{dplyr} by
-wrapping \pkg{data.table}'s \code{shift}.
+Find the "next" or "previous" values in a vector.
+It has wrapped \pkg{data.table}'s \code{shift} function.
 }
 \examples{
 lead_dt(1:5)

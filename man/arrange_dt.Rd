@@ -16,7 +16,7 @@ descending order.}
 data.table
 }
 \description{
-Analogous function for \code{arrange} in \pkg{dplyr}.
+Order the rows of a data frame rows by the values of selected columns.
 }
 \examples{
 

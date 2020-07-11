@@ -31,7 +31,6 @@ otherwise \code{NA} is treated as character "NA". This is different from
 }
 \description{
 Convenience function to paste together multiple columns into one.
-Analogous to \code{tidyr::unite}.
 }
 \examples{
 df <- expand.grid(x = c("a", NA), y = c("b", NA))

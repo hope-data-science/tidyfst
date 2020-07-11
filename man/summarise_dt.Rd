@@ -41,7 +41,8 @@ grouping variables. For details see \link[data.table]{data.table}}
 data.table
 }
 \description{
-Analogous function for \code{summarise}  in \pkg{dplyr}.
+Summarise group of values into one value for each group. If there is only one group, then only one value would be returned.
+ The summarise function should always return a single value.
 }
 \details{
 \code{summarise_vars} could complete summarise on specific columns.

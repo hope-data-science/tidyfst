@@ -9,23 +9,25 @@
 \alias{slice_sample_dt}
 \title{Subset rows using their positions}
 \usage{
-slice_dt(.data, ...)
+slice_dt(.data, ..., by = NULL)
 
-slice_head_dt(.data, n)
+slice_head_dt(.data, n, by = NULL)
 
-slice_tail_dt(.data, n)
+slice_tail_dt(.data, n, by = NULL)
 
-slice_max_dt(.data, order_by, n, with_ties = TRUE)
+slice_max_dt(.data, order_by, n, with_ties = TRUE, by = NULL)
 
-slice_min_dt(.data, order_by, n, with_ties = TRUE)
+slice_min_dt(.data, order_by, n, with_ties = TRUE, by = NULL)
 
-slice_sample_dt(.data, n, replace = FALSE)
+slice_sample_dt(.data, n, replace = FALSE, by = NULL)
 }
 \arguments{
 \item{.data}{A data.table}
 
 \item{...}{Provide either positive values to keep, or negative values to drop.
 The values provided must be either all positive or all negative.}
+
+\item{by}{Slice by which group(s)?}
 
 \item{n}{When larger than or equal to 1, the number of rows.
 When between 0 and 1, the proportion of rows to select.}
@@ -69,6 +71,26 @@ slice_min_dt(a,Sepal.Length,10)
 slice_min_dt(a,Sepal.Length,10,with_ties = FALSE)
 slice_sample_dt(a,10)
 slice_sample_dt(a,0.1)
+
+
+# use by to slice by group
+
+## following codes get the same results
+slice_dt(a,1:3,by = "Species")
+slice_dt(a,1:3,by = Species)
+slice_dt(a,1:3,by = .(Species))
+
+slice_head_dt(a,2,by = Species)
+slice_tail_dt(a,2,by = Species)
+
+slice_max_dt(a,Sepal.Length,3,by = Species)
+slice_max_dt(a,Sepal.Length,3,by = Species,with_ties = FALSE)
+slice_min_dt(a,Sepal.Length,3,by = Species)
+slice_min_dt(a,Sepal.Length,3,by = Species,with_ties = FALSE)
+
+slice_sample_dt(a,.1,by = Species)
+slice_sample_dt(a,3,by = Species)
+slice_sample_dt(a,51,replace = TRUE,by = Species)
 
 }
 \seealso{

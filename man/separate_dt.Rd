@@ -27,7 +27,6 @@ separate_dt(
 \description{
 Given either regular expression,
 \code{separate_dt()} turns a single character column into two columns.
-Analogous to \code{tidyr::separate}, but only split into two columns only.
 }
 \examples{
 df <- data.frame(x = c(NA, "a.b", "a.d", "b.c"))

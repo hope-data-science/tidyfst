@@ -32,7 +32,8 @@ If negative, select the bottom rows.}
 data.table
 }
 \description{
-Analogous function for \code{top_n} and \code{top_frac} in \pkg{dplyr}, but with a different API.
+Get the top entries (rows) according to the values of specified columns.
+ One can get the top or bottom ones according to number or proportion.
 
 In \code{top_dt}, you can use an API for both
 functionalities in `top_n_dt()` and `top_frac_dt()`.

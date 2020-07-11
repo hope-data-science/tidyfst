@@ -41,8 +41,8 @@ Currently either "down" (the default) or "up".}
 data.table
 }
 \description{
-Analogous function for \code{drop_na}, \code{replace_na} and
-\code{fill} in \pkg{tidyr}, but with a different API.
+A set of tools to deal with missing values in data.frames. 
+It can dump, replace, fill (with next or previous observation) or delete entries according to their missing values.
 }
 \details{
 \code{drop_na_dt} drops the entries with NAs in specific columns.

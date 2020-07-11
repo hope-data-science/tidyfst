@@ -23,7 +23,8 @@ data.table
 }
 \description{
 Turns implicit missing values into explicit missing values.
-Analogous function for \code{complete} function in \pkg{tidyr}.
+ All the combinations of column values (should be unique) will be constructed.
+ Other columns will be filled with NAs or constant value.
 }
 \details{
 When the provided columns with addtion data are of different length,

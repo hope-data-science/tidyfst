@@ -34,7 +34,7 @@ summary_fst(ft)
 \code{select_fst} and \code{filter_fst} returns a data.table.
 }
 \description{
-An API for reading fst file as data.table.
+A tookit of APIs for reading fst file as data.table, could select by column, row and conditional filtering.
 }
 \details{
 \code{summary_fst} could provide some basic information about

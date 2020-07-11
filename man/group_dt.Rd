@@ -20,8 +20,7 @@ rowwise_dt(.data, ...)
 data.table
 }
 \description{
-Analogous function for \code{group_by} and \code{rowwise}
- in \pkg{dplyr}, but in another efficient way.
+Carry out data manipulation within specified groups.
 }
 \details{
 If you want to use \code{summarise_dt} and \code{mutate_dt} in

@@ -27,7 +27,7 @@ If a function is provided, with aggregated by this function.}
 data.table
 }
 \description{
-Analogous function for \code{pivot_wider} in \pkg{tidyr}.
+Transform a data frame from long format to wide by increasing the number of columns and decreasing the number of rows.
 }
 \details{
 The parameter of `name` and `value` should always

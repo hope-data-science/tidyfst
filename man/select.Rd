@@ -27,7 +27,7 @@ If \code{TRUE}, return the non-matched pattern. Default uses \code{FALSE}.}
 data.table
 }
 \description{
-Analogous function for \code{select} and \code{select_if} in \pkg{dplyr}.
+Select specific column(s) via various ways. One can select columns by their column names, indexes or regular expression recognizing the column name(s).
 }
 \examples{
 iris \%>\% select_dt(Species)

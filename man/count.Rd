@@ -23,7 +23,7 @@ to data.table.}
 data.table
 }
 \description{
-Analogous function for \code{count} and \code{add_count} in \pkg{dplyr}.
+Count the unique values of one or more variables.
 }
 \examples{
 iris \%>\% count_dt(Species)

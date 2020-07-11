@@ -8,11 +8,11 @@
 \alias{unchop_dt}
 \title{Nest and unnest}
 \usage{
-nest_dt(.data, ..., mcols = NULL)
+nest_dt(.data, ..., mcols = NULL, .name = "ndt")
 
 unnest_dt(.data, ...)
 
-squeeze_dt(.data, ...)
+squeeze_dt(.data, ..., .name = "ndt")
 
 chop_dt(.data, ...)
 
@@ -26,13 +26,17 @@ columns to be nested(for \code{squeeze_dt} and \code{chop_dt}),
 or column(s) to be unnested(for \code{unnest_dt}).
 Could recieve anything that \code{\link[tidyfst]{select_dt}} could receive.}
 
-\item{mcols}{Name-variable pairs in the list, form like
+\item{mcols}{Name-variable pairs in the list, form like}
+
+\item{.name}{Character. The nested column name. Defaults to "ndt".
 \code{list(petal="^Pe",sepal="^Se")}, see example.}
 }
 \value{
 data.table, nested or unnested
 }
 \description{
+Create or melt list columns in data.frame.
+
 Analogous function for \code{nest} and \code{unnest} in \pkg{tidyr}.
 \code{unnest_dt} will automatically remove other list-columns except for the
 target list-columns (which would be unnested later). Also, \code{squeeze_dt} is
@@ -60,6 +64,9 @@ package.
  mtcars \%>\% nest_dt(vs:am)
  mtcars \%>\% nest_dt("cyl|vs")
  mtcars \%>\% nest_dt(c("cyl","vs"))
+
+ # change the nested column name
+ mtcars \%>\% nest_dt(cyl,.name = "data")
 
 # nest two columns directly
 iris \%>\% nest_dt(mcols = list(petal="^Pe",sepal="^Se"))
@@ -99,6 +106,7 @@ df \%>\% unnest_dt("a|b|c")
 iris \%>\% squeeze_dt(1:2)
 iris \%>\% squeeze_dt("Se")
 iris \%>\% squeeze_dt(Sepal.Length:Petal.Width)
+iris \%>\% squeeze_dt(1:2,.name = "data")
 
 # examples for chop_dt
 df <- data.table(x = c(1, 1, 1, 2, 2, 3), y = 1:6, z = 6:1)

@@ -25,7 +25,7 @@ The default name is 'value'.}
 A data.table
 }
 \description{
-Analogous function for \code{pivot_longer} in \pkg{tidyr}.
+Turning a wide table to its longer form. It takes multiple columns and collapses into key-value pairs.
 }
 \examples{
 

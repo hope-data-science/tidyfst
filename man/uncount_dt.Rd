@@ -15,8 +15,8 @@ uncount_dt(.data, wt, .remove = TRUE)
 Default uses \code{TRUE}.}
 }
 \description{
-Performs the opposite operation to `dplyr::count()`,
- duplicating rows according to a weighting variable (or expression).
+Duplicating rows according to a weighting variable.
+ This is the opposite operation of `count_dt`.
  Analogous to `tidyr::uncount`.
 }
 \examples{

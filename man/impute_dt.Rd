@@ -39,9 +39,9 @@ data \%>\% impute_dt() # defalut uses "mode" as `.func`
 data \%>\% impute_dt(is.numeric,.func = "mean")
 data \%>\% impute_dt(is.numeric,.func = "median")
 
-# use user defined function
 my_fun = function(x){
-  (max(x,na.rm = TRUE) - min(x,na.rm = TRUE))/2
+  x[is.na(x)] = (max(x,na.rm = TRUE) - min(x,na.rm = TRUE))/2
+  x
 }
 data \%>\% impute_dt(is.numeric,.func = my_fun)
 

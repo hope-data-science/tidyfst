@@ -19,7 +19,7 @@ as "Sepal.Length" would be renamed to "sl"}
 data.table
 }
 \description{
-Analogous function for \code{rename} in \pkg{dplyr}
+Rename one or more columns in the data.frame.
 }
 \examples{
 iris \%>\%

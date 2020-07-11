@@ -21,7 +21,7 @@ functions.}
 data.table
 }
 \description{
-Analogous function for \code{mutate} and \code{transmute} in \pkg{dplyr}.
+Adds or updates columns in data.frame.
 }
 \examples{
 

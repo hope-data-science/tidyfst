@@ -21,7 +21,7 @@ this keeps the first row of values.}
 data.table
 }
 \description{
-Analogous function for \code{distinct} in \pkg{dplyr}
+Select only unique/distinct rows from a data frame.
 }
 \examples{
 iris \%>\% distinct_dt()

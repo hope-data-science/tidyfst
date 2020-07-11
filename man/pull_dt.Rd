@@ -15,7 +15,7 @@ pull_dt(.data, col)
 vector
 }
 \description{
-Analogous function for \code{pull} in \pkg{dplyr}
+Extract vector from data.frame, works likt `[[`. Analogous function for \code{pull} in \pkg{dplyr}
 }
 \examples{
 mtcars \%>\% pull_dt(2)
