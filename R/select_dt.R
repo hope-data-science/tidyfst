@@ -79,10 +79,10 @@ select_dt = function(.data,...,cols = NULL,negate =FALSE){
     else if(str_detect(dot_string,"^-")){
       dot_string = str_remove_all(dot_string,"-") %>% str_squish()
       if(!str_detect(dot_string,","))
-        eval(parse(text = str_glue("dt[,{dot_string} := NULL][]")))
+        eval(parse(text = str_glue("copy(dt)[,{dot_string} := NULL][]")))
       else{
         str_split(dot_string,",",simplify = TRUE) -> delete_names
-        eval(parse(text = str_glue("dt[, {delete_names}:=NULL][]")))
+        eval(parse(text = str_glue("copy(dt)[, {delete_names}:=NULL][]")))
       }
     }
     else eval(parse(text = str_glue("dt[,.({dot_string})]")))

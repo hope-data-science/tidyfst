@@ -1,0 +1,176 @@
+---
+title: "Performance"
+output: rmarkdown::html_vignette
+author: Tian-Yuan Huang (huang.tian-yuan@qq.com)
+vignette: >
+  %\VignetteIndexEntry{Performance}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  comment = "#>"
+)
+```
+  One may wonder how fast is *tidyfst*. Well, it depends. Generally, it is as fast as *data.table* because it is backed by it, but it would spend extra time on the generation of data.table codes. This extra time is marginal on large (and even small) data sets.<br><br>
+  Now let's do a test to compare the performance of *tidyfst*, *data.table* and *dplyr*. In the vignette we'll use a small data set. The example was provided by the *data.table* package (<https://h2oai.github.io/db-benchmark/>) and tweaked here. These tests are based on computation by groups.<br><br>
+  First let's load the package and generate some data.<br><br>
+```{r setup}
+# load packages
+library(tidyfst)
+library(data.table)
+library(dplyr)
+library(bench)
+
+# generate the data
+# if you have a HPC and want to try larger data sets, increase N
+N = 1e4 
+K = 1e2
+
+set.seed(2020)
+
+cat(sprintf("Producing data of %s rows and %s K groups factors\n", N, K))
+
+DT = data.table(
+
+  id1 = sample(sprintf("id%03d",1:K), N, TRUE),      # large groups (char)
+
+  id2 = sample(sprintf("id%03d",1:K), N, TRUE),      # large groups (char)
+
+  id3 = sample(sprintf("id%010d",1:(N/K)), N, TRUE), # small groups (char)
+
+  id4 = sample(K, N, TRUE),                          # large groups (int)
+
+  id5 = sample(K, N, TRUE),                          # large groups (int)
+
+  id6 = sample(N/K, N, TRUE),                        # small groups (int)
+
+  v1 =  sample(5, N, TRUE),                          # int in range [1,5]
+
+  v2 =  sample(5, N, TRUE),                          # int in range [1,5]
+
+  v3 =  round(runif(N,max=100),4)                    # numeric e.g. 23.5749
+
+)
+
+object_size(DT)
+```
+  This data is rather small, the size is around 527 Kb. However, with the *bench* package, we could detect the difference by increasing iteration times. In this way, examples listed here could be implemented even on relatively low performance computers. 
+  
+## Q1 
+  Here, we try to get median and standard deviation by groups.After dplyr v1.0.0, the regrouping feature could be confusing sometimes (comes with warning message). If you are using it, make sure they are in the right groups before grouped computation. In tidyfst and data.table, we have "by" parameter to specify the groups. Here we would not check if the results are equal, because dplyr will return a tibble class even when we input a data.table in the first place. The iteration time is 10 for each of the test below.
+```{r}
+bench::mark(
+  data.table = DT[,.(median_v3 = median(v3),
+                     sd_v3 = sd(v3)),
+                  by = .(id4,id5)],
+  tidyfst = DT %>%
+    summarise_dt(
+      by = "id4,id5",
+      median_v3 = median(v3),
+      sd_v3 = sd(v3)
+    ),
+  dplyr = DT %>%
+    group_by(id4,id5,.drop = TRUE) %>%
+    summarise(median_v3 = median(v3),sd_v3 = sd(v3)),
+  check = FALSE,iterations = 10
+) -> q1
+
+q1
+```
+  We could find that spent time of tidyfst and data.table are quite similar, but much less than dplyr.
+
+## Q2 
+  This example performs quite similar to the above one. *tidyfst* might spend a tiny little more time and space on code translation than *data.table*, but still performs much better than *dplyr*.
+```{r}
+bench::mark(
+  data.table =DT[,.(range_v1_v2 = max(v1) - min(v2)),by = id3],
+  tidyfst = DT %>% summarise_dt(
+    by = id3,
+    range_v1_v2 = max(v1) - min(v2)
+  ),
+  dplyr = DT %>%
+    group_by(id3,.drop = TRUE) %>%
+    summarise(range_v1_v2 = max(v1) - min(v2)),
+  check = FALSE,iterations = 10
+) -> q2
+
+q2
+```
+
+## Q3
+  Here we'll display a rather different test to show the flexibly in *tidyfst*. In *tidyfst*, if your code writes more like *data.table*, the codes could speed up. If you write it more like *dplyr*, the codes might be more readable but slows down. In *tidyfst*, there is `in_dt` function for you to write data.table codes to gain speed when you meet a bottomneck.<br><br>
+  In the following example, we use the exact same syntax of *data.table* in `tidyfst::in_dt`. 
+```{r}
+bench::mark(
+  data.table =DT[order(-v3),.(largest2_v3 = head(v3,2L)),by = id6],
+  tidyfst = DT %>%
+    in_dt(order(-v3),.(largest2_v3 = head(v3,2L)),by = id6),
+  dplyr = DT %>%
+    select(id6,largest2_v3 = v3) %>%
+    group_by(id6) %>%
+    slice_max(largest2_v3,n = 2,with_ties = FALSE),
+  check = FALSE,iterations = 10
+) -> q3
+
+q3
+```
+## Q4
+  To summarise multiple columns by group, *tidyfst* has designed a function named `summarise_vars`, which is even more convenient than the `across` function in *dplyr*. It first choose the columns, then tell it what to do, and you can provide the "by" parameter to operate by groups (optional).
+```{r}
+bench::mark(
+  data.table =DT[,lapply(.SD,mean),by = id4,.SDcols = v1:v3],
+  tidyfst = DT %>%
+    summarise_vars(
+      v1:v3,
+      mean,
+      by = id4
+    ),
+  dplyr = DT %>%
+    group_by(id4) %>%
+    summarise(across(v1:v3,mean)),
+  check = FALSE,iterations = 10
+) -> q4
+
+q4
+```
+   Take a look at the performance, *tidyfst* still lies between *data.table* and *dplyr*.
+   
+## Q5
+  Now let's try more groups, here we use all the id (id1~id6) as group, and get the sum and count. Note that *tidyfst* is written in *data.table*, so it do not use `n()` in *dplyr* but `.N` in *data.table* to get counts by group.
+
+```{r}
+bench::mark(
+  data.table =DT[,.(v3 = sum(v3),count = .N),by = id1:id6],
+  tidyfst = DT %>%
+    summarise_dt(
+      by = id1:id6,
+      v3 = sum(v3),
+      count = .N
+    ),
+  dplyr = DT %>%
+    group_by(id1,id2,id3,id4,id5,id6) %>%
+    summarise(v3 = sum(v3),count = n()),
+  check = FALSE,iterations = 10
+) -> q5
+
+q5
+```
+
+## Last words
+  While in a data set of ~0.5 Mb we find that the performance of *tidyfst* lies between *data.table* and *dplyr*, we could discover that the speed is much closer to *data.table*. In fact, if you try a much larger data set in a computer with large RAM and multiple cores, you'll find that the performance of *tidyfst* sticks close to *data.table*. If you are interested and has a high-performance computer, try to generate a larger data set and test out.  Moreover, while the dplyr user might find these data manipulation verbs friendly, the innate syntax of *tidyfst* is more like *data.table*, and could be a good companion of *data.table* for some frequently used complex tasks.
+
+## Session information
+```{r}
+sessionInfo()
+```
+
+
+
+
+
+
+

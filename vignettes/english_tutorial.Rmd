@@ -10,7 +10,7 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  eval = FALSE,
+  #eval = FALSE,
   comment = "#>"
 )
 ```
@@ -113,7 +113,7 @@ relocate_dt(DF, V4) # reorder columns
 select_dt(DF, "V")
 select_dt(DF, "3$")
 select_dt(DF, ".2")
-select_dt(DF, "V1|X")
+select_dt(DF, "V1")
 select_dt(DF, -"^V2")
 # remove variables using "-" prior to function
 ```
@@ -146,101 +146,45 @@ summarise_dt(DF, uniqueN(V4))
 uniqueN(DF)
 ```
 
-## Add/update/delete columns
-```{r}
-### Modify a column
-DT[, V1 := V1^2]
-DT
-DF %>% set_mutate(V1 = V1^2)
-DF
-fsetequal(DT,DF)
-
-### Add one column
-DT[, v5 := log(V1)][] # adding [] prints the result
-set_mutate(DF, v5 = log(V1))
-fsetequal(DT,DF)
-
-### Add several columns
-DT[, c("v6", "v7") := .(sqrt(V1), "X")]
-DT[, ':='(v6 = sqrt(V1),
-          v7 = "X")]     # same, functional form
-
-set_mutate(DF, v6 = sqrt(V1), v7 = "X")
-
-fsetequal(DT,DF)
-
-### Create one column and remove the others
-DT[, .(v8 = V3 + 1)]
-transmute_dt(DF, v8 = V3 + 1)
-
-### Remove one column
-DT[, v5 := NULL]
-set_mutate(DF, v5 = NULL)
-fsetequal(DT,DF)
-
-### Remove several columns
-DT[, c("v6", "v7") := NULL]
-set_mutate(DF, v6 = NULL,v7 = NULL)
-fsetequal(DT,DF)
-
-### Remove columns using a vector of colnames
-cols <- c("V3")
-DT[, (cols) := NULL] # ! not DT[, cols := NULL]
-DF <- select_dt(DF, cols = cols,negate = TRUE)
-fsetequal(DT,DF)
-
-### Replace values for rows matching a condition
-DT[V2 < 4, V2 := 0L]
-DT
-DF = mutate_when(DF,V2 < 4, V2 = 0L)
-DF
-fsetequal(DT,DF)
-```
 
 ## group computation (by)
 ```{r}
 ### By group
+# not recommended
 DF %>%
   group_dt(
     by = V4,
     summarise_dt(sumV2 = sum(V2))
   )
+# recommended
+DF %>% 
+  summarise_dt(sumV2 = sum(V2),by = V4)
+
 
 ### By several groups
-DF %>%
-  group_dt(
-    by = .(V4,V1),
-    summarise_dt(sumV2 = sum(V2))
-  )
+DF %>% 
+  summarise_dt(sumV2 = sum(V2),by = .(V1,V4))
 
 ### Calling function in by
 DF %>% 
-  group_dt(
-    by = tolower(V4),
-    summarise_dt(sumV1 = sum(V1))
-  )
+  summarise_dt(sumV2 = sum(V2),by = tolower(V4))
+
 
 ### Assigning column name in by
 DF %>% 
-  group_dt(
-    by = .(abc = tolower(V4)),
-    summarise_dt(sumV1 = sum(V1))
-  )
+  summarise_dt(sumV2 = sum(V2),by = .(abc = tolower(V4)))
+
 
 ### Using a condition in by
 DF %>% 
-  group_dt(
-    by = V4 == "A",
-    summarise_dt(sum(V1))
-  )
+  summarise_dt(sumV2 = sum(V2),by = V4 == "A")
+
+
 
 ### By on a subset of rows
 DF %>% 
   slice_dt(1:5) %>% 
-  group_dt(
-    by = V4,
-    summarise_dt(sumV1 = sum(V1))
-  )
+  summarise_dt(sumV1 = sum(V1),by = V4)
 
 ### Count number of observations for each group
 count_dt(DF, V4)
@@ -268,17 +212,11 @@ summarise_vars(DT,c("V1", "V2"),mean)
 
 ### Summarise several columns by group
 DT %>% 
-  group_dt(
-    by = V4,
-    summarise_vars(c("V1", "V2"),mean)
-  )
+    summarise_vars(c("V1", "V2"),mean,by = V4)
 
 ## using patterns (regex)
 DT %>% 
-  group_dt(
-    by = V4,
-    summarise_vars("V1|V2",mean)
-  )
+    summarise_vars("V1|V2",mean,by = V4)
 
 ## Summarise with more than one function by group
 # when you can't find a way, you can always use `in_dt` to use data.table
@@ -333,64 +271,6 @@ DT %>%
      }
   )
 
-```
-
-## Indexing and Keys
-```{r}
-### Set the key
-group_by_dt(DF,V4,inplace = TRUE)
-data.table::setkey(DT,V4)
-
-### Select the matching rows
-filter_dt(DF, V4 == "A")
-filter_dt(DF, V4 %chin% c("A", "C"))
-
-### Select the first matching row
-DF %>%
-  filter_dt(V4 == "B") %>%
-  slice_dt(1)
-
-### Select the last matching row
-DF %>%
-  filter_dt(V4 == "A") %>%
-  slice_dt(.N)
-
-### Nomatch argument
-filter_dt(DF, V4 %chin% c("A", "D"))
-
-### Apply a function on the matching rows
-DF %>%
-  filter_dt(V4 %chin% c("A", "C")) %>%
-  summarise_dt(sum(V1))
-
-### Modify values for matching rows
-DT["A", V1 := 0, on = "V4"]
-DT
-DF <- DF %>%
-  mutate_when(V4 == "A",V1 = 0)
-DF
-fsetequal(DT,DF)
-
-### Use keys in by
-DF %>%
-  filter_dt(V4 != "B") %>%
-  group_by_dt(V4) %>%
-  group_exe_dt(
-    summarise_dt(sum(V1))
-  )
-
-### Set keys for multiple columns
-group_by_dt(DT,V4,V1,inplace = TRUE)
-DF <- arrange_dt(DF, V4, V1) 
-fsetequal(DT,DF)
-
-### Subset using multiple keys/indices
-filter_dt(DF, V1 == 1, V4 == "C")
-filter_dt(DF, V1 == 1, V4 %chin% c("B", "C"))
-
-### Remove keys
-tables()
-data.table::setkey(DT, NULL)
 ```
 
 ## Advanced use of by
@@ -499,7 +379,7 @@ rbindlist(lapply(c("DT.csv", "DT.csv"), fread))
 ### Melt data (from wide to long)
 fsetequal(DT,DF)
 
-mDT = DT %>% longer_dt(V4)
+mDT = DT %>% longer_dt(V3,V4)
 mDF = DF %>% longer_dt(-"V1|V2")
 
 fsetequal(mDT,mDF)
