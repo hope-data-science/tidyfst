@@ -2,6 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
+  benchmark: benchmark.html
   chinese_tutorial: chinese_tutorial.html
   english_tutorial: english_tutorial.html
   example1_intro: example1_intro.html
@@ -10,5 +11,5 @@ articles:
   example4_nest: example4_nest.html
   example5_fst: example5_fst.html
   example6_dt: example6_dt.html
-last_built: 2020-06-16T04:18Z
+last_built: 2020-07-11T06:49Z
 
