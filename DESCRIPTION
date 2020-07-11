@@ -29,5 +29,7 @@ Suggests:
     nycflights13,
     pryr,
     tidyr,
-    ggplot2
+    ggplot2,
+    dplyr,
+    bench
 VignetteBuilder: knitr

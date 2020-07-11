@@ -4,6 +4,13 @@
 2. Update `slice_dt` to support `.N`
 3. Update vignette "english_turoial" to remove the outdated codes
 4. Improve `count_dt` by using `select_dt` inside
+5. Correct error in example of `impute_dt` for user defined functions
+6. Export `rleid` and `rleidv` from data.table
+7. Add ".name" paramter to `nest_dt` and `squeeze_dt`
+8. Debug `slice_max_dt` and `slice_min_dt`
+9. Give the slice* family a "by" parameter to slice by group
+10. Debug `select_dt`
+11. Update the vignette of English tutorial
 
 ## 0.9.7
 Date:20200528
