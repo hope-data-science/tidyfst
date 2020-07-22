@@ -1,4 +1,3 @@
-
 #' @title Mutate columns in data.frame
 #' @description Adds or updates columns in data.frame.
 #' @param .data data.frame
@@ -27,9 +26,13 @@ mutate_dt = function(.data,...,by){
 
 transmute_dt = function(.data,...,by){
   dt = as_dt(.data)
-  substitute(dt[,.(...),by][]) %>% eval()
+  substitute(dt[,.(id_ = 1:.N,...),by][]) %>% eval() %>% 
+    .[,id_:=NULL] %>% .[]
 }
 
 
-
+# transmute_dt = function(.data,...,by){
+#   dt = as_dt(.data)
+#   substitute(dt[,.(...),by][]) %>% eval()
+# }
 
