@@ -242,9 +242,8 @@ DF %>%
 ### Modify several columns (keeping the others)
 DF %>% 
   mutate_vars(c("V1", "V2"), sqrt)
-cols <- setdiff(names(DT), "V4")
 DF %>% 
-  mutate_vars(cols, exp)
+  mutate_vars(-"V4",  exp)
 
 ### Modify columns using a condition (dropping the others)
 select_dt(DT,is.numeric)
@@ -308,9 +307,9 @@ DT %>%
   mutate_dt(Grp = .GRP,by = .(V4, V1))
 
 ### Get row number of first (and last) observation by group
-DT %>% transmute_dt(I = .I,by = V4)
-DT %>% transmute_dt(I = .I[1],by = V4)
-DT %>% transmute_dt(I = .I[c(1,.N)],by = V4)
+DT %>% summarise_dt(I = .I,by = V4)
+DT %>% summarise_dt(I = .I[1],by = V4)
+DT %>% summarise_dt(I = .I[c(1,.N)],by = V4)
 
 ### Handle list-columns by group
 
