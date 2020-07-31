@@ -53,12 +53,11 @@ iris \%>\% summarise_dt(avg = mean(Sepal.Length),by = Species)
 mtcars \%>\% summarise_dt(avg = mean(hp),by = .(cyl,vs))
 
 # the data.table way
-mtcars \%>\% summarise_dt(cyl_n = .N, by = .(cyl, vs)) # `.`` is short for list
+mtcars \%>\% summarise_dt(cyl_n = .N, by = .(cyl, vs)) # `.` is short for list
 
 iris \%>\% summarise_vars(is.numeric,min)
 iris \%>\% summarise_vars(-is.factor,min)
 iris \%>\% summarise_vars(1:4,min)
-iris \%>\% summarise_vars(.func = as.character)
 
 iris \%>\% summarise_vars(is.numeric,min,by ="Species")
 mtcars \%>\% summarise_vars(is.numeric,mean,by = "vs,am")

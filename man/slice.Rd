@@ -15,9 +15,9 @@ slice_head_dt(.data, n, by = NULL)
 
 slice_tail_dt(.data, n, by = NULL)
 
-slice_max_dt(.data, order_by, n, with_ties = TRUE, by = NULL)
+slice_max_dt(.data, order_by, n, by = NULL, with_ties = TRUE)
 
-slice_min_dt(.data, order_by, n, with_ties = TRUE, by = NULL)
+slice_min_dt(.data, order_by, n, by = NULL, with_ties = TRUE)
 
 slice_sample_dt(.data, n, replace = FALSE, by = NULL)
 }

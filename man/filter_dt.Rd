@@ -20,9 +20,16 @@ Choose rows where conditions are true.
 }
 \examples{
 iris \%>\% filter_dt(Sepal.Length > 7)
-iris \%>\% filter_dt(Sepal.Length > 7,Sepal.Width > 3)
-iris \%>\% filter_dt(Sepal.Length > 7 & Sepal.Width > 3)
 iris \%>\% filter_dt(Sepal.Length == max(Sepal.Length))
+
+# comma is not supported in tidyfst after v0.9.8
+# which means you can't use:
+\dontrun{
+ iris \%>\% filter_dt(Sepal.Length > 7, Sepal.Width > 3)
+}
+# use following code instead
+iris \%>\% filter_dt(Sepal.Length > 7 & Sepal.Width > 3)
+
 }
 \seealso{
 \code{\link[dplyr]{filter}}

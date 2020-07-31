@@ -6,11 +6,11 @@
 \alias{sample_frac_dt}
 \title{Sample rows randomly from a table}
 \usage{
-sample_dt(.data, n = NULL, prop = NULL, replace = FALSE)
+sample_dt(.data, n = NULL, prop = NULL, replace = FALSE, by = NULL)
 
-sample_n_dt(.data, size, replace = FALSE)
+sample_n_dt(.data, size, replace = FALSE, by = NULL)
 
-sample_frac_dt(.data, size, replace = FALSE)
+sample_frac_dt(.data, size, replace = FALSE, by = NULL)
 }
 \arguments{
 \item{.data}{A data.frame}
@@ -20,6 +20,8 @@ sample_frac_dt(.data, size, replace = FALSE)
 \item{prop}{Fraction of rows to select}
 
 \item{replace}{Sample with or without replacement? Default uses \code{FALSE}.}
+
+\item{by}{(Optional) Character. Specify if you want to sample by group.}
 
 \item{size}{For \code{sample_n_dt}, the number of rows to select.
 For \code{sample_frac_dt}, the fraction of rows to select.}
@@ -39,9 +41,18 @@ sample_n_dt(mtcars, 50, replace = TRUE)
 sample_frac_dt(mtcars, 0.1)
 sample_frac_dt(mtcars, 1.5, replace = TRUE)
 
+
 sample_dt(mtcars,n=10)
 sample_dt(mtcars,prop = 0.1)
 
+
+# sample by group(s)
+iris \%>\% sample_n_dt(2,by = "Species")
+iris \%>\% sample_frac_dt(.1,by = "Species")
+
+mtcars \%>\% sample_n_dt(1,by = "cyl,vs")
+# equals to
+mtcars \%>\% sample_n_dt(1,by = c("cyl","vs"))
 }
 \seealso{
 \code{\link[dplyr]{sample_n}},\code{\link[dplyr]{sample_frac}}
