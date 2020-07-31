@@ -44,14 +44,13 @@ top_n_dt = function(.data,n,wt = NULL){
   dt = as_dt(.data)
   n_ = n
   wt_ = fifelse(is.null(substitute(wt)),
-               names(dt)[length(dt)],
-               deparse(substitute(wt)))
+                names(dt)[length(dt)],
+                deparse(substitute(wt)))
 
   if(n_ > 0) dt[frankv(dt,cols = wt_,order = -1,ties.method = "min") <= n_]
   else if(n_ < 0) dt[frankv(dt,cols = wt_,order = 1,ties.method = "min") <= -n_]
   else dt[0]
 }
-
 
 
 #' @rdname topn

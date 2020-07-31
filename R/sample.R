@@ -8,6 +8,7 @@
 #' @param size 	For \code{sample_n_dt}, the number of rows to select.
 #' For \code{sample_frac_dt}, the fraction of rows to select.
 #' @param replace Sample with or without replacement? Default uses \code{FALSE}.
+#' @param by (Optional) Character. Specify if you want to sample by group.
 #' @description \code{sample_dt} is a merged version of \code{sample_n_dt} and
 #' \code{sample_frac_dt}, this could be convenient.
 #' @return data.table
@@ -18,36 +19,66 @@
 #' sample_frac_dt(mtcars, 0.1)
 #' sample_frac_dt(mtcars, 1.5, replace = TRUE)
 #'
+#'
 #' sample_dt(mtcars,n=10)
 #' sample_dt(mtcars,prop = 0.1)
 #'
+#'
+#' # sample by group(s)
+#' iris %>% sample_n_dt(2,by = "Species")
+#' iris %>% sample_frac_dt(.1,by = "Species")
+#'
+#' mtcars %>% sample_n_dt(1,by = "cyl,vs")
+#' # equals to
+#' mtcars %>% sample_n_dt(1,by = c("cyl","vs"))
+
+
 #' @rdname sample
 #' @export
-sample_dt = function(.data,n = NULL,prop = NULL,replace = FALSE){
+sample_dt = function(.data,n = NULL,prop = NULL,replace = FALSE,by = NULL){
   dt = as_dt(.data)
   if(is.null(n) & !is.null(prop))
-    sample_frac_dt(dt,size = prop,replace = replace)
+    sample_frac_dt(dt,size = prop,replace = replace,by = by)
   else if(!is.null(n) & is.null(prop))
-    sample_n_dt(dt,size = n,replace = replace)
+    sample_n_dt(dt,size = n,replace = replace,by = by)
   else stop("Both or none of `n` and `prop` are provided!")
 }
 
 #' @rdname sample
 #' @export
 #'
-sample_n_dt = function(.data,size,replace = FALSE){
+sample_n_dt = function(.data,size,replace = FALSE,by = NULL){
   dt = as_dt(.data)
-  if(size > nrow(.data) & replace == FALSE) stop("Sample size is too large.")
-  index = sample(nrow(dt),size = size,replace = replace)
-  dt[index]
+  if(!is.character(by)){
+    if(size > nrow(.data) & replace == FALSE) stop("Sample size is too large.")
+    index = sample(nrow(dt),size = size,replace = replace)
+    dt[index]
+  }else{
+    dt[,.SD[sample(.N,size = size,replace = replace)],by = by]
+  }
 }
+
+# sample_n_dt = function(.data,size,replace = FALSE){
+#   dt = as_dt(.data)
+#   if(size > nrow(.data) & replace == FALSE) stop("Sample size is too large.")
+#   index = sample(nrow(dt),size = size,replace = replace)
+#   dt[index]
+# }
 
 #' @rdname sample
 #' @export
-sample_frac_dt = function(.data,size,replace = FALSE){
+sample_frac_dt = function(.data,size,replace = FALSE,by = NULL){
   dt = as_dt(.data)
   if(!between(size,0,1) & replace == FALSE) stop("The fraction is invalid.")
-  size = as.integer(nrow(dt) * size)
-  index = sample(nrow(dt),size = size,replace = replace)
-  dt[index]
+  size = trunc(nrow(dt) * size)
+  sample_n_dt(.data = .data,size = size,replace = replace,by = by)
 }
+
+# sample_frac_dt = function(.data,size,replace = FALSE){
+#   dt = as_dt(.data)
+#   if(!between(size,0,1) & replace == FALSE) stop("The fraction is invalid.")
+#   size = as.integer(nrow(dt) * size)
+#   index = sample(nrow(dt),size = size,replace = replace)
+#   dt[index]
+# }
+

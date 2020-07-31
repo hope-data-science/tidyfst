@@ -137,106 +137,132 @@ slice_tail_dt = function(.data,n,by = NULL){
 
 #' @rdname slice
 #' @export
-slice_max_dt = function(.data,order_by,n,with_ties = TRUE,by = NULL){
-  .data = as_dt(.data)
-  order_by = deparse(substitute(order_by))
-  by_char = deparse(substitute(by))
+slice_max_dt = function(.data,order_by,n,by = NULL,with_ties = TRUE){
+  dt = as_dt(.data)
+  wt = substitute(order_by) %>% deparse()
+  by = substitute(by) %>% deparse()
+  setorderv(dt,cols = wt,order = -1L)
+  if (n > 0 & n < 1)
+    n = nrow(.data) * n
+  else if (n <= 0)
+    stop("Invalid input, n should take a positive value.")
 
-  if(by_char == "NULL"){
-    if(n > 0 & n < 1) n = nrow(.data) * n
-    else if(n <= 0) stop("Invalid input, n should take a positive value.")
-    tm_ = ifelse(with_ties,"min","first")
-    index = frankv(.data[[order_by]],order = -1,ties.method = tm_) <= n
-    .data[index]
-  }else{
-    eval(substitute(
-      .data[,{
-        if (n > 0 & n < 1)
-          n = nrow(.SD) * n
-        else if (n <= 0)
-          stop("Invalid input, n should take a positive value.")
-        tm_ = ifelse(with_ties, "min", "first")
-        index = frankv(.SD[[order_by]], order = -1, ties.method = tm_) <= n
-        .SD[index]
-      },by]
-    ))
-  }
-}
-
-# slice_max_dt = function(.data,order_by,n,with_ties = TRUE){
-#   .data = as_dt(.data)
-#   if(n > 0 & n < 1) n = nrow(.data) * n
-#   else if(n <= 0) stop("Invalid input, n should take a positive value.")
-#
-#   order_by = deparse(substitute(order_by))
-#   tm_ = ifelse(with_ties,"min","first")
-#   index = frankv(.data[[order_by]],order = -1,ties.method = tm_) <= n
-#
-#   .data[index]
-# }
-
-#' @rdname slice
-#' @export
-slice_min_dt = function(.data,order_by,n,with_ties = TRUE,by = NULL){
-  .data = as_dt(.data)
-  order_by = deparse(substitute(order_by))
-  by_char = deparse(substitute(by))
-
-  if(by_char == "NULL"){
-    if(n > 0 & n < 1) n = nrow(.data) * n
-    else if(n <= 0) stop("Invalid input, n should take a positive value.")
-    tm_ = ifelse(with_ties,"min","first")
-    index = frankv(.data[[order_by]],order = 1,ties.method = tm_) <= n
-    .data[index]
-  }else{
-    eval(substitute({
-      .data[,{
-        if (n > 0 & n < 1)
-          n = nrow(.SD) * n
-        else if (n <= 0)
-          stop("Invalid input, n should take a positive value.")
-        tm_ = ifelse(with_ties, "min", "first")
-        index = frankv(.SD[[order_by]], order = 1, ties.method = tm_) <= n
-        .SD[index]
-      },by]
-    }))
-  }
-}
-
-# slice_min_dt = function(.data,order_by,n,with_ties = TRUE){
-#   .data = as_dt(.data)
-#   if(n > 0 & n < 1) n = nrow(.data) * n
-#   else if(n <= 0) stop("Invalid input, n should take a positive value.")
-#
-#   order_by = deparse(substitute(order_by))
-#   tm_ = ifelse(with_ties,"min","first")
-#   index = frankv(.data[[order_by]],order = 1,ties.method = tm_) <= n
-#
-#   .data[index]
-# }
-
-
-#' @rdname slice
-#' @export
-slice_sample_dt = function(.data, n, replace = FALSE,by = NULL){
-  .data = as_dt(.data)
-  by_char = deparse(substitute(by))
-
-  if(by_char == "NULL"){
-    if(n >= 1L) index = sample(nrow(.data),size = n,replace = replace)
-    else if(n > 0) index = sample(nrow(.data),size = n*nrow(.data),replace = replace)
-    else stop("Invalid input, n should take a positive value.")
-    .data[index]
-  }else{
-    eval(substitute({
-      .data[,{
-        if(n <= 0) stop("Invalid input, n should take a positive value.")
-        else if(n < 1)
-          .SD[sample(.N,n * nrow(.SD),replace = replace)]
-        else .SD[sample(.N,n,replace = replace)]
-      },by]
-    }))
+  if(by != "NULL"){
+    if(with_ties){
+      eval(parse(text = str_glue("
+                            dt[,.SD[{wt} %in% ({wt} %>%
+                            sort %>% tail(.,n) %>% unique)],{by}]
+                             ")))
     }
+    else{
+      eval(parse(text = str_glue("
+                            dt[,.SD[1:n],{by}]
+                             ")))
+    }
+  }else{
+    if(with_ties) eval(parse(text = str_glue("
+                            dt[{wt} %in% (sort({wt}) %>%
+                            tail(.,n) %>% unique)]
+                             ")))
+    else dt[1:n]
+  }
+}
+
+
+# slice_max_dt = function(.data,order_by,n,with_ties = TRUE,by = NULL){
+#   .data = as_dt(.data)
+#   order_by = deparse(substitute(order_by))
+#   by_char = deparse(substitute(by))
+#
+#   if(by_char == "NULL"){
+#     if(n > 0 & n < 1) n = nrow(.data) * n
+#     else if(n <= 0) stop("Invalid input, n should take a positive value.")
+#     tm_ = ifelse(with_ties,"min","first")
+#     index = frankv(.data[[order_by]],order = -1,ties.method = tm_) <= n
+#     .data[index]
+#   }else{
+#     eval(substitute(
+#       .data[,{
+#         if (n > 0 & n < 1)
+#           n = nrow(.SD) * n
+#         else if (n <= 0)
+#           stop("Invalid input, n should take a positive value.")
+#         tm_ = ifelse(with_ties, "min", "first")
+#         index = frankv(.SD[[order_by]], order = -1, ties.method = tm_) <= n
+#         .SD[index]
+#       },by]
+#     ))
+#   }
+# }
+
+
+
+#' @rdname slice
+#' @export
+slice_min_dt = function(.data,order_by,n,by = NULL,with_ties = TRUE){
+  dt = as_dt(.data)
+  wt = substitute(order_by) %>% deparse()
+  by = substitute(by) %>% deparse()
+  setorderv(dt,cols = wt,order = 1L)
+  if (n > 0 & n < 1)
+    n = nrow(.data) * n
+  else if (n <= 0)
+    stop("Invalid input, n should take a positive value.")
+
+  if(by != "NULL"){
+    if(with_ties){
+      eval(parse(text = str_glue("
+                            dt[,.SD[{wt} %in% ({wt} %>%
+                            sort %>% head(.,n) %>% unique)],{by}]
+                             ")))
+    }
+    else{
+      eval(parse(text = str_glue("
+                            dt[,.SD[1:n],{by}]
+                             ")))
+    }
+  }else{
+    if(with_ties) eval(parse(text = str_glue("
+                            dt[{wt} %in% (sort({wt}) %>%
+                            head(.,n) %>% unique)]
+                             ")))
+    else dt[1:n]
+  }
+}
+
+# slice_min_dt = function(.data,order_by,n,with_ties = TRUE,by = NULL){
+#   .data = as_dt(.data)
+#   order_by = deparse(substitute(order_by))
+#   by_char = deparse(substitute(by))
+#
+#   if(by_char == "NULL"){
+#     if(n > 0 & n < 1) n = nrow(.data) * n
+#     else if(n <= 0) stop("Invalid input, n should take a positive value.")
+#     tm_ = ifelse(with_ties,"min","first")
+#     index = frankv(.data[[order_by]],order = 1,ties.method = tm_) <= n
+#     .data[index]
+#   }else{
+#     eval(substitute({
+#       .data[,{
+#         if (n > 0 & n < 1)
+#           n = nrow(.SD) * n
+#         else if (n <= 0)
+#           stop("Invalid input, n should take a positive value.")
+#         tm_ = ifelse(with_ties, "min", "first")
+#         index = frankv(.SD[[order_by]], order = 1, ties.method = tm_) <= n
+#         .SD[index]
+#       },by]
+#     }))
+#   }
+# }
+
+
+#' @rdname slice
+#' @export
+slice_sample_dt = function(.data, n, replace = FALSE, by = NULL){
+  if(n >= 1L) sample_n_dt(.data,size = n,replace = replace,by = by)
+  else if(n > 0) sample_frac_dt(.data,size = n,replace = replace,by = by)
+  else stop("Invalid input, n should take a positive value.")
 }
 
 
