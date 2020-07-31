@@ -11,6 +11,10 @@
 9. Give the slice* family a "by" parameter to slice by group
 10. Debug `select_dt`
 11. Update the vignette of English tutorial
+12. Update `filter_dt` and do not support comma as "&" any more
+13. Use testthat package to implement unit test for tidyfst
+14. Give sample functions a "by" parameter to sample by group
+15. Correct errors in the English tutorial
 
 ## 0.9.7
 Date:20200528

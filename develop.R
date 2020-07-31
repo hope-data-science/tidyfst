@@ -3,8 +3,9 @@
 
 library(pacman)
 p_load(devtools,usethis,roxygen2,pkgdown,badger)
-p_load(fst,stringr,data.table,tidyfst)
+p_load(fst,stringr,data.table,tidyfst,testthat)
 
+# use_test("")
 
 # use_r("global_setting")
 # use_r("select_dt")
@@ -22,6 +23,7 @@ library(tidyfst)
 # library(tidydt)
 
 options(pkgdown.internet = F)
+options(rmarkdown.html_vignette.check_title = FALSE)
 build_site()
 
 submit_cran()

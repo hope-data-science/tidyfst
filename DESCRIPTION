@@ -31,5 +31,6 @@ Suggests:
     tidyr,
     ggplot2,
     dplyr,
-    bench
+    bench,
+    testthat
 VignetteBuilder: knitr
