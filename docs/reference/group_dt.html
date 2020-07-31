@@ -264,7 +264,7 @@ extra time to copy).</p>
 #&gt; 3:     1     0 20.74286
 #&gt; 4:     0     0 15.05000</div><div class='input'>
 <span class='co'># examples for `rowwise_dt`</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>3</span>:<span class='fl'>4</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>5</span>)
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>3</span>:<span class='fl'>4</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>5</span>)
 
 <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='mutate.html'>mutate_dt</a></span>(<span class='kw'>m</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>)))</div><div class='output co'>#&gt;        x     y     z        m
 #&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;num&gt;

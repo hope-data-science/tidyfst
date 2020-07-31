@@ -160,7 +160,7 @@ data.table::timetaken, but showing the results more directly." />
 
     <div class="ref-description">
     <p>Convenient printing of time elapsed. A wrapper of
-<code><a href='https://rdrr.io/pkg/data.table/man/timetaken.html'>data.table::timetaken</a></code>, but showing the results more directly.</p>
+<code><a href='https://Rdatatable.gitlab.io/data.table/reference/timetaken.html'>data.table::timetaken</a></code>, but showing the results more directly.</p>
     </div>
 
     <pre class="usage"><span class='fu'>sys_time_print</span>(<span class='no'>expr</span>)</pre>
@@ -184,7 +184,7 @@ or SS.MMMsec if under 60 seconds. See examples.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>sys_time_print</span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt; [1] "Finished in 1.000s elapsed (0.000s cpu)"</div><div class='input'>
+<span class='fu'>sys_time_print</span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt; [1] "Finished in 1.020s elapsed (0.000s cpu)"</div><div class='input'>
 <span class='no'>a</span> <span class='kw'>=</span> <span class='no'>iris</span>
 <span class='fu'>sys_time_print</span>({
   <span class='no'>res</span> <span class='kw'>=</span> <span class='no'>iris</span> <span class='kw'>%&gt;%</span>

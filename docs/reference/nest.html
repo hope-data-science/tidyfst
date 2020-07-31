@@ -355,7 +355,7 @@ package.</p>
 #&gt; 31:     8     0  15.0 301.0   335  3.54 3.570 14.60     1     5     8
 #&gt; 32:     4     0  26.0 120.3    91  4.43 2.140 16.70     1     5     2
 #&gt;       cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear  carb</div><div class='input'>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(
   <span class='kw'>a</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>), <span class='st'>"c"</span>),
   <span class='kw'>b</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>,<span class='fl'>TRUE</span>),<span class='fl'>FALSE</span>),
   <span class='kw'>c</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>3</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>)),
@@ -473,7 +473,7 @@ package.</p>
 #&gt; 149:          6.2         3.4          5.4         2.3 virginica 6.2,3.4
 #&gt; 150:          5.9         3.0          5.1         1.8 virginica 5.9,3.0</div><div class='input'>
 <span class='co'># examples for chop_dt</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/data.table/man/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>6</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='fl'>6</span>:<span class='fl'>1</span>)
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>6</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='fl'>6</span>:<span class='fl'>1</span>)
 <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>chop_dt</span>(<span class='no'>y</span>,<span class='no'>z</span>)</div><div class='output co'>#&gt;        x      y      z
 #&gt;    &lt;num&gt; &lt;list&gt; &lt;list&gt;
 #&gt; 1:     1  1,2,3  6,5,4
