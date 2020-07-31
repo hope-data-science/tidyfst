@@ -135,7 +135,7 @@
 <span class="co">#&gt;     between, first, last</span>
 <span class="co">#&gt; The following objects are masked from 'package:tidyfst':</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;     between, cummean, nth</span>
+<span class="co">#&gt;     cummean, nth</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     filter, lag</span>
@@ -154,7 +154,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span>(<span class="st">"Producing data of %s rows and %s K groups factors\n"</span>, <span class="no">N</span>, <span class="no">K</span>))
 <span class="co">#&gt; Producing data of 10000 rows and 100 K groups factors</span>
 
-<span class="no">DT</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(
+<span class="no">DT</span> <span class="kw">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(
 
   <span class="kw">id1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span>(<span class="st">"id%03d"</span>,<span class="fl">1</span>:<span class="no">K</span>), <span class="no">N</span>, <span class="fl">TRUE</span>),      <span class="co"># large groups (char)</span>
 
@@ -214,9 +214,9 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table   1.93ms   1.99ms    490.      2.19MB      0  </span>
-<span class="co">#&gt; 2 tidyfst       2.1ms   2.16ms    452.    659.23KB      0  </span>
-<span class="co">#&gt; 3 dplyr      272.43ms  288.8ms      3.44     4.1MB     16.2</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table   2.96ms    3.8ms    260.      2.19MB      0  </span>
+<span class="co">#&gt; 2 tidyfst      2.27ms   2.94ms    318.    659.23KB      0  </span>
+<span class="co">#&gt; 3 dplyr      274.81ms 289.71ms      3.45     4.1MB     16.2</span></pre></body></html></div>
 <p>We could find that spent time of tidyfst and data.table are quite similar, but much less than dplyr.</p>
 </div>
 <div id="q2" class="section level2">
@@ -250,18 +250,18 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table   1.06ms   1.07ms      755.    92.9KB        0</span>
-<span class="co">#&gt; 2 tidyfst      1.23ms   1.31ms      724.    93.1KB        0</span>
-<span class="co">#&gt; 3 dplyr        4.58ms   5.07ms      197.   299.7KB        0</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table   1.14ms    1.2ms      734.    92.9KB        0</span>
+<span class="co">#&gt; 2 tidyfst      1.35ms   1.43ms      651.    93.1KB        0</span>
+<span class="co">#&gt; 3 dplyr        4.43ms   5.86ms      169.   299.7KB        0</span></pre></body></html></div>
 </div>
 <div id="q3" class="section level2">
 <h2 class="hasAnchor">
 <a href="#q3" class="anchor"></a>Q3</h2>
 <p>Here we’ll display a rather different test to show the flexibly in <em>tidyfst</em>. In <em>tidyfst</em>, if your code writes more like <em>data.table</em>, the codes could speed up. If you write it more like <em>dplyr</em>, the codes might be more readable but slows down. In <em>tidyfst</em>, there is <code>in_dt</code> function for you to write data.table codes to gain speed when you meet a bottomneck.<br><br> In the following example, we use the exact same syntax of <em>data.table</em> in <code><a href="../reference/dt.html">tidyfst::in_dt</a></code>.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="kw pkg">bench</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span>(
-  <span class="kw">data.table</span> <span class="kw">=</span><span class="no">DT</span>[<span class="fu"><a href="https://rdrr.io/pkg/data.table/man/setorder.html">order</a></span>(-<span class="no">v3</span>),<span class="fu">.</span>(<span class="kw">largest2_v3</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">v3</span>,<span class="fl">2L</span>)),<span class="kw">by</span> <span class="kw">=</span> <span class="no">id6</span>],
+  <span class="kw">data.table</span> <span class="kw">=</span><span class="no">DT</span>[<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">order</a></span>(-<span class="no">v3</span>),<span class="fu">.</span>(<span class="kw">largest2_v3</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">v3</span>,<span class="fl">2L</span>)),<span class="kw">by</span> <span class="kw">=</span> <span class="no">id6</span>],
   <span class="kw">tidyfst</span> <span class="kw">=</span> <span class="no">DT</span> <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="../reference/dt.html">in_dt</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/data.table/man/setorder.html">order</a></span>(-<span class="no">v3</span>),<span class="fu">.</span>(<span class="kw">largest2_v3</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">v3</span>,<span class="fl">2L</span>)),<span class="kw">by</span> <span class="kw">=</span> <span class="no">id6</span>),
+    <span class="fu"><a href="../reference/dt.html">in_dt</a></span>(<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">order</a></span>(-<span class="no">v3</span>),<span class="fu">.</span>(<span class="kw">largest2_v3</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">v3</span>,<span class="fl">2L</span>)),<span class="kw">by</span> <span class="kw">=</span> <span class="no">id6</span>),
   <span class="kw">dplyr</span> <span class="kw">=</span> <span class="no">DT</span> <span class="kw">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">id6</span>,<span class="kw">largest2_v3</span> <span class="kw">=</span> <span class="no">v3</span>) <span class="kw">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">id6</span>) <span class="kw">%&gt;%</span>
@@ -273,9 +273,9 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table   2.76ms   3.18ms     298.   398.78KB     33.1</span>
-<span class="co">#&gt; 2 tidyfst      3.24ms   4.05ms     248.   842.55KB      0  </span>
-<span class="co">#&gt; 3 dplyr       13.56ms  14.57ms      68.1    1.41MB     17.0</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table   3.06ms   3.33ms     265.   398.78KB     29.4</span>
+<span class="co">#&gt; 2 tidyfst      4.09ms   5.26ms     185.   842.55KB      0  </span>
+<span class="co">#&gt; 3 dplyr       12.96ms  14.15ms      70.0    1.41MB     17.5</span></pre></body></html></div>
 </div>
 <div id="q4" class="section level2">
 <h2 class="hasAnchor">
@@ -310,9 +310,9 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table   1.49ms   1.57ms     600.      334KB      0  </span>
-<span class="co">#&gt; 2 tidyfst      5.08ms   5.62ms     176.      270KB      0  </span>
-<span class="co">#&gt; 3 dplyr       69.43ms  75.16ms      13.1     534KB     17.0</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table   1.81ms   2.01ms     425.      334KB      0  </span>
+<span class="co">#&gt; 2 tidyfst      5.58ms   6.24ms     159.      270KB      0  </span>
+<span class="co">#&gt; 3 dplyr       69.36ms  76.93ms      12.8     535KB     16.7</span></pre></body></html></div>
 <p>Take a look at the performance, <em>tidyfst</em> still lies between <em>data.table</em> and <em>dplyr</em>.</p>
 </div>
 <div id="q5" class="section level2">
@@ -348,9 +348,9 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table    2.6ms   2.75ms    348.      1.02MB      0  </span>
-<span class="co">#&gt; 2 tidyfst      3.04ms   3.29ms    304.      1.02MB      0  </span>
-<span class="co">#&gt; 3 dplyr      213.26ms 225.72ms      4.27    4.64MB     11.1</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table   3.22ms   3.65ms    250.      1.02MB      0  </span>
+<span class="co">#&gt; 2 tidyfst      3.26ms   3.41ms    279.      1.02MB      0  </span>
+<span class="co">#&gt; 3 dplyr      213.11ms 228.13ms      4.29    4.64MB     11.2</span></pre></body></html></div>
 </div>
 <div id="last-words" class="section level2">
 <h2 class="hasAnchor">

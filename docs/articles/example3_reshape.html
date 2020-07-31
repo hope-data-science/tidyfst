@@ -340,7 +340,7 @@
 <h2 class="hasAnchor">
 <a href="#more-complicated-example" class="anchor"></a>More complicated example</h2>
 <p>This example comes from data.table (<a href="https://rdatatable.gitlab.io/data.table/articles/datatable-reshape.html" class="uri">https://rdatatable.gitlab.io/data.table/articles/datatable-reshape.html</a>), and has been used in tidyr too. We’ll try to do it in tidyfst in this example. If we have a data.frame as below:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">family</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/fread.html">fread</a></span>(<span class="st">"family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">family</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3
 1         30 1998-11-26 2000-01-29         NA             1             2            NA
 2         27 1996-06-22         NA         NA             2            NA            NA
 3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1
@@ -380,7 +380,7 @@
 # 13:         5         29 child1 2000-12-05      2
 # 14:         5         29 child2 2005-02-28      1
 # 15:         5         29 child3       &lt;NA&gt;   &lt;NA&gt;</pre></body></html></div>
-<p>The <code><a href="https://rdrr.io/pkg/data.table/man/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> could transfer it in one step, however, not so easy to understand. Here we’ll do it step by step to see what actually happens in this transfer.</p>
+<p>The <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> could transfer it in one step, however, not so easy to understand. Here we’ll do it step by step to see what actually happens in this transfer.</p>
 <div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">family</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/longer.html">longer_dt</a></span>(<span class="fl">1</span>:<span class="fl">2</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/separate_dt.html">separate_dt</a></span>(<span class="st">"name"</span>,<span class="kw">into</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"class"</span>,<span class="st">"child"</span>)) <span class="kw">%&gt;%</span>
@@ -405,7 +405,7 @@
 <span class="co">#&gt; 13:         5         29 child1 2000-12-05      2</span>
 <span class="co">#&gt; 14:         5         29 child2 2005-02-28      1</span>
 <span class="co">#&gt; 15:         5         29 child3       &lt;NA&gt;   &lt;NA&gt;</span></pre></body></html></div>
-<p>In such a process, we could find that we actually get a longer table, then separate it, and wider it later. <em>tidyfst</em> is not going to support the complicated transfer in one step, because it might be easier to implement, but much harder to understand 3 procedures in 1 step. If you still prefer that way, use <code><a href="https://rdrr.io/pkg/data.table/man/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> instead.</p>
+<p>In such a process, we could find that we actually get a longer table, then separate it, and wider it later. <em>tidyfst</em> is not going to support the complicated transfer in one step, because it might be easier to implement, but much harder to understand 3 procedures in 1 step. If you still prefer that way, use <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> instead.</p>
 </div>
   </div>
 

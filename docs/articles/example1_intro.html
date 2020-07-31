@@ -128,7 +128,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">nycflights13</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">data.table</span>)
 
-<span class="fu"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="no">flights</span>)</pre></body></html></div>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="no">flights</span>)</pre></body></html></div>
 <div id="filter-rows-with-filter_dt" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filter-rows-with-filter_dt" class="anchor"></a>Filter rows with <code>filter_dt()</code>
@@ -209,7 +209,7 @@
 <span class="co">#   flights = n()</span>
 <span class="co"># )</span>
 
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="no">flights</span>,<span class="kw">planes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/duplicated.html">uniqueN</a></span>(<span class="no">tailnum</span>),<span class="kw">flights</span> <span class="kw">=</span> <span class="no">.N</span>,<span class="kw">by</span> <span class="kw">=</span> <span class="no">dest</span>) <span class="kw">%&gt;%</span>
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="no">flights</span>,<span class="kw">planes</span> <span class="kw">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">uniqueN</a></span>(<span class="no">tailnum</span>),<span class="kw">flights</span> <span class="kw">=</span> <span class="no">.N</span>,<span class="kw">by</span> <span class="kw">=</span> <span class="no">dest</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(<span class="no">dest</span>)</pre></body></html></div>
 <p>If you need to group by many variables, use:</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># the dplyr syntax:</span>
@@ -243,7 +243,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">data.table</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">nycflights13</span>)
 
-<span class="no">flights</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/data.table.html">data.table</a></span>(<span class="no">flights</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/na.omit.data.table.html">na.omit</a></span>()</pre></body></html></div>
+<span class="no">flights</span> <span class="kw">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="no">flights</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/na.omit.data.table.html">na.omit</a></span>()</pre></body></html></div>
 </div>
 <div id="subset-rows" class="section level2">
 <h2 class="hasAnchor">
@@ -251,7 +251,7 @@
 <div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># data.table</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">flights</span>[<span class="no">origin</span> <span class="kw">==</span> <span class="st">"JFK"</span> <span class="kw">&amp;</span> <span class="no">month</span> <span class="kw">==</span> <span class="fl">6L</span>])
 <span class="no">flights</span>[<span class="fl">1</span>:<span class="fl">2</span>]
-<span class="no">flights</span>[<span class="fu"><a href="https://rdrr.io/pkg/data.table/man/setorder.html">order</a></span>(<span class="no">origin</span>, -<span class="no">dest</span>)]
+<span class="no">flights</span>[<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">order</a></span>(<span class="no">origin</span>, -<span class="no">dest</span>)]
 
 <span class="co"># tidyfst</span>
 <span class="no">flights</span> <span class="kw">%&gt;%</span>
@@ -353,7 +353,7 @@
                <span class="kw">by</span> <span class="kw">=</span> <span class="fu">.</span>(<span class="no">origin</span>, <span class="no">dest</span>, <span class="no">month</span>))</pre></body></html></div>
 <p>Note that currently <code>keyby</code> is not used in <em>tidyfst</em>. This featuer might be included in the future for better performance in order-independent tasks. Moreover, <code>count_dt</code> is sorted automatically by the counted number, this could be controlled by the parameter “sort”.</p>
 <div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="co"># data.table</span>
-<span class="no">flights</span>[<span class="no">carrier</span> <span class="kw">==</span> <span class="st">"AA"</span>, <span class="no">.N</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fu">.</span>(<span class="no">origin</span>, <span class="no">dest</span>)][<span class="fu"><a href="https://rdrr.io/pkg/data.table/man/setorder.html">order</a></span>(<span class="no">origin</span>, -<span class="no">dest</span>)]
+<span class="no">flights</span>[<span class="no">carrier</span> <span class="kw">==</span> <span class="st">"AA"</span>, <span class="no">.N</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fu">.</span>(<span class="no">origin</span>, <span class="no">dest</span>)][<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">order</a></span>(<span class="no">origin</span>, -<span class="no">dest</span>)]
 <span class="no">flights</span>[, <span class="no">.N</span>, <span class="fu">.</span>(<span class="no">dep_delay</span><span class="kw">&gt;</span><span class="fl">0</span>, <span class="no">arr_delay</span><span class="kw">&gt;</span><span class="fl">0</span>)]
 
 <span class="co"># tidyfst</span>
