@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fast creation of dummy variables — dummy_dt • tidyfst</title>
+<title>Vary output according to condition — case_when_dt • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,11 @@
 
 
 
-<meta property="og:title" content="Fast creation of dummy variables — dummy_dt" />
-<meta property="og:description" content="Quickly create dummy (binary) columns from character and factor type columns in the inputted data (and numeric columns if specified.)
-This function is useful for statistical analysis when you want binary columns rather than character columns." />
+<meta property="og:title" content="Vary output according to condition — case_when_dt" />
+<meta property="og:description" content="An R equivalent of the SQL CASE WHEN statement,
+ if no cases match, NA is returned. This function is supported
+ by data.table::fcase (a wrapper), but uses another syntax as in
+ dplyr::case_when." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -153,99 +155,72 @@ This function is useful for statistical analysis when you want binary columns ra
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fast creation of dummy variables</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/dummy_dt.R'><code>R/dummy_dt.R</code></a></small>
-    <div class="hidden name"><code>dummy_dt.Rd</code></div>
+    <h1>Vary output according to condition</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/case_when.R'><code>R/case_when.R</code></a></small>
+    <div class="hidden name"><code>case_when_dt.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Quickly create dummy (binary) columns from character and factor type columns in the inputted data (and numeric columns if specified.)
-This function is useful for statistical analysis when you want binary columns rather than character columns.</p>
+    <p>An R equivalent of the SQL <code>CASE WHEN</code> statement,
+ if no cases match, <code>NA</code> is returned. This function is supported
+ by <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fcase.html'>data.table::fcase</a></code> (a wrapper), but uses another syntax as in
+ <code><a href='https://dplyr.tidyverse.org/reference/case_when.html'>dplyr::case_when</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dummy_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>longname</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>case_when_dt</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>data.frame</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>Columns you want to create dummy variables from.
-Very flexible, find in the examples.</p></td>
-    </tr>
-    <tr>
-      <th>longname</th>
-      <td><p>logical. Should the output column labeled with the
-original column name? Default uses <code>TRUE</code>.</p></td>
+      <td><p>A sequence of two-sided formulas.
+The left hand side (LHS) determines which values match this case.
+The right hand side (RHS) provides the replacement value.
+The LHS must evaluate to a logical vector.
+The RHS does not need to be logical,
+but all RHSs must evaluate to the same type of vector.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.table</p>
+    <p>A vector</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If no columns provided, will return the original data frame.</p>
-<p>This function is inspired by <span class="pkg">fastDummies</span> package, but provides
-simple and precise usage, whereas <code>fastDummies::dummy_cols</code> provides more
-features for statistical usage.</p>
+    <p>Supported by <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fcase.html'>fcase</a></code>, <code>case_when_dt</code>
+is supposed to be faster than <code><a href='https://dplyr.tidyverse.org/reference/case_when.html'>dplyr::case_when</a></code>. The only difference
+is the separator of the function (<code>tidyfst::case_when_dt</code>) uses "~" as
+in <code><a href='https://dplyr.tidyverse.org/reference/case_when.html'>dplyr::case_when</a></code>, while <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fcase.html'>data.table::fcase</a></code> uses ",".
+The <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fcase.html'>data.table::fcase</a></code> is also exported in <span class="pkg">tidyfst</span>, if the
+expressions include one or more "~" in either side, please use <code>fcase</code>
+instead of <code>case_when_dt</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>dummy_cols</code></p></div>
+    <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></code>, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fcase.html'>fcase</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>dummy_dt</span>(<span class='no'>Species</span>)</div><div class='output co'>#&gt; Key: &lt;Sepal.Length, Sepal.Width, Petal.Length, Petal.Width&gt;
-#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width Species_setosa
-#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;          &lt;num&gt;
-#&gt;   1:          4.3         3.0          1.1         0.1              1
-#&gt;   2:          4.4         2.9          1.4         0.2              1
-#&gt;   3:          4.4         3.0          1.3         0.2              1
-#&gt;   4:          4.4         3.2          1.3         0.2              1
-#&gt;   5:          4.5         2.3          1.3         0.3              1
-#&gt;  ---                                                                 
-#&gt; 146:          7.7         2.6          6.9         2.3              0
-#&gt; 147:          7.7         2.8          6.7         2.0              0
-#&gt; 148:          7.7         3.0          6.1         2.3              0
-#&gt; 149:          7.7         3.8          6.7         2.2              0
-#&gt; 150:          7.9         3.8          6.4         2.0              0
-#&gt; 2 variables not shown: [Species_versicolor &lt;num&gt;, Species_virginica &lt;num&gt;]</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>dummy_dt</span>(<span class='no'>Species</span>,<span class='kw'>longname</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; Key: &lt;Sepal.Length, Sepal.Width, Petal.Length, Petal.Width&gt;
-#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width setosa versicolor
-#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;num&gt;      &lt;num&gt;
-#&gt;   1:          4.3         3.0          1.1         0.1      1          0
-#&gt;   2:          4.4         2.9          1.4         0.2      1          0
-#&gt;   3:          4.4         3.0          1.3         0.2      1          0
-#&gt;   4:          4.4         3.2          1.3         0.2      1          0
-#&gt;   5:          4.5         2.3          1.3         0.3      1          0
-#&gt;  ---                                                                    
-#&gt; 146:          7.7         2.6          6.9         2.3      0          0
-#&gt; 147:          7.7         2.8          6.7         2.0      0          0
-#&gt; 148:          7.7         3.0          6.1         2.3      0          0
-#&gt; 149:          7.7         3.8          6.7         2.2      0          0
-#&gt; 150:          7.9         3.8          6.4         2.0      0          0
-#&gt; 1 variable not shown: [virginica &lt;num&gt;]</div><div class='input'>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>dummy_dt</span>(<span class='no'>vs</span>,<span class='no'>am</span>)</div><div class='output co'>#&gt; Key: &lt;mpg, cyl, disp, hp, drat, wt, qsec, gear, carb, vs_0, vs_1&gt;
-#&gt;      mpg   cyl  disp    hp  drat    wt  qsec  gear  carb  vs_0
-#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:  18.1     6   225   105  2.76 3.460 20.22     3     1     0
-#&gt; 2:  18.7     8   360   175  3.15 3.440 17.02     3     2     1
-#&gt; 3:  21.0     6   160   110  3.90 2.620 16.46     4     4     1
-#&gt; 4:  21.0     6   160   110  3.90 2.875 17.02     4     4     1
-#&gt; 5:  21.4     6   258   110  3.08 3.215 19.44     3     1     0
-#&gt; 6:  22.8     4   108    93  3.85 2.320 18.61     4     1     0
-#&gt; 3 variables not shown: [vs_1 &lt;num&gt;, am_0 &lt;num&gt;, am_1 &lt;num&gt;]</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>dummy_dt</span>(<span class='st'>"cyl|gear"</span>)</div><div class='output co'>#&gt; Key: &lt;mpg, disp, hp, drat, wt, qsec, vs, am, carb, cyl_4, cyl_6, cyl_8&gt;
-#&gt;      mpg  disp    hp  drat    wt  qsec    vs    am  carb cyl_4
-#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:  18.1   225   105  2.76 3.460 20.22     1     0     1     0
-#&gt; 2:  18.7   360   175  3.15 3.440 17.02     0     0     2     0
-#&gt; 3:  21.0   160   110  3.90 2.620 16.46     0     1     4     0
-#&gt; 4:  21.0   160   110  3.90 2.875 17.02     0     1     4     0
-#&gt; 5:  21.4   258   110  3.08 3.215 19.44     1     0     1     0
-#&gt; 6:  22.8   108    93  3.85 2.320 18.61     1     1     1     1
-#&gt; 4 variables not shown: [cyl_6 &lt;num&gt;, cyl_8 &lt;num&gt;, gear_3 &lt;num&gt;, gear_4 &lt;num&gt;]</div></pre>
+    <pre class="examples"><div class='input'>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>
+<span class='no'>res1</span> <span class='kw'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/fcase.html'>fcase</a></span>(
+  <span class='no'>x</span> <span class='kw'>&lt;</span> <span class='fl'>5L</span>, <span class='fl'>1L</span>,
+  <span class='no'>x</span> <span class='kw'>&gt;</span> <span class='fl'>5L</span>, <span class='fl'>3L</span>
+)
+<span class='no'>res2</span> <span class='kw'>=</span> <span class='fu'>case_when_dt</span>(
+  <span class='no'>x</span> <span class='kw'>&lt;</span> <span class='fl'>5</span> ~ <span class='fl'>1</span>,
+  <span class='no'>x</span> <span class='kw'>&gt;</span> <span class='fl'>5</span> ~ <span class='fl'>3</span>
+)</div><div class='output co'>#&gt; <span class='error'>Error in fcase(x &lt; 5, 1, x &gt; 5, 3): object 'x' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sets.html'>setequal</a></span>(<span class='no'>res1</span>,<span class='no'>res2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in as.vector(y): object 'res2' not found</span></div><div class='input'>
+<span class='co'># if you want to use "~" in the expressions, you can only use `fcase`</span>
+<span class='co'>## Correct</span>
+<span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/fcase.html'>fcase</a></span>(
+  <span class='no'>x</span> <span class='kw'>&lt;</span> <span class='fl'>5L</span>, <span class='st'>"~"</span>,
+  <span class='no'>x</span> <span class='kw'>&gt;</span> <span class='fl'>5L</span>, <span class='st'>"~~"</span>
+)</div><div class='output co'>#&gt;  [1] "~"  "~"  "~"  "~"  NA   "~~" "~~" "~~" "~~" "~~"</div><div class='input'><span class='co'>## Wrong</span>
+<span class='fu'>case_when_dt</span>(
+  <span class='no'>x</span> <span class='kw'>&lt;</span> <span class='fl'>5</span> ~ <span class='st'>"~"</span>,
+  <span class='no'>x</span> <span class='kw'>&gt;</span> <span class='fl'>5</span> ~ <span class='st'>"~~"</span>
+)</div><div class='output co'>#&gt; <span class='error'>Error in fcase(x &lt; 5, ",", x &gt; 5, ",,"): object 'x' not found</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
