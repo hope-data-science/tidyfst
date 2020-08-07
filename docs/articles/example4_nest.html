@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
       </span>
     </div>
 
@@ -131,21 +131,21 @@
 
 <span class="co"># inspect the output data.table</span>
 <span class="no">mtcars_nested</span>
-<span class="co">#&gt;      cyl          ndt</span>
-<span class="co">#&gt;    &lt;num&gt;       &lt;list&gt;</span>
-<span class="co">#&gt; 1:     6 &lt;data.table&gt;</span>
-<span class="co">#&gt; 2:     4 &lt;data.table&gt;</span>
-<span class="co">#&gt; 3:     8 &lt;data.table&gt;</span></pre></body></html></div>
+<span class="co">#&gt;      cyl                 ndt</span>
+<span class="co">#&gt;    &lt;num&gt;              &lt;list&gt;</span>
+<span class="co">#&gt; 1:     6  &lt;data.table[7x10]&gt;</span>
+<span class="co">#&gt; 2:     4 &lt;data.table[11x10]&gt;</span>
+<span class="co">#&gt; 3:     8 &lt;data.table[14x10]&gt;</span></pre></body></html></div>
 <p>Now, we want to do a regression within the nested group “cyl”. We’ll use the famous <code>lapply</code> to complete this:</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">mtcars_nested2</span> <span class="kw">&lt;-</span> <span class="no">mtcars_nested</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span>(<span class="kw">model</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">ndt</span>,<span class="kw">function</span>(<span class="no">df</span>) <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">mpg</span> ~ <span class="no">wt</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">df</span>)))
 
 <span class="no">mtcars_nested2</span>
-<span class="co">#&gt;      cyl          ndt  model</span>
-<span class="co">#&gt;    &lt;num&gt;       &lt;list&gt; &lt;list&gt;</span>
-<span class="co">#&gt; 1:     6 &lt;data.table&gt;   &lt;lm&gt;</span>
-<span class="co">#&gt; 2:     4 &lt;data.table&gt;   &lt;lm&gt;</span>
-<span class="co">#&gt; 3:     8 &lt;data.table&gt;   &lt;lm&gt;</span></pre></body></html></div>
+<span class="co">#&gt;      cyl                 ndt    model</span>
+<span class="co">#&gt;    &lt;num&gt;              &lt;list&gt;   &lt;list&gt;</span>
+<span class="co">#&gt; 1:     6  &lt;data.table[7x10]&gt; &lt;lm[12]&gt;</span>
+<span class="co">#&gt; 2:     4 &lt;data.table[11x10]&gt; &lt;lm[12]&gt;</span>
+<span class="co">#&gt; 3:     8 &lt;data.table[14x10]&gt; &lt;lm[12]&gt;</span></pre></body></html></div>
 <p>We could see that the model is stored in the column “model”. Now, we try to get the fitted value in the model.</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">mtcars_nested3</span> <span class="kw">&lt;-</span> <span class="no">mtcars_nested2</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span>(<span class="kw">model_predict</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">model</span>, <span class="no">predict</span>))
