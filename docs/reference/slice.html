@@ -86,7 +86,7 @@ helpers for common use cases:
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
       </span>
     </div>
 
@@ -465,7 +465,77 @@ and return the first `n` rows.</p></td>
 #&gt; 7:  virginica          4.9         2.5          4.5         1.7
 #&gt; 8:  virginica          5.6         2.8          4.9         2.0
 #&gt; 9:  virginica          5.7         2.5          5.0         2.0</div><div class='input'>
-<span class='fu'>slice_sample_dt</span>(<span class='no'>a</span>,<span class='fl'>.1</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt; <span class='error'>Error in sample_n_dt(.data = .data, size = size, replace = replace, by = by): object 'Species' not found</span></div><div class='input'><span class='fu'>slice_sample_dt</span>(<span class='no'>a</span>,<span class='fl'>3</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt; <span class='error'>Error in sample_n_dt(.data, size = n, replace = replace, by = by): object 'Species' not found</span></div><div class='input'><span class='fu'>slice_sample_dt</span>(<span class='no'>a</span>,<span class='fl'>51</span>,<span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt; <span class='error'>Error in sample_n_dt(.data, size = n, replace = replace, by = by): object 'Species' not found</span></div><div class='input'>
+<span class='co'># in `slice_sample_dt`, "by" could only take character class</span>
+<span class='fu'>slice_sample_dt</span>(<span class='no'>a</span>,<span class='fl'>.1</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"Species"</span>)</div><div class='output co'>#&gt;        Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;         &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
+#&gt;  1:     setosa          5.0         3.0          1.6         0.2
+#&gt;  2:     setosa          5.1         3.8          1.6         0.2
+#&gt;  3:     setosa          5.5         3.5          1.3         0.2
+#&gt;  4:     setosa          5.7         4.4          1.5         0.4
+#&gt;  5:     setosa          5.0         3.2          1.2         0.2
+#&gt;  6:     setosa          5.2         4.1          1.5         0.1
+#&gt;  7:     setosa          5.2         3.4          1.4         0.2
+#&gt;  8:     setosa          4.8         3.4          1.9         0.2
+#&gt;  9:     setosa          5.5         4.2          1.4         0.2
+#&gt; 10:     setosa          4.6         3.6          1.0         0.2
+#&gt; 11:     setosa          4.8         3.0          1.4         0.1
+#&gt; 12:     setosa          4.8         3.1          1.6         0.2
+#&gt; 13:     setosa          5.0         3.3          1.4         0.2
+#&gt; 14:     setosa          4.7         3.2          1.3         0.2
+#&gt; 15:     setosa          5.4         3.9          1.3         0.4
+#&gt; 16: versicolor          5.8         2.7          3.9         1.2
+#&gt; 17: versicolor          5.5         2.6          4.4         1.2
+#&gt; 18: versicolor          6.2         2.9          4.3         1.3
+#&gt; 19: versicolor          6.1         3.0          4.6         1.4
+#&gt; 20: versicolor          5.7         2.9          4.2         1.3
+#&gt; 21: versicolor          5.8         2.6          4.0         1.2
+#&gt; 22: versicolor          5.9         3.2          4.8         1.8
+#&gt; 23: versicolor          5.8         2.7          4.1         1.0
+#&gt; 24: versicolor          5.7         3.0          4.2         1.2
+#&gt; 25: versicolor          6.8         2.8          4.8         1.4
+#&gt; 26: versicolor          6.1         2.8          4.7         1.2
+#&gt; 27: versicolor          6.0         2.7          5.1         1.6
+#&gt; 28: versicolor          5.6         2.5          3.9         1.1
+#&gt; 29: versicolor          6.5         2.8          4.6         1.5
+#&gt; 30: versicolor          5.9         3.0          4.2         1.5
+#&gt; 31:  virginica          6.8         3.2          5.9         2.3
+#&gt; 32:  virginica          7.7         2.8          6.7         2.0
+#&gt; 33:  virginica          6.7         3.3          5.7         2.5
+#&gt; 34:  virginica          6.0         2.2          5.0         1.5
+#&gt; 35:  virginica          6.3         2.9          5.6         1.8
+#&gt; 36:  virginica          7.7         2.6          6.9         2.3
+#&gt; 37:  virginica          6.9         3.2          5.7         2.3
+#&gt; 38:  virginica          5.6         2.8          4.9         2.0
+#&gt; 39:  virginica          5.9         3.0          5.1         1.8
+#&gt; 40:  virginica          6.5         3.0          5.2         2.0
+#&gt; 41:  virginica          5.7         2.5          5.0         2.0
+#&gt; 42:  virginica          6.1         3.0          4.9         1.8
+#&gt; 43:  virginica          6.3         2.5          5.0         1.9
+#&gt; 44:  virginica          6.7         3.3          5.7         2.1
+#&gt; 45:  virginica          6.9         3.1          5.1         2.3
+#&gt;        Species Sepal.Length Sepal.Width Petal.Length Petal.Width</div><div class='input'><span class='fu'>slice_sample_dt</span>(<span class='no'>a</span>,<span class='fl'>3</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"Species"</span>)</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
+#&gt; 1:     setosa          5.4         3.9          1.7         0.4
+#&gt; 2:     setosa          4.6         3.4          1.4         0.3
+#&gt; 3:     setosa          5.3         3.7          1.5         0.2
+#&gt; 4: versicolor          5.7         2.8          4.5         1.3
+#&gt; 5: versicolor          6.5         2.8          4.6         1.5
+#&gt; 6: versicolor          5.9         3.0          4.2         1.5
+#&gt; 7:  virginica          7.3         2.9          6.3         1.8
+#&gt; 8:  virginica          6.5         3.2          5.1         2.0
+#&gt; 9:  virginica          7.9         3.8          6.4         2.0</div><div class='input'><span class='fu'>slice_sample_dt</span>(<span class='no'>a</span>,<span class='fl'>51</span>,<span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"Species"</span>)</div><div class='output co'>#&gt;        Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt;         &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
+#&gt;   1:    setosa          5.7         4.4          1.5         0.4
+#&gt;   2:    setosa          5.4         3.7          1.5         0.2
+#&gt;   3:    setosa          5.5         4.2          1.4         0.2
+#&gt;   4:    setosa          4.9         3.1          1.5         0.1
+#&gt;   5:    setosa          5.4         3.7          1.5         0.2
+#&gt;  ---                                                            
+#&gt; 149: virginica          6.0         2.2          5.0         1.5
+#&gt; 150: virginica          7.7         2.6          6.9         2.3
+#&gt; 151: virginica          6.7         2.5          5.8         1.8
+#&gt; 152: virginica          6.9         3.1          5.1         2.3
+#&gt; 153: virginica          6.3         3.3          6.0         2.5</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

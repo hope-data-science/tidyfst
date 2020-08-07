@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
       </span>
     </div>
 
@@ -176,6 +176,11 @@
       <th>...</th>
       <td><p>statements of rename, e.g. `sl = Sepal.Length` means the column named
 as "Sepal.Length" would be renamed to "sl"</p></td>
+    </tr>
+    <tr>
+      <th>.fn</th>
+      <td><p>A function used to transform the selected columns.
+Should return a character vector the same length as the input.</p></td>
     </tr>
     </table>
 
