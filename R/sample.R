@@ -49,21 +49,17 @@ sample_dt = function(.data,n = NULL,prop = NULL,replace = FALSE,by = NULL){
 #'
 sample_n_dt = function(.data,size,replace = FALSE,by = NULL){
   dt = as_dt(.data)
-  if(!is.character(by)){
+  by_char = substitute(by) %>% deparse()
+  if(by_char == "NULL"){
     if(size > nrow(.data) & replace == FALSE) stop("Sample size is too large.")
     index = sample(nrow(dt),size = size,replace = replace)
     dt[index]
   }else{
-    dt[,.SD[sample(.N,size = size,replace = replace)],by = by]
+    dt[,.SD[sample(.N,size = size,replace = replace)],by]
   }
 }
 
-# sample_n_dt = function(.data,size,replace = FALSE){
-#   dt = as_dt(.data)
-#   if(size > nrow(.data) & replace == FALSE) stop("Sample size is too large.")
-#   index = sample(nrow(dt),size = size,replace = replace)
-#   dt[index]
-# }
+
 
 #' @rdname sample
 #' @export
@@ -74,11 +70,5 @@ sample_frac_dt = function(.data,size,replace = FALSE,by = NULL){
   sample_n_dt(.data = .data,size = size,replace = replace,by = by)
 }
 
-# sample_frac_dt = function(.data,size,replace = FALSE){
-#   dt = as_dt(.data)
-#   if(!between(size,0,1) & replace == FALSE) stop("The fraction is invalid.")
-#   size = as.integer(nrow(dt) * size)
-#   index = sample(nrow(dt),size = size,replace = replace)
-#   dt[index]
-# }
+
 

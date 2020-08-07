@@ -61,9 +61,10 @@
 #' slice_min_dt(a,Sepal.Length,3,by = Species)
 #' slice_min_dt(a,Sepal.Length,3,by = Species,with_ties = FALSE)
 #'
-#' slice_sample_dt(a,.1,by = Species)
-#' slice_sample_dt(a,3,by = Species)
-#' slice_sample_dt(a,51,replace = TRUE,by = Species)
+#' # in `slice_sample_dt`, "by" could only take character class
+#' slice_sample_dt(a,.1,by = "Species")
+#' slice_sample_dt(a,3,by = "Species")
+#' slice_sample_dt(a,51,replace = TRUE,by = "Species")
 #'
 
 #' @rdname slice
@@ -266,10 +267,4 @@ slice_sample_dt = function(.data, n, replace = FALSE, by = NULL){
 }
 
 
-# slice_sample_dt = function(.data, n, replace = FALSE){
-#   .data = as_dt(.data)
-#   if(n >= 1L) index = sample(nrow(.data),size = n,replace = replace)
-#   else if(n > 0) index = sample(nrow(.data),size = n*nrow(.data),replace = replace)
-#   else stop("Invalid input, n should take a positive value.")
-#   .data[index]
-# }
+

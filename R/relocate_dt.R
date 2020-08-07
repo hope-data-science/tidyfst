@@ -10,6 +10,7 @@
 #' @param where Destination of columns selected by \code{...}.
 #' Applicable for "after" and "before" mode.
 #' @return A data.table with rearranged columns.
+#' @seealso \code{\link[dplyr]{relocate}}
 
 #' @examples
 #' df <- data.table(a = 1, b = 1, c = 1, d = "a", e = "a", f = "a")

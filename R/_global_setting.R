@@ -64,3 +64,9 @@ data.table::rleid
 
 #' @export
 data.table::rleidv
+
+#' @export
+data.table::fcase
+
+
+
