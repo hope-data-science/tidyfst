@@ -14,6 +14,9 @@ rename_with_dt(.data, .fn, ...)
 
 \item{...}{statements of rename, e.g. `sl = Sepal.Length` means the column named
 as "Sepal.Length" would be renamed to "sl"}
+
+\item{.fn}{A function used to transform the selected columns.
+Should return a character vector the same length as the input.}
 }
 \value{
 data.table

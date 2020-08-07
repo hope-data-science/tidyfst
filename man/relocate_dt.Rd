@@ -48,3 +48,6 @@ df2 \%>\% relocate_dt(is.numeric,
                     how="before",
                     where = is.character)
 }
+\seealso{
+\code{\link[dplyr]{relocate}}
+}

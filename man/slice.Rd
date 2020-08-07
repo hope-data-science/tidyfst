@@ -88,9 +88,10 @@ slice_max_dt(a,Sepal.Length,3,by = Species,with_ties = FALSE)
 slice_min_dt(a,Sepal.Length,3,by = Species)
 slice_min_dt(a,Sepal.Length,3,by = Species,with_ties = FALSE)
 
-slice_sample_dt(a,.1,by = Species)
-slice_sample_dt(a,3,by = Species)
-slice_sample_dt(a,51,replace = TRUE,by = Species)
+# in `slice_sample_dt`, "by" could only take character class
+slice_sample_dt(a,.1,by = "Species")
+slice_sample_dt(a,3,by = "Species")
+slice_sample_dt(a,51,replace = TRUE,by = "Species")
 
 }
 \seealso{
