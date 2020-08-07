@@ -1,5 +1,6 @@
 
 ## 0.9.8
+Date:20200801
 1. Add `rename_with_dt` like dplyr's `rename_with`
 2. Update `slice_dt` to support `.N`
 3. Update vignette "english_turoial" to remove the outdated codes
@@ -15,6 +16,8 @@
 13. Use testthat package to implement unit test for tidyfst
 14. Give sample functions a "by" parameter to sample by group
 15. Correct errors in the English tutorial
+16. Import data.table v1.13.0 and use its new features
+
 
 ## 0.9.7
 Date:20200528

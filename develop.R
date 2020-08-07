@@ -23,7 +23,6 @@ library(tidyfst)
 # library(tidydt)
 
 options(pkgdown.internet = F)
-options(rmarkdown.html_vignette.check_title = FALSE)
 build_site()
 
 submit_cran()
@@ -77,9 +76,4 @@ end_date = "2020-04-09"
 
 cran_downloads(package = "tidyfst", from = "2020-02-10",to = end_date) -> a
 
-cran_downloads(package = "tidytable", from = "2020-02-10",to = end_date) -> b
-
-a %>%
-  inner_join_dt(b,by = "date") %>%
-  filter_dt(count.x != 0 & count.y != 0) %>%
-  summarise_dt(sum.x = sum(count.x),sum.y = sum(count.y))
+a
