@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Unite multiple columns into one by pasting strings together — unite_dt • tidyfst</title>
+<title>Set global printing method for data.table — print_options • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Unite multiple columns into one by pasting strings together — unite_dt" />
-<meta property="og:description" content="Convenience function to paste together multiple columns into one." />
+<meta property="og:title" content="Set global printing method for data.table — print_options" />
+<meta property="og:description" content="This function allow user to define how data.table is printed." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -152,88 +152,73 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Unite multiple columns into one by pasting strings together</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/unite.R'><code>R/unite.R</code></a></small>
-    <div class="hidden name"><code>unite_dt.Rd</code></div>
+    <h1>Set global printing method for data.table</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/print.R'><code>R/print.R</code></a></small>
+    <div class="hidden name"><code>print_options.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convenience function to paste together multiple columns into one.</p>
+    <p>This function allow user to define how data.table is printed.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>unite_dt</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>united_colname</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>,
-  <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>na2char</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+    <pre class="usage"><span class='fu'>print_options</span>(
+  <span class='kw'>topn</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>nrows</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>class</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+  <span class='kw'>print.keys</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>trunc.cols</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>A data frame.</p></td>
+      <th>topn</th>
+      <td><p>The number of rows to be printed from the beginning and
+end of tables with more than <code>nrow</code> rows.</p></td>
     </tr>
     <tr>
-      <th>united_colname</th>
-      <td><p>The name of the new column, string only.</p></td>
+      <th>nrows</th>
+      <td><p>The number of rows which will be printed before truncation is enforced.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>A selection of columns. If want to select all columns,
-pass "" to the parameter. See example.</p></td>
+      <th>class</th>
+      <td><p>If <code>TRUE</code>, the resulting output will include above each column its storage class (or a self-evident abbreviation thereof).</p></td>
     </tr>
     <tr>
-      <th>sep</th>
-      <td><p>Separator to use between values.</p></td>
+      <th>row.names</th>
+      <td><p>If <code>TRUE</code>, row indices will be printed.</p></td>
     </tr>
     <tr>
-      <th>remove</th>
-      <td><p>If <code>TRUE</code>, remove input columns from output data frame.</p></td>
+      <th>col.names</th>
+      <td><p>One of three flavours for controlling the display of column names in output. <code>"auto"</code> includes column names above the data, as well as below the table if <code>nrow(x) &gt; 20</code>. <code>"top"</code> excludes this lower register when applicable, and <code>"none"</code> suppresses column names altogether (as well as column classes if <code>class = TRUE</code>.</p></td>
     </tr>
     <tr>
-      <th>na2char</th>
-      <td><p>If <code>FALSE</code>, missing values would be merged into <code>NA</code>,
-otherwise <code>NA</code> is treated as character "NA". This is different from
-<span class="pkg">tidyr</span>.</p></td>
+      <th>print.keys</th>
+      <td><p>If <code>TRUE</code>, any <code><a href='https://Rdatatable.gitlab.io/data.table/reference/setkey.html'>key</a></code> and/or <code>index</code> currently assigned to <code>x</code> will be printed prior to the preview of the data.</p></td>
+    </tr>
+    <tr>
+      <th>trunc.cols</th>
+      <td><p>If <code>TRUE</code>, only the columns that can be printed in the console without wrapping the columns to new lines will be printed (similar to <code>tibbles</code>).</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>None. This function is used for its side effect of changing options.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Notice that <span class="pkg">tidyfst</span> has a slightly different printing default for data.table,
+ which is it always prints the keys and variable class (not like <span class="pkg">data.table</span>).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://tidyr.tidyverse.org/reference/unite.html'>unite</a></code>,<code><a href='separate_dt.html'>separate_dt</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://Rdatatable.gitlab.io/data.table/reference/print.data.table.html'>print.data.table</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"b"</span>, <span class='fl'>NA</span>))
-<span class='no'>df</span></div><div class='output co'>#&gt;      x    y
-#&gt; 1    a    b
-#&gt; 2 &lt;NA&gt;    b
-#&gt; 3    a &lt;NA&gt;
-#&gt; 4 &lt;NA&gt; &lt;NA&gt;</div><div class='input'>
-<span class='co'># Treat missing value as NA, default</span>
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unite_dt</span>(<span class='st'>"z"</span>, <span class='no'>x</span>:<span class='no'>y</span>, <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;         x      y      z
-#&gt;    &lt;fctr&gt; &lt;fctr&gt; &lt;char&gt;
-#&gt; 1:      a      b    a_b
-#&gt; 2:   &lt;NA&gt;      b   &lt;NA&gt;
-#&gt; 3:      a   &lt;NA&gt;   &lt;NA&gt;
-#&gt; 4:   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;</div><div class='input'><span class='co'># Treat missing value as character "NA"</span>
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>unite_dt</span>(<span class='st'>"z"</span>, <span class='no'>x</span>:<span class='no'>y</span>, <span class='kw'>na2char</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>remove</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;         x      y      z
-#&gt;    &lt;fctr&gt; &lt;fctr&gt; &lt;char&gt;
-#&gt; 1:      a      b    a_b
-#&gt; 2:   &lt;NA&gt;      b   NA_b
-#&gt; 3:      a   &lt;NA&gt;   a_NA
-#&gt; 4:   &lt;NA&gt;   &lt;NA&gt;  NA_NA</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>unite_dt</span>(<span class='st'>"xy"</span>, <span class='no'>x</span>:<span class='no'>y</span>)</div><div class='output co'>#&gt;         x      y     xy
-#&gt;    &lt;fctr&gt; &lt;fctr&gt; &lt;char&gt;
-#&gt; 1:      a      b    a_b
-#&gt; 2:   &lt;NA&gt;      b   &lt;NA&gt;
-#&gt; 3:      a   &lt;NA&gt;   &lt;NA&gt;
-#&gt; 4:   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;</div><div class='input'>
-<span class='co'># Select all columns</span>
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>unite_dt</span>(<span class='st'>"merged_name"</span>,<span class='st'>""</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+    <pre class="examples"><div class='input'>
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span>()</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 #&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:          5.1         3.5          1.4         0.2    setosa
 #&gt;   2:          4.9         3.0          1.4         0.2    setosa
@@ -245,20 +230,32 @@ otherwise <code>NA</code> is treated as character "NA". This is different from
 #&gt; 147:          6.3         2.5          5.0         1.9 virginica
 #&gt; 148:          6.5         3.0          5.2         2.0 virginica
 #&gt; 149:          6.2         3.4          5.4         2.3 virginica
-#&gt; 150:          5.9         3.0          5.1         1.8 virginica
-#&gt;                    merged_name
-#&gt;                         &lt;char&gt;
-#&gt;   1:    5.1_3.5_1.4_0.2_setosa
-#&gt;   2:      4.9_3_1.4_0.2_setosa
-#&gt;   3:    4.7_3.2_1.3_0.2_setosa
-#&gt;   4:    4.6_3.1_1.5_0.2_setosa
-#&gt;   5:      5_3.6_1.4_0.2_setosa
-#&gt;  ---                          
-#&gt; 146:   6.7_3_5.2_2.3_virginica
-#&gt; 147:   6.3_2.5_5_1.9_virginica
-#&gt; 148:     6.5_3_5.2_2_virginica
-#&gt; 149: 6.2_3.4_5.4_2.3_virginica
-#&gt; 150:   5.9_3_5.1_1.8_virginica</div></pre>
+#&gt; 150:          5.9         3.0          5.1         1.8 virginica</div><div class='input'><span class='fu'>print_options</span>(<span class='kw'>topn</span> <span class='kw'>=</span> <span class='fl'>3</span>,<span class='kw'>trunc.cols</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span>()</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
+#&gt;   1:          5.1         3.5          1.4         0.2    setosa
+#&gt;   2:          4.9         3.0          1.4         0.2    setosa
+#&gt;   3:          4.7         3.2          1.3         0.2    setosa
+#&gt;  ---                                                            
+#&gt; 148:          6.5         3.0          5.2         2.0 virginica
+#&gt; 149:          6.2         3.4          5.4         2.3 virginica
+#&gt; 150:          5.9         3.0          5.1         1.8 virginica</div><div class='input'>
+<span class='co'># set all settings to default in tidyfst</span>
+<span class='fu'>print_options</span>()
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span>()</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
+#&gt;   1:          5.1         3.5          1.4         0.2    setosa
+#&gt;   2:          4.9         3.0          1.4         0.2    setosa
+#&gt;   3:          4.7         3.2          1.3         0.2    setosa
+#&gt;   4:          4.6         3.1          1.5         0.2    setosa
+#&gt;   5:          5.0         3.6          1.4         0.2    setosa
+#&gt;  ---                                                            
+#&gt; 146:          6.7         3.0          5.2         2.3 virginica
+#&gt; 147:          6.3         2.5          5.0         1.9 virginica
+#&gt; 148:          6.5         3.0          5.2         2.0 virginica
+#&gt; 149:          6.2         3.4          5.4         2.3 virginica
+#&gt; 150:          5.9         3.0          5.1         1.8 virginica</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

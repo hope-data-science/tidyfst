@@ -250,13 +250,37 @@ grouping variables. For details see <a href='https://Rdatatable.gitlab.io/data.t
 #&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt; 1:     setosa          4.3         2.3          1.0         0.1
 #&gt; 2: versicolor          4.9         2.0          3.0         1.0
-#&gt; 3:  virginica          4.9         2.2          4.5         1.4</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_vars</span>(<span class='no'>is.numeric</span>,<span class='no'>mean</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"vs,am"</span>)</div><div class='output co'>#&gt;       vs    am      mpg      cyl     disp        hp     drat       wt
-#&gt;    &lt;num&gt; &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;     &lt;num&gt;    &lt;num&gt;    &lt;num&gt;
-#&gt; 1:     0     1 19.75000 6.333333 206.2167 180.83333 3.935000 2.857500
-#&gt; 2:     1     1 28.37143 4.000000  89.8000  80.57143 4.148571 2.028286
-#&gt; 3:     1     0 20.74286 5.142857 175.1143 102.14286 3.570000 3.194286
-#&gt; 4:     0     0 15.05000 8.000000 357.6167 194.16667 3.120833 4.104083
-#&gt; 3 variables not shown: [qsec &lt;num&gt;, gear &lt;num&gt;, carb &lt;num&gt;]</div></pre>
+#&gt; 3:  virginica          4.9         2.2          4.5         1.4</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_vars</span>(<span class='no'>is.numeric</span>,<span class='no'>mean</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"vs,am"</span>)</div><div class='output co'>#&gt;       vs    am      mpg      cyl     disp        hp     drat       wt     qsec
+#&gt;    &lt;num&gt; &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;     &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;
+#&gt; 1:     0     1 19.75000 6.333333 206.2167 180.83333 3.935000 2.857500 15.79667
+#&gt; 2:     1     1 28.37143 4.000000  89.8000  80.57143 4.148571 2.028286 18.70000
+#&gt; 3:     1     0 20.74286 5.142857 175.1143 102.14286 3.570000 3.194286 19.96714
+#&gt; 4:     0     0 15.05000 8.000000 357.6167 194.16667 3.120833 4.104083 17.14250
+#&gt;        gear     carb
+#&gt;       &lt;num&gt;    &lt;num&gt;
+#&gt; 1: 4.666667 4.666667
+#&gt; 2: 4.142857 1.428571
+#&gt; 3: 3.571429 2.142857
+#&gt; 4: 3.000000 3.083333</div><div class='input'>
+<span class='co'># use multiple functions on multiple columns</span>
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>summarise_vars</span>(<span class='no'>is.numeric</span>,<span class='kw'>.func</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>mean</span>,<span class='no'>sd</span>,<span class='no'>median</span>))</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width fun_name
+#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;   &lt;char&gt;
+#&gt; 1:    5.8433333   3.0573333     3.758000   1.1993333     mean
+#&gt; 2:    0.8280661   0.4358663     1.765298   0.7622377       sd
+#&gt; 3:    5.8000000   3.0000000     4.350000   1.3000000   median</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>summarise_vars</span>(<span class='no'>is.numeric</span>,<span class='kw'>.func</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>mean</span>,<span class='no'>sd</span>,<span class='no'>median</span>),<span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width fun_name
+#&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;   &lt;char&gt;
+#&gt; 1:     setosa    5.0060000   3.4280000    1.4620000   0.2460000     mean
+#&gt; 2: versicolor    5.9360000   2.7700000    4.2600000   1.3260000     mean
+#&gt; 3:  virginica    6.5880000   2.9740000    5.5520000   2.0260000     mean
+#&gt; 4:     setosa    0.3524897   0.3790644    0.1736640   0.1053856       sd
+#&gt; 5: versicolor    0.5161711   0.3137983    0.4699110   0.1977527       sd
+#&gt; 6:  virginica    0.6358796   0.3224966    0.5518947   0.2746501       sd
+#&gt; 7:     setosa    5.0000000   3.4000000    1.5000000   0.2000000   median
+#&gt; 8: versicolor    5.9000000   2.8000000    4.3500000   1.3000000   median
+#&gt; 9:  virginica    6.5000000   3.0000000    5.5500000   2.0000000   median</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

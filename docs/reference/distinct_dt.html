@@ -218,14 +218,13 @@ this keeps the first row of values.</p></td>
 #&gt; 2:     4     1
 #&gt; 3:     6     1
 #&gt; 4:     8     0
-#&gt; 5:     4     0</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>distinct_dt</span>(<span class='no'>cyl</span>,<span class='no'>vs</span>,<span class='kw'>.keep_all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4
-#&gt; 2:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4
-#&gt; 3:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3
-#&gt; 4:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3
-#&gt; 5:  26.0     4 120.3    91  4.43 2.140 16.70     0     1     5
-#&gt; 1 variable not shown: [carb &lt;num&gt;]</div><div class='input'>
+#&gt; 5:     4     0</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>distinct_dt</span>(<span class='no'>cyl</span>,<span class='no'>vs</span>,<span class='kw'>.keep_all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt; 1:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4     4
+#&gt; 2:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4     1
+#&gt; 3:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3     1
+#&gt; 4:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3     2
+#&gt; 5:  26.0     4 120.3    91  4.43 2.140 16.70     0     1     5     2</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

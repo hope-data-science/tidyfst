@@ -212,7 +212,19 @@ features for statistical usage.</p>
 #&gt; 148:          7.7         3.0          6.1         2.3              0
 #&gt; 149:          7.7         3.8          6.7         2.2              0
 #&gt; 150:          7.9         3.8          6.4         2.0              0
-#&gt; 2 variables not shown: [Species_versicolor &lt;num&gt;, Species_virginica &lt;num&gt;]</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>dummy_dt</span>(<span class='no'>Species</span>,<span class='kw'>longname</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; Key: &lt;Sepal.Length, Sepal.Width, Petal.Length, Petal.Width&gt;
+#&gt;      Species_versicolor Species_virginica
+#&gt;                   &lt;num&gt;             &lt;num&gt;
+#&gt;   1:                  0                 0
+#&gt;   2:                  0                 0
+#&gt;   3:                  0                 0
+#&gt;   4:                  0                 0
+#&gt;   5:                  0                 0
+#&gt;  ---                                     
+#&gt; 146:                  0                 1
+#&gt; 147:                  0                 1
+#&gt; 148:                  0                 1
+#&gt; 149:                  0                 1
+#&gt; 150:                  0                 1</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>dummy_dt</span>(<span class='no'>Species</span>,<span class='kw'>longname</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; Key: &lt;Sepal.Length, Sepal.Width, Petal.Length, Petal.Width&gt;
 #&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width setosa versicolor
 #&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;num&gt;      &lt;num&gt;
 #&gt;   1:          4.3         3.0          1.1         0.1      1          0
@@ -226,26 +238,52 @@ features for statistical usage.</p>
 #&gt; 148:          7.7         3.0          6.1         2.3      0          0
 #&gt; 149:          7.7         3.8          6.7         2.2      0          0
 #&gt; 150:          7.9         3.8          6.4         2.0      0          0
-#&gt; 1 variable not shown: [virginica &lt;num&gt;]</div><div class='input'>
+#&gt;      virginica
+#&gt;          &lt;num&gt;
+#&gt;   1:         0
+#&gt;   2:         0
+#&gt;   3:         0
+#&gt;   4:         0
+#&gt;   5:         0
+#&gt;  ---          
+#&gt; 146:         1
+#&gt; 147:         1
+#&gt; 148:         1
+#&gt; 149:         1
+#&gt; 150:         1</div><div class='input'>
 <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>dummy_dt</span>(<span class='no'>vs</span>,<span class='no'>am</span>)</div><div class='output co'>#&gt; Key: &lt;mpg, cyl, disp, hp, drat, wt, qsec, gear, carb, vs_0, vs_1&gt;
-#&gt;      mpg   cyl  disp    hp  drat    wt  qsec  gear  carb  vs_0
-#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:  18.1     6   225   105  2.76 3.460 20.22     3     1     0
-#&gt; 2:  18.7     8   360   175  3.15 3.440 17.02     3     2     1
-#&gt; 3:  21.0     6   160   110  3.90 2.620 16.46     4     4     1
-#&gt; 4:  21.0     6   160   110  3.90 2.875 17.02     4     4     1
-#&gt; 5:  21.4     6   258   110  3.08 3.215 19.44     3     1     0
-#&gt; 6:  22.8     4   108    93  3.85 2.320 18.61     4     1     0
-#&gt; 3 variables not shown: [vs_1 &lt;num&gt;, am_0 &lt;num&gt;, am_1 &lt;num&gt;]</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>dummy_dt</span>(<span class='st'>"cyl|gear"</span>)</div><div class='output co'>#&gt; Key: &lt;mpg, disp, hp, drat, wt, qsec, vs, am, carb, cyl_4, cyl_6, cyl_8&gt;
-#&gt;      mpg  disp    hp  drat    wt  qsec    vs    am  carb cyl_4
-#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:  18.1   225   105  2.76 3.460 20.22     1     0     1     0
-#&gt; 2:  18.7   360   175  3.15 3.440 17.02     0     0     2     0
-#&gt; 3:  21.0   160   110  3.90 2.620 16.46     0     1     4     0
-#&gt; 4:  21.0   160   110  3.90 2.875 17.02     0     1     4     0
-#&gt; 5:  21.4   258   110  3.08 3.215 19.44     1     0     1     0
-#&gt; 6:  22.8   108    93  3.85 2.320 18.61     1     1     1     1
-#&gt; 4 variables not shown: [cyl_6 &lt;num&gt;, cyl_8 &lt;num&gt;, gear_3 &lt;num&gt;, gear_4 &lt;num&gt;]</div></pre>
+#&gt;      mpg   cyl  disp    hp  drat    wt  qsec  gear  carb  vs_0  vs_1  am_0
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt; 1:  18.1     6   225   105  2.76 3.460 20.22     3     1     0     1     1
+#&gt; 2:  18.7     8   360   175  3.15 3.440 17.02     3     2     1     0     1
+#&gt; 3:  21.0     6   160   110  3.90 2.620 16.46     4     4     1     0     0
+#&gt; 4:  21.0     6   160   110  3.90 2.875 17.02     4     4     1     0     0
+#&gt; 5:  21.4     6   258   110  3.08 3.215 19.44     3     1     0     1     1
+#&gt; 6:  22.8     4   108    93  3.85 2.320 18.61     4     1     0     1     0
+#&gt;     am_1
+#&gt;    &lt;num&gt;
+#&gt; 1:     0
+#&gt; 2:     0
+#&gt; 3:     1
+#&gt; 4:     1
+#&gt; 5:     0
+#&gt; 6:     1</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>dummy_dt</span>(<span class='st'>"cyl|gear"</span>)</div><div class='output co'>#&gt; Key: &lt;mpg, disp, hp, drat, wt, qsec, vs, am, carb, cyl_4, cyl_6, cyl_8&gt;
+#&gt;      mpg  disp    hp  drat    wt  qsec    vs    am  carb cyl_4 cyl_6 cyl_8
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt; 1:  18.1   225   105  2.76 3.460 20.22     1     0     1     0     1     0
+#&gt; 2:  18.7   360   175  3.15 3.440 17.02     0     0     2     0     0     1
+#&gt; 3:  21.0   160   110  3.90 2.620 16.46     0     1     4     0     1     0
+#&gt; 4:  21.0   160   110  3.90 2.875 17.02     0     1     4     0     1     0
+#&gt; 5:  21.4   258   110  3.08 3.215 19.44     1     0     1     0     1     0
+#&gt; 6:  22.8   108    93  3.85 2.320 18.61     1     1     1     1     0     0
+#&gt;    gear_3 gear_4
+#&gt;     &lt;num&gt;  &lt;num&gt;
+#&gt; 1:      1      0
+#&gt; 2:      1      0
+#&gt; 3:      0      1
+#&gt; 4:      0      1
+#&gt; 5:      1      0
+#&gt; 6:      0      1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

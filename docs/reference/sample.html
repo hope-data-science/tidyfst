@@ -209,147 +209,141 @@ For <code>sample_frac_dt</code>, the fraction of rows to select.</p></td>
     <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/sample_n.html'>sample_n</a></code>,<code><a href='https://dplyr.tidyverse.org/reference/sample_n.html'>sample_frac</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>sample_n_dt</span>(<span class='no'>mtcars</span>, <span class='fl'>10</span>)</div><div class='output co'>#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-#&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt;  1:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4
-#&gt;  2:  19.2     8 400.0   175  3.08 3.845 17.05     0     0     3
-#&gt;  3:  10.4     8 472.0   205  2.93 5.250 17.98     0     0     3
-#&gt;  4:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4
-#&gt;  5:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3
-#&gt;  6:  24.4     4 146.7    62  3.69 3.190 20.00     1     0     4
-#&gt;  7:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4
-#&gt;  8:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3
-#&gt;  9:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4
-#&gt; 10:  10.4     8 460.0   215  3.00 5.424 17.82     0     0     3
-#&gt; 1 variable not shown: [carb &lt;num&gt;]</div><div class='input'><span class='fu'>sample_n_dt</span>(<span class='no'>mtcars</span>, <span class='fl'>50</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-#&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt;  1:  17.8     6 167.6   123  3.92 3.440 18.90     1     0     4
-#&gt;  2:  27.3     4  79.0    66  4.08 1.935 18.90     1     1     4
-#&gt;  3:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4
-#&gt;  4:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4
-#&gt;  5:  15.2     8 304.0   150  3.15 3.435 17.30     0     0     3
-#&gt;  6:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4
-#&gt;  7:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4
-#&gt;  8:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3
-#&gt;  9:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3
-#&gt; 10:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4
-#&gt; 11:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4
-#&gt; 12:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3
-#&gt; 13:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3
-#&gt; 14:  15.5     8 318.0   150  2.76 3.520 16.87     0     0     3
-#&gt; 15:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4
-#&gt; 16:  19.2     8 400.0   175  3.08 3.845 17.05     0     0     3
-#&gt; 17:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4
-#&gt; 18:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4
-#&gt; 19:  24.4     4 146.7    62  3.69 3.190 20.00     1     0     4
-#&gt; 20:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4
-#&gt; 21:  30.4     4  95.1   113  3.77 1.513 16.90     1     1     5
-#&gt; 22:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4
-#&gt; 23:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3
-#&gt; 24:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3
-#&gt; 25:  15.5     8 318.0   150  2.76 3.520 16.87     0     0     3
-#&gt; 26:  22.8     4 140.8    95  3.92 3.150 22.90     1     0     4
-#&gt; 27:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4
-#&gt; 28:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4
-#&gt; 29:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3
-#&gt; 30:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3
-#&gt; 31:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3
-#&gt; 32:  27.3     4  79.0    66  4.08 1.935 18.90     1     1     4
-#&gt; 33:  30.4     4  95.1   113  3.77 1.513 16.90     1     1     5
-#&gt; 34:  15.5     8 318.0   150  2.76 3.520 16.87     0     0     3
-#&gt; 35:  15.2     8 275.8   180  3.07 3.780 18.00     0     0     3
-#&gt; 36:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3
-#&gt; 37:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3
-#&gt; 38:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4
-#&gt; 39:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3
-#&gt; 40:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3
-#&gt; 41:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3
-#&gt; 42:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3
-#&gt; 43:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3
-#&gt; 44:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3
-#&gt; 45:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4
-#&gt; 46:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4
-#&gt; 47:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3
-#&gt; 48:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4
-#&gt; 49:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4
-#&gt; 50:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3
-#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-#&gt; 1 variable not shown: [carb &lt;num&gt;]</div><div class='input'><span class='fu'>sample_frac_dt</span>(<span class='no'>mtcars</span>, <span class='fl'>0.1</span>)</div><div class='output co'>#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:  15.2     8 304.0   150  3.15 3.435 17.30     0     0     3
-#&gt; 2:  17.8     6 167.6   123  3.92 3.440 18.90     1     0     4
-#&gt; 3:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4
-#&gt; 1 variable not shown: [carb &lt;num&gt;]</div><div class='input'><span class='fu'>sample_frac_dt</span>(<span class='no'>mtcars</span>, <span class='fl'>1.5</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-#&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt;  1:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3
-#&gt;  2:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3
-#&gt;  3:  15.2     8 304.0   150  3.15 3.435 17.30     0     0     3
-#&gt;  4:  13.3     8 350.0   245  3.73 3.840 15.41     0     0     3
-#&gt;  5:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4
-#&gt;  6:  24.4     4 146.7    62  3.69 3.190 20.00     1     0     4
-#&gt;  7:  22.8     4 140.8    95  3.92 3.150 22.90     1     0     4
-#&gt;  8:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4
-#&gt;  9:  22.8     4 140.8    95  3.92 3.150 22.90     1     0     4
-#&gt; 10:  26.0     4 120.3    91  4.43 2.140 16.70     0     1     5
-#&gt; 11:  15.8     8 351.0   264  4.22 3.170 14.50     0     1     5
-#&gt; 12:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3
-#&gt; 13:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3
-#&gt; 14:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3
-#&gt; 15:  19.2     8 400.0   175  3.08 3.845 17.05     0     0     3
-#&gt; 16:  21.5     4 120.1    97  3.70 2.465 20.01     1     0     3
-#&gt; 17:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4
-#&gt; 18:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3
-#&gt; 19:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4
-#&gt; 20:  15.2     8 304.0   150  3.15 3.435 17.30     0     0     3
-#&gt; 21:  33.9     4  71.1    65  4.22 1.835 19.90     1     1     4
-#&gt; 22:  17.8     6 167.6   123  3.92 3.440 18.90     1     0     4
-#&gt; 23:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3
-#&gt; 24:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4
-#&gt; 25:  22.8     4 140.8    95  3.92 3.150 22.90     1     0     4
-#&gt; 26:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4
-#&gt; 27:  19.7     6 145.0   175  3.62 2.770 15.50     0     1     5
-#&gt; 28:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4
-#&gt; 29:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3
-#&gt; 30:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4
-#&gt; 31:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4
-#&gt; 32:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3
-#&gt; 33:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4
-#&gt; 34:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3
-#&gt; 35:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3
-#&gt; 36:  10.4     8 460.0   215  3.00 5.424 17.82     0     0     3
-#&gt; 37:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3
-#&gt; 38:  21.5     4 120.1    97  3.70 2.465 20.01     1     0     3
-#&gt; 39:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3
-#&gt; 40:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4
-#&gt; 41:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4
-#&gt; 42:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3
-#&gt; 43:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3
-#&gt; 44:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3
-#&gt; 45:  26.0     4 120.3    91  4.43 2.140 16.70     0     1     5
-#&gt; 46:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3
-#&gt; 47:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3
-#&gt; 48:  17.8     6 167.6   123  3.92 3.440 18.90     1     0     4
-#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-#&gt; 1 variable not shown: [carb &lt;num&gt;]</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>sample_n_dt</span>(<span class='no'>mtcars</span>, <span class='fl'>10</span>)</div><div class='output co'>#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt;  1:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4     4
+#&gt;  2:  19.2     8 400.0   175  3.08 3.845 17.05     0     0     3     2
+#&gt;  3:  10.4     8 472.0   205  2.93 5.250 17.98     0     0     3     4
+#&gt;  4:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4     1
+#&gt;  5:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3     2
+#&gt;  6:  24.4     4 146.7    62  3.69 3.190 20.00     1     0     4     2
+#&gt;  7:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4     2
+#&gt;  8:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3     3
+#&gt;  9:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4     2
+#&gt; 10:  10.4     8 460.0   215  3.00 5.424 17.82     0     0     3     4</div><div class='input'><span class='fu'>sample_n_dt</span>(<span class='no'>mtcars</span>, <span class='fl'>50</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt;  1:  17.8     6 167.6   123  3.92 3.440 18.90     1     0     4     4
+#&gt;  2:  27.3     4  79.0    66  4.08 1.935 18.90     1     1     4     1
+#&gt;  3:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4     1
+#&gt;  4:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4     4
+#&gt;  5:  15.2     8 304.0   150  3.15 3.435 17.30     0     0     3     2
+#&gt;  6:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4     4
+#&gt;  7:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4     1
+#&gt;  8:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3     1
+#&gt;  9:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3     1
+#&gt; 10:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4     4
+#&gt; 11:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4     4
+#&gt; 12:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3     4
+#&gt; 13:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3     1
+#&gt; 14:  15.5     8 318.0   150  2.76 3.520 16.87     0     0     3     2
+#&gt; 15:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4     2
+#&gt; 16:  19.2     8 400.0   175  3.08 3.845 17.05     0     0     3     2
+#&gt; 17:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4     4
+#&gt; 18:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4     2
+#&gt; 19:  24.4     4 146.7    62  3.69 3.190 20.00     1     0     4     2
+#&gt; 20:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4     4
+#&gt; 21:  30.4     4  95.1   113  3.77 1.513 16.90     1     1     5     2
+#&gt; 22:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4     4
+#&gt; 23:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3     4
+#&gt; 24:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3     3
+#&gt; 25:  15.5     8 318.0   150  2.76 3.520 16.87     0     0     3     2
+#&gt; 26:  22.8     4 140.8    95  3.92 3.150 22.90     1     0     4     2
+#&gt; 27:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4     4
+#&gt; 28:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4     4
+#&gt; 29:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3     1
+#&gt; 30:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3     4
+#&gt; 31:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3     3
+#&gt; 32:  27.3     4  79.0    66  4.08 1.935 18.90     1     1     4     1
+#&gt; 33:  30.4     4  95.1   113  3.77 1.513 16.90     1     1     5     2
+#&gt; 34:  15.5     8 318.0   150  2.76 3.520 16.87     0     0     3     2
+#&gt; 35:  15.2     8 275.8   180  3.07 3.780 18.00     0     0     3     3
+#&gt; 36:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3     2
+#&gt; 37:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3     4
+#&gt; 38:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4     2
+#&gt; 39:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3     3
+#&gt; 40:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3     4
+#&gt; 41:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3     2
+#&gt; 42:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3     4
+#&gt; 43:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3     3
+#&gt; 44:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3     1
+#&gt; 45:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4     4
+#&gt; 46:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4     4
+#&gt; 47:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3     3
+#&gt; 48:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4     1
+#&gt; 49:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4     2
+#&gt; 50:  18.7     8 360.0   175  3.15 3.440 17.02     0     0     3     2
+#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</div><div class='input'><span class='fu'>sample_frac_dt</span>(<span class='no'>mtcars</span>, <span class='fl'>0.1</span>)</div><div class='output co'>#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt; 1:  15.2     8 304.0   150  3.15 3.435 17.30     0     0     3     2
+#&gt; 2:  17.8     6 167.6   123  3.92 3.440 18.90     1     0     4     4
+#&gt; 3:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4     4</div><div class='input'><span class='fu'>sample_frac_dt</span>(<span class='no'>mtcars</span>, <span class='fl'>1.5</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt;  1:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3     1
+#&gt;  2:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3     4
+#&gt;  3:  15.2     8 304.0   150  3.15 3.435 17.30     0     0     3     2
+#&gt;  4:  13.3     8 350.0   245  3.73 3.840 15.41     0     0     3     4
+#&gt;  5:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4     4
+#&gt;  6:  24.4     4 146.7    62  3.69 3.190 20.00     1     0     4     2
+#&gt;  7:  22.8     4 140.8    95  3.92 3.150 22.90     1     0     4     2
+#&gt;  8:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4     2
+#&gt;  9:  22.8     4 140.8    95  3.92 3.150 22.90     1     0     4     2
+#&gt; 10:  26.0     4 120.3    91  4.43 2.140 16.70     0     1     5     2
+#&gt; 11:  15.8     8 351.0   264  4.22 3.170 14.50     0     1     5     4
+#&gt; 12:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3     1
+#&gt; 13:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3     3
+#&gt; 14:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3     3
+#&gt; 15:  19.2     8 400.0   175  3.08 3.845 17.05     0     0     3     2
+#&gt; 16:  21.5     4 120.1    97  3.70 2.465 20.01     1     0     3     1
+#&gt; 17:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4     1
+#&gt; 18:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3     3
+#&gt; 19:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4     1
+#&gt; 20:  15.2     8 304.0   150  3.15 3.435 17.30     0     0     3     2
+#&gt; 21:  33.9     4  71.1    65  4.22 1.835 19.90     1     1     4     1
+#&gt; 22:  17.8     6 167.6   123  3.92 3.440 18.90     1     0     4     4
+#&gt; 23:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3     1
+#&gt; 24:  21.0     6 160.0   110  3.90 2.875 17.02     0     1     4     4
+#&gt; 25:  22.8     4 140.8    95  3.92 3.150 22.90     1     0     4     2
+#&gt; 26:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4     1
+#&gt; 27:  19.7     6 145.0   175  3.62 2.770 15.50     0     1     5     6
+#&gt; 28:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4     2
+#&gt; 29:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3     3
+#&gt; 30:  30.4     4  75.7    52  4.93 1.615 18.52     1     1     4     2
+#&gt; 31:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4     2
+#&gt; 32:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3     4
+#&gt; 33:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4     4
+#&gt; 34:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3     3
+#&gt; 35:  17.3     8 275.8   180  3.07 3.730 17.60     0     0     3     3
+#&gt; 36:  10.4     8 460.0   215  3.00 5.424 17.82     0     0     3     4
+#&gt; 37:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3     4
+#&gt; 38:  21.5     4 120.1    97  3.70 2.465 20.01     1     0     3     1
+#&gt; 39:  21.4     6 258.0   110  3.08 3.215 19.44     1     0     3     1
+#&gt; 40:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4     4
+#&gt; 41:  22.8     4 108.0    93  3.85 2.320 18.61     1     1     4     1
+#&gt; 42:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3     4
+#&gt; 43:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3     4
+#&gt; 44:  18.1     6 225.0   105  2.76 3.460 20.22     1     0     3     1
+#&gt; 45:  26.0     4 120.3    91  4.43 2.140 16.70     0     1     5     2
+#&gt; 46:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3     3
+#&gt; 47:  14.3     8 360.0   245  3.21 3.570 15.84     0     0     3     4
+#&gt; 48:  17.8     6 167.6   123  3.92 3.440 18.90     1     0     4     4
+#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</div><div class='input'>
 
-<span class='fu'>sample_dt</span>(<span class='no'>mtcars</span>,<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>10</span>)</div><div class='output co'>#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-#&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt;  1:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4
-#&gt;  2:  24.4     4 146.7    62  3.69 3.190 20.00     1     0     4
-#&gt;  3:  15.5     8 318.0   150  2.76 3.520 16.87     0     0     3
-#&gt;  4:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3
-#&gt;  5:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3
-#&gt;  6:  33.9     4  71.1    65  4.22 1.835 19.90     1     1     4
-#&gt;  7:  10.4     8 472.0   205  2.93 5.250 17.98     0     0     3
-#&gt;  8:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4
-#&gt;  9:  30.4     4  95.1   113  3.77 1.513 16.90     1     1     5
-#&gt; 10:  19.7     6 145.0   175  3.62 2.770 15.50     0     1     5
-#&gt; 1 variable not shown: [carb &lt;num&gt;]</div><div class='input'><span class='fu'>sample_dt</span>(<span class='no'>mtcars</span>,<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)</div><div class='output co'>#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear
-#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:  21.5     4 120.1    97  3.70 2.465 20.01     1     0     3
-#&gt; 2:  27.3     4  79.0    66  4.08 1.935 18.90     1     1     4
-#&gt; 3:  15.8     8 351.0   264  4.22 3.170 14.50     0     1     5
-#&gt; 1 variable not shown: [carb &lt;num&gt;]</div><div class='input'>
+<span class='fu'>sample_dt</span>(<span class='no'>mtcars</span>,<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>10</span>)</div><div class='output co'>#&gt;       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt;  1:  19.2     6 167.6   123  3.92 3.440 18.30     1     0     4     4
+#&gt;  2:  24.4     4 146.7    62  3.69 3.190 20.00     1     0     4     2
+#&gt;  3:  15.5     8 318.0   150  2.76 3.520 16.87     0     0     3     2
+#&gt;  4:  14.7     8 440.0   230  3.23 5.345 17.42     0     0     3     4
+#&gt;  5:  16.4     8 275.8   180  3.07 4.070 17.40     0     0     3     3
+#&gt;  6:  33.9     4  71.1    65  4.22 1.835 19.90     1     1     4     1
+#&gt;  7:  10.4     8 472.0   205  2.93 5.250 17.98     0     0     3     4
+#&gt;  8:  32.4     4  78.7    66  4.08 2.200 19.47     1     1     4     1
+#&gt;  9:  30.4     4  95.1   113  3.77 1.513 16.90     1     1     5     2
+#&gt; 10:  19.7     6 145.0   175  3.62 2.770 15.50     0     1     5     6</div><div class='input'><span class='fu'>sample_dt</span>(<span class='no'>mtcars</span>,<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)</div><div class='output co'>#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt; 1:  21.5     4 120.1    97  3.70 2.465 20.01     1     0     3     1
+#&gt; 2:  27.3     4  79.0    66  4.08 1.935 18.90     1     1     4     1
+#&gt; 3:  15.8     8 351.0   264  4.22 3.170 14.50     0     1     5     4</div><div class='input'>
 
 <span class='co'># sample by group(s)</span>
 <span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>sample_n_dt</span>(<span class='fl'>2</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"Species"</span>)</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width
@@ -407,22 +401,20 @@ For <code>sample_frac_dt</code>, the fraction of rows to select.</p></td>
 #&gt; 44:  virginica          7.7         2.8          6.7         2.0
 #&gt; 45:  virginica          5.8         2.8          5.1         2.4
 #&gt;        Species Sepal.Length Sepal.Width Petal.Length Petal.Width</div><div class='input'>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>sample_n_dt</span>(<span class='fl'>1</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"cyl,vs"</span>)</div><div class='output co'>#&gt;      cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear
-#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:     6     0  19.7 145.0   175  3.62  2.77 15.50     1     5
-#&gt; 2:     4     1  32.4  78.7    66  4.08  2.20 19.47     1     4
-#&gt; 3:     6     1  19.2 167.6   123  3.92  3.44 18.30     0     4
-#&gt; 4:     8     0  18.7 360.0   175  3.15  3.44 17.02     0     3
-#&gt; 5:     4     0  26.0 120.3    91  4.43  2.14 16.70     1     5
-#&gt; 1 variable not shown: [carb &lt;num&gt;]</div><div class='input'><span class='co'># equals to</span>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>sample_n_dt</span>(<span class='fl'>1</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cyl"</span>,<span class='st'>"vs"</span>))</div><div class='output co'>#&gt;      cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear
-#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:     6     0  21.0 160.0   110  3.90 2.620 16.46     1     4
-#&gt; 2:     4     1  30.4  95.1   113  3.77 1.513 16.90     1     5
-#&gt; 3:     6     1  21.4 258.0   110  3.08 3.215 19.44     0     3
-#&gt; 4:     8     0  15.2 304.0   150  3.15 3.435 17.30     0     3
-#&gt; 5:     4     0  26.0 120.3    91  4.43 2.140 16.70     1     5
-#&gt; 1 variable not shown: [carb &lt;num&gt;]</div></pre>
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>sample_n_dt</span>(<span class='fl'>1</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"cyl,vs"</span>)</div><div class='output co'>#&gt;      cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear  carb
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt; 1:     6     0  19.7 145.0   175  3.62  2.77 15.50     1     5     6
+#&gt; 2:     4     1  32.4  78.7    66  4.08  2.20 19.47     1     4     1
+#&gt; 3:     6     1  19.2 167.6   123  3.92  3.44 18.30     0     4     4
+#&gt; 4:     8     0  18.7 360.0   175  3.15  3.44 17.02     0     3     2
+#&gt; 5:     4     0  26.0 120.3    91  4.43  2.14 16.70     1     5     2</div><div class='input'><span class='co'># equals to</span>
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>sample_n_dt</span>(<span class='fl'>1</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cyl"</span>,<span class='st'>"vs"</span>))</div><div class='output co'>#&gt;      cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear  carb
+#&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
+#&gt; 1:     6     0  21.0 160.0   110  3.90 2.620 16.46     1     4     4
+#&gt; 2:     4     1  30.4  95.1   113  3.77 1.513 16.90     1     5     2
+#&gt; 3:     6     1  21.4 258.0   110  3.08 3.215 19.44     0     3     1
+#&gt; 4:     8     0  15.2 304.0   150  3.15 3.435 17.30     0     3     2
+#&gt; 5:     4     0  26.0 120.3    91  4.43 2.140 16.70     1     5     2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
