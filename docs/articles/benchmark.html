@@ -135,7 +135,7 @@
 <span class="co">#&gt;     between, first, last</span>
 <span class="co">#&gt; The following objects are masked from 'package:tidyfst':</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;     cummean, nth</span>
+<span class="co">#&gt;     between, cummean, nth</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     filter, lag</span>
@@ -214,9 +214,9 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table   1.95ms      2ms    467.      2.21MB      0  </span>
-<span class="co">#&gt; 2 tidyfst      2.09ms   2.14ms    462.    659.23KB      0  </span>
-<span class="co">#&gt; 3 dplyr      264.77ms 279.67ms      3.63     4.1MB     17.0</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table   1.92ms   2.09ms    433.      2.21MB      0  </span>
+<span class="co">#&gt; 2 tidyfst      2.19ms   2.25ms    418.    659.23KB      0  </span>
+<span class="co">#&gt; 3 dplyr      287.36ms 305.41ms      3.23    4.07MB     15.2</span></pre></body></html></div>
 <p>We could find that spent time of tidyfst and data.table are quite similar, but much less than dplyr.</p>
 </div>
 <div id="q2" class="section level2">
@@ -250,9 +250,9 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table  899.8us   1.09ms      863.    92.9KB      0  </span>
-<span class="co">#&gt; 2 tidyfst      1.12ms   1.26ms      754.    93.1KB      0  </span>
-<span class="co">#&gt; 3 dplyr        4.79ms   4.97ms      200.   299.7KB     22.2</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table  871.4us  951.9us      975.    92.9KB      0  </span>
+<span class="co">#&gt; 2 tidyfst         1ms   1.06ms      933.    93.1KB      0  </span>
+<span class="co">#&gt; 3 dplyr        4.27ms    4.6ms      216.   299.7KB     23.9</span></pre></body></html></div>
 </div>
 <div id="q3" class="section level2">
 <h2 class="hasAnchor">
@@ -273,9 +273,9 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table   2.64ms   3.08ms     323.   396.38KB     35.9</span>
-<span class="co">#&gt; 2 tidyfst      3.76ms   4.06ms     248.   842.55KB      0  </span>
-<span class="co">#&gt; 3 dplyr       12.98ms  14.13ms      69.6    1.41MB     17.4</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table   2.63ms      3ms     313.   396.38KB      0  </span>
+<span class="co">#&gt; 2 tidyfst      3.35ms   3.71ms     266.   842.55KB      0  </span>
+<span class="co">#&gt; 3 dplyr       12.79ms  15.58ms      61.1    1.45MB     26.2</span></pre></body></html></div>
 </div>
 <div id="q4" class="section level2">
 <h2 class="hasAnchor">
@@ -310,9 +310,9 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table   1.22ms   1.27ms     733.      334KB      0  </span>
-<span class="co">#&gt; 2 tidyfst      4.17ms   4.36ms     225.      270KB      0  </span>
-<span class="co">#&gt; 3 dplyr       68.05ms  71.51ms      13.3     535KB     17.3</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table   1.24ms   1.33ms     699.      334KB      0  </span>
+<span class="co">#&gt; 2 tidyfst       3.8ms   4.15ms     241.      278KB     26.8</span>
+<span class="co">#&gt; 3 dplyr       15.96ms   17.8ms      55.7     538KB     13.9</span></pre></body></html></div>
 <p>Take a look at the performance, <em>tidyfst</em> still lies between <em>data.table</em> and <em>dplyr</em>.</p>
 </div>
 <div id="q5" class="section level2">
@@ -348,9 +348,9 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 data.table   2.67ms    2.9ms    336.      1.02MB      0  </span>
-<span class="co">#&gt; 2 tidyfst      3.01ms   3.46ms    280.      1.02MB      0  </span>
-<span class="co">#&gt; 3 dplyr      207.31ms 215.73ms      4.44    4.64MB     12.4</span></pre></body></html></div>
+<span class="co">#&gt; 1 data.table   3.22ms   4.44ms    221.      1.02MB      0  </span>
+<span class="co">#&gt; 2 tidyfst      4.04ms   4.33ms    222.      1.02MB      0  </span>
+<span class="co">#&gt; 3 dplyr       194.8ms 221.45ms      4.34    4.64MB     11.7</span></pre></body></html></div>
 </div>
 <div id="last-words" class="section level2">
 <h2 class="hasAnchor">
@@ -378,15 +378,15 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] bench_1.1.1       dplyr_1.0.0       data.table_1.13.0 tidyfst_0.9.9    </span>
+<span class="co">#&gt; [1] bench_1.1.1       dplyr_1.0.1       data.table_1.13.0 tidyfst_0.9.9    </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.4.6     compiler_4.0.2   pillar_1.4.4     tools_4.0.2     </span>
+<span class="co">#&gt;  [1] Rcpp_1.0.5       compiler_4.0.2   pillar_1.4.6     tools_4.0.2     </span>
 <span class="co">#&gt;  [5] digest_0.6.25    evaluate_0.14    memoise_1.1.0    lifecycle_0.2.0 </span>
-<span class="co">#&gt;  [9] tibble_3.0.1     pkgconfig_2.0.3  rlang_0.4.6      cli_2.0.2       </span>
+<span class="co">#&gt;  [9] tibble_3.0.3     pkgconfig_2.0.3  rlang_0.4.7      cli_2.0.2       </span>
 <span class="co">#&gt; [13] rstudioapi_0.11  yaml_2.2.1       parallel_4.0.2   pkgdown_1.5.1   </span>
-<span class="co">#&gt; [17] xfun_0.15        stringr_1.4.0    knitr_1.29       desc_1.2.0      </span>
-<span class="co">#&gt; [21] generics_0.0.2   fs_1.4.1         vctrs_0.3.1      rprojroot_1.3-2 </span>
+<span class="co">#&gt; [17] xfun_0.16        stringr_1.4.0    knitr_1.29       desc_1.2.0      </span>
+<span class="co">#&gt; [21] generics_0.0.2   fs_1.4.1         vctrs_0.3.2      rprojroot_1.3-2 </span>
 <span class="co">#&gt; [25] tidyselect_1.1.0 glue_1.4.1       R6_2.4.1         fansi_0.4.1     </span>
 <span class="co">#&gt; [29] profmem_0.5.0    rmarkdown_2.3    purrr_0.3.4      magrittr_1.5    </span>
 <span class="co">#&gt; [33] backports_1.1.8  htmltools_0.5.0  ellipsis_0.3.1   MASS_7.3-51.6   </span>

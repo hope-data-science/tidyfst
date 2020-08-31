@@ -159,7 +159,19 @@
 <span class="co">#&gt;  99998:  2.00      Good     F     SI1  63.0    64 17869  7.67  7.76  4.86</span>
 <span class="co">#&gt;  99999:  1.00   Premium     H     VS2  59.7    59  5139  6.57  6.52  3.91</span>
 <span class="co">#&gt; 100000:  0.30     Ideal     G    VVS2  60.6    57   878  4.35  4.33  2.63</span>
-<span class="co">#&gt; 1 variable not shown: [dt &lt;Date&gt;]</span></pre></body></html></div>
+<span class="co">#&gt;                 dt</span>
+<span class="co">#&gt;             &lt;Date&gt;</span>
+<span class="co">#&gt;      1: 2016-09-29</span>
+<span class="co">#&gt;      2: 2011-10-22</span>
+<span class="co">#&gt;      3: 2013-03-06</span>
+<span class="co">#&gt;      4: 2014-06-11</span>
+<span class="co">#&gt;      5: 2015-02-23</span>
+<span class="co">#&gt;     ---           </span>
+<span class="co">#&gt;  99996: 2013-11-22</span>
+<span class="co">#&gt;  99997: 2014-11-10</span>
+<span class="co">#&gt;  99998: 2019-02-21</span>
+<span class="co">#&gt;  99999: 2017-01-15</span>
+<span class="co">#&gt; 100000: 2019-05-19</span></pre></body></html></div>
 </div>
 <div id="基础" class="section level2">
 <h2 class="hasAnchor">
@@ -183,7 +195,19 @@
 <span class="co">#&gt;  99998:  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19  2.58</span>
 <span class="co">#&gt;  99999:  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30  2.66</span>
 <span class="co">#&gt; 100000:  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40  2.74</span>
-<span class="co">#&gt; 1 variable not shown: [dt &lt;Date&gt;]</span></pre></body></html></div>
+<span class="co">#&gt;                 dt</span>
+<span class="co">#&gt;             &lt;Date&gt;</span>
+<span class="co">#&gt;      1: 2011-01-01</span>
+<span class="co">#&gt;      2: 2011-01-01</span>
+<span class="co">#&gt;      3: 2011-01-01</span>
+<span class="co">#&gt;      4: 2011-01-01</span>
+<span class="co">#&gt;      5: 2011-01-01</span>
+<span class="co">#&gt;     ---           </span>
+<span class="co">#&gt;  99996: 2020-01-01</span>
+<span class="co">#&gt;  99997: 2020-01-01</span>
+<span class="co">#&gt;  99998: 2020-01-01</span>
+<span class="co">#&gt;  99999: 2020-01-01</span>
+<span class="co">#&gt; 100000: 2020-01-01</span></pre></body></html></div>
 <p>那么，现在dat1的数据就按照日期排好序了。</p>
 </div>
 <div id="聚合" class="section level3">
@@ -202,7 +226,7 @@
       <span class="kw">max_price</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">price</span>, <span class="kw">na.rm</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
     )
 })
-<span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.020s cpu)"</span>
+<span class="co">#&gt; [1] "Finished in 0.010s elapsed (0.020s cpu)"</span>
 <span class="no">r1_1</span>
 <span class="co">#&gt;           cut color mean_price median_price max_price</span>
 <span class="co">#&gt;         &lt;ord&gt; &lt;ord&gt;      &lt;num&gt;        &lt;num&gt;     &lt;int&gt;</span>
@@ -256,22 +280,34 @@
       <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fl">1</span>)
     )
 })
-<span class="co">#&gt; [1] "Finished in 0.030s elapsed (0.030s cpu)"</span>
+<span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.020s cpu)"</span>
 <span class="no">r1_2</span>
-<span class="co">#&gt;               dt carat       cut color clarity depth table price     x</span>
-<span class="co">#&gt;           &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span>
-<span class="co">#&gt;    1: 2011-01-01  2.10   Premium     J     VS2  58.3    54 12401  8.49</span>
-<span class="co">#&gt;    2: 2011-01-02  2.02   Premium     I     VS2  59.0    59 17893  8.34</span>
-<span class="co">#&gt;    3: 2011-01-03  1.61     Ideal     F     VS1  62.0    55 17414  7.55</span>
-<span class="co">#&gt;    4: 2011-01-04  2.19   Premium     E     SI2  62.4    61 18232  8.31</span>
-<span class="co">#&gt;    5: 2011-01-05  2.05   Premium     H     VS2  60.7    61 16235  8.25</span>
-<span class="co">#&gt;   ---                                                                 </span>
-<span class="co">#&gt; 3284: 2019-12-28  2.22     Ideal     J     SI2  62.8    57 13703  8.33</span>
-<span class="co">#&gt; 3285: 2019-12-29  2.10 Very Good     J     VS2  61.3    59 14229  8.21</span>
-<span class="co">#&gt; 3286: 2019-12-30  1.55 Very Good     H     VS2  63.3    56 10546  7.38</span>
-<span class="co">#&gt; 3287: 2019-12-31  1.51 Very Good     F    VVS2  63.1    56 17317  7.32</span>
-<span class="co">#&gt; 3288: 2020-01-01  2.04   Premium     J     VS2  63.0    58 13734  8.02</span>
-<span class="co">#&gt; 2 variables not shown: [y &lt;num&gt;, z &lt;num&gt;]</span></pre></body></html></div>
+<span class="co">#&gt;               dt carat       cut color clarity depth table price     x     y</span>
+<span class="co">#&gt;           &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span>
+<span class="co">#&gt;    1: 2011-01-01  2.10   Premium     J     VS2  58.3    54 12401  8.49  8.45</span>
+<span class="co">#&gt;    2: 2011-01-02  2.02   Premium     I     VS2  59.0    59 17893  8.34  8.27</span>
+<span class="co">#&gt;    3: 2011-01-03  1.61     Ideal     F     VS1  62.0    55 17414  7.55  7.52</span>
+<span class="co">#&gt;    4: 2011-01-04  2.19   Premium     E     SI2  62.4    61 18232  8.31  8.23</span>
+<span class="co">#&gt;    5: 2011-01-05  2.05   Premium     H     VS2  60.7    61 16235  8.25  8.13</span>
+<span class="co">#&gt;   ---                                                                       </span>
+<span class="co">#&gt; 3284: 2019-12-28  2.22     Ideal     J     SI2  62.8    57 13703  8.33  8.29</span>
+<span class="co">#&gt; 3285: 2019-12-29  2.10 Very Good     J     VS2  61.3    59 14229  8.21  8.27</span>
+<span class="co">#&gt; 3286: 2019-12-30  1.55 Very Good     H     VS2  63.3    56 10546  7.38  7.32</span>
+<span class="co">#&gt; 3287: 2019-12-31  1.51 Very Good     F    VVS2  63.1    56 17317  7.32  7.26</span>
+<span class="co">#&gt; 3288: 2020-01-01  2.04   Premium     J     VS2  63.0    58 13734  8.02  7.99</span>
+<span class="co">#&gt;           z</span>
+<span class="co">#&gt;       &lt;num&gt;</span>
+<span class="co">#&gt;    1:  4.94</span>
+<span class="co">#&gt;    2:  4.90</span>
+<span class="co">#&gt;    3:  4.67</span>
+<span class="co">#&gt;    4:  5.16</span>
+<span class="co">#&gt;    5:  4.97</span>
+<span class="co">#&gt;   ---      </span>
+<span class="co">#&gt; 3284:  5.22</span>
+<span class="co">#&gt; 3285:  5.05</span>
+<span class="co">#&gt; 3286:  4.65</span>
+<span class="co">#&gt; 3287:  4.60</span>
+<span class="co">#&gt; 3288:  5.04</span></pre></body></html></div>
 </div>
 </div>
 <div id="join" class="section level3">
@@ -285,23 +321,35 @@
   <span class="no">r2_1</span> <span class="kw">&lt;-</span> <span class="no">dat1</span> <span class="kw">%&gt;%</span>
     <span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">dat2</span>,<span class="kw">by</span> <span class="kw">=</span> <span class="st">"dt"</span>)
 })
-<span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.010s cpu)"</span>
+<span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.020s cpu)"</span>
 <span class="no">r2_1</span>
 <span class="co">#&gt; Key: &lt;dt&gt;</span>
-<span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span>
-<span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span>
-<span class="co">#&gt;      1: 2011-01-01  0.34 Very Good     H     VS2  62.4  60.0   537  4.41</span>
-<span class="co">#&gt;      2: 2011-01-01  0.30      Good     G     VS1  63.6  57.0   776  4.26</span>
-<span class="co">#&gt;      3: 2011-01-01  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69</span>
-<span class="co">#&gt;      4: 2011-01-01  1.00   Premium     E     SI1  59.1  58.0  4805  6.52</span>
-<span class="co">#&gt;      5: 2011-01-01  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92</span>
-<span class="co">#&gt;     ---                                                                 </span>
-<span class="co">#&gt;  99996: 2020-01-01  0.32     Ideal     J     VS1  62.0  54.7   442  4.39</span>
-<span class="co">#&gt;  99997: 2020-01-01  0.33     Ideal     G     VS2  62.5  57.0   743  4.41</span>
-<span class="co">#&gt;  99998: 2020-01-01  0.28 Very Good     I     VS2  61.9  57.0   379  4.16</span>
-<span class="co">#&gt;  99999: 2020-01-01  0.30     Ideal     G     VS2  62.0  56.0   556  4.28</span>
-<span class="co">#&gt; 100000: 2020-01-01  0.32     Ideal     F     VS2  62.4  54.0   645  4.38</span>
-<span class="co">#&gt; 3 variables not shown: [y &lt;num&gt;, z &lt;num&gt;, price1 &lt;int&gt;]</span></pre></body></html></div>
+<span class="co">#&gt;                 dt carat       cut color clarity depth table price     x     y</span>
+<span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span>
+<span class="co">#&gt;      1: 2011-01-01  0.34 Very Good     H     VS2  62.4  60.0   537  4.41  4.44</span>
+<span class="co">#&gt;      2: 2011-01-01  0.30      Good     G     VS1  63.6  57.0   776  4.26  4.23</span>
+<span class="co">#&gt;      3: 2011-01-01  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69  6.66</span>
+<span class="co">#&gt;      4: 2011-01-01  1.00   Premium     E     SI1  59.1  58.0  4805  6.52  6.44</span>
+<span class="co">#&gt;      5: 2011-01-01  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92  5.03</span>
+<span class="co">#&gt;     ---                                                                       </span>
+<span class="co">#&gt;  99996: 2020-01-01  0.32     Ideal     J     VS1  62.0  54.7   442  4.39  4.42</span>
+<span class="co">#&gt;  99997: 2020-01-01  0.33     Ideal     G     VS2  62.5  57.0   743  4.41  4.39</span>
+<span class="co">#&gt;  99998: 2020-01-01  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19</span>
+<span class="co">#&gt;  99999: 2020-01-01  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30</span>
+<span class="co">#&gt; 100000: 2020-01-01  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40</span>
+<span class="co">#&gt;             z price1</span>
+<span class="co">#&gt;         &lt;num&gt;  &lt;int&gt;</span>
+<span class="co">#&gt;      1:  2.76     NA</span>
+<span class="co">#&gt;      2:  2.70     NA</span>
+<span class="co">#&gt;      3:  4.10     NA</span>
+<span class="co">#&gt;      4:  3.83     NA</span>
+<span class="co">#&gt;      5:  3.28     NA</span>
+<span class="co">#&gt;     ---             </span>
+<span class="co">#&gt;  99996:  2.73     NA</span>
+<span class="co">#&gt;  99997:  2.75     NA</span>
+<span class="co">#&gt;  99998:  2.58     NA</span>
+<span class="co">#&gt;  99999:  2.66     NA</span>
+<span class="co">#&gt; 100000:  2.74     NA</span></pre></body></html></div>
 </div>
 <div id="多重join" class="section level4">
 <h4 class="hasAnchor">
@@ -310,23 +358,35 @@
   <span class="no">mymerge</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>, <span class="no">y</span>) <span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"dt"</span>)
   <span class="no">r2_2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Reduce</a></span>(<span class="no">mymerge</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">dat1</span>, <span class="no">dat2</span>, <span class="no">dat3</span>))
 })
-<span class="co">#&gt; [1] "Finished in 0.010s elapsed (0.020s cpu)"</span>
+<span class="co">#&gt; [1] "Finished in 0.030s elapsed (0.030s cpu)"</span>
 <span class="no">r2_2</span>
 <span class="co">#&gt; Key: &lt;dt&gt;</span>
-<span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span>
-<span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span>
-<span class="co">#&gt;      1: 2011-01-01  0.34 Very Good     H     VS2  62.4  60.0   537  4.41</span>
-<span class="co">#&gt;      2: 2011-01-01  0.30      Good     G     VS1  63.6  57.0   776  4.26</span>
-<span class="co">#&gt;      3: 2011-01-01  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69</span>
-<span class="co">#&gt;      4: 2011-01-01  1.00   Premium     E     SI1  59.1  58.0  4805  6.52</span>
-<span class="co">#&gt;      5: 2011-01-01  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92</span>
-<span class="co">#&gt;     ---                                                                 </span>
-<span class="co">#&gt;  99996: 2020-01-01  0.32     Ideal     J     VS1  62.0  54.7   442  4.39</span>
-<span class="co">#&gt;  99997: 2020-01-01  0.33     Ideal     G     VS2  62.5  57.0   743  4.41</span>
-<span class="co">#&gt;  99998: 2020-01-01  0.28 Very Good     I     VS2  61.9  57.0   379  4.16</span>
-<span class="co">#&gt;  99999: 2020-01-01  0.30     Ideal     G     VS2  62.0  56.0   556  4.28</span>
-<span class="co">#&gt; 100000: 2020-01-01  0.32     Ideal     F     VS2  62.4  54.0   645  4.38</span>
-<span class="co">#&gt; 4 variables not shown: [y &lt;num&gt;, z &lt;num&gt;, price1 &lt;int&gt;, price2 &lt;int&gt;]</span></pre></body></html></div>
+<span class="co">#&gt;                 dt carat       cut color clarity depth table price     x     y</span>
+<span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span>
+<span class="co">#&gt;      1: 2011-01-01  0.34 Very Good     H     VS2  62.4  60.0   537  4.41  4.44</span>
+<span class="co">#&gt;      2: 2011-01-01  0.30      Good     G     VS1  63.6  57.0   776  4.26  4.23</span>
+<span class="co">#&gt;      3: 2011-01-01  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69  6.66</span>
+<span class="co">#&gt;      4: 2011-01-01  1.00   Premium     E     SI1  59.1  58.0  4805  6.52  6.44</span>
+<span class="co">#&gt;      5: 2011-01-01  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92  5.03</span>
+<span class="co">#&gt;     ---                                                                       </span>
+<span class="co">#&gt;  99996: 2020-01-01  0.32     Ideal     J     VS1  62.0  54.7   442  4.39  4.42</span>
+<span class="co">#&gt;  99997: 2020-01-01  0.33     Ideal     G     VS2  62.5  57.0   743  4.41  4.39</span>
+<span class="co">#&gt;  99998: 2020-01-01  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19</span>
+<span class="co">#&gt;  99999: 2020-01-01  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30</span>
+<span class="co">#&gt; 100000: 2020-01-01  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40</span>
+<span class="co">#&gt;             z price1 price2</span>
+<span class="co">#&gt;         &lt;num&gt;  &lt;int&gt;  &lt;int&gt;</span>
+<span class="co">#&gt;      1:  2.76     NA     NA</span>
+<span class="co">#&gt;      2:  2.70     NA     NA</span>
+<span class="co">#&gt;      3:  4.10     NA     NA</span>
+<span class="co">#&gt;      4:  3.83     NA     NA</span>
+<span class="co">#&gt;      5:  3.28     NA     NA</span>
+<span class="co">#&gt;     ---                    </span>
+<span class="co">#&gt;  99996:  2.73     NA     NA</span>
+<span class="co">#&gt;  99997:  2.75     NA     NA</span>
+<span class="co">#&gt;  99998:  2.58     NA     NA</span>
+<span class="co">#&gt;  99999:  2.66     NA     NA</span>
+<span class="co">#&gt; 100000:  2.74     NA     NA</span></pre></body></html></div>
 </div>
 </div>
 <div id="长宽表转换" class="section level3">
@@ -344,7 +404,7 @@
              <span class="kw">name</span> <span class="kw">=</span> <span class="st">"color"</span>,
              <span class="kw">fun</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">mean1</span>,<span class="no">max1</span>))
 })
-<span class="co">#&gt; [1] "Finished in 0.030s elapsed (0.030s cpu)"</span>
+<span class="co">#&gt; [1] "Finished in 0.010s elapsed (0.000s cpu)"</span>
 <span class="no">r3_1</span>
 <span class="co">#&gt; Key: &lt;cut&gt;</span>
 <span class="co">#&gt;          cut depth_mean1_D depth_mean1_E depth_mean1_F depth_mean1_G</span>
@@ -354,7 +414,41 @@
 <span class="co">#&gt; 3: Very Good      61.70454      61.73751      61.73138      61.83043</span>
 <span class="co">#&gt; 4:   Premium      61.18875      61.16850      61.25098      61.27894</span>
 <span class="co">#&gt; 5:     Ideal      61.67241      61.68693      61.65616      61.70585</span>
-<span class="co">#&gt; 24 variables not shown: [depth_mean1_H &lt;num&gt;, depth_mean1_I &lt;num&gt;, depth_mean1_J &lt;num&gt;, price_mean1_D &lt;num&gt;, price_mean1_E &lt;num&gt;, price_mean1_F &lt;num&gt;, price_mean1_G &lt;num&gt;, price_mean1_H &lt;num&gt;, price_mean1_I &lt;num&gt;, price_mean1_J &lt;num&gt;, ...]</span></pre></body></html></div>
+<span class="co">#&gt;    depth_mean1_H depth_mean1_I depth_mean1_J price_mean1_D price_mean1_E</span>
+<span class="co">#&gt;            &lt;num&gt;         &lt;num&gt;         &lt;num&gt;         &lt;num&gt;         &lt;num&gt;</span>
+<span class="co">#&gt; 1:      64.44778      64.24571      64.75682      4237.899      3834.358</span>
+<span class="co">#&gt; 2:      62.50826      62.56427      62.44288      3369.352      3293.289</span>
+<span class="co">#&gt; 3:      61.97838      61.90052      61.94553      3437.133      3301.873</span>
+<span class="co">#&gt; 4:      61.31882      61.34123      61.42092      3796.609      3481.628</span>
+<span class="co">#&gt; 5:      61.72374      61.79243      61.80705      2608.030      2558.501</span>
+<span class="co">#&gt;    price_mean1_F price_mean1_G price_mean1_H price_mean1_I price_mean1_J</span>
+<span class="co">#&gt;            &lt;num&gt;         &lt;num&gt;         &lt;num&gt;         &lt;num&gt;         &lt;num&gt;</span>
+<span class="co">#&gt; 1:      3790.703      4186.403      5454.118      4278.831      5029.502</span>
+<span class="co">#&gt; 2:      3518.548      3999.886      4098.280      4966.745      4578.490</span>
+<span class="co">#&gt; 3:      3792.863      3900.558      4390.470      5475.587      5107.638</span>
+<span class="co">#&gt; 4:      4347.158      4543.181      5215.019      5921.498      6416.235</span>
+<span class="co">#&gt; 5:      3309.061      3751.035      3924.682      4434.030      4972.801</span>
+<span class="co">#&gt;    depth_max1_D depth_max1_E depth_max1_F depth_max1_G depth_max1_H</span>
+<span class="co">#&gt;           &lt;num&gt;        &lt;num&gt;        &lt;num&gt;        &lt;num&gt;        &lt;num&gt;</span>
+<span class="co">#&gt; 1:         71.6         79.0         70.8         72.9         71.8</span>
+<span class="co">#&gt; 2:         67.0         65.9         66.5         65.8         66.1</span>
+<span class="co">#&gt; 3:         64.7         64.4         64.2         64.9         64.7</span>
+<span class="co">#&gt; 4:         63.0         63.0         63.0         63.0         63.0</span>
+<span class="co">#&gt; 5:         64.5         65.5         65.3         64.1         65.1</span>
+<span class="co">#&gt;    depth_max1_I depth_max1_J price_max1_D price_max1_E price_max1_F</span>
+<span class="co">#&gt;           &lt;num&gt;        &lt;num&gt;        &lt;int&gt;        &lt;int&gt;        &lt;int&gt;</span>
+<span class="co">#&gt; 1:         71.3         73.6        16386        15584        17995</span>
+<span class="co">#&gt; 2:         65.9         66.0        18468        18236        18686</span>
+<span class="co">#&gt; 3:         64.4         64.1        18526        18731        18777</span>
+<span class="co">#&gt; 4:         63.0         63.0        18286        18426        18791</span>
+<span class="co">#&gt; 5:         66.7         65.4        18693        18729        18780</span>
+<span class="co">#&gt;    price_max1_G price_max1_H price_max1_I price_max1_J</span>
+<span class="co">#&gt;           &lt;int&gt;        &lt;int&gt;        &lt;int&gt;        &lt;int&gt;</span>
+<span class="co">#&gt; 1:        18574        18308        18242        18531</span>
+<span class="co">#&gt; 2:        18788        18640        18707        18325</span>
+<span class="co">#&gt; 3:        18818        18803        18500        18430</span>
+<span class="co">#&gt; 4:        18741        18795        18823        18706</span>
+<span class="co">#&gt; 5:        18806        18659        18779        18508</span></pre></body></html></div>
 </div>
 <div id="宽表转长表" class="section level4">
 <h4 class="hasAnchor">
@@ -410,7 +504,19 @@
 <span class="co">#&gt;  99998:  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19  2.58</span>
 <span class="co">#&gt;  99999:  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30  2.66</span>
 <span class="co">#&gt; 100000:  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40  2.74</span>
-<span class="co">#&gt; 1 variable not shown: [dt &lt;Date&gt;]</span></pre></body></html></div>
+<span class="co">#&gt;                 dt</span>
+<span class="co">#&gt;             &lt;Date&gt;</span>
+<span class="co">#&gt;      1: 2011-01-01</span>
+<span class="co">#&gt;      2: 2011-01-01</span>
+<span class="co">#&gt;      3: 2011-01-01</span>
+<span class="co">#&gt;      4: 2011-01-01</span>
+<span class="co">#&gt;      5: 2011-01-01</span>
+<span class="co">#&gt;     ---           </span>
+<span class="co">#&gt;  99996: 2020-01-01</span>
+<span class="co">#&gt;  99997: 2020-01-01</span>
+<span class="co">#&gt;  99998: 2020-01-01</span>
+<span class="co">#&gt;  99999: 2020-01-01</span>
+<span class="co">#&gt; 100000: 2020-01-01</span></pre></body></html></div>
 </div>
 <div id="添加子维度聚合结果为新列" class="section level3">
 <h3 class="hasAnchor">
@@ -425,7 +531,7 @@
            <span class="kw">sd_price</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">price</span>, <span class="kw">na.rm</span> <span class="kw">=</span> <span class="fl">TRUE</span>),
            <span class="kw">by</span> <span class="kw">=</span> <span class="fu">.</span>(<span class="no">cut</span>, <span class="no">color</span>))
 })
-<span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.000s cpu)"</span>
+<span class="co">#&gt; [1] "Finished in 0.020s elapsed (0.010s cpu)"</span>
 
 <span class="no">dat1</span>
 <span class="co">#&gt;         carat       cut color clarity depth table price     x     y     z</span>
@@ -441,7 +547,19 @@
 <span class="co">#&gt;  99998:  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19  2.58</span>
 <span class="co">#&gt;  99999:  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30  2.66</span>
 <span class="co">#&gt; 100000:  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40  2.74</span>
-<span class="co">#&gt; 1 variable not shown: [dt &lt;Date&gt;]</span></pre></body></html></div>
+<span class="co">#&gt;                 dt</span>
+<span class="co">#&gt;             &lt;Date&gt;</span>
+<span class="co">#&gt;      1: 2011-01-01</span>
+<span class="co">#&gt;      2: 2011-01-01</span>
+<span class="co">#&gt;      3: 2011-01-01</span>
+<span class="co">#&gt;      4: 2011-01-01</span>
+<span class="co">#&gt;      5: 2011-01-01</span>
+<span class="co">#&gt;     ---           </span>
+<span class="co">#&gt;  99996: 2020-01-01</span>
+<span class="co">#&gt;  99997: 2020-01-01</span>
+<span class="co">#&gt;  99998: 2020-01-01</span>
+<span class="co">#&gt;  99999: 2020-01-01</span>
+<span class="co">#&gt; 100000: 2020-01-01</span></pre></body></html></div>
 </div>
 <div id="以dat1为例以dt分组添加一列序号id" class="section level4">
 <h4 class="hasAnchor">
@@ -454,22 +572,34 @@
     <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="no">.N</span>))
   ) <span class="kw">-&gt;</span> <span class="no">dat1</span>
 })
-<span class="co">#&gt; [1] "Finished in 1.830s elapsed (1.770s cpu)"</span>
+<span class="co">#&gt; [1] "Finished in 1.820s elapsed (1.780s cpu)"</span>
 <span class="no">dat1</span>
-<span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span>
-<span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span>
-<span class="co">#&gt;      1: 2011-01-01  0.34 Very Good     H     VS2  62.4  60.0   537  4.41</span>
-<span class="co">#&gt;      2: 2011-01-01  0.30      Good     G     VS1  63.6  57.0   776  4.26</span>
-<span class="co">#&gt;      3: 2011-01-01  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69</span>
-<span class="co">#&gt;      4: 2011-01-01  1.00   Premium     E     SI1  59.1  58.0  4805  6.52</span>
-<span class="co">#&gt;      5: 2011-01-01  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92</span>
-<span class="co">#&gt;     ---                                                                 </span>
-<span class="co">#&gt;  99996: 2020-01-01  0.32     Ideal     J     VS1  62.0  54.7   442  4.39</span>
-<span class="co">#&gt;  99997: 2020-01-01  0.33     Ideal     G     VS2  62.5  57.0   743  4.41</span>
-<span class="co">#&gt;  99998: 2020-01-01  0.28 Very Good     I     VS2  61.9  57.0   379  4.16</span>
-<span class="co">#&gt;  99999: 2020-01-01  0.30     Ideal     G     VS2  62.0  56.0   556  4.28</span>
-<span class="co">#&gt; 100000: 2020-01-01  0.32     Ideal     F     VS2  62.4  54.0   645  4.38</span>
-<span class="co">#&gt; 3 variables not shown: [y &lt;num&gt;, z &lt;num&gt;, id &lt;int&gt;]</span></pre></body></html></div>
+<span class="co">#&gt;                 dt carat       cut color clarity depth table price     x     y</span>
+<span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span>
+<span class="co">#&gt;      1: 2011-01-01  0.34 Very Good     H     VS2  62.4  60.0   537  4.41  4.44</span>
+<span class="co">#&gt;      2: 2011-01-01  0.30      Good     G     VS1  63.6  57.0   776  4.26  4.23</span>
+<span class="co">#&gt;      3: 2011-01-01  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69  6.66</span>
+<span class="co">#&gt;      4: 2011-01-01  1.00   Premium     E     SI1  59.1  58.0  4805  6.52  6.44</span>
+<span class="co">#&gt;      5: 2011-01-01  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92  5.03</span>
+<span class="co">#&gt;     ---                                                                       </span>
+<span class="co">#&gt;  99996: 2020-01-01  0.32     Ideal     J     VS1  62.0  54.7   442  4.39  4.42</span>
+<span class="co">#&gt;  99997: 2020-01-01  0.33     Ideal     G     VS2  62.5  57.0   743  4.41  4.39</span>
+<span class="co">#&gt;  99998: 2020-01-01  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19</span>
+<span class="co">#&gt;  99999: 2020-01-01  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30</span>
+<span class="co">#&gt; 100000: 2020-01-01  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40</span>
+<span class="co">#&gt;             z    id</span>
+<span class="co">#&gt;         &lt;num&gt; &lt;int&gt;</span>
+<span class="co">#&gt;      1:  2.76     1</span>
+<span class="co">#&gt;      2:  2.70     2</span>
+<span class="co">#&gt;      3:  4.10     3</span>
+<span class="co">#&gt;      4:  3.83     4</span>
+<span class="co">#&gt;      5:  3.28     5</span>
+<span class="co">#&gt;     ---            </span>
+<span class="co">#&gt;  99996:  2.73    27</span>
+<span class="co">#&gt;  99997:  2.75    28</span>
+<span class="co">#&gt;  99998:  2.58    29</span>
+<span class="co">#&gt;  99999:  2.66    30</span>
+<span class="co">#&gt; 100000:  2.74    31</span></pre></body></html></div>
 </div>
 </div>
 <div id="移动函数" class="section level3">
@@ -486,23 +616,35 @@
       )
     ) <span class="kw">-&gt;</span> <span class="no">dat1</span>
 })
-<span class="co">#&gt; [1] "Finished in 1.000s elapsed (0.990s cpu)"</span>
+<span class="co">#&gt; [1] "Finished in 1.070s elapsed (1.050s cpu)"</span>
 
 <span class="no">dat1</span>
-<span class="co">#&gt;         color         dt carat       cut clarity depth table price     x</span>
-<span class="co">#&gt;         &lt;ord&gt;     &lt;Date&gt; &lt;num&gt;     &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span>
-<span class="co">#&gt;      1:     H 2011-01-01  0.34 Very Good     VS2  62.4    60   537  4.41</span>
-<span class="co">#&gt;      2:     H 2011-01-01  1.20   Premium     SI2  62.1    57  3965  6.84</span>
-<span class="co">#&gt;      3:     H 2011-01-01  1.51   Premium     SI1  58.0    59 10063  7.57</span>
-<span class="co">#&gt;      4:     H 2011-01-02  1.00   Premium     VS2  60.7    60  4930  6.55</span>
-<span class="co">#&gt;      5:     H 2011-01-02  1.01     Ideal     SI2  61.1    56  4693  6.44</span>
-<span class="co">#&gt;     ---                                                                 </span>
-<span class="co">#&gt;  99996:     I 2019-12-30  0.54     Ideal     SI1  62.1    54  1057  5.24</span>
-<span class="co">#&gt;  99997:     I 2019-12-31  0.90 Very Good     VS2  59.3    59  3992  6.27</span>
-<span class="co">#&gt;  99998:     I 2019-12-31  0.30     Ideal     SI1  61.3    56   506  4.33</span>
-<span class="co">#&gt;  99999:     I 2020-01-01  1.22   Premium     VS2  62.3    59  5832  6.79</span>
-<span class="co">#&gt; 100000:     I 2020-01-01  0.28 Very Good     VS2  61.9    57   379  4.16</span>
-<span class="co">#&gt; 5 variables not shown: [y &lt;num&gt;, z &lt;num&gt;, id &lt;int&gt;, MA10_price &lt;num&gt;, MSD10_price &lt;num&gt;]</span></pre></body></html></div>
+<span class="co">#&gt;         color         dt carat       cut clarity depth table price     x     y</span>
+<span class="co">#&gt;         &lt;ord&gt;     &lt;Date&gt; &lt;num&gt;     &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span>
+<span class="co">#&gt;      1:     H 2011-01-01  0.34 Very Good     VS2  62.4    60   537  4.41  4.44</span>
+<span class="co">#&gt;      2:     H 2011-01-01  1.20   Premium     SI2  62.1    57  3965  6.84  6.69</span>
+<span class="co">#&gt;      3:     H 2011-01-01  1.51   Premium     SI1  58.0    59 10063  7.57  7.54</span>
+<span class="co">#&gt;      4:     H 2011-01-02  1.00   Premium     VS2  60.7    60  4930  6.55  6.49</span>
+<span class="co">#&gt;      5:     H 2011-01-02  1.01     Ideal     SI2  61.1    56  4693  6.44  6.48</span>
+<span class="co">#&gt;     ---                                                                       </span>
+<span class="co">#&gt;  99996:     I 2019-12-30  0.54     Ideal     SI1  62.1    54  1057  5.24  5.26</span>
+<span class="co">#&gt;  99997:     I 2019-12-31  0.90 Very Good     VS2  59.3    59  3992  6.27  6.30</span>
+<span class="co">#&gt;  99998:     I 2019-12-31  0.30     Ideal     SI1  61.3    56   506  4.33  4.32</span>
+<span class="co">#&gt;  99999:     I 2020-01-01  1.22   Premium     VS2  62.3    59  5832  6.79  6.83</span>
+<span class="co">#&gt; 100000:     I 2020-01-01  0.28 Very Good     VS2  61.9    57   379  4.16  4.19</span>
+<span class="co">#&gt;             z    id MA10_price MSD10_price</span>
+<span class="co">#&gt;         &lt;num&gt; &lt;int&gt;      &lt;num&gt;       &lt;num&gt;</span>
+<span class="co">#&gt;      1:  2.76     1         NA          NA</span>
+<span class="co">#&gt;      2:  4.21    16         NA          NA</span>
+<span class="co">#&gt;      3:  4.38    23         NA          NA</span>
+<span class="co">#&gt;      4:  3.96     3         NA          NA</span>
+<span class="co">#&gt;      5:  3.95    13         NA          NA</span>
+<span class="co">#&gt;     ---                                   </span>
+<span class="co">#&gt;  99996:  3.26    31     4239.9    3421.390</span>
+<span class="co">#&gt;  99997:  3.73    29     4379.3    3375.145</span>
+<span class="co">#&gt;  99998:  2.65    30     4044.3    3592.134</span>
+<span class="co">#&gt;  99999:  4.24     5     3976.6    3546.612</span>
+<span class="co">#&gt; 100000:  2.58    29     3949.0    3576.283</span></pre></body></html></div>
 </div>
 </div>
 <div id="系统参数" class="section level2">
@@ -529,12 +671,12 @@
 <span class="co">#&gt; [1] tidyfst_0.9.9</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.4.6      compiler_4.0.2    pillar_1.4.4      tools_4.0.2      </span>
+<span class="co">#&gt;  [1] Rcpp_1.0.5        compiler_4.0.2    pillar_1.4.6      tools_4.0.2      </span>
 <span class="co">#&gt;  [5] digest_0.6.25     evaluate_0.14     memoise_1.1.0     lifecycle_0.2.0  </span>
-<span class="co">#&gt;  [9] tibble_3.0.1      gtable_0.3.0      pkgconfig_2.0.3   rlang_0.4.6      </span>
+<span class="co">#&gt;  [9] tibble_3.0.3      gtable_0.3.0      pkgconfig_2.0.3   rlang_0.4.7      </span>
 <span class="co">#&gt; [13] rstudioapi_0.11   yaml_2.2.1        parallel_4.0.2    pkgdown_1.5.1    </span>
-<span class="co">#&gt; [17] xfun_0.15         dplyr_1.0.0       stringr_1.4.0     knitr_1.29       </span>
-<span class="co">#&gt; [21] generics_0.0.2    vctrs_0.3.1       desc_1.2.0        fs_1.4.1         </span>
+<span class="co">#&gt; [17] xfun_0.16         dplyr_1.0.1       stringr_1.4.0     knitr_1.29       </span>
+<span class="co">#&gt; [21] generics_0.0.2    vctrs_0.3.2       desc_1.2.0        fs_1.4.1         </span>
 <span class="co">#&gt; [25] tidyselect_1.1.0  rprojroot_1.3-2   grid_4.0.2        glue_1.4.1       </span>
 <span class="co">#&gt; [29] data.table_1.13.0 R6_2.4.1          rmarkdown_2.3     purrr_0.3.4      </span>
 <span class="co">#&gt; [33] ggplot2_3.3.2     magrittr_1.5      backports_1.1.8   scales_1.1.1     </span>
