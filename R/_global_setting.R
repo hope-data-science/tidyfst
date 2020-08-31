@@ -68,5 +68,6 @@ data.table::rleidv
 #' @export
 data.table::fcase
 
-
+#' @export
+data.table::between
 

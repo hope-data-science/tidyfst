@@ -25,12 +25,3 @@ filter_dt = function(.data,...){
   dt[...]
 }
 
-# filter_dt = function(.data,...){
-#   dt = as_dt(.data)
-#   substitute(list(...)) %>%
-#     lapply(deparse) %>%
-#     .[-1] %>%
-#     str_c(collapse = " & ") -> dot_string
-#
-#   eval(parse(text = str_glue("dt[{dot_string}]")))
-# }
