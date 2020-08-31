@@ -62,8 +62,21 @@ iris %>%
 usethis::create_package
 
 
+library(tidyfst)
+dt_list = ls("package:tidyfst") %>%
+  stringr::str_subset("_dt$") %>%
+  # exclude same function names in base
+  .[! stringr::str_remove(.,"_dt$") %in% ls("package:base")]
 
+invisible(
+  lapply(dt_list,
+         function(x)
+           assign(stringr::str_remove(x,"_dt$"),
+                  get(x),
+                  envir = globalenv()))
+)
 
+iris %>% select("Pe")
 
 
 

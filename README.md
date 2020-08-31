@@ -4,9 +4,7 @@
 
  [![download](https://cranlogs.r-pkg.org/badges/tidyfst?color=red)](https://rdrr.io/cran/tidyfst/) [![downloads](https://cranlogs.r-pkg.org/badges/last-week/tidyfst?color=ff69b4)](https://crantastic.org/packages/tidyfst) [![downloads](https://cranlogs.r-pkg.org/badges/last-day/tidyfst?color=9cf)](https://crantastic.org/packages/tidyfst)
 
- [![ZENODO DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994) [![JOSS DOI](http://joss.theoj.org/papers/10.21105/joss.02388/status.svg)](https://joss.theoj.org/papers/10.21105/joss.02388)
-
-
+ [![ZENODO DOI](https://zenodo.org/badge/240626994.svg)](https://zenodo.org/badge/latestdoi/240626994) [![JOSS DOI](http://joss.theoj.org/papers/10.21105/joss.02388/status.svg)](https://doi.org/10.21105/joss.2388)
 
 
 
@@ -100,6 +98,12 @@ iris[3:8,] %>%
 - [Example 4: Nest](https://hope-data-science.github.io/tidyfst/articles/example4_nest.html)
 - [Example 5: Fst](https://hope-data-science.github.io/tidyfst/articles/example5_fst.html) 
 - [Example 6: Dt](https://hope-data-science.github.io/tidyfst/articles/example6_dt.html) 
+
+## Cheat sheet
+
+<a href="docs/tidyfst_cheatsheet.pdf"><img src="tidyfst_cheatsheet.png"/></a>
+
+
 
 ## Related work
 

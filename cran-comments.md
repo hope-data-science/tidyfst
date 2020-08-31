@@ -1,4 +1,13 @@
 
+## 0.9.9
+1. Do not truncate the columns by default.
+2. Add `print_options` to control global printing od data.table.
+3. Add citation in the package, linking to the JOSS paper(<https://doi.org/10.21105/joss.02388>)
+4. Add `rec_num` and `rec_char` function for variable recoding.
+5. Get a cheat sheet for tidyfst.
+6. Export `between` from data.table.
+7. Support summarisation of multiple functions on multiple columns in `summarise_vars`.
+
 ## 0.9.8
 Date:20200801
 1. Add `rename_with_dt` like dplyr's `rename_with`
