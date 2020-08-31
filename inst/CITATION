@@ -1,0 +1,19 @@
+citHeader("To cite tidyfst in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "tidyfst: Tidy Verbs for Fast Data Manipulation",
+  author   = "Tian-Yuan Huang and Bin Zhao",
+  journal  = "Journal of Open Source Software",
+  year     = 2020,
+  volume   = 5,
+  number   = 52,
+  pages    = 2388,
+  doi      = "10.21105/joss.02388",
+  url      = "https://doi.org/10.21105/joss.02388",
+  textVersion = paste(
+"Huang et al., (2020). tidyfst: Tidy Verbs for Fast Data Manipulation. Journal of Open Source Software, 5(52), 2388, https://doi.org/10.21105/joss.02388"
+  )
+)
+
+

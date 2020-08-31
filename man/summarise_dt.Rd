@@ -61,6 +61,13 @@ iris \%>\% summarise_vars(1:4,min)
 
 iris \%>\% summarise_vars(is.numeric,min,by ="Species")
 mtcars \%>\% summarise_vars(is.numeric,mean,by = "vs,am")
+
+# use multiple functions on multiple columns
+iris \%>\%
+  summarise_vars(is.numeric,.func = list(mean,sd,median))
+iris \%>\%
+  summarise_vars(is.numeric,.func = list(mean,sd,median),by = Species)
+
 }
 \seealso{
 \code{\link[dplyr]{summarise}}
