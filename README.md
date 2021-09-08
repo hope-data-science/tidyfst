@@ -1,6 +1,6 @@
 # tidyfst: Tidy Verbs for Fast Data Manipulation<img src="man/figures/hex-tidyfst_url.png" align="right" alt="" width="120" />
 
- [![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) [![](https://img.shields.io/badge/devel%20version-0.9.9-purple.svg)](https://github.com/hope-data-science/tidyfst) ![](https://img.shields.io/badge/lifecycle-stable-green.svg)  [![downloads](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=yellow)](https://r-pkg.org/pkg/tidyfst)
+ [![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) [![](https://img.shields.io/badge/devel%20version-1.0.0-purple.svg)](https://github.com/hope-data-science/tidyfst) ![](https://img.shields.io/badge/lifecycle-stable-green.svg)  [![downloads](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=yellow)](https://r-pkg.org/pkg/tidyfst)
 
  [![download](https://cranlogs.r-pkg.org/badges/tidyfst?color=red)](https://rdrr.io/cran/tidyfst/) [![downloads](https://cranlogs.r-pkg.org/badges/last-week/tidyfst?color=ff69b4)](https://crantastic.org/packages/tidyfst) [![downloads](https://cranlogs.r-pkg.org/badges/last-day/tidyfst?color=9cf)](https://crantastic.org/packages/tidyfst)
 
