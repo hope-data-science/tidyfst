@@ -12,6 +12,7 @@
 #' @details This function is inspired by \pkg{fastDummies} package, but provides
 #' simple and precise usage, whereas \code{fastDummies::dummy_cols} provides more
 #' features for statistical usage.
+#' @references https://stackoverflow.com/questions/18881073/creating-dummy-variables-in-r-data-table
 #' @seealso \code{\link[fastDummies]{dummy_cols}}
 #' @examples
 #' iris %>% dummy_dt(Species)
@@ -34,26 +35,42 @@ dummy_dt = function(.data,...,longname = TRUE){
       dummy_col(dt,i,longname = longname) -> dt
     }
   }
-  dt
+  dt[]
 }
-
-globalVariables("id_")
 
 dummy_col = function(dt,col_name,longname){
-  dt[, `:=`(one_=1,id_=1:.N) ]
 
-  if(longname){
-    dt[[col_name]] %>% unique() %>% as.character() -> old_names
-    str_c(col_name,old_names,sep="_") -> new_names
-    str_glue("dt=dcast(dt,...~{col_name},value.var = 'one_',fill = 0)") -> to_eval
-    eval(parse(text = to_eval))
-    setnames(dt,old_names,new_names)
+  dt[[col_name]] %>% unique() %>% as.character()-> old_names
+  if(!longname){
+    dt[,(old_names):=lapply(old_names,function(x) x == dt[[col_name]])][
+      ,(old_names):=lapply(.SD,as.numeric),.SDcols = old_names
+    ][,(col_name):=NULL][]
   }else{
-    str_glue("dt=dcast(dt,...~{col_name},value.var = 'one_',fill = 0)") -> to_eval
-    eval(parse(text = to_eval))
+    str_c(col_name,old_names,sep="_") -> new_names
+    dt[,(old_names):=lapply(old_names,function(x) x == dt[[col_name]])]
+    setnames(dt,old = old_names,new = new_names)[
+      ,(new_names):=lapply(.SD,as.numeric),.SDcols = new_names
+    ][,(col_name):=NULL][]
   }
-  dt[,id_:=NULL][]
 }
+
+
+
+# dummy_col = function(dt,col_name,longname){
+#   dt[, `:=`(one_=1,id_=1:.N) ]
+#
+#   if(longname){
+#     dt[[col_name]] %>% unique() %>% as.character() -> old_names
+#     str_c(col_name,old_names,sep="_") -> new_names
+#     str_glue("dt=dcast(dt,...~{col_name},value.var = 'one_',fill = 0)") -> to_eval
+#     eval(parse(text = to_eval))
+#     setnames(dt,old_names,new_names)
+#   }else{
+#     str_glue("dt=dcast(dt,...~{col_name},value.var = 'one_',fill = 0)") -> to_eval
+#     eval(parse(text = to_eval))
+#   }
+#   dt[,id_:=NULL][]
+# }
 
 
 
