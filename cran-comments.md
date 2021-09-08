@@ -1,5 +1,12 @@
 
+## 1.0.0
+Date:20210908
+1. Add "fromLast" parameter to `distinct_dt`
+2. Add a new function named `col_max` and `col_min` to get the max/min column name
+3. Upgrade `dummy_dt` to be faster
+
 ## 0.9.9
+Date:20200901
 1. Do not truncate the columns by default.
 2. Add `print_options` to control global printing od data.table.
 3. Add citation in the package, linking to the JOSS paper(<https://doi.org/10.21105/joss.02388>)
