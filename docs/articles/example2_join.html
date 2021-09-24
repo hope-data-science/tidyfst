@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -93,7 +93,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/hope-data-science/tidyfst/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -107,7 +107,7 @@
 
       
 
-      </header><script src="example2_join_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="example2_join_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Example 2: Join tables</h1>
@@ -121,16 +121,18 @@
     
     
 <p>This post has referred to a vignette from <code>dplyr</code>, you can find it in <a href="https://dplyr.tidyverse.org/articles/two-table.html" class="uri">https://dplyr.tidyverse.org/articles/two-table.html</a>. We’ll try to display how to join data tables in this vignette. First, load the packages we need and get some data.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyfst</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst">tidyfst</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Life's short, use R.</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">nycflights13</span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span>
 
-<span class="no">flights2</span> <span class="kw">&lt;-</span> <span class="no">flights</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">year</span>,<span class="no">month</span>,<span class="no">day</span>, <span class="no">hour</span>, <span class="no">origin</span>, <span class="no">dest</span>, <span class="no">tailnum</span>, <span class="no">carrier</span>)</pre></body></html></div>
+<span class="va">flights2</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">month</span>,<span class="va">day</span>, <span class="va">hour</span>, <span class="va">origin</span>, <span class="va">dest</span>, <span class="va">tailnum</span>, <span class="va">carrier</span><span class="op">)</span></code></pre></div>
 <p>Do a left join with a simple:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">flights2</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">airlines</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">flights2</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airlines</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: carrier</span>
 <span class="co">#&gt; Key: &lt;carrier&gt;</span>
 <span class="co">#&gt;         carrier  year month   day  hour origin   dest tailnum</span>
@@ -146,53 +148,29 @@
 <span class="co">#&gt; 336774:      YV  2013     9    30    16    LGA    IAD  N510MJ</span>
 <span class="co">#&gt; 336775:      YV  2013     9    30    17    LGA    CLT  N905FJ</span>
 <span class="co">#&gt; 336776:      YV  2013     9    30    20    LGA    CLT  N924FJ</span>
-<span class="co">#&gt;                       name</span>
-<span class="co">#&gt;                     &lt;char&gt;</span>
-<span class="co">#&gt;      1:  Endeavor Air Inc.</span>
-<span class="co">#&gt;      2:  Endeavor Air Inc.</span>
-<span class="co">#&gt;      3:  Endeavor Air Inc.</span>
-<span class="co">#&gt;      4:  Endeavor Air Inc.</span>
-<span class="co">#&gt;      5:  Endeavor Air Inc.</span>
-<span class="co">#&gt;     ---                   </span>
-<span class="co">#&gt; 336772: Mesa Airlines Inc.</span>
-<span class="co">#&gt; 336773: Mesa Airlines Inc.</span>
-<span class="co">#&gt; 336774: Mesa Airlines Inc.</span>
-<span class="co">#&gt; 336775: Mesa Airlines Inc.</span>
-<span class="co">#&gt; 336776: Mesa Airlines Inc.</span></pre></body></html></div>
+<span class="co">#&gt; 1变量没显示: [name &lt;char&gt;]</span>NA</code></pre></div>
 <div id="controlling-how-the-tables-are-matched" class="section level2">
 <h2 class="hasAnchor">
 <a href="#controlling-how-the-tables-are-matched" class="anchor"></a>Controlling how the tables are matched</h2>
 <p>Join works the same as <code>dplyr</code>:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">flights2</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">weather</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">flights2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">weather</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: year,month,day,hour,origin</span>
 <span class="co">#&gt; Key: &lt;year, month, day, hour, origin&gt;</span>
-<span class="co">#&gt;          year month   day  hour origin   dest tailnum carrier  temp  dewp humid</span>
-<span class="co">#&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;char&gt;  &lt;char&gt;  &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
-<span class="co">#&gt;      1:  2013     1     1     5    EWR    IAH  N14228      UA 39.02 28.04 64.43</span>
-<span class="co">#&gt;      2:  2013     1     1     5    EWR    ORD  N39463      UA 39.02 28.04 64.43</span>
-<span class="co">#&gt;      3:  2013     1     1     5    JFK    MIA  N619AA      AA 39.02 26.96 61.63</span>
-<span class="co">#&gt;      4:  2013     1     1     5    JFK    BQN  N804JB      B6 39.02 26.96 61.63</span>
-<span class="co">#&gt;      5:  2013     1     1     5    JFK    BOS  N708JB      B6 39.02 26.96 61.63</span>
-<span class="co">#&gt;     ---                                                                        </span>
-<span class="co">#&gt; 336772:  2013    12    31    23    EWR    SJU  N651JB      B6    NA    NA    NA</span>
-<span class="co">#&gt; 336773:  2013    12    31    23    JFK    BQN  N566JB      B6    NA    NA    NA</span>
-<span class="co">#&gt; 336774:  2013    12    31    23    JFK    SJU  N713TW      DL    NA    NA    NA</span>
-<span class="co">#&gt; 336775:  2013    12    31    23    JFK    SJU  N509JB      B6    NA    NA    NA</span>
-<span class="co">#&gt; 336776:  2013    12    31    23    JFK    PSE  N665JB      B6    NA    NA    NA</span>
-<span class="co">#&gt;         wind_dir wind_speed wind_gust precip pressure visib           time_hour</span>
-<span class="co">#&gt;            &lt;num&gt;      &lt;num&gt;     &lt;num&gt;  &lt;num&gt;    &lt;num&gt; &lt;num&gt;              &lt;POSc&gt;</span>
-<span class="co">#&gt;      1:      260   12.65858        NA      0   1011.9    10 2013-01-01 05:00:00</span>
-<span class="co">#&gt;      2:      260   12.65858        NA      0   1011.9    10 2013-01-01 05:00:00</span>
-<span class="co">#&gt;      3:      260   14.96014        NA      0   1012.1    10 2013-01-01 05:00:00</span>
-<span class="co">#&gt;      4:      260   14.96014        NA      0   1012.1    10 2013-01-01 05:00:00</span>
-<span class="co">#&gt;      5:      260   14.96014        NA      0   1012.1    10 2013-01-01 05:00:00</span>
-<span class="co">#&gt;     ---                                                                        </span>
-<span class="co">#&gt; 336772:       NA         NA        NA     NA       NA    NA                &lt;NA&gt;</span>
-<span class="co">#&gt; 336773:       NA         NA        NA     NA       NA    NA                &lt;NA&gt;</span>
-<span class="co">#&gt; 336774:       NA         NA        NA     NA       NA    NA                &lt;NA&gt;</span>
-<span class="co">#&gt; 336775:       NA         NA        NA     NA       NA    NA                &lt;NA&gt;</span>
-<span class="co">#&gt; 336776:       NA         NA        NA     NA       NA    NA                &lt;NA&gt;</span>
-<span class="no">flights2</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">planes</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"tailnum"</span>)
+<span class="co">#&gt;          year month   day  hour origin   dest tailnum carrier  temp  dewp</span>
+<span class="co">#&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;char&gt;  &lt;char&gt;  &lt;char&gt; &lt;num&gt; &lt;num&gt;</span>
+<span class="co">#&gt;      1:  2013     1     1     5    EWR    IAH  N14228      UA 39.02 28.04</span>
+<span class="co">#&gt;      2:  2013     1     1     5    EWR    ORD  N39463      UA 39.02 28.04</span>
+<span class="co">#&gt;      3:  2013     1     1     5    JFK    MIA  N619AA      AA 39.02 26.96</span>
+<span class="co">#&gt;      4:  2013     1     1     5    JFK    BQN  N804JB      B6 39.02 26.96</span>
+<span class="co">#&gt;      5:  2013     1     1     5    JFK    BOS  N708JB      B6 39.02 26.96</span>
+<span class="co">#&gt;     ---                                                                  </span>
+<span class="co">#&gt; 336772:  2013    12    31    23    EWR    SJU  N651JB      B6    NA    NA</span>
+<span class="co">#&gt; 336773:  2013    12    31    23    JFK    BQN  N566JB      B6    NA    NA</span>
+<span class="co">#&gt; 336774:  2013    12    31    23    JFK    SJU  N713TW      DL    NA    NA</span>
+<span class="co">#&gt; 336775:  2013    12    31    23    JFK    SJU  N509JB      B6    NA    NA</span>
+<span class="co">#&gt; 336776:  2013    12    31    23    JFK    PSE  N665JB      B6    NA    NA</span>
+<span class="co">#&gt; 8变量没显示: [humid &lt;num&gt;, wind_dir &lt;num&gt;, wind_speed &lt;num&gt;, wind_gust &lt;num&gt;, precip &lt;num&gt;, pressure &lt;num&gt;, visib &lt;num&gt;, time_hour &lt;POSc&gt;]</span>NA<span class="va">flights2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">planes</span>, by <span class="op">=</span> <span class="st">"tailnum"</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;tailnum&gt;</span>
 <span class="co">#&gt;         tailnum year.x month   day  hour origin   dest carrier year.y   type</span>
 <span class="co">#&gt;          &lt;char&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt;  &lt;char&gt;  &lt;int&gt; &lt;char&gt;</span>
@@ -207,20 +185,7 @@
 <span class="co">#&gt; 336774:  N9EAMQ   2013     9    29    18    LGA    CMH      MQ     NA   &lt;NA&gt;</span>
 <span class="co">#&gt; 336775:  N9EAMQ   2013     9    30    11    JFK    DCA      MQ     NA   &lt;NA&gt;</span>
 <span class="co">#&gt; 336776:  N9EAMQ   2013     9    30    14    JFK    TPA      MQ     NA   &lt;NA&gt;</span>
-<span class="co">#&gt;         manufacturer  model engines seats speed engine</span>
-<span class="co">#&gt;               &lt;char&gt; &lt;char&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span>
-<span class="co">#&gt;      1:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="co">#&gt;      2:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="co">#&gt;      3:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="co">#&gt;      4:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="co">#&gt;      5:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="co">#&gt;     ---                                               </span>
-<span class="co">#&gt; 336772:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="co">#&gt; 336773:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="co">#&gt; 336774:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="co">#&gt; 336775:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="co">#&gt; 336776:         &lt;NA&gt;   &lt;NA&gt;      NA    NA    NA   &lt;NA&gt;</span>
-<span class="no">flights2</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dest"</span> <span class="kw">=</span> <span class="st">"faa"</span>))
+<span class="co">#&gt; 6变量没显示: [manufacturer &lt;char&gt;, model &lt;char&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;char&gt;]</span>NA<span class="va">flights2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dest"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;dest&gt;</span>
 <span class="co">#&gt;           dest  year month   day  hour origin tailnum carrier</span>
 <span class="co">#&gt;         &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;  &lt;char&gt;  &lt;char&gt;</span>
@@ -235,33 +200,7 @@
 <span class="co">#&gt; 336774:    XNA  2013     9    30     8    EWR  N14117      EV</span>
 <span class="co">#&gt; 336775:    XNA  2013     9    30    15    LGA  N725MQ      MQ</span>
 <span class="co">#&gt; 336776:    XNA  2013     9    30    17    LGA  N720MQ      MQ</span>
-<span class="co">#&gt;                                      name      lat        lon   alt    tz</span>
-<span class="co">#&gt;                                    &lt;char&gt;    &lt;num&gt;      &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
-<span class="co">#&gt;      1: Albuquerque International Sunport 35.04022 -106.60919  5355    -7</span>
-<span class="co">#&gt;      2: Albuquerque International Sunport 35.04022 -106.60919  5355    -7</span>
-<span class="co">#&gt;      3: Albuquerque International Sunport 35.04022 -106.60919  5355    -7</span>
-<span class="co">#&gt;      4: Albuquerque International Sunport 35.04022 -106.60919  5355    -7</span>
-<span class="co">#&gt;      5: Albuquerque International Sunport 35.04022 -106.60919  5355    -7</span>
-<span class="co">#&gt;     ---                                                                  </span>
-<span class="co">#&gt; 336772:              NW Arkansas Regional 36.28187  -94.30681  1287    -6</span>
-<span class="co">#&gt; 336773:              NW Arkansas Regional 36.28187  -94.30681  1287    -6</span>
-<span class="co">#&gt; 336774:              NW Arkansas Regional 36.28187  -94.30681  1287    -6</span>
-<span class="co">#&gt; 336775:              NW Arkansas Regional 36.28187  -94.30681  1287    -6</span>
-<span class="co">#&gt; 336776:              NW Arkansas Regional 36.28187  -94.30681  1287    -6</span>
-<span class="co">#&gt;            dst           tzone</span>
-<span class="co">#&gt;         &lt;char&gt;          &lt;char&gt;</span>
-<span class="co">#&gt;      1:      A  America/Denver</span>
-<span class="co">#&gt;      2:      A  America/Denver</span>
-<span class="co">#&gt;      3:      A  America/Denver</span>
-<span class="co">#&gt;      4:      A  America/Denver</span>
-<span class="co">#&gt;      5:      A  America/Denver</span>
-<span class="co">#&gt;     ---                       </span>
-<span class="co">#&gt; 336772:      A America/Chicago</span>
-<span class="co">#&gt; 336773:      A America/Chicago</span>
-<span class="co">#&gt; 336774:      A America/Chicago</span>
-<span class="co">#&gt; 336775:      A America/Chicago</span>
-<span class="co">#&gt; 336776:      A America/Chicago</span>
-<span class="no">flights2</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"origin"</span> <span class="kw">=</span> <span class="st">"faa"</span>))
+<span class="co">#&gt; 7变量没显示: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span>NA<span class="va">flights2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"origin"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;origin&gt;</span>
 <span class="co">#&gt;         origin  year month   day  hour   dest tailnum carrier</span>
 <span class="co">#&gt;         &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;  &lt;char&gt;  &lt;char&gt;</span>
@@ -276,72 +215,49 @@
 <span class="co">#&gt; 336774:    LGA  2013     9    30    12    BNA  N535MQ      MQ</span>
 <span class="co">#&gt; 336775:    LGA  2013     9    30    11    CLE  N511MQ      MQ</span>
 <span class="co">#&gt; 336776:    LGA  2013     9    30     8    RDU  N839MQ      MQ</span>
-<span class="co">#&gt;                        name      lat       lon   alt    tz    dst</span>
-<span class="co">#&gt;                      &lt;char&gt;    &lt;num&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;char&gt;</span>
-<span class="co">#&gt;      1: Newark Liberty Intl 40.69250 -74.16867    18    -5      A</span>
-<span class="co">#&gt;      2: Newark Liberty Intl 40.69250 -74.16867    18    -5      A</span>
-<span class="co">#&gt;      3: Newark Liberty Intl 40.69250 -74.16867    18    -5      A</span>
-<span class="co">#&gt;      4: Newark Liberty Intl 40.69250 -74.16867    18    -5      A</span>
-<span class="co">#&gt;      5: Newark Liberty Intl 40.69250 -74.16867    18    -5      A</span>
-<span class="co">#&gt;     ---                                                          </span>
-<span class="co">#&gt; 336772:          La Guardia 40.77725 -73.87261    22    -5      A</span>
-<span class="co">#&gt; 336773:          La Guardia 40.77725 -73.87261    22    -5      A</span>
-<span class="co">#&gt; 336774:          La Guardia 40.77725 -73.87261    22    -5      A</span>
-<span class="co">#&gt; 336775:          La Guardia 40.77725 -73.87261    22    -5      A</span>
-<span class="co">#&gt; 336776:          La Guardia 40.77725 -73.87261    22    -5      A</span>
-<span class="co">#&gt;                    tzone</span>
-<span class="co">#&gt;                   &lt;char&gt;</span>
-<span class="co">#&gt;      1: America/New_York</span>
-<span class="co">#&gt;      2: America/New_York</span>
-<span class="co">#&gt;      3: America/New_York</span>
-<span class="co">#&gt;      4: America/New_York</span>
-<span class="co">#&gt;      5: America/New_York</span>
-<span class="co">#&gt;     ---                 </span>
-<span class="co">#&gt; 336772: America/New_York</span>
-<span class="co">#&gt; 336773: America/New_York</span>
-<span class="co">#&gt; 336774: America/New_York</span>
-<span class="co">#&gt; 336775: America/New_York</span>
-<span class="co">#&gt; 336776: America/New_York</span></pre></body></html></div>
+<span class="co">#&gt; 7变量没显示: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span>NA</code></pre></div>
 </div>
 <div id="types-of-join" class="section level2">
 <h2 class="hasAnchor">
 <a href="#types-of-join" class="anchor"></a>Types of join</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>), <span class="kw">y</span> <span class="kw">=</span> <span class="fl">2</span>:<span class="fl">1</span>)
-<span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">3</span>), <span class="kw">a</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">b</span> <span class="kw">=</span> <span class="st">"a"</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, a <span class="op">=</span> <span class="fl">10</span>, b <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span>
 
-<span class="no">df1</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span>(<span class="no">df2</span>)
+<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span> 
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y     a      b</span>
 <span class="co">#&gt;    &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     2    10      a</span>
-<span class="no">df1</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">df2</span>)
+<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y     a      b</span>
 <span class="co">#&gt;    &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     2    10      a</span>
 <span class="co">#&gt; 2:     2     1    NA   &lt;NA&gt;</span>
-<span class="no">df1</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">right_join_dt</a></span>(<span class="no">df2</span>)
+<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">right_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y     a      b</span>
 <span class="co">#&gt;    &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     2    10      a</span>
 <span class="co">#&gt; 2:     3    NA    10      a</span>
-<span class="no">df1</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">full_join_dt</a></span>(<span class="no">df2</span>)
+<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">full_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y     a      b</span>
 <span class="co">#&gt;    &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     2    10      a</span>
 <span class="co">#&gt; 2:     2     1    NA   &lt;NA&gt;</span>
-<span class="co">#&gt; 3:     3    NA    10      a</span></pre></body></html></div>
+<span class="co">#&gt; 3:     3    NA    10      a</span></code></pre></div>
 <p>If all you have is a data.frame or tibble, you have no need to change the format. Feed the data directly:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>), <span class="kw">y</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">3</span>)
-<span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>), <span class="kw">z</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>))
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
+<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="no">df1</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">df2</span>)
+<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y      z</span>
@@ -350,16 +266,17 @@
 <span class="co">#&gt; 2:     1     1      b</span>
 <span class="co">#&gt; 3:     1     2      a</span>
 <span class="co">#&gt; 4:     1     2      b</span>
-<span class="co">#&gt; 5:     2     3      a</span></pre></body></html></div>
+<span class="co">#&gt; 5:     2     3      a</span></code></pre></div>
 <p>The "_dt" suffix should remind you that this is backed up by <code>data.table</code> and will always return a data.table in the end.</p>
 </div>
 <div id="filtering-joins" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filtering-joins" class="anchor"></a>Filtering joins</h2>
 <p>Filtering joins have also been supported in <code>tidyfst</code>.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">flights</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/join.html">anti_join_dt</a></span>(<span class="no">planes</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"tailnum"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/count.html">count_dt</a></span>(<span class="no">tailnum</span>, <span class="kw">sort</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">flights</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/join.html">anti_join_dt</a></span><span class="op">(</span><span class="va">planes</span>, by <span class="op">=</span> <span class="st">"tailnum"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/count_dt.html">count_dt</a></span><span class="op">(</span><span class="va">tailnum</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;      tailnum     n</span>
 <span class="co">#&gt;       &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt;   1:    &lt;NA&gt;  2512</span>
@@ -372,58 +289,60 @@
 <span class="co">#&gt; 719:  N7CAAA     1</span>
 <span class="co">#&gt; 720:  N5FCAA     1</span>
 <span class="co">#&gt; 721:  N5ERAA     1</span>
-<span class="co">#&gt; 722:  N647MQ     1</span></pre></body></html></div>
+<span class="co">#&gt; 722:  N647MQ     1</span></code></pre></div>
 <p>Other examples (<code><a href="../reference/join.html">semi_join_dt()</a></code> and <code><a href="../reference/join.html">anti_join_dt()</a></code> never duplicate; they only ever remove observations.):</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span>), <span class="kw">y</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">4</span>)
-<span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>), <span class="kw">z</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>))
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
+<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Four rows to start with:</span>
-<span class="no">df1</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>()
+<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 4</span>
 
 <span class="co"># And we get four rows after the join</span>
-<span class="no">df1</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span>(<span class="no">df2</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"x"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>()
+<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span><span class="op">(</span><span class="va">df2</span>, by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 4</span>
 
 <span class="co"># But only two rows actually match</span>
-<span class="no">df1</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/join.html">semi_join_dt</a></span>(<span class="no">df2</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"x"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>()
-<span class="co">#&gt; [1] 2</span></pre></body></html></div>
+<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">semi_join_dt</a></span><span class="op">(</span><span class="va">df2</span>, by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; [1] 2</span></code></pre></div>
 </div>
 <div id="set-operations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#set-operations" class="anchor"></a>Set operations</h2>
 <p>For set operations, wrap <code>data.table</code>’s function directly, but the functions will automatically turn any data.frame into data.table. Examples are listed as below:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">x</span> <span class="kw">=</span> <span class="no">iris</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">4</span>),]
-<span class="no">x2</span> <span class="kw">=</span> <span class="no">iris</span>[<span class="fl">2</span>:<span class="fl">4</span>,]
-<span class="no">y</span> <span class="kw">=</span> <span class="no">iris</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>:<span class="fl">5</span>),]
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>,<span class="op">]</span>
+<span class="va">x2</span> <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>,<span class="op">]</span>
+<span class="va">y</span> <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>,<span class="op">]</span>
 
-<span class="fu"><a href="../reference/setops.html">intersect_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>)            <span class="co"># intersect</span>
+<span class="fu"><a href="../reference/intersect_dt.html">intersect_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>            <span class="co"># intersect</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.7         3.2          1.3         0.2  setosa</span>
 <span class="co">#&gt; 2:          4.6         3.1          1.5         0.2  setosa</span>
-<span class="fu"><a href="../reference/setops.html">intersect_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">all</span><span class="kw">=</span><span class="fl">TRUE</span>)  <span class="co"># intersect all</span>
+<span class="fu"><a href="../reference/intersect_dt.html">intersect_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># intersect all</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.7         3.2          1.3         0.2  setosa</span>
 <span class="co">#&gt; 2:          4.6         3.1          1.5         0.2  setosa</span>
-<span class="fu"><a href="../reference/setops.html">setdiff_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>)              <span class="co"># except</span>
+<span class="fu"><a href="../reference/intersect_dt.html">setdiff_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>              <span class="co"># except</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.9           3          1.4         0.2  setosa</span>
-<span class="fu"><a href="../reference/setops.html">setdiff_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">all</span><span class="kw">=</span><span class="fl">TRUE</span>)    <span class="co"># except all</span>
+<span class="fu"><a href="../reference/intersect_dt.html">setdiff_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>    <span class="co"># except all</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.9         3.0          1.4         0.2  setosa</span>
 <span class="co">#&gt; 2:          4.7         3.2          1.3         0.2  setosa</span>
-<span class="fu"><a href="../reference/setops.html">union_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>)                <span class="co"># union</span>
+<span class="fu"><a href="../reference/intersect_dt.html">union_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>                <span class="co"># union</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.9         3.0          1.4         0.2  setosa</span>
 <span class="co">#&gt; 2:          4.7         3.2          1.3         0.2  setosa</span>
 <span class="co">#&gt; 3:          4.6         3.1          1.5         0.2  setosa</span>
 <span class="co">#&gt; 4:          5.0         3.6          1.4         0.2  setosa</span>
-<span class="fu"><a href="../reference/setops.html">union_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">all</span><span class="kw">=</span><span class="fl">TRUE</span>)      <span class="co"># union all</span>
+<span class="fu"><a href="../reference/intersect_dt.html">union_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>      <span class="co"># union all</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.9         3.0          1.4         0.2  setosa</span>
@@ -433,11 +352,11 @@
 <span class="co">#&gt; 5:          4.7         3.2          1.3         0.2  setosa</span>
 <span class="co">#&gt; 6:          4.6         3.1          1.5         0.2  setosa</span>
 <span class="co">#&gt; 7:          5.0         3.6          1.4         0.2  setosa</span>
-<span class="fu"><a href="../reference/setops.html">setequal_dt</a></span>(<span class="no">x</span>, <span class="no">x2</span>, <span class="kw">all</span><span class="kw">=</span><span class="fl">FALSE</span>) <span class="co"># setequal</span>
+<span class="fu"><a href="../reference/intersect_dt.html">setequal_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x2</span>, all<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co"># setequal</span>
 <span class="co">#&gt; [1] TRUE</span>
-<span class="fu"><a href="../reference/setops.html">setequal_dt</a></span>(<span class="no">x</span>, <span class="no">x2</span>)
-<span class="co">#&gt; [1] FALSE</span></pre></body></html></div>
-<p>For more details, just find the help from <code>data.table</code> using <code>?setops</code>.</p>
+<span class="fu"><a href="../reference/intersect_dt.html">setequal_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x2</span><span class="op">)</span>     
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<p>For more details, just find the help from <code>data.table</code> using <code><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">?setops</a></code>.</p>
 </div>
   </div>
 
@@ -456,7 +375,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

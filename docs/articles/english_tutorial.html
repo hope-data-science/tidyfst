@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -93,7 +93,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/hope-data-science/tidyfst/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -107,7 +107,7 @@
 
       
 
-      </header><script src="english_tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="english_tutorial_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Use data.table the tidy way: An ultimate tutorial of tidyfst</h1>
@@ -124,22 +124,23 @@
 <div id="create-example-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-example-data" class="anchor"></a>Create example data</h2>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyfst</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst">tidyfst</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Life's short, use R.</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">1L</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1L</span><span class="op">)</span>
 
 <span class="co">## Create a data table</span>
-<span class="no">DF</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="kw">V1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1L</span>, <span class="fl">2L</span>), <span class="fl">5</span>)[-<span class="fl">10</span>],
-                <span class="kw">V2</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">9</span>,
-                <span class="kw">V3</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.5</span>),
-                <span class="kw">V4</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">LETTERS</span>[<span class="fl">1</span>:<span class="fl">3</span>], <span class="fl">3</span>))
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span>(<span class="no">DF</span>) <span class="kw">-&gt;</span> <span class="no">DT</span>
+<span class="va">DF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>V1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">10</span><span class="op">]</span>,
+                V2 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">9</span>,
+                V3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.5</span><span class="op">)</span>,
+                V4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">DF</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">DT</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="no">DF</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">DF</span><span class="op">)</span>
 <span class="co">#&gt; [1] "data.table" "data.frame"</span>
-<span class="no">DF</span>
+<span class="va">DF</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A</span>
@@ -150,7 +151,7 @@
 <span class="co">#&gt; 6:     2     6   1.5      C</span>
 <span class="co">#&gt; 7:     1     7   0.5      A</span>
 <span class="co">#&gt; 8:     2     8   1.0      B</span>
-<span class="co">#&gt; 9:     1     9   1.5      C</span></pre></body></html></div>
+<span class="co">#&gt; 9:     1     9   1.5      C</span></code></pre></div>
 </div>
 <div id="basic-operations" class="section level1">
 <h1 class="hasAnchor">
@@ -158,15 +159,16 @@
 <div id="filter-rows" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filter-rows" class="anchor"></a>Filter rows</h2>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co">### Filter rows using indices</span>
-<span class="fu"><a href="../reference/slice.html">slice_dt</a></span>(<span class="no">DF</span>, <span class="fl">3</span>:<span class="fl">4</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### Filter rows using indices</span>
+<span class="fu"><a href="../reference/slice_dt.html">slice_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     3   1.5      C</span>
 <span class="co">#&gt; 2:     2     4   0.5      A</span>
 
 <span class="co">### Discard rows using negative indices</span>
-<span class="fu"><a href="../reference/slice.html">slice_dt</a></span>(<span class="no">DF</span>, -(<span class="fl">3</span>:<span class="fl">7</span>))
+<span class="fu"><a href="../reference/slice_dt.html">slice_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="op">-</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A</span>
@@ -175,14 +177,14 @@
 <span class="co">#&gt; 4:     1     9   1.5      C</span>
 
 <span class="co">### Filter rows using a logical expression</span>
-<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span>(<span class="no">DF</span>, <span class="no">V2</span> <span class="kw">&gt;</span> <span class="fl">5</span>)
+<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V2</span> <span class="op">&gt;</span> <span class="fl">5</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     2     6   1.5      C</span>
 <span class="co">#&gt; 2:     1     7   0.5      A</span>
 <span class="co">#&gt; 3:     2     8   1.0      B</span>
 <span class="co">#&gt; 4:     1     9   1.5      C</span>
-<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span>(<span class="no">DF</span>, <span class="no">V4</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"C"</span>))
+<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V4</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A</span>
@@ -191,7 +193,7 @@
 <span class="co">#&gt; 4:     2     6   1.5      C</span>
 <span class="co">#&gt; 5:     1     7   0.5      A</span>
 <span class="co">#&gt; 6:     1     9   1.5      C</span>
-<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span>(<span class="no">DF</span>, <span class="no">V4</span> <span class="kw">%chin%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"C"</span>)) <span class="co"># fast %in% for character</span>
+<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V4</span> <span class="op">%chin%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span> <span class="co"># fast %in% for character</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A</span>
@@ -202,17 +204,17 @@
 <span class="co">#&gt; 6:     1     9   1.5      C</span>
 
 <span class="co">### Filter rows using multiple conditions</span>
-<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span>(<span class="no">DF</span>, <span class="no">V1</span> <span class="kw">==</span> <span class="fl">1</span>, <span class="no">V4</span> <span class="kw">==</span> <span class="st">"A"</span>)
+<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V1</span> <span class="op">==</span> <span class="fl">1</span>, <span class="va">V4</span> <span class="op">==</span> <span class="st">"A"</span><span class="op">)</span>
 <span class="co">#&gt; [1]  TRUE FALSE FALSE  TRUE FALSE</span>
 <span class="co"># equals to</span>
-<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span>(<span class="no">DF</span>, <span class="no">V1</span> <span class="kw">==</span> <span class="fl">1</span> <span class="kw">&amp;</span> <span class="no">V4</span> <span class="kw">==</span> <span class="st">"A"</span>)
+<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V1</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">V4</span> <span class="op">==</span> <span class="st">"A"</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A</span>
 <span class="co">#&gt; 2:     1     7   0.5      A</span>
 
 <span class="co">### Filter unique rows</span>
-<span class="fu"><a href="../reference/distinct_dt.html">distinct_dt</a></span>(<span class="no">DF</span>) <span class="co"># unique(DF)</span>
+<span class="fu"><a href="../reference/distinct_dt.html">distinct_dt</a></span><span class="op">(</span><span class="va">DF</span><span class="op">)</span> <span class="co"># unique(DF)</span>
 <span class="co">#&gt; Indices: &lt;V4&gt;, &lt;V1&gt;, &lt;V4__V1&gt;</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
@@ -225,7 +227,7 @@
 <span class="co">#&gt; 7:     1     7   0.5      A</span>
 <span class="co">#&gt; 8:     2     8   1.0      B</span>
 <span class="co">#&gt; 9:     1     9   1.5      C</span>
-<span class="fu"><a href="../reference/distinct_dt.html">distinct_dt</a></span>(<span class="no">DF</span>, <span class="no">V1</span>,<span class="no">V4</span>)
+<span class="fu"><a href="../reference/distinct_dt.html">distinct_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V1</span>,<span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;       V1     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1      A</span>
@@ -236,7 +238,7 @@
 <span class="co">#&gt; 6:     2      C</span>
 
 <span class="co">### Discard rows with missing values</span>
-<span class="fu"><a href="../reference/missing.html">drop_na_dt</a></span>(<span class="no">DF</span>) <span class="co"># na.omit(DF)</span>
+<span class="fu"><a href="../reference/drop_na_dt.html">drop_na_dt</a></span><span class="op">(</span><span class="va">DF</span><span class="op">)</span> <span class="co"># na.omit(DF)</span>
 <span class="co">#&gt; Indices: &lt;V4&gt;, &lt;V1&gt;, &lt;V4__V1&gt;</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
@@ -251,20 +253,20 @@
 <span class="co">#&gt; 9:     1     9   1.5      C</span>
 
 <span class="co">### Other filters</span>
-<span class="fu"><a href="../reference/sample.html">sample_n_dt</a></span>(<span class="no">DF</span>, <span class="fl">3</span>)      <span class="co"># n random rows</span>
+<span class="fu"><a href="../reference/sample_dt.html">sample_n_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fl">3</span><span class="op">)</span>      <span class="co"># n random rows</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     9   1.5      C</span>
 <span class="co">#&gt; 2:     2     4   0.5      A</span>
 <span class="co">#&gt; 3:     1     7   0.5      A</span>
-<span class="fu"><a href="../reference/sample.html">sample_frac_dt</a></span>(<span class="no">DF</span>, <span class="fl">0.5</span>) <span class="co"># fraction of random rows</span>
+<span class="fu"><a href="../reference/sample_dt.html">sample_frac_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fl">0.5</span><span class="op">)</span> <span class="co"># fraction of random rows</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A</span>
 <span class="co">#&gt; 2:     2     2   1.0      B</span>
 <span class="co">#&gt; 3:     1     5   1.0      B</span>
 <span class="co">#&gt; 4:     1     3   1.5      C</span>
-<span class="fu"><a href="../reference/topn.html">top_n_dt</a></span>(<span class="no">DF</span>, <span class="fl">1</span>, <span class="no">V1</span>)     <span class="co"># top n entries (includes equals)</span>
+<span class="fu"><a href="../reference/top_dt.html">top_n_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fl">1</span>, <span class="va">V1</span><span class="op">)</span>     <span class="co"># top n entries (includes equals)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     2     2   1.0      B</span>
@@ -272,34 +274,35 @@
 <span class="co">#&gt; 3:     2     6   1.5      C</span>
 <span class="co">#&gt; 4:     2     8   1.0      B</span>
 
-<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span>(<span class="no">DT</span>,<span class="no">V4</span> <span class="kw">%like%</span> <span class="st">"^B"</span>)
+<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">DT</span>,<span class="va">V4</span> <span class="op">%like%</span> <span class="st">"^B"</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     2     2     1      B</span>
 <span class="co">#&gt; 2:     1     5     1      B</span>
 <span class="co">#&gt; 3:     2     8     1      B</span>
-<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span>(<span class="no">DT</span>,<span class="no">V2</span> <span class="kw">%between%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>, <span class="fl">5</span>))
+<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">DT</span>,<span class="va">V2</span> <span class="op">%between%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     3   1.5      C</span>
 <span class="co">#&gt; 2:     2     4   0.5      A</span>
 <span class="co">#&gt; 3:     1     5   1.0      B</span>
-<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span>(<span class="no">DT</span>,<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/between.html">between</a></span>(<span class="no">V2</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="kw">incbounds</span> <span class="kw">=</span> <span class="fl">FALSE</span>))
+<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">DT</span>,<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/between.html">between</a></span><span class="op">(</span><span class="va">V2</span>, <span class="fl">3</span>, <span class="fl">5</span>, incbounds <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     2     4   0.5      A</span>
-<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span>(<span class="no">DT</span>,<span class="no">V2</span> <span class="kw">%inrange%</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(-<span class="fl">1</span>:<span class="fl">1</span>, <span class="fl">1</span>:<span class="fl">3</span>))  <span class="co"># see also ?inrange</span>
+<span class="fu"><a href="../reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">DT</span>,<span class="va">V2</span> <span class="op">%inrange%</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">:</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span>  <span class="co"># see also ?inrange</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A</span>
 <span class="co">#&gt; 2:     2     2   1.0      B</span>
-<span class="co">#&gt; 3:     1     3   1.5      C</span></pre></body></html></div>
+<span class="co">#&gt; 3:     1     3   1.5      C</span></code></pre></div>
 </div>
 <div id="sort-rows" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sort-rows" class="anchor"></a>Sort rows</h2>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co">### Sort rows by column</span>
-<span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(<span class="no">DF</span>, <span class="no">V3</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### Sort rows by column</span>
+<span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V3</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A</span>
@@ -313,7 +316,7 @@
 <span class="co">#&gt; 9:     1     9   1.5      C</span>
 
 <span class="co">### Sort rows in decreasing order</span>
-<span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(<span class="no">DF</span>, -<span class="no">V3</span>)
+<span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="op">-</span><span class="va">V3</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     3   1.5      C</span>
@@ -327,7 +330,7 @@
 <span class="co">#&gt; 9:     1     7   0.5      A</span>
 
 <span class="co">### Sort rows based on several columns</span>
-<span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(<span class="no">DF</span>, <span class="no">V1</span>, -<span class="no">V2</span>)
+<span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V1</span>, <span class="op">-</span><span class="va">V2</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     9   1.5      C</span>
@@ -338,15 +341,16 @@
 <span class="co">#&gt; 6:     2     8   1.0      B</span>
 <span class="co">#&gt; 7:     2     6   1.5      C</span>
 <span class="co">#&gt; 8:     2     4   0.5      A</span>
-<span class="co">#&gt; 9:     2     2   1.0      B</span></pre></body></html></div>
+<span class="co">#&gt; 9:     2     2   1.0      B</span></code></pre></div>
 </div>
 <div id="select-columns" class="section level2">
 <h2 class="hasAnchor">
 <a href="#select-columns" class="anchor"></a>Select columns</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co">### Select one column using an index (not recommended)</span>
-<span class="fu"><a href="../reference/pull_dt.html">pull_dt</a></span>(<span class="no">DT</span>,<span class="fl">3</span>) <span class="co"># returns a vector</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### Select one column using an index (not recommended)</span>
+<span class="fu"><a href="../reference/pull_dt.html">pull_dt</a></span><span class="op">(</span><span class="va">DT</span>,<span class="fl">3</span><span class="op">)</span> <span class="co"># returns a vector</span>
 <span class="co">#&gt; [1] 0.5 1.0 1.5 0.5 1.0 1.5 0.5 1.0 1.5</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DT</span>,<span class="fl">3</span>) <span class="co"># returns a data.table</span>
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DT</span>,<span class="fl">3</span><span class="op">)</span> <span class="co"># returns a data.table</span>
 <span class="co">#&gt;       V3</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:   0.5</span>
@@ -360,7 +364,7 @@
 <span class="co">#&gt; 9:   1.5</span>
 
 <span class="co">### Select one column using column name</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, <span class="no">V2</span>) <span class="co"># returns a data.table</span>
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V2</span><span class="op">)</span> <span class="co"># returns a data.table</span>
 <span class="co">#&gt;       V2</span>
 <span class="co">#&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1</span>
@@ -372,11 +376,11 @@
 <span class="co">#&gt; 7:     7</span>
 <span class="co">#&gt; 8:     8</span>
 <span class="co">#&gt; 9:     9</span>
-<span class="fu"><a href="../reference/pull_dt.html">pull_dt</a></span>(<span class="no">DF</span>, <span class="no">V2</span>)   <span class="co"># returns a vector</span>
+<span class="fu"><a href="../reference/pull_dt.html">pull_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V2</span><span class="op">)</span>   <span class="co"># returns a vector</span>
 <span class="co">#&gt; [1] 1 2 3 4 5 6 7 8 9</span>
 
 <span class="co">### Select several columns</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, <span class="no">V2</span>, <span class="no">V3</span>, <span class="no">V4</span>)
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V2</span>, <span class="va">V3</span>, <span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;       V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1   0.5      A</span>
@@ -388,7 +392,7 @@
 <span class="co">#&gt; 7:     7   0.5      A</span>
 <span class="co">#&gt; 8:     8   1.0      B</span>
 <span class="co">#&gt; 9:     9   1.5      C</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, <span class="no">V2</span>:<span class="no">V4</span>) <span class="co"># select columns between V2 and V4</span>
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V2</span><span class="op">:</span><span class="va">V4</span><span class="op">)</span> <span class="co"># select columns between V2 and V4</span>
 <span class="co">#&gt;       V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1   0.5      A</span>
@@ -402,7 +406,7 @@
 <span class="co">#&gt; 9:     9   1.5      C</span>
 
 <span class="co">### Exclude columns</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, -<span class="no">V2</span>, -<span class="no">V3</span>)
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="op">-</span><span class="va">V2</span>, <span class="op">-</span><span class="va">V3</span><span class="op">)</span>
 <span class="co">#&gt; Indices: &lt;V4&gt;, &lt;V1&gt;, &lt;V4__V1&gt;</span>
 <span class="co">#&gt;       V1     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;char&gt;</span>
@@ -417,8 +421,8 @@
 <span class="co">#&gt; 9:     1      C</span>
 
 <span class="co">### Select/Exclude columns using a character vector</span>
-<span class="no">cols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V2"</span>, <span class="st">"V3"</span>)
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>,<span class="kw">cols</span> <span class="kw">=</span> <span class="no">cols</span>)
+<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V2"</span>, <span class="st">"V3"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>,cols <span class="op">=</span> <span class="va">cols</span><span class="op">)</span>
 <span class="co">#&gt;       V2    V3</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1:     1   0.5</span>
@@ -430,7 +434,7 @@
 <span class="co">#&gt; 7:     7   0.5</span>
 <span class="co">#&gt; 8:     8   1.0</span>
 <span class="co">#&gt; 9:     9   1.5</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>,<span class="kw">cols</span> <span class="kw">=</span> <span class="no">cols</span>,<span class="kw">negate</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>,cols <span class="op">=</span> <span class="va">cols</span>,negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; Indices: &lt;V4&gt;, &lt;V1&gt;, &lt;V4__V1&gt;</span>
 <span class="co">#&gt;       V1     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;char&gt;</span>
@@ -445,7 +449,7 @@
 <span class="co">#&gt; 9:     1      C</span>
 
 <span class="co">### Other selections</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, <span class="kw">cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"V"</span>, <span class="fl">1</span>:<span class="fl">2</span>))
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"V"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Index: &lt;V1&gt;</span>
 <span class="co">#&gt;       V1    V2</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt;</span>
@@ -458,7 +462,7 @@
 <span class="co">#&gt; 7:     1     7</span>
 <span class="co">#&gt; 8:     2     8</span>
 <span class="co">#&gt; 9:     1     9</span>
-<span class="fu"><a href="../reference/relocate_dt.html">relocate_dt</a></span>(<span class="no">DF</span>, <span class="no">V4</span>) <span class="co"># reorder columns</span>
+<span class="fu"><a href="../reference/relocate_dt.html">relocate_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V4</span><span class="op">)</span> <span class="co"># reorder columns</span>
 <span class="co">#&gt; Indices: &lt;V4&gt;, &lt;V1&gt;, &lt;V4__V1&gt;</span>
 <span class="co">#&gt;        V4    V1    V2    V3</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt;</span>
@@ -471,7 +475,7 @@
 <span class="co">#&gt; 7:      A     1     7   0.5</span>
 <span class="co">#&gt; 8:      B     2     8   1.0</span>
 <span class="co">#&gt; 9:      C     1     9   1.5</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, <span class="st">"V"</span>)
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="st">"V"</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A</span>
@@ -483,7 +487,7 @@
 <span class="co">#&gt; 7:     1     7   0.5      A</span>
 <span class="co">#&gt; 8:     2     8   1.0      B</span>
 <span class="co">#&gt; 9:     1     9   1.5      C</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, <span class="st">"3$"</span>)
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="st">"3$"</span><span class="op">)</span>
 <span class="co">#&gt;       V3</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:   0.5</span>
@@ -495,7 +499,7 @@
 <span class="co">#&gt; 7:   0.5</span>
 <span class="co">#&gt; 8:   1.0</span>
 <span class="co">#&gt; 9:   1.5</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, <span class="st">".2"</span>)
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="st">".2"</span><span class="op">)</span>
 <span class="co">#&gt;       V2</span>
 <span class="co">#&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1</span>
@@ -507,7 +511,7 @@
 <span class="co">#&gt; 7:     7</span>
 <span class="co">#&gt; 8:     8</span>
 <span class="co">#&gt; 9:     9</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, <span class="st">"V1"</span>)
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="st">"V1"</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1</span>
@@ -519,7 +523,7 @@
 <span class="co">#&gt; 7:     1</span>
 <span class="co">#&gt; 8:     2</span>
 <span class="co">#&gt; 9:     1</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DF</span>, -<span class="st">"^V2"</span>)
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="op">-</span><span class="st">"^V2"</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1   0.5      A</span>
@@ -531,83 +535,85 @@
 <span class="co">#&gt; 7:     1   0.5      A</span>
 <span class="co">#&gt; 8:     2   1.0      B</span>
 <span class="co">#&gt; 9:     1   1.5      C</span>
-<span class="co"># remove variables using "-" prior to function</span></pre></body></html></div>
+<span class="co"># remove variables using "-" prior to function</span></code></pre></div>
 </div>
 <div id="summarise-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summarise-data" class="anchor"></a>Summarise data</h2>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co">### Summarise one column</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="no">DF</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V1</span>)) <span class="co"># returns a data.table</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### Summarise one column</span>
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span><span class="op">)</span> <span class="co"># returns a data.table</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1:    13</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="no">DF</span>, <span class="kw">sumV1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V1</span>)) <span class="co"># returns a data.table</span>
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span><span class="va">DF</span>, sumV1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span><span class="op">)</span> <span class="co"># returns a data.table</span>
 <span class="co">#&gt;    sumV1</span>
 <span class="co">#&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1:    13</span>
 
 <span class="co">### Summarise several columns</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="no">DF</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V1</span>), <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">V3</span>))
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">V3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1        V2</span>
 <span class="co">#&gt;    &lt;int&gt;     &lt;num&gt;</span>
 <span class="co">#&gt; 1:    13 0.4330127</span>
 
 <span class="co">### Summarise several columns and assign column names</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">sumv1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V1</span>),
-              <span class="kw">sdv3</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">V3</span>))
+<span class="va">DF</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sumv1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span>,
+              sdv3  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">V3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    sumv1      sdv3</span>
 <span class="co">#&gt;    &lt;int&gt;     &lt;num&gt;</span>
 <span class="co">#&gt; 1:    13 0.4330127</span>
 
 <span class="co">### Summarise a subset of rows</span>
-<span class="no">DT</span>[<span class="fl">1</span>:<span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V1</span>)]
+<span class="va">DT</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span><span class="op">]</span>
 <span class="co">#&gt; [1] 6</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/slice.html">slice_dt</a></span>(<span class="fl">1</span>:<span class="fl">4</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V1</span>))
+<span class="va">DF</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/slice_dt.html">slice_dt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1:     6</span>
 
 <span class="co">### Misc</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="no">DF</span>, <span class="fu"><a href="../reference/nth.html">nth</a></span>(<span class="no">V3</span>,<span class="fl">1</span>))
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fu"><a href="../reference/nth.html">nth</a></span><span class="op">(</span><span class="va">V3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:   0.5</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="no">DF</span>, <span class="fu"><a href="../reference/nth.html">nth</a></span>(<span class="no">V3</span>,-<span class="fl">1</span>))
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fu"><a href="../reference/nth.html">nth</a></span><span class="op">(</span><span class="va">V3</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:   1.5</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="no">DF</span>, <span class="fu"><a href="../reference/nth.html">nth</a></span>(<span class="no">V3</span>, <span class="fl">5</span>))
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fu"><a href="../reference/nth.html">nth</a></span><span class="op">(</span><span class="va">V3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:     1</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="no">DF</span>, <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">uniqueN</a></span>(<span class="no">V4</span>))
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">uniqueN</a></span><span class="op">(</span><span class="va">V4</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1:     3</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">uniqueN</a></span>(<span class="no">DF</span>)
-<span class="co">#&gt; [1] 9</span></pre></body></html></div>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">uniqueN</a></span><span class="op">(</span><span class="va">DF</span><span class="op">)</span>
+<span class="co">#&gt; [1] 9</span></code></pre></div>
 </div>
 <div id="group-computation-by" class="section level2">
 <h2 class="hasAnchor">
 <a href="#group-computation-by" class="anchor"></a>group computation (by)</h2>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co">### By group</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### By group</span>
 <span class="co"># not recommended</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span>(
-    <span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,
-    <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">sumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>))
-  )
+<span class="va">DF</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span><span class="op">(</span>
+    by <span class="op">=</span> <span class="va">V4</span>,
+    <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span>
 <span class="co">#&gt;        V4 sumV2</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A    12</span>
 <span class="co">#&gt; 2:      B    15</span>
 <span class="co">#&gt; 3:      C    18</span>
 <span class="co"># recommended</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">sumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>),<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>)
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;        V4 sumV2</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A    12</span>
@@ -616,8 +622,8 @@
 
 
 <span class="co">### By several groups</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">sumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>),<span class="kw">by</span> <span class="kw">=</span> <span class="fu">.</span>(<span class="no">V1</span>,<span class="no">V4</span>))
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span>,by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">V1</span>,<span class="va">V4</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1     V4 sumV2</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1      A     8</span>
@@ -628,8 +634,8 @@
 <span class="co">#&gt; 6:     2      C     6</span>
 
 <span class="co">### Calling function in by</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">sumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>),<span class="kw">by</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span>(<span class="no">V4</span>))
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span>,by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">V4</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    tolower sumV2</span>
 <span class="co">#&gt;     &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:       a    12</span>
@@ -638,8 +644,8 @@
 
 
 <span class="co">### Assigning column name in by</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">sumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>),<span class="kw">by</span> <span class="kw">=</span> <span class="fu">.</span>(<span class="kw">abc</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span>(<span class="no">V4</span>)))
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span>,by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span>abc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">V4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       abc sumV2</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      a    12</span>
@@ -648,8 +654,8 @@
 
 
 <span class="co">### Using a condition in by</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">sumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>),<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span> <span class="kw">==</span> <span class="st">"A"</span>)
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">V4</span> <span class="op">==</span> <span class="st">"A"</span><span class="op">)</span>
 <span class="co">#&gt;        V4 sumV2</span>
 <span class="co">#&gt;    &lt;lgcl&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:   TRUE    12</span>
@@ -658,9 +664,9 @@
 
 
 <span class="co">### By on a subset of rows</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/slice.html">slice_dt</a></span>(<span class="fl">1</span>:<span class="fl">5</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">sumV1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V1</span>),<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>)
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/slice_dt.html">slice_dt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sumV1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;        V4 sumV1</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A     3</span>
@@ -668,7 +674,7 @@
 <span class="co">#&gt; 3:      C     1</span>
 
 <span class="co">### Count number of observations for each group</span>
-<span class="fu"><a href="../reference/count.html">count_dt</a></span>(<span class="no">DF</span>, <span class="no">V4</span>)
+<span class="fu"><a href="../reference/count_dt.html">count_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;        V4     n</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A     3</span>
@@ -676,7 +682,7 @@
 <span class="co">#&gt; 3:      C     3</span>
 
 <span class="co">### Add a column with number of observations for each group</span>
-<span class="fu"><a href="../reference/count.html">add_count_dt</a></span>(<span class="no">DF</span>, <span class="no">V1</span>)
+<span class="fu"><a href="../reference/count_dt.html">add_count_dt</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">V1</span><span class="op">)</span>
 <span class="co">#&gt; Indices: &lt;V4&gt;, &lt;V1&gt;, &lt;V4__V1&gt;</span>
 <span class="co">#&gt;       V1    V2    V3     V4     n</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt; &lt;int&gt;</span>
@@ -691,24 +697,24 @@
 <span class="co">#&gt; 9:     1     9   1.5      C     5</span>
 
 <span class="co">### Retrieve the first/last/nth observation for each group</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,<span class="fu"><a href="../reference/nth.html">nth</a></span>(<span class="no">V2</span>,<span class="fl">1</span>))
+<span class="va">DF</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">V4</span>,<span class="fu"><a href="../reference/nth.html">nth</a></span><span class="op">(</span><span class="va">V2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;        V4    V1</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A     1</span>
 <span class="co">#&gt; 2:      B     2</span>
 <span class="co">#&gt; 3:      C     3</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,<span class="fu"><a href="../reference/nth.html">nth</a></span>(<span class="no">V2</span>,-<span class="fl">1</span>))
+<span class="va">DF</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">V4</span>,<span class="fu"><a href="../reference/nth.html">nth</a></span><span class="op">(</span><span class="va">V2</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;        V4    V1</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A     7</span>
 <span class="co">#&gt; 2:      B     8</span>
 <span class="co">#&gt; 3:      C     9</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,<span class="fu"><a href="../reference/nth.html">nth</a></span>(<span class="no">V2</span>,<span class="fl">2</span>))
+<span class="va">DF</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">V4</span>,<span class="fu"><a href="../reference/nth.html">nth</a></span><span class="op">(</span><span class="va">V2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;        V4    V1</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A     4</span>
 <span class="co">#&gt; 2:      B     5</span>
-<span class="co">#&gt; 3:      C     6</span></pre></body></html></div>
+<span class="co">#&gt; 3:      C     6</span></code></pre></div>
 </div>
 </div>
 <div id="going-further" class="section level1">
@@ -717,21 +723,22 @@
 <div id="advanced-columns-manipulation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#advanced-columns-manipulation" class="anchor"></a>Advanced columns manipulation</h2>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co">### Summarise all the columns</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span>(<span class="no">DT</span>,<span class="kw">.func</span> <span class="kw">=</span> <span class="no">max</span>)
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### Summarise all the columns</span>
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span><span class="op">(</span><span class="va">DT</span>,.func <span class="op">=</span> <span class="va">max</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     2     9   1.5      C</span>
 
 <span class="co">### Summarise several columns</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span>(<span class="no">DT</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V2"</span>),<span class="no">mean</span>)
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span><span class="op">(</span><span class="va">DT</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V2"</span><span class="op">)</span>,<span class="va">mean</span><span class="op">)</span>
 <span class="co">#&gt;          V1    V2</span>
 <span class="co">#&gt;       &lt;num&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1: 1.444444     5</span>
 
 <span class="co">### Summarise several columns by group</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V2"</span>),<span class="no">mean</span>,<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>)
+<span class="va">DT</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V2"</span><span class="op">)</span>,<span class="va">mean</span>,by <span class="op">=</span> <span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;        V4       V1    V2</span>
 <span class="co">#&gt;    &lt;char&gt;    &lt;num&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1:      A 1.333333     4</span>
@@ -739,8 +746,8 @@
 <span class="co">#&gt; 3:      C 1.333333     6</span>
 
 <span class="co">## using patterns (regex)</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span>(<span class="st">"V1|V2"</span>,<span class="no">mean</span>,<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>)
+<span class="va">DT</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span><span class="op">(</span><span class="st">"V1|V2"</span>,<span class="va">mean</span>,by <span class="op">=</span> <span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;        V4       V1    V2</span>
 <span class="co">#&gt;    &lt;char&gt;    &lt;num&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1:      A 1.333333     4</span>
@@ -749,10 +756,10 @@
 
 <span class="co">## Summarise with more than one function by group</span>
 <span class="co"># when you can't find a way, you can always use `in_dt` to use data.table</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/dt.html">in_dt</a></span>(, <span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,
-     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">.SD</span>, <span class="no">sum</span>),
-       <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">.SD</span>, <span class="no">mean</span>)))
+<span class="va">DT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/in_dt.html">in_dt</a></span><span class="op">(</span>, by <span class="op">=</span> <span class="va">V4</span>, 
+     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="va">sum</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;        V4    V1    V2    V3       V1    V2    V3</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1:      A     4    12   1.5 1.333333     4   0.5</span>
@@ -760,13 +767,13 @@
 <span class="co">#&gt; 3:      C     4    18   4.5 1.333333     6   1.5</span>
 
 <span class="co">### Summarise using a condition</span>
-<span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span>(<span class="no">DF</span>, <span class="no">is.numeric</span>, <span class="no">mean</span>)
+<span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span><span class="op">(</span><span class="va">DF</span>, <span class="va">is.numeric</span>, <span class="va">mean</span><span class="op">)</span>
 <span class="co">#&gt;          V1    V2    V3</span>
 <span class="co">#&gt;       &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1: 1.444444     5     1</span>
 
 <span class="co">### Modify all the columns</span>
-<span class="fu"><a href="../reference/mutate_vars.html">mutate_vars</a></span>(<span class="no">DF</span>, <span class="kw">.func</span> <span class="kw">=</span> <span class="no">rev</span>)
+<span class="fu"><a href="../reference/mutate_when.html">mutate_vars</a></span><span class="op">(</span><span class="va">DF</span>, .func <span class="op">=</span> <span class="va">rev</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     9   1.5      C</span>
@@ -780,9 +787,9 @@
 <span class="co">#&gt; 9:     1     1   0.5      A</span>
 
 <span class="co">### Modify several columns (dropping the others)</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="kw">cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V2"</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/mutate_vars.html">mutate_vars</a></span>(<span class="kw">.func</span> <span class="kw">=</span> <span class="no">sqrt</span>)
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V2"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/mutate_when.html">mutate_vars</a></span><span class="op">(</span>.func <span class="op">=</span> <span class="va">sqrt</span><span class="op">)</span>
 <span class="co">#&gt;          V1       V2</span>
 <span class="co">#&gt;       &lt;num&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1: 1.000000 1.000000</span>
@@ -794,9 +801,9 @@
 <span class="co">#&gt; 7: 1.000000 2.645751</span>
 <span class="co">#&gt; 8: 1.414214 2.828427</span>
 <span class="co">#&gt; 9: 1.000000 3.000000</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/select.html">select_dt</a></span>(-<span class="no">V4</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/mutate_vars.html">mutate_vars</a></span>(<span class="kw">.func</span> <span class="kw">=</span> <span class="no">exp</span>)
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="op">-</span><span class="va">V4</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/mutate_when.html">mutate_vars</a></span><span class="op">(</span>.func <span class="op">=</span> <span class="va">exp</span><span class="op">)</span>
 <span class="co">#&gt;          V1          V2       V3</span>
 <span class="co">#&gt;       &lt;num&gt;       &lt;num&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1: 2.718282    2.718282 1.648721</span>
@@ -810,8 +817,8 @@
 <span class="co">#&gt; 9: 2.718282 8103.083928 4.481689</span>
 
 <span class="co">### Modify several columns (keeping the others)</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/mutate_vars.html">mutate_vars</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V2"</span>), <span class="no">sqrt</span>)
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/mutate_when.html">mutate_vars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V2"</span><span class="op">)</span>, <span class="va">sqrt</span><span class="op">)</span>
 <span class="co">#&gt; Index: &lt;V4&gt;</span>
 <span class="co">#&gt;          V1       V2    V3     V4</span>
 <span class="co">#&gt;       &lt;num&gt;    &lt;num&gt; &lt;num&gt; &lt;char&gt;</span>
@@ -824,8 +831,8 @@
 <span class="co">#&gt; 7: 1.000000 2.645751   0.5      A</span>
 <span class="co">#&gt; 8: 1.414214 2.828427   1.0      B</span>
 <span class="co">#&gt; 9: 1.000000 3.000000   1.5      C</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/mutate_vars.html">mutate_vars</a></span>(-<span class="st">"V4"</span>,  <span class="no">exp</span>)
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/mutate_when.html">mutate_vars</a></span><span class="op">(</span><span class="op">-</span><span class="st">"V4"</span>,  <span class="va">exp</span><span class="op">)</span>
 <span class="co">#&gt; Index: &lt;V4&gt;</span>
 <span class="co">#&gt;          V1          V2       V3     V4</span>
 <span class="co">#&gt;       &lt;num&gt;       &lt;num&gt;    &lt;num&gt; &lt;char&gt;</span>
@@ -840,7 +847,7 @@
 <span class="co">#&gt; 9: 2.718282 8103.083928 4.481689      C</span>
 
 <span class="co">### Modify columns using a condition (dropping the others)</span>
-<span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">DT</span>,<span class="no">is.numeric</span>)
+<span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">DT</span>,<span class="va">is.numeric</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5</span>
@@ -854,7 +861,7 @@
 <span class="co">#&gt; 9:     1     9   1.5</span>
 
 <span class="co">### Modify columns using a condition (keeping the others)</span>
-<span class="fu"><a href="../reference/mutate_vars.html">mutate_vars</a></span>(<span class="no">DT</span>,<span class="no">is.numeric</span>,<span class="no">as.integer</span>)
+<span class="fu"><a href="../reference/mutate_when.html">mutate_vars</a></span><span class="op">(</span><span class="va">DT</span>,<span class="va">is.numeric</span>,<span class="va">as.integer</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     1     0      A</span>
@@ -868,13 +875,13 @@
 <span class="co">#&gt; 9:     1     9     1      C</span>
 
 <span class="co">### Use a complex expression</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span>(
-    <span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,
-    <span class="fu"><a href="../reference/slice.html">slice_dt</a></span>(<span class="fl">1</span>:<span class="fl">2</span>) <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="../reference/mutate.html">transmute_dt</a></span>(<span class="kw">V1</span> <span class="kw">=</span> <span class="no">V1</span>,
-            <span class="kw">V2</span> <span class="kw">=</span> <span class="st">"X"</span>)
-  )
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span><span class="op">(</span>
+    by <span class="op">=</span> <span class="va">V4</span>,
+    <span class="fu"><a href="../reference/slice_dt.html">slice_dt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+      <span class="fu"><a href="../reference/mutate_dt.html">transmute_dt</a></span><span class="op">(</span>V1 <span class="op">=</span> <span class="va">V1</span>,
+            V2 <span class="op">=</span> <span class="st">"X"</span><span class="op">)</span>
+  <span class="op">)</span>
 <span class="co">#&gt;        V4    V1     V2</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:      A     1      X</span>
@@ -885,14 +892,14 @@
 <span class="co">#&gt; 6:      C     2      X</span>
 
 <span class="co">### Use multiple expressions (with DT[,{j}])</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/dt.html">in_dt</a></span>(,{
-      <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">V1</span>) <span class="co">#  comments here!</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">V1</span>))
-      <span class="no">x</span> <span class="kw">&lt;-</span> <span class="no">V1</span> + <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>)
-     <span class="fu">.</span>(<span class="kw">A</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="no">.N</span>, <span class="kw">B</span> <span class="kw">=</span> <span class="no">x</span>) <span class="co"># last list returned as a data.table</span>
-     }
-  )
+<span class="va">DT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/in_dt.html">in_dt</a></span><span class="op">(</span>,<span class="op">{</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span> <span class="co">#  comments here!</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span><span class="op">)</span>
+      <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">V1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span>
+     <span class="fu">.</span><span class="op">(</span>A <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">.N</span>, B <span class="op">=</span> <span class="va">x</span><span class="op">)</span> <span class="co"># last list returned as a data.table</span>
+     <span class="op">}</span>
+  <span class="op">)</span>
 <span class="co">#&gt; [1] 1 2 1 2 1 2 1 2 1</span>
 <span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
 <span class="co">#&gt;   1.000   1.000   1.000   1.444   2.000   2.000</span>
@@ -906,28 +913,28 @@
 <span class="co">#&gt; 6:     6    47</span>
 <span class="co">#&gt; 7:     7    46</span>
 <span class="co">#&gt; 8:     8    47</span>
-<span class="co">#&gt; 9:     9    46</span></pre></body></html></div>
+<span class="co">#&gt; 9:     9    46</span></code></pre></div>
 </div>
 <div id="advanced-use-of-by" class="section level2">
 <h2 class="hasAnchor">
 <a href="#advanced-use-of-by" class="anchor"></a>Advanced use of by</h2>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co">### Select first/last/… row by group</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span>(
-    <span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,
-    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fl">1</span>)
-  )
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### Select first/last/… row by group</span><span class="va">DT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span><span class="op">(</span>
+    by <span class="op">=</span> <span class="va">V4</span>,
+    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+  <span class="op">)</span>
 <span class="co">#&gt;        V4    V1    V2    V3</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1:      A     1     1   0.5</span>
 <span class="co">#&gt; 2:      B     2     2   1.0</span>
 <span class="co">#&gt; 3:      C     1     3   1.5</span>
 
-<span class="no">DT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span>(
-    <span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,
-    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="fl">2</span>)
-  )
+<span class="va">DT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span><span class="op">(</span>
+    by <span class="op">=</span> <span class="va">V4</span>,
+    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
+  <span class="op">)</span>
 <span class="co">#&gt;        V4    V1    V2    V3</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1:      A     2     4   0.5</span>
@@ -937,11 +944,11 @@
 <span class="co">#&gt; 5:      C     2     6   1.5</span>
 <span class="co">#&gt; 6:      C     1     9   1.5</span>
 
-<span class="no">DT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span>(
-    <span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,
-    <span class="fu"><a href="../reference/slice.html">slice_dt</a></span>(<span class="fl">1</span>,<span class="no">.N</span>)
-  )
+<span class="va">DT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span><span class="op">(</span>
+    by <span class="op">=</span> <span class="va">V4</span>,
+    <span class="fu"><a href="../reference/slice_dt.html">slice_dt</a></span><span class="op">(</span><span class="fl">1</span>,<span class="va">.N</span><span class="op">)</span>
+  <span class="op">)</span>
 <span class="co">#&gt;        V4    V1    V2    V3</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1:      A     1     1   0.5</span>
@@ -952,12 +959,12 @@
 <span class="co">#&gt; 6:      C     1     9   1.5</span>
 
 <span class="co">### Select rows using a nested query</span>
-<span class="no">DF</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span>(
-    <span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>,
-    <span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span>(<span class="no">V2</span>) <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="../reference/slice.html">slice_dt</a></span>(<span class="fl">1</span>)
-  )
+<span class="va">DF</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span><span class="op">(</span>
+    by <span class="op">=</span> <span class="va">V4</span>,
+    <span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+      <span class="fu"><a href="../reference/slice_dt.html">slice_dt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+  <span class="op">)</span>
 <span class="co">#&gt;        V4    V1    V2    V3</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt;</span>
 <span class="co">#&gt; 1:      A     1     1   0.5</span>
@@ -965,8 +972,8 @@
 <span class="co">#&gt; 3:      C     1     3   1.5</span>
 
 <span class="co">### Add a group counter column</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span>(<span class="kw">Grp</span> <span class="kw">=</span> <span class="no">.GRP</span>,<span class="kw">by</span> <span class="kw">=</span> <span class="fu">.</span>(<span class="no">V4</span>, <span class="no">V1</span>))
+<span class="va">DT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/mutate_dt.html">mutate_dt</a></span><span class="op">(</span>Grp <span class="op">=</span> <span class="va">.GRP</span>,by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">V4</span>, <span class="va">V1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2    V3     V4   Grp</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1     1   0.5      A     1</span>
@@ -980,7 +987,7 @@
 <span class="co">#&gt; 9:     1     9   1.5      C     3</span>
 
 <span class="co">### Get row number of first (and last) observation by group</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">I</span> <span class="kw">=</span> <span class="no">.I</span>,<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>)
+<span class="va">DT</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>I <span class="op">=</span> <span class="va">.I</span>,by <span class="op">=</span> <span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;        V4     I</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A     1</span>
@@ -992,13 +999,13 @@
 <span class="co">#&gt; 7:      C     3</span>
 <span class="co">#&gt; 8:      C     6</span>
 <span class="co">#&gt; 9:      C     9</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">I</span> <span class="kw">=</span> <span class="no">.I</span>[<span class="fl">1</span>],<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>)
+<span class="va">DT</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>I <span class="op">=</span> <span class="va">.I</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,by <span class="op">=</span> <span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;        V4     I</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A     1</span>
 <span class="co">#&gt; 2:      B     2</span>
 <span class="co">#&gt; 3:      C     3</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span>(<span class="kw">I</span> <span class="kw">=</span> <span class="no">.I</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="no">.N</span>)],<span class="kw">by</span> <span class="kw">=</span> <span class="no">V4</span>)
+<span class="va">DT</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>I <span class="op">=</span> <span class="va">.I</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="va">.N</span><span class="op">)</span><span class="op">]</span>,by <span class="op">=</span> <span class="va">V4</span><span class="op">)</span>
 <span class="co">#&gt;        V4     I</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A     1</span>
@@ -1010,15 +1017,15 @@
 
 <span class="co">### Handle list-columns by group</span>
 
-<span class="no">DT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/select.html">select_dt</a></span>(<span class="no">V1</span>,<span class="no">V4</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/nest.html">chop_dt</a></span>(<span class="no">V1</span>) <span class="co"># return V1 as a list</span>
+<span class="va">DT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">V1</span>,<span class="va">V4</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/nest_dt.html">chop_dt</a></span><span class="op">(</span><span class="va">V1</span><span class="op">)</span> <span class="co"># return V1 as a list</span>
 <span class="co">#&gt;        V4     V1</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;list&gt;</span>
 <span class="co">#&gt; 1:      A  1,2,1</span>
 <span class="co">#&gt; 2:      B  2,1,2</span>
 <span class="co">#&gt; 3:      C  1,2,1</span>
-<span class="no">DT</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/nest.html">nest_dt</a></span>(<span class="no">V4</span>) <span class="co"># subsets of the data</span>
+<span class="va">DT</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/nest_dt.html">nest_dt</a></span><span class="op">(</span><span class="va">V4</span><span class="op">)</span> <span class="co"># subsets of the data</span>
 <span class="co">#&gt;        V4               ndt</span>
 <span class="co">#&gt;    &lt;char&gt;            &lt;list&gt;</span>
 <span class="co">#&gt; 1:      A &lt;data.table[3x3]&gt;</span>
@@ -1027,9 +1034,9 @@
 
 <span class="co">### Grouping sets (multiple by at once)</span>
 <span class="co"># use data.table directly, tidyfst does not provide new methods for it yet</span>
-<span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/groupingsets.html">rollup</a></span>(<span class="no">DT</span>,
-       <span class="fu">.</span>(<span class="kw">SumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>)),
-       <span class="kw">by</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V4"</span>))
+<span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/groupingsets.html">rollup</a></span><span class="op">(</span><span class="va">DT</span>,
+       <span class="fu">.</span><span class="op">(</span>SumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span><span class="op">)</span>,
+       by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V4"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;       V1     V4 SumV2</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1      A     8</span>
@@ -1042,10 +1049,10 @@
 <span class="co">#&gt; 8:     2   &lt;NA&gt;    20</span>
 <span class="co">#&gt; 9:    NA   &lt;NA&gt;    45</span>
 
-<span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/groupingsets.html">rollup</a></span>(<span class="no">DT</span>,
-       <span class="fu">.</span>(<span class="kw">SumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>), <span class="no">.N</span>),
-       <span class="kw">by</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V4"</span>),
-       <span class="kw">id</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/groupingsets.html">rollup</a></span><span class="op">(</span><span class="va">DT</span>,
+       <span class="fu">.</span><span class="op">(</span>SumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span>, <span class="va">.N</span><span class="op">)</span>,
+       by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V4"</span><span class="op">)</span>,
+       id <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;    grouping    V1     V4 SumV2     N</span>
 <span class="co">#&gt;       &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:        0     1      A     8     2</span>
@@ -1058,10 +1065,10 @@
 <span class="co">#&gt; 8:        1     2   &lt;NA&gt;    20     4</span>
 <span class="co">#&gt; 9:        3    NA   &lt;NA&gt;    45     9</span>
 
-<span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/groupingsets.html">cube</a></span>(<span class="no">DT</span>,
-     <span class="fu">.</span>(<span class="kw">SumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>), <span class="no">.N</span>),
-     <span class="kw">by</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V4"</span>),
-     <span class="kw">id</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/groupingsets.html">cube</a></span><span class="op">(</span><span class="va">DT</span>,
+     <span class="fu">.</span><span class="op">(</span>SumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span>, <span class="va">.N</span><span class="op">)</span>,
+     by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V4"</span><span class="op">)</span>,
+     id <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;     grouping    V1     V4 SumV2     N</span>
 <span class="co">#&gt;        &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt;  1:        0     1      A     8     2</span>
@@ -1077,11 +1084,11 @@
 <span class="co">#&gt; 11:        2    NA      C    18     3</span>
 <span class="co">#&gt; 12:        3    NA   &lt;NA&gt;    45     9</span>
 
-<span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/groupingsets.html">groupingsets</a></span>(<span class="no">DT</span>,
-             <span class="fu">.</span>(<span class="kw">SumV2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">V2</span>), <span class="no">.N</span>),
-             <span class="kw">by</span>   <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V4"</span>),
-             <span class="kw">sets</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"V1"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V4"</span>)),
-             <span class="kw">id</span>   <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/groupingsets.html">groupingsets</a></span><span class="op">(</span><span class="va">DT</span>,
+             <span class="fu">.</span><span class="op">(</span>SumV2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">V2</span><span class="op">)</span>, <span class="va">.N</span><span class="op">)</span>,
+             by   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V4"</span><span class="op">)</span>,
+             sets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V4"</span><span class="op">)</span><span class="op">)</span>,
+             id   <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;    grouping    V1     V4 SumV2     N</span>
 <span class="co">#&gt;       &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:        1     1   &lt;NA&gt;    25     5</span>
@@ -1091,7 +1098,7 @@
 <span class="co">#&gt; 5:        0     1      C    12     2</span>
 <span class="co">#&gt; 6:        0     2      A     4     1</span>
 <span class="co">#&gt; 7:        0     1      B     5     1</span>
-<span class="co">#&gt; 8:        0     2      C     6     1</span></pre></body></html></div>
+<span class="co">#&gt; 8:        0     2      C     6     1</span></code></pre></div>
 </div>
 </div>
 <div id="miscellaneous" class="section level1">
@@ -1101,41 +1108,43 @@
 <h2 class="hasAnchor">
 <a href="#read-write-data" class="anchor"></a>Read / Write data</h2>
 <p>tidyfst exports <code><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">data.table::fread</a></code> and <code><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">data.table::fwrite</a></code> directly.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co">### Write data to a csv file</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">fwrite</a></span>(<span class="no">DT</span>, <span class="st">"DT.csv"</span>)
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### Write data to a csv file</span>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">fwrite</a></span><span class="op">(</span><span class="va">DT</span>, <span class="st">"DT.csv"</span><span class="op">)</span>
 
 <span class="co">### Write data to a tab-delimited file</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">fwrite</a></span>(<span class="no">DT</span>, <span class="st">"DT.txt"</span>, <span class="kw">sep</span> <span class="kw">=</span> <span class="st">"\t"</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">fwrite</a></span><span class="op">(</span><span class="va">DT</span>, <span class="st">"DT.txt"</span>, sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span>
 
 <span class="co">### Write list-column data to a csv file</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">fwrite</a></span>(<span class="fu">setDT</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>:<span class="fl">5</span>))), <span class="st">"DT2.csv"</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html">fwrite</a></span><span class="op">(</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setDT.html">setDT</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, <span class="st">"DT2.csv"</span><span class="op">)</span>
 <span class="co">#</span>
 <span class="co">### Read a csv / tab-delimited file</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"DT.csv"</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"DT.csv"</span><span class="op">)</span>
 <span class="co"># fread("DT.csv", verbose = TRUE) # full details</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"DT.txt"</span>, <span class="kw">sep</span> <span class="kw">=</span> <span class="st">"\t"</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"DT.txt"</span>, sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span>
 
 <span class="co">### Read a csv file selecting / droping columns</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"DT.csv"</span>, <span class="kw">select</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V1"</span>, <span class="st">"V4"</span>))
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="st">"DT.csv"</span>, <span class="kw">drop</span> <span class="kw">=</span> <span class="st">"V4"</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"DT.csv"</span>, select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"V1"</span>, <span class="st">"V4"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"DT.csv"</span>, drop <span class="op">=</span> <span class="st">"V4"</span><span class="op">)</span>
 <span class="co"># NA</span>
 <span class="co">### Read and rbind several files</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbindlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DT.csv"</span>, <span class="st">"DT.csv"</span>), <span class="no">fread</span>))
-<span class="co"># c("DT.csv", "DT.csv") %&gt;% lapply(fread) %&gt;% rbindlist</span></pre></body></html></div>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbindlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"DT.csv"</span>, <span class="st">"DT.csv"</span><span class="op">)</span>, <span class="va">fread</span><span class="op">)</span><span class="op">)</span>
+<span class="co"># c("DT.csv", "DT.csv") %&gt;% lapply(fread) %&gt;% rbindlist</span></code></pre></div>
 </div>
 <div id="reshape-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reshape-data" class="anchor"></a>Reshape data</h2>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co">### Melt data (from wide to long)</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(<span class="no">DT</span>,<span class="no">DF</span>)
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### Melt data (from wide to long)</span>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span><span class="op">(</span><span class="va">DT</span>,<span class="va">DF</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span>
 
-<span class="no">mDT</span> <span class="kw">=</span> <span class="no">DT</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/longer.html">longer_dt</a></span>(<span class="no">V3</span>,<span class="no">V4</span>)
-<span class="no">mDF</span> <span class="kw">=</span> <span class="no">DF</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="../reference/longer.html">longer_dt</a></span>(-<span class="st">"V1|V2"</span>)
+<span class="va">mDT</span> <span class="op">=</span> <span class="va">DT</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/longer_dt.html">longer_dt</a></span><span class="op">(</span><span class="va">V3</span>,<span class="va">V4</span><span class="op">)</span>
+<span class="va">mDF</span> <span class="op">=</span> <span class="va">DF</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/longer_dt.html">longer_dt</a></span><span class="op">(</span><span class="op">-</span><span class="st">"V1|V2"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(<span class="no">mDT</span>,<span class="no">mDF</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span><span class="op">(</span><span class="va">mDT</span>,<span class="va">mDF</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span>
-<span class="no">mDT</span>
+<span class="va">mDT</span>
 <span class="co">#&gt;        V3     V4   name value</span>
 <span class="co">#&gt;     &lt;num&gt; &lt;char&gt; &lt;fctr&gt; &lt;int&gt;</span>
 <span class="co">#&gt;  1:   0.5      A     V1     1</span>
@@ -1158,8 +1167,8 @@
 <span class="co">#&gt; 18:   1.5      C     V2     9</span>
 
 <span class="co">### Cast data (from long to wide)</span>
-<span class="no">mDT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span>(<span class="no">V4</span>,<span class="kw">name</span> <span class="kw">=</span> <span class="st">"name"</span>,<span class="kw">value</span> <span class="kw">=</span> <span class="st">"value"</span>)
+<span class="va">mDT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span><span class="op">(</span><span class="va">V4</span>,name <span class="op">=</span> <span class="st">"name"</span>,value <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span>
 <span class="co">#&gt; Aggregate function missing, defaulting to 'length'</span>
 <span class="co">#&gt; Key: &lt;V4&gt;</span>
 <span class="co">#&gt;        V4    V1    V2</span>
@@ -1168,8 +1177,8 @@
 <span class="co">#&gt; 2:      B     3     3</span>
 <span class="co">#&gt; 3:      C     3     3</span>
 <span class="co"># below is a special case and could only be done in tidyfst</span>
-<span class="no">mDT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span>(<span class="no">V4</span>,<span class="kw">name</span> <span class="kw">=</span> <span class="st">"name"</span>,<span class="kw">value</span> <span class="kw">=</span> <span class="st">"value"</span>,<span class="kw">fun</span> <span class="kw">=</span> <span class="no">list</span>)
+<span class="va">mDT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span><span class="op">(</span><span class="va">V4</span>,name <span class="op">=</span> <span class="st">"name"</span>,value <span class="op">=</span> <span class="st">"value"</span>,fun <span class="op">=</span> <span class="va">list</span><span class="op">)</span>
 <span class="co">#&gt;        V4    V1    V2</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:      A     1     1</span>
@@ -1182,8 +1191,8 @@
 <span class="co">#&gt; 8:      C     2     6</span>
 <span class="co">#&gt; 9:      C     1     9</span>
 
-<span class="no">mDT</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span>(<span class="no">V4</span>,<span class="kw">name</span> <span class="kw">=</span> <span class="st">"name"</span>,<span class="kw">value</span> <span class="kw">=</span> <span class="st">"value"</span>,<span class="kw">fun</span> <span class="kw">=</span> <span class="no">sum</span>)
+<span class="va">mDT</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span><span class="op">(</span><span class="va">V4</span>,name <span class="op">=</span> <span class="st">"name"</span>,value <span class="op">=</span> <span class="st">"value"</span>,fun <span class="op">=</span> <span class="va">sum</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;V4&gt;</span>
 <span class="co">#&gt;        V4    V1    V2</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt;</span>
@@ -1192,7 +1201,7 @@
 <span class="co">#&gt; 3:      C     4    18</span>
 
 <span class="co">### Split</span>
-<span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="no">DT</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"V4"</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/split.html">split</a></span><span class="op">(</span><span class="va">DT</span>, by <span class="op">=</span> <span class="st">"V4"</span><span class="op">)</span>
 <span class="co">#&gt; $A</span>
 <span class="co">#&gt;       V1    V2    V3     V4</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
@@ -1212,22 +1221,23 @@
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     3   1.5      C</span>
 <span class="co">#&gt; 2:     2     6   1.5      C</span>
-<span class="co">#&gt; 3:     1     9   1.5      C</span></pre></body></html></div>
+<span class="co">#&gt; 3:     1     9   1.5      C</span></code></pre></div>
 </div>
 <div id="other" class="section level2">
 <h2 class="hasAnchor">
 <a href="#other" class="anchor"></a>Other</h2>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co">### Lead/Lag</span>
-<span class="fu"><a href="../reference/lag_lead.html">lag_dt</a></span>(<span class="fl">1</span>:<span class="fl">10</span>,<span class="kw">n</span> <span class="kw">=</span> <span class="fl">1</span>)
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">### Lead/Lag</span>
+<span class="fu"><a href="../reference/lead_dt.html">lag_dt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt;  [1] NA  1  2  3  4  5  6  7  8  9</span>
-<span class="fu"><a href="../reference/lag_lead.html">lag_dt</a></span>(<span class="fl">1</span>:<span class="fl">10</span>,<span class="kw">n</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">2</span>)
+<span class="fu"><a href="../reference/lead_dt.html">lag_dt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,n <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt;  [1] NA  1  2  3  4  5  6  7  8  9</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
 <span class="co">#&gt;  [1] NA NA  1  2  3  4  5  6  7  8</span>
-<span class="fu"><a href="../reference/lag_lead.html">lead_dt</a></span>(<span class="fl">1</span>:<span class="fl">10</span>,<span class="kw">n</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="co">#&gt;  [1]  2  3  4  5  6  7  8  9 10 NA</span></pre></body></html></div>
+<span class="fu"><a href="../reference/lead_dt.html">lead_dt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt;  [1]  2  3  4  5  6  7  8  9 10 NA</span></code></pre></div>
 </div>
 </div>
 <div id="joinbind-data-sets" class="section level1">
@@ -1236,18 +1246,19 @@
 <div id="join" class="section level2">
 <h2 class="hasAnchor">
 <a href="#join" class="anchor"></a>Join</h2>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="kw">Id</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>),
-                <span class="kw">X1</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1L</span>, <span class="fl">3L</span>, <span class="fl">5L</span>, <span class="fl">7L</span>),
-                <span class="kw">XY</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x2"</span>, <span class="st">"x4"</span>, <span class="st">"x6"</span>, <span class="st">"x8"</span>),
-                <span class="kw">key</span> <span class="kw">=</span> <span class="st">"Id"</span>)
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>Id  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span><span class="op">)</span>,
+                X1  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">3L</span>, <span class="fl">5L</span>, <span class="fl">7L</span><span class="op">)</span>,
+                XY  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x2"</span>, <span class="st">"x4"</span>, <span class="st">"x6"</span>, <span class="st">"x8"</span><span class="op">)</span>,
+                key <span class="op">=</span> <span class="st">"Id"</span><span class="op">)</span>
 
-<span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="kw">Id</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"D"</span>),
-                <span class="kw">Y1</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1L</span>, <span class="fl">3L</span>, <span class="fl">5L</span>, <span class="fl">7L</span>),
-                <span class="kw">XY</span>  <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"y1"</span>, <span class="st">"y3"</span>, <span class="st">"y5"</span>, <span class="st">"y7"</span>),
-                <span class="kw">key</span> <span class="kw">=</span> <span class="st">"Id"</span>)
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>Id  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"D"</span><span class="op">)</span>,
+                Y1  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">3L</span>, <span class="fl">5L</span>, <span class="fl">7L</span><span class="op">)</span>,
+                XY  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"y1"</span>, <span class="st">"y3"</span>, <span class="st">"y5"</span>, <span class="st">"y7"</span><span class="op">)</span>,
+                key <span class="op">=</span> <span class="st">"Id"</span><span class="op">)</span>
 
 <span class="co">### left join</span>
-<span class="fu"><a href="../reference/join.html">left_join_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"Id"</span>)
+<span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="st">"Id"</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;Id&gt;</span>
 <span class="co">#&gt;        Id    X1   XY.x    Y1   XY.y</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt; &lt;char&gt;</span>
@@ -1258,7 +1269,7 @@
 <span class="co">#&gt; 5:      C     7     x8    NA   &lt;NA&gt;</span>
 
 <span class="co">### right join</span>
-<span class="fu"><a href="../reference/join.html">right_join_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"Id"</span>)
+<span class="fu"><a href="../reference/join.html">right_join_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="st">"Id"</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;Id&gt;</span>
 <span class="co">#&gt;        Id    X1   XY.x    Y1   XY.y</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt; &lt;char&gt;</span>
@@ -1268,7 +1279,7 @@
 <span class="co">#&gt; 4:      D    NA   &lt;NA&gt;     7     y7</span>
 
 <span class="co">### inner join</span>
-<span class="fu"><a href="../reference/join.html">inner_join_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"Id"</span>)
+<span class="fu"><a href="../reference/join.html">inner_join_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="st">"Id"</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;Id&gt;</span>
 <span class="co">#&gt;        Id    X1   XY.x    Y1   XY.y</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt; &lt;char&gt;</span>
@@ -1277,7 +1288,7 @@
 <span class="co">#&gt; 3:      B     3     x4     5     y5</span>
 
 <span class="co">### full join</span>
-<span class="fu"><a href="../reference/join.html">full_join_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"Id"</span>)
+<span class="fu"><a href="../reference/join.html">full_join_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="st">"Id"</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;Id&gt;</span>
 <span class="co">#&gt;        Id    X1   XY.x    Y1   XY.y</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;char&gt; &lt;int&gt; &lt;char&gt;</span>
@@ -1289,7 +1300,7 @@
 <span class="co">#&gt; 6:      D    NA   &lt;NA&gt;     7     y7</span>
 
 <span class="co">### semi join</span>
-<span class="fu"><a href="../reference/join.html">semi_join_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"Id"</span>)
+<span class="fu"><a href="../reference/join.html">semi_join_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="st">"Id"</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;Id&gt;</span>
 <span class="co">#&gt;        Id    X1     XY</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;char&gt;</span>
@@ -1297,21 +1308,22 @@
 <span class="co">#&gt; 2:      B     3     x4</span>
 
 <span class="co">### anti join</span>
-<span class="fu"><a href="../reference/join.html">anti_join_dt</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"Id"</span>)
+<span class="fu"><a href="../reference/join.html">anti_join_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="st">"Id"</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;Id&gt;</span>
 <span class="co">#&gt;        Id    X1     XY</span>
 <span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:      C     5     x6</span>
-<span class="co">#&gt; 2:      C     7     x8</span></pre></body></html></div>
+<span class="co">#&gt; 2:      C     7     x8</span></code></pre></div>
 </div>
 <div id="bind" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bind" class="anchor"></a>Bind</h2>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="fl">1</span>:<span class="fl">3</span>)
-<span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="fl">4</span>:<span class="fl">6</span>)
-<span class="no">z</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="fl">7</span>:<span class="fl">9</span>, <span class="fl">0L</span>)
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+<span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">9</span>, <span class="fl">0L</span><span class="op">)</span>
 <span class="co">### Bind rows</span>
-<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">x</span>, <span class="no">y</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1</span>
@@ -1320,7 +1332,7 @@
 <span class="co">#&gt; 4:     4</span>
 <span class="co">#&gt; 5:     5</span>
 <span class="co">#&gt; 6:     6</span>
-<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">x</span>, <span class="no">z</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">z</span>, fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V2</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1    NA</span>
@@ -1331,7 +1343,7 @@
 <span class="co">#&gt; 6:     9     0</span>
 
 <span class="co">### Bind rows using a list</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbindlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">x</span>, <span class="no">y</span>), <span class="kw">idcol</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbindlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, idcol <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;      .id    V1</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1     1</span>
@@ -1342,25 +1354,26 @@
 <span class="co">#&gt; 6:     2     6</span>
 
 <span class="co">### Bind columns</span>
-<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">x</span>, <span class="no">y</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt;       V1    V1</span>
 <span class="co">#&gt;    &lt;int&gt; &lt;int&gt;</span>
 <span class="co">#&gt; 1:     1     4</span>
 <span class="co">#&gt; 2:     2     5</span>
-<span class="co">#&gt; 3:     3     6</span></pre></body></html></div>
+<span class="co">#&gt; 3:     3     6</span></code></pre></div>
 </div>
 <div id="set-operations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#set-operations" class="anchor"></a>Set operations</h2>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">3</span>))
-<span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>))
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 <span class="co">### Intersection</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fintersect</a></span>(<span class="no">x</span>, <span class="no">y</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fintersect</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:     2</span>
 <span class="co">#&gt; 2:     3</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fintersect</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">all</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fintersect</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:     2</span>
@@ -1368,25 +1381,25 @@
 <span class="co">#&gt; 3:     3</span>
 
 <span class="co">### Difference</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetdiff</a></span>(<span class="no">x</span>, <span class="no">y</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetdiff</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:     1</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetdiff</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">all</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetdiff</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:     1</span>
 <span class="co">#&gt; 2:     3</span>
 
 <span class="co">### Union</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">funion</a></span>(<span class="no">x</span>, <span class="no">y</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">funion</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt;       V1</span>
 <span class="co">#&gt;    &lt;num&gt;</span>
 <span class="co">#&gt; 1:     1</span>
 <span class="co">#&gt; 2:     2</span>
 <span class="co">#&gt; 3:     3</span>
 <span class="co">#&gt; 4:     4</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">funion</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">all</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">funion</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;        V1</span>
 <span class="co">#&gt;     &lt;num&gt;</span>
 <span class="co">#&gt;  1:     1</span>
@@ -1401,12 +1414,12 @@
 <span class="co">#&gt; 10:     4</span>
 
 <span class="co">### Equality</span>
-<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span>(<span class="no">x</span>, <span class="no">x</span>[<span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span>(-<span class="no">V1</span>),])
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">fsetequal</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">V1</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span>
-<span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span>(<span class="no">x</span>, <span class="no">x</span>) <span class="co"># S3 method</span>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/all.equal.data.table.html">all.equal</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span><span class="op">)</span> <span class="co"># S3 method</span>
 <span class="co">#&gt; [1] TRUE</span>
-<span class="fu"><a href="https://rdrr.io/r/base/sets.html">setequal</a></span>(<span class="no">x</span>, <span class="no">x</span>[<span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span>(-<span class="no">V1</span>),])
-<span class="co">#&gt; [1] FALSE</span></pre></body></html></div>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">setequal</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">V1</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
 </div>
 </div>
 <div id="summary" class="section level1">
@@ -1431,7 +1444,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
