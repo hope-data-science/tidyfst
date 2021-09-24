@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -136,7 +136,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hope-data-science/tidyfst/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -163,9 +163,9 @@
  tidy table and named matrix.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mat_df</span>(<span class='no'>m</span>)
+    <pre class="usage"><span class='fu'>mat_df</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
 
-<span class='fu'>df_mat</span>(<span class='no'>df</span>, <span class='no'>row</span>, <span class='no'>col</span>, <span class='no'>value</span>)</pre>
+<span class='fu'>df_mat</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>row</span>, <span class='va'>col</span>, <span class='va'>value</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,12 +201,14 @@ For <code>df_mat</code>, a named matrix.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>mm</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>8</span>,<span class='fl'>NA</span>),<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>,<span class='kw'>dimnames</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>3</span>],<span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>3</span>]))
-<span class='no'>mm</span></div><div class='output co'>#&gt;   A B  C
+<span class='va'>mm</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>8</span>,<span class='cn'>NA</span><span class='op'>)</span>,ncol <span class='op'>=</span> <span class='fl'>3</span>,dimnames <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>,<span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>mm</span>
+</div><div class='output co'>#&gt;   A B  C
 #&gt; a 1 4  7
 #&gt; b 2 5  8
-#&gt; c 3 6 NA</div><div class='input'><span class='no'>tdf</span> <span class='kw'>=</span> <span class='fu'>mat_df</span>(<span class='no'>mm</span>)
-<span class='no'>tdf</span></div><div class='output co'>#&gt;   row col value
+#&gt; c 3 6 NA</div><div class='input'><span class='va'>tdf</span> <span class='op'>=</span> <span class='fu'>mat_df</span><span class='op'>(</span><span class='va'>mm</span><span class='op'>)</span>
+<span class='va'>tdf</span>
+</div><div class='output co'>#&gt;   row col value
 #&gt; 1   a   A     1
 #&gt; 2   b   A     2
 #&gt; 3   c   A     3
@@ -215,11 +217,13 @@ For <code>df_mat</code>, a named matrix.</p>
 #&gt; 6   c   B     6
 #&gt; 7   a   C     7
 #&gt; 8   b   C     8
-#&gt; 9   c   C    NA</div><div class='input'><span class='no'>mat</span> <span class='kw'>=</span> <span class='fu'>df_mat</span>(<span class='no'>tdf</span>,<span class='no'>row</span>,<span class='no'>col</span>,<span class='no'>value</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/sets.html'>setequal</a></span>(<span class='no'>mm</span>,<span class='no'>mat</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='no'>tdf</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>,<span class='st'>"B"</span>,<span class='st'>"C"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>df_mat</span>(<span class='no'>A</span>,<span class='no'>B</span>,<span class='no'>C</span>)</div><div class='output co'>#&gt;   A B  C
+#&gt; 9   c   C    NA</div><div class='input'><span class='va'>mat</span> <span class='op'>=</span> <span class='fu'>df_mat</span><span class='op'>(</span><span class='va'>tdf</span>,<span class='va'>row</span>,<span class='va'>col</span>,<span class='va'>value</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sets.html'>setequal</a></span><span class='op'>(</span><span class='va'>mm</span>,<span class='va'>mat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='va'>tdf</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>,<span class='st'>"B"</span>,<span class='st'>"C"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>df_mat</span><span class='op'>(</span><span class='va'>A</span>,<span class='va'>B</span>,<span class='va'>C</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   A B  C
 #&gt; a 1 4  7
 #&gt; b 2 5  8
 #&gt; c 3 6 NA</div><div class='input'>
@@ -239,7 +243,7 @@ For <code>df_mat</code>, a named matrix.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

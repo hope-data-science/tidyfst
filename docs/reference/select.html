@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -135,7 +135,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hope-data-science/tidyfst/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -161,9 +161,9 @@
     <p>Select specific column(s) via various ways. One can select columns by their column names, indexes or regular expression recognizing the column name(s).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>select_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>select_dt</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, cols <span class='op'>=</span> <span class='cn'>NULL</span>, negate <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>select_mix</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>rm.dup</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>select_mix</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, rm.dup <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,7 +201,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
     <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/select_all.html'>select_if</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='no'>Species</span>)</div><div class='output co'>#&gt;        Species
+    <pre class="examples"><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        Species
 #&gt;         &lt;fctr&gt;
 #&gt;   1:    setosa
 #&gt;   2:    setosa
@@ -213,7 +214,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147: virginica
 #&gt; 148: virginica
 #&gt; 149: virginica
-#&gt; 150: virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='no'>Sepal.Length</span>,<span class='no'>Sepal.Width</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width
+#&gt; 150: virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='va'>Sepal.Length</span>,<span class='va'>Sepal.Width</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width
 #&gt;             &lt;num&gt;       &lt;num&gt;
 #&gt;   1:          5.1         3.5
 #&gt;   2:          4.9         3.0
@@ -225,7 +227,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3         2.5
 #&gt; 148:          6.5         3.0
 #&gt; 149:          6.2         3.4
-#&gt; 150:          5.9         3.0</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='no'>Sepal.Length</span>:<span class='no'>Petal.Length</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length
+#&gt; 150:          5.9         3.0</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>:</span><span class='va'>Petal.Length</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length
 #&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;
 #&gt;   1:          5.1         3.5          1.4
 #&gt;   2:          4.9         3.0          1.4
@@ -237,7 +240,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3         2.5          5.0
 #&gt; 148:          6.5         3.0          5.2
 #&gt; 149:          6.2         3.4          5.4
-#&gt; 150:          5.9         3.0          5.1</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(-<span class='no'>Sepal.Length</span>)</div><div class='output co'>#&gt;      Sepal.Width Petal.Length Petal.Width   Species
+#&gt; 150:          5.9         3.0          5.1</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>-</span><span class='va'>Sepal.Length</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Width Petal.Length Petal.Width   Species
 #&gt;            &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:         3.5          1.4         0.2    setosa
 #&gt;   2:         3.0          1.4         0.2    setosa
@@ -249,7 +253,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:         2.5          5.0         1.9 virginica
 #&gt; 148:         3.0          5.2         2.0 virginica
 #&gt; 149:         3.4          5.4         2.3 virginica
-#&gt; 150:         3.0          5.1         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(-<span class='no'>Sepal.Length</span>,-<span class='no'>Petal.Length</span>)</div><div class='output co'>#&gt;      Sepal.Width Petal.Width   Species
+#&gt; 150:         3.0          5.1         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>-</span><span class='va'>Sepal.Length</span>,<span class='op'>-</span><span class='va'>Petal.Length</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Width Petal.Width   Species
 #&gt;            &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:         3.5         0.2    setosa
 #&gt;   2:         3.0         0.2    setosa
@@ -261,7 +266,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:         2.5         1.9 virginica
 #&gt; 148:         3.0         2.0 virginica
 #&gt; 149:         3.4         2.3 virginica
-#&gt; 150:         3.0         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(-(<span class='no'>Sepal.Length</span>:<span class='no'>Petal.Length</span>))</div><div class='output co'>#&gt;      Petal.Width   Species
+#&gt; 150:         3.0         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>-</span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>:</span><span class='va'>Petal.Length</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Petal.Width   Species
 #&gt;            &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:         0.2    setosa
 #&gt;   2:         0.2    setosa
@@ -273,7 +279,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:         1.9 virginica
 #&gt; 148:         2.0 virginica
 #&gt; 149:         2.3 virginica
-#&gt; 150:         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Sepal.Length"</span>,<span class='st'>"Sepal.Width"</span>))</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width
+#&gt; 150:         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal.Length"</span>,<span class='st'>"Sepal.Width"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width
 #&gt;             &lt;num&gt;       &lt;num&gt;
 #&gt;   1:          5.1         3.5
 #&gt;   2:          4.9         3.0
@@ -285,7 +292,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3         2.5
 #&gt; 148:          6.5         3.0
 #&gt; 149:          6.2         3.4
-#&gt; 150:          5.9         3.0</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Sepal.Length"</span>,<span class='st'>"Sepal.Width"</span>))</div><div class='output co'>#&gt;      Petal.Length Petal.Width   Species
+#&gt; 150:          5.9         3.0</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal.Length"</span>,<span class='st'>"Sepal.Width"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Petal.Length Petal.Width   Species
 #&gt;             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:          1.4         0.2    setosa
 #&gt;   2:          1.4         0.2    setosa
@@ -297,7 +305,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          5.0         1.9 virginica
 #&gt; 148:          5.2         2.0 virginica
 #&gt; 149:          5.4         2.3 virginica
-#&gt; 150:          5.1         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt;      Sepal.Length
+#&gt; 150:          5.1         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length
 #&gt;             &lt;num&gt;
 #&gt;   1:          5.1
 #&gt;   2:          4.9
@@ -309,7 +318,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3
 #&gt; 148:          6.5
 #&gt; 149:          6.2
-#&gt; 150:          5.9</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(-<span class='fl'>1</span>)</div><div class='output co'>#&gt;      Sepal.Width Petal.Length Petal.Width   Species
+#&gt; 150:          5.9</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Width Petal.Length Petal.Width   Species
 #&gt;            &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:         3.5          1.4         0.2    setosa
 #&gt;   2:         3.0          1.4         0.2    setosa
@@ -321,7 +331,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:         2.5          5.0         1.9 virginica
 #&gt; 148:         3.0          5.2         2.0 virginica
 #&gt; 149:         3.4          5.4         2.3 virginica
-#&gt; 150:         3.0          5.1         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='fl'>1</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length
+#&gt; 150:         3.0          5.1         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length
 #&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;
 #&gt;   1:          5.1         3.5          1.4
 #&gt;   2:          4.9         3.0          1.4
@@ -333,7 +344,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3         2.5          5.0
 #&gt; 148:          6.5         3.0          5.2
 #&gt; 149:          6.2         3.4          5.4
-#&gt; 150:          5.9         3.0          5.1</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(-(<span class='fl'>1</span>:<span class='fl'>3</span>))</div><div class='output co'>#&gt;      Petal.Width   Species
+#&gt; 150:          5.9         3.0          5.1</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>-</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Petal.Width   Species
 #&gt;            &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:         0.2    setosa
 #&gt;   2:         0.2    setosa
@@ -345,7 +357,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:         1.9 virginica
 #&gt; 148:         2.0 virginica
 #&gt; 149:         2.3 virginica
-#&gt; 150:         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='fl'>1</span>,<span class='fl'>3</span>)</div><div class='output co'>#&gt;      Sepal.Length Petal.Length
+#&gt; 150:         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Petal.Length
 #&gt;             &lt;num&gt;        &lt;num&gt;
 #&gt;   1:          5.1          1.4
 #&gt;   2:          4.9          1.4
@@ -357,7 +370,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3          5.0
 #&gt; 148:          6.5          5.2
 #&gt; 149:          6.2          5.4
-#&gt; 150:          5.9          5.1</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='st'>"Pe"</span>)</div><div class='output co'>#&gt;      Petal.Length Petal.Width
+#&gt; 150:          5.9          5.1</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='st'>"Pe"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Petal.Length Petal.Width
 #&gt;             &lt;num&gt;       &lt;num&gt;
 #&gt;   1:          1.4         0.2
 #&gt;   2:          1.4         0.2
@@ -369,7 +383,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          5.0         1.9
 #&gt; 148:          5.2         2.0
 #&gt; 149:          5.4         2.3
-#&gt; 150:          5.1         1.8</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(-<span class='st'>"Se"</span>)</div><div class='output co'>#&gt;      Petal.Length Petal.Width   Species
+#&gt; 150:          5.1         1.8</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>-</span><span class='st'>"Se"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Petal.Length Petal.Width   Species
 #&gt;             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:          1.4         0.2    setosa
 #&gt;   2:          1.4         0.2    setosa
@@ -381,7 +396,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          5.0         1.9 virginica
 #&gt; 148:          5.2         2.0 virginica
 #&gt; 149:          5.4         2.3 virginica
-#&gt; 150:          5.1         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(!<span class='st'>"Se"</span>)</div><div class='output co'>#&gt;      Petal.Length Petal.Width   Species
+#&gt; 150:          5.1         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>!</span><span class='st'>"Se"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Petal.Length Petal.Width   Species
 #&gt;             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:          1.4         0.2    setosa
 #&gt;   2:          1.4         0.2    setosa
@@ -393,7 +409,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          5.0         1.9 virginica
 #&gt; 148:          5.2         2.0 virginica
 #&gt; 149:          5.4         2.3 virginica
-#&gt; 150:          5.1         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='st'>"Pe"</span>,<span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width   Species
+#&gt; 150:          5.1         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='st'>"Pe"</span>,negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width   Species
 #&gt;             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:          5.1         3.5    setosa
 #&gt;   2:          4.9         3.0    setosa
@@ -405,7 +422,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3         2.5 virginica
 #&gt; 148:          6.5         3.0 virginica
 #&gt; 149:          6.2         3.4 virginica
-#&gt; 150:          5.9         3.0 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='st'>"Pe|Sp"</span>)</div><div class='output co'>#&gt;      Petal.Length Petal.Width   Species
+#&gt; 150:          5.9         3.0 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='st'>"Pe|Sp"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Petal.Length Petal.Width   Species
 #&gt;             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:          1.4         0.2    setosa
 #&gt;   2:          1.4         0.2    setosa
@@ -417,7 +435,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          5.0         1.9 virginica
 #&gt; 148:          5.2         2.0 virginica
 #&gt; 149:          5.4         2.3 virginica
-#&gt; 150:          5.1         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='kw'>cols</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>3</span>)</div><div class='output co'>#&gt;      Sepal.Width Petal.Length
+#&gt; 150:          5.1         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span>cols <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Width Petal.Length
 #&gt;            &lt;num&gt;        &lt;num&gt;
 #&gt;   1:         3.5          1.4
 #&gt;   2:         3.0          1.4
@@ -429,7 +448,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:         2.5          5.0
 #&gt; 148:         3.0          5.2
 #&gt; 149:         3.4          5.4
-#&gt; 150:         3.0          5.1</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='kw'>cols</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>3</span>,<span class='kw'>negate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;      Sepal.Length Petal.Width   Species
+#&gt; 150:         3.0          5.1</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span>cols <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>,negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Petal.Width   Species
 #&gt;             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:          5.1         0.2    setosa
 #&gt;   2:          4.9         0.2    setosa
@@ -441,7 +461,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3         1.9 virginica
 #&gt; 148:          6.5         2.0 virginica
 #&gt; 149:          6.2         2.3 virginica
-#&gt; 150:          5.9         1.8 virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Sepal.Length"</span>,<span class='st'>"Sepal.Width"</span>))</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width
+#&gt; 150:          5.9         1.8 virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span>cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal.Length"</span>,<span class='st'>"Sepal.Width"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width
 #&gt;             &lt;num&gt;       &lt;num&gt;
 #&gt;   1:          5.1         3.5
 #&gt;   2:          4.9         3.0
@@ -453,7 +474,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3         2.5
 #&gt; 148:          6.5         3.0
 #&gt; 149:          6.2         3.4
-#&gt; 150:          5.9         3.0</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>iris</span>)[<span class='fl'>2</span>:<span class='fl'>3</span>])</div><div class='output co'>#&gt;      Sepal.Width Petal.Length
+#&gt; 150:          5.9         3.0</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span>cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Width Petal.Length
 #&gt;            &lt;num&gt;        &lt;num&gt;
 #&gt;   1:         3.5          1.4
 #&gt;   2:         3.0          1.4
@@ -466,7 +488,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 148:         3.0          5.2
 #&gt; 149:         3.4          5.4
 #&gt; 150:         3.0          5.1</div><div class='input'>
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(<span class='no'>is.factor</span>)</div><div class='output co'>#&gt;        Species
+<span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='va'>is.factor</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        Species
 #&gt;         &lt;fctr&gt;
 #&gt;   1:    setosa
 #&gt;   2:    setosa
@@ -478,7 +501,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147: virginica
 #&gt; 148: virginica
 #&gt; 149: virginica
-#&gt; 150: virginica</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(-<span class='no'>is.factor</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; 150: virginica</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>-</span><span class='va'>is.factor</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt;   1:          5.1         3.5          1.4         0.2
 #&gt;   2:          4.9         3.0          1.4         0.2
@@ -490,7 +514,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147:          6.3         2.5          5.0         1.9
 #&gt; 148:          6.5         3.0          5.2         2.0
 #&gt; 149:          6.2         3.4          5.4         2.3
-#&gt; 150:          5.9         3.0          5.1         1.8</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>select_dt</span>(!<span class='no'>is.factor</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; 150:          5.9         3.0          5.1         1.8</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>select_dt</span><span class='op'>(</span><span class='op'>!</span><span class='va'>is.factor</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt;   1:          5.1         3.5          1.4         0.2
 #&gt;   2:          4.9         3.0          1.4         0.2
@@ -504,7 +529,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 149:          6.2         3.4          5.4         2.3
 #&gt; 150:          5.9         3.0          5.1         1.8</div><div class='input'>
 <span class='co'># select_mix could provide flexible mix selection</span>
-<span class='fu'>select_mix</span>(<span class='no'>iris</span>, <span class='no'>Species</span>,<span class='st'>"Sepal.Length"</span>)</div><div class='output co'>#&gt;        Species Sepal.Length
+<span class='fu'>select_mix</span><span class='op'>(</span><span class='va'>iris</span>, <span class='va'>Species</span>,<span class='st'>"Sepal.Length"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        Species Sepal.Length
 #&gt;         &lt;fctr&gt;        &lt;num&gt;
 #&gt;   1:    setosa          5.1
 #&gt;   2:    setosa          4.9
@@ -516,7 +542,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 147: virginica          6.3
 #&gt; 148: virginica          6.5
 #&gt; 149: virginica          6.2
-#&gt; 150: virginica          5.9</div><div class='input'><span class='fu'>select_mix</span>(<span class='no'>iris</span>,<span class='fl'>1</span>:<span class='fl'>2</span>,<span class='no'>is.factor</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width   Species
+#&gt; 150: virginica          5.9</div><div class='input'><span class='fu'>select_mix</span><span class='op'>(</span><span class='va'>iris</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>,<span class='va'>is.factor</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width   Species
 #&gt;             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;
 #&gt;   1:          5.1         3.5    setosa
 #&gt;   2:          4.9         3.0    setosa
@@ -529,7 +556,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 148:          6.5         3.0 virginica
 #&gt; 149:          6.2         3.4 virginica
 #&gt; 150:          5.9         3.0 virginica</div><div class='input'>
-<span class='fu'>select_mix</span>(<span class='no'>iris</span>,<span class='no'>Sepal.Length</span>,<span class='no'>is.numeric</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width
+<span class='fu'>select_mix</span><span class='op'>(</span><span class='va'>iris</span>,<span class='va'>Sepal.Length</span>,<span class='va'>is.numeric</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt;   1:          5.1         3.5          1.4         0.2
 #&gt;   2:          4.9         3.0          1.4         0.2
@@ -542,7 +570,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 #&gt; 148:          6.5         3.0          5.2         2.0
 #&gt; 149:          6.2         3.4          5.4         2.3
 #&gt; 150:          5.9         3.0          5.1         1.8</div><div class='input'><span class='co'># set rm.dup to FALSE could save the duplicated column names</span>
-<span class='fu'>select_mix</span>(<span class='no'>iris</span>,<span class='no'>Sepal.Length</span>,<span class='no'>is.numeric</span>,<span class='kw'>rm.dup</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;      Sepal.Length Sepal.Length Sepal.Width Petal.Length Petal.Width
+<span class='fu'>select_mix</span><span class='op'>(</span><span class='va'>iris</span>,<span class='va'>Sepal.Length</span>,<span class='va'>is.numeric</span>,rm.dup <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Sepal.Length Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;             &lt;num&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt;   1:          5.1          5.1         3.5          1.4         0.2
 #&gt;   2:          4.9          4.9         3.0          1.4         0.2
@@ -571,7 +600,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

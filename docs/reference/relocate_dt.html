@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -137,7 +137,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hope-data-science/tidyfst/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -165,7 +165,7 @@
  as `relocate` in <span class="pkg">dplyr</span>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>relocate_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"first"</span>, <span class='kw'>where</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, how <span class='op'>=</span> <span class='st'>"first"</span>, where <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,38 +198,50 @@ Applicable for "after" and "before" mode.</p></td>
     <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/relocate.html'>relocate</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"a"</span>, <span class='kw'>e</span> <span class='kw'>=</span> <span class='st'>"a"</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='st'>"a"</span>)
-<span class='no'>df</span></div><div class='output co'>#&gt;        a     b     c      d      e      f
+    <pre class="examples"><div class='input'><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fl'>1</span>, b <span class='op'>=</span> <span class='fl'>1</span>, c <span class='op'>=</span> <span class='fl'>1</span>, d <span class='op'>=</span> <span class='st'>"a"</span>, e <span class='op'>=</span> <span class='st'>"a"</span>, f <span class='op'>=</span> <span class='st'>"a"</span><span class='op'>)</span>
+<span class='va'>df</span>
+</div><div class='output co'>#&gt;        a     b     c      d      e      f
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt; &lt;char&gt;
-#&gt; 1:     1     1     1      a      a      a</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>f</span>)</div><div class='output co'>#&gt;         f     a     b     c      d      e
+#&gt; 1:     1     1     1      a      a      a</div><div class='input'><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         f     a     b     c      d      e
 #&gt;    &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt;
-#&gt; 1:      a     1     1     1      a      a</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>a</span>,<span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"last"</span>)</div><div class='output co'>#&gt;        b     c      d      e      f     a
+#&gt; 1:      a     1     1     1      a      a</div><div class='input'><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>a</span>,how <span class='op'>=</span> <span class='st'>"last"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        b     c      d      e      f     a
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt;
 #&gt; 1:     1     1      a      a      a     1</div><div class='input'>
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>is.character</span>)</div><div class='output co'>#&gt;         d      e      f     a     b     c
+<span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>is.character</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         d      e      f     a     b     c
 #&gt;    &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:      a      a      a     1     1     1</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>is.numeric</span>, <span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"last"</span>)</div><div class='output co'>#&gt;         d      e      f     a     b     c
+#&gt; 1:      a      a      a     1     1     1</div><div class='input'><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>is.numeric</span>, how <span class='op'>=</span> <span class='st'>"last"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         d      e      f     a     b     c
 #&gt;    &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:      a      a      a     1     1     1</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='st'>"[aeiou]"</span>)</div><div class='output co'>#&gt;        a      e     b     c      d      f
+#&gt; 1:      a      a      a     1     1     1</div><div class='input'><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='st'>"[aeiou]"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        a      e     b     c      d      f
 #&gt;    &lt;num&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt;
 #&gt; 1:     1      a     1     1      a      a</div><div class='input'>
-<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>a</span>, <span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"after"</span>,<span class='kw'>where</span> <span class='kw'>=</span> <span class='no'>f</span>)</div><div class='output co'>#&gt;        b     c      d      e      f     a
+<span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>a</span>, how <span class='op'>=</span> <span class='st'>"after"</span>,where <span class='op'>=</span> <span class='va'>f</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        b     c      d      e      f     a
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt; &lt;char&gt; &lt;num&gt;
-#&gt; 1:     1     1      a      a      a     1</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>f</span>, <span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"before"</span>,<span class='kw'>where</span> <span class='kw'>=</span> <span class='no'>a</span>)</div><div class='output co'>#&gt;         f     a     b     c      d      e
+#&gt; 1:     1     1      a      a      a     1</div><div class='input'><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>f</span>, how <span class='op'>=</span> <span class='st'>"before"</span>,where <span class='op'>=</span> <span class='va'>a</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         f     a     b     c      d      e
 #&gt;    &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt;
-#&gt; 1:      a     1     1     1      a      a</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>f</span>, <span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"before"</span>,<span class='kw'>where</span> <span class='kw'>=</span> <span class='no'>c</span>)</div><div class='output co'>#&gt;        a     b      f     c      d      e
+#&gt; 1:      a     1     1     1      a      a</div><div class='input'><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>f</span>, how <span class='op'>=</span> <span class='st'>"before"</span>,where <span class='op'>=</span> <span class='va'>c</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        a     b      f     c      d      e
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt;
-#&gt; 1:     1     1      a     1      a      a</div><div class='input'><span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>f</span>, <span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"after"</span>,<span class='kw'>where</span> <span class='kw'>=</span> <span class='no'>c</span>)</div><div class='output co'>#&gt;        a     b     c      f      d      e
+#&gt; 1:     1     1      a     1      a      a</div><div class='input'><span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>f</span>, how <span class='op'>=</span> <span class='st'>"after"</span>,where <span class='op'>=</span> <span class='va'>c</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        a     b     c      f      d      e
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt; &lt;char&gt;
 #&gt; 1:     1     1     1      a      a      a</div><div class='input'>
-<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='st'>"a"</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='st'>"a"</span>)
-<span class='no'>df2</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>is.numeric</span>,
-                    <span class='kw'>how</span> <span class='kw'>=</span> <span class='st'>"after"</span>,
-                    <span class='kw'>where</span> <span class='kw'>=</span> <span class='no'>is.character</span>)</div><div class='output co'>#&gt;         b      d     a     c
+<span class='va'>df2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fl'>1</span>, b <span class='op'>=</span> <span class='st'>"a"</span>, c <span class='op'>=</span> <span class='fl'>1</span>, d <span class='op'>=</span> <span class='st'>"a"</span><span class='op'>)</span>
+<span class='va'>df2</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>is.numeric</span>,
+                    how <span class='op'>=</span> <span class='st'>"after"</span>,
+                    where <span class='op'>=</span> <span class='va'>is.character</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         b      d     a     c
 #&gt;    &lt;char&gt; &lt;char&gt; &lt;num&gt; &lt;num&gt;
-#&gt; 1:      a      a     1     1</div><div class='input'><span class='no'>df2</span> <span class='kw'>%&gt;%</span> <span class='fu'>relocate_dt</span>(<span class='no'>is.numeric</span>,
-                    <span class='kw'>how</span><span class='kw'>=</span><span class='st'>"before"</span>,
-                    <span class='kw'>where</span> <span class='kw'>=</span> <span class='no'>is.character</span>)</div><div class='output co'>#&gt;        a     c      b      d
+#&gt; 1:      a      a     1     1</div><div class='input'><span class='va'>df2</span> <span class='op'>%&gt;%</span> <span class='fu'>relocate_dt</span><span class='op'>(</span><span class='va'>is.numeric</span>,
+                    how<span class='op'>=</span><span class='st'>"before"</span>,
+                    where <span class='op'>=</span> <span class='va'>is.character</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        a     c      b      d
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt;
 #&gt; 1:     1     1      a      a</div></pre>
   </div>
@@ -247,7 +259,7 @@ Applicable for "after" and "before" mode.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

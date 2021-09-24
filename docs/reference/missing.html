@@ -81,7 +81,7 @@ It can dump, replace, fill (with next or previous observation) or delete entries
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@ It can dump, replace, fill (with next or previous observation) or delete entries
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -136,7 +136,7 @@ It can dump, replace, fill (with next or previous observation) or delete entries
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hope-data-science/tidyfst/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -163,17 +163,17 @@ It can dump, replace, fill (with next or previous observation) or delete entries
 It can dump, replace, fill (with next or previous observation) or delete entries according to their missing values.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>drop_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>drop_na_dt</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>replace_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='no'>to</span>)
+<span class='fu'>replace_na_dt</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, <span class='va'>to</span><span class='op'>)</span>
 
-<span class='fu'>delete_na_cols</span>(<span class='no'>.data</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>delete_na_cols</span><span class='op'>(</span><span class='va'>.data</span>, prop <span class='op'>=</span> <span class='cn'>NULL</span>, n <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>delete_na_rows</span>(<span class='no'>.data</span>, <span class='kw'>prop</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>delete_na_rows</span><span class='op'>(</span><span class='va'>.data</span>, prop <span class='op'>=</span> <span class='cn'>NULL</span>, n <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>fill_na_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"down"</span>)
+<span class='fu'>fill_na_dt</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, direction <span class='op'>=</span> <span class='st'>"down"</span><span class='op'>)</span>
 
-<span class='fu'>shift_fill</span>(<span class='no'>x</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"down"</span>)</pre>
+<span class='fu'>shift_fill</span><span class='op'>(</span><span class='va'>x</span>, direction <span class='op'>=</span> <span class='st'>"down"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -233,84 +233,106 @@ than or equal to "prop" or NA number larger than or equal to "n",
 <code><a href='https://tidyr.tidyverse.org/reference/fill.html'>fill</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='fl'>NA</span>, <span class='st'>"b"</span>))
- <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>()</div><div class='output co'>#&gt;        x      y
+    <pre class="examples"><div class='input'><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='cn'>NA</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='cn'>NA</span>, <span class='st'>"b"</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>drop_na_dt</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
-#&gt; 1:     1      a</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;        x      y
+#&gt; 1:     1      a</div><div class='input'> <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>drop_na_dt</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
-#&gt; 2:     2   &lt;NA&gt;</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>y</span>)</div><div class='output co'>#&gt;        x      y
+#&gt; 2:     2   &lt;NA&gt;</div><div class='input'> <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>drop_na_dt</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
-#&gt; 2:    NA      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>drop_na_dt</span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='output co'>#&gt;        x      y
+#&gt; 2:    NA      b</div><div class='input'> <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>drop_na_dt</span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>y</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a</div><div class='input'>
- <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
+ <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>replace_na_dt</span><span class='op'>(</span>to <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
 #&gt; 2:     2      0
-#&gt; 3:     0      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>x</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
+#&gt; 3:     0      b</div><div class='input'> <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>replace_na_dt</span><span class='op'>(</span><span class='va'>x</span>,to <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
 #&gt; 2:     2   &lt;NA&gt;
-#&gt; 3:     0      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>y</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
+#&gt; 3:     0      b</div><div class='input'> <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>replace_na_dt</span><span class='op'>(</span><span class='va'>y</span>,to <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
 #&gt; 2:     2      0
-#&gt; 3:    NA      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>replace_na_dt</span>(<span class='no'>x</span>,<span class='no'>y</span>,<span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;        x      y
+#&gt; 3:    NA      b</div><div class='input'> <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>replace_na_dt</span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>y</span>,to <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
 #&gt; 2:     2      0
 #&gt; 3:     0      b</div><div class='input'>
- <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>fill_na_dt</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;        x      y
+ <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>fill_na_dt</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
 #&gt; 2:     2   &lt;NA&gt;
-#&gt; 3:     2      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>fill_na_dt</span>() <span class='co'># not specified, fill all columns</span></div><div class='output co'>#&gt;        x      y
+#&gt; 3:     2      b</div><div class='input'> <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>fill_na_dt</span><span class='op'>(</span><span class='op'>)</span> <span class='co'># not specified, fill all columns</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
 #&gt; 2:     2      a
-#&gt; 3:     2      b</div><div class='input'> <span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'>fill_na_dt</span>(<span class='no'>y</span>,<span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"up"</span>)</div><div class='output co'>#&gt;        x      y
+#&gt; 3:     2      b</div><div class='input'> <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>fill_na_dt</span><span class='op'>(</span><span class='va'>y</span>,direction <span class='op'>=</span> <span class='st'>"up"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x      y
 #&gt;    &lt;num&gt; &lt;char&gt;
 #&gt; 1:     1      a
 #&gt; 2:     2      b
 #&gt; 3:    NA      b</div><div class='input'>
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>NA</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>4</span>, <span class='fl'>5</span>),<span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>NA</span>,<span class='fl'>4</span>))
-<span class='no'>x</span></div><div class='output co'>#&gt;    x  y  z
+<span class='va'>x</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='cn'>NA</span>, <span class='fl'>3</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span>, <span class='fl'>4</span>, <span class='fl'>5</span><span class='op'>)</span>,z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='cn'>NA</span>,<span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>x</span>
+</div><div class='output co'>#&gt;    x  y  z
 #&gt; 1  1 NA NA
 #&gt; 2  2 NA NA
 #&gt; 3 NA  4 NA
-#&gt; 4  3  5 NA</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>()</div><div class='output co'>#&gt;        x     y
+#&gt; 4  3  5 NA</div><div class='input'><span class='va'>x</span> <span class='op'>%&gt;%</span> <span class='fu'>delete_na_cols</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x     y
 #&gt;    &lt;num&gt; &lt;num&gt;
 #&gt; 1:     1    NA
 #&gt; 2:     2    NA
 #&gt; 3:    NA     4
-#&gt; 4:     3     5</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>(<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.75</span>)</div><div class='output co'>#&gt;        x     y
+#&gt; 4:     3     5</div><div class='input'><span class='va'>x</span> <span class='op'>%&gt;%</span> <span class='fu'>delete_na_cols</span><span class='op'>(</span>prop <span class='op'>=</span> <span class='fl'>0.75</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x     y
 #&gt;    &lt;num&gt; &lt;num&gt;
 #&gt; 1:     1    NA
 #&gt; 2:     2    NA
 #&gt; 3:    NA     4
-#&gt; 4:     3     5</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>(<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='output co'>#&gt;        x
+#&gt; 4:     3     5</div><div class='input'><span class='va'>x</span> <span class='op'>%&gt;%</span> <span class='fu'>delete_na_cols</span><span class='op'>(</span>prop <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x
 #&gt;    &lt;num&gt;
 #&gt; 1:     1
 #&gt; 2:     2
 #&gt; 3:    NA
-#&gt; 4:     3</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>(<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.24</span>)</div><div class='output co'>#&gt; Null data.table (0 rows and 0 cols)</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_cols</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt;        x
+#&gt; 4:     3</div><div class='input'><span class='va'>x</span> <span class='op'>%&gt;%</span> <span class='fu'>delete_na_cols</span><span class='op'>(</span>prop <span class='op'>=</span> <span class='fl'>0.24</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Null data.table (0 rows and 0 cols)</div><div class='input'><span class='va'>x</span> <span class='op'>%&gt;%</span> <span class='fu'>delete_na_cols</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x
 #&gt;    &lt;num&gt;
 #&gt; 1:     1
 #&gt; 2:     2
 #&gt; 3:    NA
 #&gt; 4:     3</div><div class='input'>
-<span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_rows</span>(<span class='kw'>prop</span> <span class='kw'>=</span> <span class='fl'>0.6</span>)</div><div class='output co'>#&gt;        x     y      z
+<span class='va'>x</span> <span class='op'>%&gt;%</span> <span class='fu'>delete_na_rows</span><span class='op'>(</span>prop <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x     y      z
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;lgcl&gt;
-#&gt; 1:     3     5     NA</div><div class='input'><span class='no'>x</span> <span class='kw'>%&gt;%</span> <span class='fu'>delete_na_rows</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt;        x     y      z
+#&gt; 1:     3     5     NA</div><div class='input'><span class='va'>x</span> <span class='op'>%&gt;%</span> <span class='fu'>delete_na_rows</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        x     y      z
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;lgcl&gt;
 #&gt; 1:     3     5     NA</div><div class='input'>
 <span class='co'># shift_fill</span>
-<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>,<span class='fl'>NA</span>,<span class='st'>"b"</span>,<span class='fl'>NA</span>,<span class='st'>"c"</span>)
+<span class='va'>y</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>,<span class='cn'>NA</span>,<span class='st'>"b"</span>,<span class='cn'>NA</span>,<span class='st'>"c"</span><span class='op'>)</span>
 
-<span class='fu'>shift_fill</span>(<span class='no'>y</span>) <span class='co'># equals to</span></div><div class='output co'>#&gt; [1] "a" "a" "b" "b" "c"</div><div class='input'><span class='fu'>shift_fill</span>(<span class='no'>y</span>,<span class='st'>"down"</span>)</div><div class='output co'>#&gt; [1] "a" "a" "b" "b" "c"</div><div class='input'>
-<span class='fu'>shift_fill</span>(<span class='no'>y</span>,<span class='st'>"up"</span>)</div><div class='output co'>#&gt; [1] "a" "b" "b" "c" "c"</div></pre>
+<span class='fu'>shift_fill</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='co'># equals to</span>
+</div><div class='output co'>#&gt; [1] "a" "a" "b" "b" "c"</div><div class='input'><span class='fu'>shift_fill</span><span class='op'>(</span><span class='va'>y</span>,<span class='st'>"down"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "a" "a" "b" "b" "c"</div><div class='input'>
+<span class='fu'>shift_fill</span><span class='op'>(</span><span class='va'>y</span>,<span class='st'>"up"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "a" "b" "b" "c" "c"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -326,7 +348,7 @@ than or equal to "prop" or NA number larger than or equal to "n",
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

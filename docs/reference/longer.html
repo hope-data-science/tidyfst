@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -135,7 +135,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hope-data-science/tidyfst/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -161,7 +161,7 @@
     <p>Turning a wide table to its longer form. It takes multiple columns and collapses into key-value pairs.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>longer_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>longer_dt</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, name <span class='op'>=</span> <span class='st'>"name"</span>, value <span class='op'>=</span> <span class='st'>"value"</span>, na.rm <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -204,104 +204,108 @@ The default name is 'value'.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## Example 1:</span>
-<span class='no'>stocks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>'2009-01-01'</span>) + <span class='fl'>0</span>:<span class='fl'>9</span>,
-  <span class='kw'>X</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>1</span>),
-  <span class='kw'>Y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>2</span>),
-  <span class='kw'>Z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>4</span>)
-)
+<span class='va'>stocks</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  time <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>'2009-01-01'</span><span class='op'>)</span> <span class='op'>+</span> <span class='fl'>0</span><span class='op'>:</span><span class='fl'>9</span>,
+  X <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>,
+  Y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>2</span><span class='op'>)</span>,
+  Z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>4</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='no'>stocks</span></div><div class='output co'>#&gt;          time            X          Y           Z
-#&gt; 1  2009-01-01 -1.400043517 -1.1073988  1.87261768
-#&gt; 2  2009-01-02  0.255317055  1.2579641  1.45180502
-#&gt; 3  2009-01-03 -2.437263611  4.1300498 -5.21817418
-#&gt; 4  2009-01-04 -0.005571287 -3.2619788  2.95110529
-#&gt; 5  2009-01-05  0.621552721  1.0248539  7.55401972
-#&gt; 6  2009-01-06  1.148411606 -3.7260230 -0.38978042
-#&gt; 7  2009-01-07 -1.821817661 -1.0440250 -3.74338941
-#&gt; 8  2009-01-08 -0.247325302 -0.1052038 -0.06380125
-#&gt; 9  2009-01-09 -0.244199607  1.0859927 -3.30715581
-#&gt; 10 2009-01-10 -0.282705449 -1.8281497 -6.04959861</div><div class='input'>
-<span class='no'>stocks</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>longer_dt</span>(<span class='no'>time</span>)</div><div class='output co'>#&gt;           time   name        value
-#&gt;         &lt;Date&gt; &lt;fctr&gt;        &lt;num&gt;
-#&gt;  1: 2009-01-01      X -1.400043517
-#&gt;  2: 2009-01-02      X  0.255317055
-#&gt;  3: 2009-01-03      X -2.437263611
-#&gt;  4: 2009-01-04      X -0.005571287
-#&gt;  5: 2009-01-05      X  0.621552721
-#&gt;  6: 2009-01-06      X  1.148411606
-#&gt;  7: 2009-01-07      X -1.821817661
-#&gt;  8: 2009-01-08      X -0.247325302
-#&gt;  9: 2009-01-09      X -0.244199607
-#&gt; 10: 2009-01-10      X -0.282705449
-#&gt; 11: 2009-01-01      Y -1.107398767
-#&gt; 12: 2009-01-02      Y  1.257964084
-#&gt; 13: 2009-01-03      Y  4.130049791
-#&gt; 14: 2009-01-04      Y -3.261978804
-#&gt; 15: 2009-01-05      Y  1.024853900
-#&gt; 16: 2009-01-06      Y -3.726022984
-#&gt; 17: 2009-01-07      Y -1.044025029
-#&gt; 18: 2009-01-08      Y -0.105203820
-#&gt; 19: 2009-01-09      Y  1.085992685
-#&gt; 20: 2009-01-10      Y -1.828149655
-#&gt; 21: 2009-01-01      Z  1.872617682
-#&gt; 22: 2009-01-02      Z  1.451805023
-#&gt; 23: 2009-01-03      Z -5.218174180
-#&gt; 24: 2009-01-04      Z  2.951105285
-#&gt; 25: 2009-01-05      Z  7.554019717
-#&gt; 26: 2009-01-06      Z -0.389780418
-#&gt; 27: 2009-01-07      Z -3.743389414
-#&gt; 28: 2009-01-08      Z -0.063801245
-#&gt; 29: 2009-01-09      Z -3.307155815
-#&gt; 30: 2009-01-10      Z -6.049598605
-#&gt;           time   name        value</div><div class='input'>
-<span class='no'>stocks</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>longer_dt</span>(<span class='st'>"ti"</span>)</div><div class='output co'>#&gt;           time   name        value
-#&gt;         &lt;Date&gt; &lt;fctr&gt;        &lt;num&gt;
-#&gt;  1: 2009-01-01      X -1.400043517
-#&gt;  2: 2009-01-02      X  0.255317055
-#&gt;  3: 2009-01-03      X -2.437263611
-#&gt;  4: 2009-01-04      X -0.005571287
-#&gt;  5: 2009-01-05      X  0.621552721
-#&gt;  6: 2009-01-06      X  1.148411606
-#&gt;  7: 2009-01-07      X -1.821817661
-#&gt;  8: 2009-01-08      X -0.247325302
-#&gt;  9: 2009-01-09      X -0.244199607
-#&gt; 10: 2009-01-10      X -0.282705449
-#&gt; 11: 2009-01-01      Y -1.107398767
-#&gt; 12: 2009-01-02      Y  1.257964084
-#&gt; 13: 2009-01-03      Y  4.130049791
-#&gt; 14: 2009-01-04      Y -3.261978804
-#&gt; 15: 2009-01-05      Y  1.024853900
-#&gt; 16: 2009-01-06      Y -3.726022984
-#&gt; 17: 2009-01-07      Y -1.044025029
-#&gt; 18: 2009-01-08      Y -0.105203820
-#&gt; 19: 2009-01-09      Y  1.085992685
-#&gt; 20: 2009-01-10      Y -1.828149655
-#&gt; 21: 2009-01-01      Z  1.872617682
-#&gt; 22: 2009-01-02      Z  1.451805023
-#&gt; 23: 2009-01-03      Z -5.218174180
-#&gt; 24: 2009-01-04      Z  2.951105285
-#&gt; 25: 2009-01-05      Z  7.554019717
-#&gt; 26: 2009-01-06      Z -0.389780418
-#&gt; 27: 2009-01-07      Z -3.743389414
-#&gt; 28: 2009-01-08      Z -0.063801245
-#&gt; 29: 2009-01-09      Z -3.307155815
-#&gt; 30: 2009-01-10      Z -6.049598605
-#&gt;           time   name        value</div><div class='input'>
+<span class='va'>stocks</span>
+</div><div class='output co'>#&gt;          time          X           Y          Z
+#&gt; 1  2009-01-01 -1.5171329 -2.58389994  3.2247414
+#&gt; 2  2009-01-02  0.1879811  0.09984914  2.9869549
+#&gt; 3  2009-01-03 -0.7008255  1.91396165  0.4223763
+#&gt; 4  2009-01-04 -0.4731759  1.32351293  5.4705240
+#&gt; 5  2009-01-05 -0.4651643  0.03160291  4.4782044
+#&gt; 6  2009-01-06  0.4315827  1.70596009 -0.8897295
+#&gt; 7  2009-01-07  0.2985233  1.89657625  3.6283370
+#&gt; 8  2009-01-08 -0.6874585 -1.87925647  3.6727750
+#&gt; 9  2009-01-09 -0.7381848  0.72525958 -8.4367991
+#&gt; 10 2009-01-10  0.7062822 -2.57758846  4.1861255</div><div class='input'>
+<span class='va'>stocks</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>longer_dt</span><span class='op'>(</span><span class='va'>time</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           time   name       value
+#&gt;         &lt;Date&gt; &lt;fctr&gt;       &lt;num&gt;
+#&gt;  1: 2009-01-01      X -1.51713292
+#&gt;  2: 2009-01-02      X  0.18798114
+#&gt;  3: 2009-01-03      X -0.70082548
+#&gt;  4: 2009-01-04      X -0.47317586
+#&gt;  5: 2009-01-05      X -0.46516427
+#&gt;  6: 2009-01-06      X  0.43158267
+#&gt;  7: 2009-01-07      X  0.29852330
+#&gt;  8: 2009-01-08      X -0.68745848
+#&gt;  9: 2009-01-09      X -0.73818478
+#&gt; 10: 2009-01-10      X  0.70628216
+#&gt; 11: 2009-01-01      Y -2.58389994
+#&gt; 12: 2009-01-02      Y  0.09984914
+#&gt; 13: 2009-01-03      Y  1.91396165
+#&gt; 14: 2009-01-04      Y  1.32351293
+#&gt; 15: 2009-01-05      Y  0.03160291
+#&gt; 16: 2009-01-06      Y  1.70596009
+#&gt; 17: 2009-01-07      Y  1.89657625
+#&gt; 18: 2009-01-08      Y -1.87925647
+#&gt; 19: 2009-01-09      Y  0.72525958
+#&gt; 20: 2009-01-10      Y -2.57758846
+#&gt; 21: 2009-01-01      Z  3.22474136
+#&gt; 22: 2009-01-02      Z  2.98695488
+#&gt; 23: 2009-01-03      Z  0.42237631
+#&gt; 24: 2009-01-04      Z  5.47052395
+#&gt; 25: 2009-01-05      Z  4.47820437
+#&gt; 26: 2009-01-06      Z -0.88972954
+#&gt; 27: 2009-01-07      Z  3.62833699
+#&gt; 28: 2009-01-08      Z  3.67277502
+#&gt; 29: 2009-01-09      Z -8.43679908
+#&gt; 30: 2009-01-10      Z  4.18612551
+#&gt;           time   name       value</div><div class='input'>
+<span class='va'>stocks</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>longer_dt</span><span class='op'>(</span><span class='st'>"ti"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           time   name       value
+#&gt;         &lt;Date&gt; &lt;fctr&gt;       &lt;num&gt;
+#&gt;  1: 2009-01-01      X -1.51713292
+#&gt;  2: 2009-01-02      X  0.18798114
+#&gt;  3: 2009-01-03      X -0.70082548
+#&gt;  4: 2009-01-04      X -0.47317586
+#&gt;  5: 2009-01-05      X -0.46516427
+#&gt;  6: 2009-01-06      X  0.43158267
+#&gt;  7: 2009-01-07      X  0.29852330
+#&gt;  8: 2009-01-08      X -0.68745848
+#&gt;  9: 2009-01-09      X -0.73818478
+#&gt; 10: 2009-01-10      X  0.70628216
+#&gt; 11: 2009-01-01      Y -2.58389994
+#&gt; 12: 2009-01-02      Y  0.09984914
+#&gt; 13: 2009-01-03      Y  1.91396165
+#&gt; 14: 2009-01-04      Y  1.32351293
+#&gt; 15: 2009-01-05      Y  0.03160291
+#&gt; 16: 2009-01-06      Y  1.70596009
+#&gt; 17: 2009-01-07      Y  1.89657625
+#&gt; 18: 2009-01-08      Y -1.87925647
+#&gt; 19: 2009-01-09      Y  0.72525958
+#&gt; 20: 2009-01-10      Y -2.57758846
+#&gt; 21: 2009-01-01      Z  3.22474136
+#&gt; 22: 2009-01-02      Z  2.98695488
+#&gt; 23: 2009-01-03      Z  0.42237631
+#&gt; 24: 2009-01-04      Z  5.47052395
+#&gt; 25: 2009-01-05      Z  4.47820437
+#&gt; 26: 2009-01-06      Z -0.88972954
+#&gt; 27: 2009-01-07      Z  3.62833699
+#&gt; 28: 2009-01-08      Z  3.67277502
+#&gt; 29: 2009-01-09      Z -8.43679908
+#&gt; 30: 2009-01-10      Z  4.18612551
+#&gt;           time   name       value</div><div class='input'>
 <span class='co'># Example 2:</span>
 
 <span class='co'># \donttest{</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tidyr</span>)
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyr.tidyverse.org'>tidyr</a></span><span class='op'>)</span>
 
-  <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'>longer_dt</span>(
-      -<span class='st'>"wk"</span>,
-      <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
-      <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
-      <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-    )</div><div class='output co'>#&gt; <span class='warning'>Warning:  [... truncated]</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
+  <span class='va'>billboard</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>longer_dt</span><span class='op'>(</span>
+      <span class='op'>-</span><span class='st'>"wk"</span>,
+      name <span class='op'>=</span> <span class='st'>"week"</span>,
+      value <span class='op'>=</span> <span class='st'>"rank"</span>,
+      na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>
+    <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning:  [... truncated]</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
 #&gt;             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;
 #&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26    wk1    87
 #&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02    wk1    91
@@ -315,13 +319,14 @@ The default name is 'value'.</p></td>
 #&gt; 5306:     Lonestar                  Amazed   1999-06-05   wk64    50
 #&gt; 5307:        Creed                  Higher   1999-09-11   wk65    49</div><div class='input'>
   <span class='co'># or use:</span>
-  <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'>longer_dt</span>(
-      <span class='no'>artist</span>,<span class='no'>track</span>,<span class='no'>date.entered</span>,
-      <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
-      <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
-      <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-    )</div><div class='output co'>#&gt; <span class='warning'>Warning:  [... truncated]</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
+  <span class='va'>billboard</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>longer_dt</span><span class='op'>(</span>
+      <span class='va'>artist</span>,<span class='va'>track</span>,<span class='va'>date.entered</span>,
+      name <span class='op'>=</span> <span class='st'>"week"</span>,
+      value <span class='op'>=</span> <span class='st'>"rank"</span>,
+      na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>
+    <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning:  [... truncated]</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
 #&gt;             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;
 #&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26    wk1    87
 #&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02    wk1    91
@@ -335,13 +340,14 @@ The default name is 'value'.</p></td>
 #&gt; 5306:     Lonestar                  Amazed   1999-06-05   wk64    50
 #&gt; 5307:        Creed                  Higher   1999-09-11   wk65    49</div><div class='input'>
   <span class='co'># or use:</span>
-  <span class='no'>billboard</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'>longer_dt</span>(
-      <span class='fl'>1</span>:<span class='fl'>3</span>,
-      <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"week"</span>,
-      <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"rank"</span>,
-      <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-    )</div><div class='output co'>#&gt; <span class='warning'>Warning:  [... truncated]</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
+  <span class='va'>billboard</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>longer_dt</span><span class='op'>(</span>
+      <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
+      name <span class='op'>=</span> <span class='st'>"week"</span>,
+      value <span class='op'>=</span> <span class='st'>"rank"</span>,
+      na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>
+    <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning:  [... truncated]</span></div><div class='output co'>#&gt;             artist                   track date.entered   week  rank
 #&gt;             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;
 #&gt;    1:        2 Pac Baby Don't Cry (Keep...   2000-02-26    wk1    87
 #&gt;    2:      2Ge+her The Hardest Part Of ...   2000-09-02    wk1    91
@@ -353,7 +359,7 @@ The default name is 'value'.</p></td>
 #&gt; 5304:     Lonestar                  Amazed   1999-06-05   wk63    45
 #&gt; 5305:        Creed                  Higher   1999-09-11   wk64    50
 #&gt; 5306:     Lonestar                  Amazed   1999-06-05   wk64    50
-#&gt; 5307:        Creed                  Higher   1999-09-11   wk65    49</div><div class='input'># }
+#&gt; 5307:        Creed                  Higher   1999-09-11   wk65    49</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -370,7 +376,7 @@ The default name is 'value'.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

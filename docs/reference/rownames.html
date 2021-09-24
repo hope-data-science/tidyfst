@@ -83,7 +83,7 @@ rownames_to_column and column_to_rownames in tibble." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ rownames_to_column and column_to_rownames in tibble." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -138,7 +138,7 @@ rownames_to_column and column_to_rownames in tibble." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hope-data-science/tidyfst/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -167,9 +167,9 @@ to save information in row names. These functions are analogous to
 <code>rownames_to_column</code> and <code>column_to_rownames</code> in <span class="pkg">tibble</span>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rn_col</span>(<span class='no'>.data</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"rowname"</span>)
+    <pre class="usage"><span class='fu'>rn_col</span><span class='op'>(</span><span class='va'>.data</span>, var <span class='op'>=</span> <span class='st'>"rowname"</span><span class='op'>)</span>
 
-<span class='fu'>col_rn</span>(<span class='no'>.data</span>, <span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"rowname"</span>)</pre>
+<span class='fu'>col_rn</span><span class='op'>(</span><span class='va'>.data</span>, var <span class='op'>=</span> <span class='st'>"rowname"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,7 +191,8 @@ to save information in row names. These functions are analogous to
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
- <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>rn_col</span>()</div><div class='output co'>#&gt;                 rowname   mpg   cyl  disp    hp  drat    wt  qsec    vs    am
+ <span class='va'>mtcars</span> <span class='op'>%&gt;%</span> <span class='fu'>rn_col</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                 rowname   mpg   cyl  disp    hp  drat    wt  qsec    vs    am
 #&gt;                  &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
 #&gt;  1:           Mazda RX4  21.0     6 160.0   110  3.90 2.620 16.46     0     1
 #&gt;  2:       Mazda RX4 Wag  21.0     6 160.0   110  3.90 2.875 17.02     0     1
@@ -260,7 +261,8 @@ to save information in row names. These functions are analogous to
 #&gt; 30:     5     6
 #&gt; 31:     5     8
 #&gt; 32:     4     2
-#&gt;      gear  carb</div><div class='input'> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>rn_col</span>(<span class='st'>"rn"</span>)</div><div class='output co'>#&gt;                      rn   mpg   cyl  disp    hp  drat    wt  qsec    vs    am
+#&gt;      gear  carb</div><div class='input'> <span class='va'>mtcars</span> <span class='op'>%&gt;%</span> <span class='fu'>rn_col</span><span class='op'>(</span><span class='st'>"rn"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                      rn   mpg   cyl  disp    hp  drat    wt  qsec    vs    am
 #&gt;                  &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;
 #&gt;  1:           Mazda RX4  21.0     6 160.0   110  3.90 2.620 16.46     0     1
 #&gt;  2:       Mazda RX4 Wag  21.0     6 160.0   110  3.90 2.875 17.02     0     1
@@ -330,10 +332,11 @@ to save information in row names. These functions are analogous to
 #&gt; 31:     5     8
 #&gt; 32:     4     2
 #&gt;      gear  carb</div><div class='input'>
- <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>rn_col</span>() <span class='kw'>-&gt;</span> <span class='no'>new_mtcars</span>
+ <span class='va'>mtcars</span> <span class='op'>%&gt;%</span> <span class='fu'>rn_col</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>new_mtcars</span>
 
- <span class='no'>new_mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>col_rn</span>() <span class='kw'>-&gt;</span> <span class='no'>old_mtcars</span>
- <span class='no'>old_mtcars</span></div><div class='output co'>#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+ <span class='va'>new_mtcars</span> <span class='op'>%&gt;%</span> <span class='fu'>col_rn</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>-&gt;</span> <span class='va'>old_mtcars</span>
+ <span class='va'>old_mtcars</span>
+</div><div class='output co'>#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 #&gt; Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
 #&gt; Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
 #&gt; Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
@@ -365,7 +368,8 @@ to save information in row names. These functions are analogous to
 #&gt; Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
 #&gt; Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
 #&gt; Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
-#&gt; Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</div><div class='input'> <span class='fu'><a href='https://rdrr.io/r/base/sets.html'>setequal</a></span>(<span class='no'>mtcars</span>,<span class='no'>old_mtcars</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+#&gt; Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</div><div class='input'> <span class='fu'><a href='https://rdrr.io/r/base/sets.html'>setequal</a></span><span class='op'>(</span><span class='va'>mtcars</span>,<span class='va'>old_mtcars</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -381,7 +385,7 @@ to save information in row names. These functions are analogous to
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

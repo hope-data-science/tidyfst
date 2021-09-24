@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -136,7 +136,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/hope-data-science/tidyfst/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -163,17 +163,17 @@
  The summarise function should always return a single value.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>summarise_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>summarise_dt</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, by <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>summarize_dt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>summarize_dt</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>...</span>, by <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>summarise_when</span>(<span class='no'>.data</span>, <span class='no'>when</span>, <span class='no'>...</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>summarise_when</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>when</span>, <span class='va'>...</span>, by <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>summarize_when</span>(<span class='no'>.data</span>, <span class='no'>when</span>, <span class='no'>...</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>summarize_when</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>when</span>, <span class='va'>...</span>, by <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>summarise_vars</span>(<span class='no'>.data</span>, <span class='kw'>.cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>.func</span>, <span class='no'>...</span>, <span class='no'>by</span>)
+<span class='fu'>summarise_vars</span><span class='op'>(</span><span class='va'>.data</span>, .cols <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>.func</span>, <span class='va'>...</span>, <span class='va'>by</span><span class='op'>)</span>
 
-<span class='fu'>summarize_vars</span>(<span class='no'>.data</span>, <span class='kw'>.cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>.func</span>, <span class='no'>...</span>, <span class='no'>by</span>)</pre>
+<span class='fu'>summarize_vars</span><span class='op'>(</span><span class='va'>.data</span>, .cols <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>.func</span>, <span class='va'>...</span>, <span class='va'>by</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -218,13 +218,16 @@ grouping variables. For details see <a href='https://Rdatatable.gitlab.io/data.t
     <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>avg</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>Sepal.Length</span>))</div><div class='output co'>#&gt;         avg
+    <pre class="examples"><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_dt</span><span class='op'>(</span>avg <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         avg
 #&gt;       &lt;num&gt;
-#&gt; 1: 5.843333</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>avg</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>Sepal.Length</span>),<span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt;       Species   avg
+#&gt; 1: 5.843333</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_dt</span><span class='op'>(</span>avg <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span><span class='op'>)</span>,by <span class='op'>=</span> <span class='va'>Species</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       Species   avg
 #&gt;        &lt;fctr&gt; &lt;num&gt;
 #&gt; 1:     setosa 5.006
 #&gt; 2: versicolor 5.936
-#&gt; 3:  virginica 6.588</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>avg</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='no'>hp</span>),<span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'>.</span>(<span class='no'>cyl</span>,<span class='no'>vs</span>))</div><div class='output co'>#&gt;      cyl    vs      avg
+#&gt; 3:  virginica 6.588</div><div class='input'><span class='va'>mtcars</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_dt</span><span class='op'>(</span>avg <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>hp</span><span class='op'>)</span>,by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>cyl</span>,<span class='va'>vs</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      cyl    vs      avg
 #&gt;    &lt;num&gt; &lt;num&gt;    &lt;num&gt;
 #&gt; 1:     6     0 131.6667
 #&gt; 2:     4     1  81.8000
@@ -232,25 +235,31 @@ grouping variables. For details see <a href='https://Rdatatable.gitlab.io/data.t
 #&gt; 4:     8     0 209.2143
 #&gt; 5:     4     0  91.0000</div><div class='input'>
 <span class='co'># the data.table way</span>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_dt</span>(<span class='kw'>cyl_n</span> <span class='kw'>=</span> <span class='no'>.N</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'>.</span>(<span class='no'>cyl</span>, <span class='no'>vs</span>)) <span class='co'># `.` is short for list</span></div><div class='output co'>#&gt;      cyl    vs cyl_n
+<span class='va'>mtcars</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_dt</span><span class='op'>(</span>cyl_n <span class='op'>=</span> <span class='va'>.N</span>, by <span class='op'>=</span> <span class='fu'>.</span><span class='op'>(</span><span class='va'>cyl</span>, <span class='va'>vs</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># `.` is short for list</span>
+</div><div class='output co'>#&gt;      cyl    vs cyl_n
 #&gt;    &lt;num&gt; &lt;num&gt; &lt;int&gt;
 #&gt; 1:     6     0     3
 #&gt; 2:     4     1    10
 #&gt; 3:     6     1     4
 #&gt; 4:     8     0    14
 #&gt; 5:     4     0     1</div><div class='input'>
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_vars</span>(<span class='no'>is.numeric</span>,<span class='no'>min</span>)</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
+<span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_vars</span><span class='op'>(</span><span class='va'>is.numeric</span>,<span class='va'>min</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
-#&gt; 1:          4.3           2            1         0.1</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_vars</span>(-<span class='no'>is.factor</span>,<span class='no'>min</span>)</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; 1:          4.3           2            1         0.1</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_vars</span><span class='op'>(</span><span class='op'>-</span><span class='va'>is.factor</span>,<span class='va'>min</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
-#&gt; 1:          4.3           2            1         0.1</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_vars</span>(<span class='fl'>1</span>:<span class='fl'>4</span>,<span class='no'>min</span>)</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
+#&gt; 1:          4.3           2            1         0.1</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_vars</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,<span class='va'>min</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt; 1:          4.3           2            1         0.1</div><div class='input'>
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_vars</span>(<span class='no'>is.numeric</span>,<span class='no'>min</span>,<span class='kw'>by</span> <span class='kw'>=</span><span class='st'>"Species"</span>)</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+<span class='va'>iris</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_vars</span><span class='op'>(</span><span class='va'>is.numeric</span>,<span class='va'>min</span>,by <span class='op'>=</span><span class='st'>"Species"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width
 #&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;
 #&gt; 1:     setosa          4.3         2.3          1.0         0.1
 #&gt; 2: versicolor          4.9         2.0          3.0         1.0
-#&gt; 3:  virginica          4.9         2.2          4.5         1.4</div><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span> <span class='fu'>summarise_vars</span>(<span class='no'>is.numeric</span>,<span class='no'>mean</span>,<span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"vs,am"</span>)</div><div class='output co'>#&gt;       vs    am      mpg      cyl     disp        hp     drat       wt     qsec
+#&gt; 3:  virginica          4.9         2.2          4.5         1.4</div><div class='input'><span class='va'>mtcars</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_vars</span><span class='op'>(</span><span class='va'>is.numeric</span>,<span class='va'>mean</span>,by <span class='op'>=</span> <span class='st'>"vs,am"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       vs    am      mpg      cyl     disp        hp     drat       wt     qsec
 #&gt;    &lt;num&gt; &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;     &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;
 #&gt; 1:     0     1 19.75000 6.333333 206.2167 180.83333 3.935000 2.857500 15.79667
 #&gt; 2:     1     1 28.37143 4.000000  89.8000  80.57143 4.148571 2.028286 18.70000
@@ -263,13 +272,15 @@ grouping variables. For details see <a href='https://Rdatatable.gitlab.io/data.t
 #&gt; 3: 3.571429 2.142857
 #&gt; 4: 3.000000 3.083333</div><div class='input'>
 <span class='co'># use multiple functions on multiple columns</span>
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>summarise_vars</span>(<span class='no'>is.numeric</span>,<span class='kw'>.func</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>mean</span>,<span class='no'>sd</span>,<span class='no'>median</span>))</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width fun_name
+<span class='va'>iris</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarise_vars</span><span class='op'>(</span><span class='va'>is.numeric</span>,.func <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>mean</span>,<span class='va'>sd</span>,<span class='va'>median</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width fun_name
 #&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;   &lt;char&gt;
 #&gt; 1:    5.8433333   3.0573333     3.758000   1.1993333     mean
 #&gt; 2:    0.8280661   0.4358663     1.765298   0.7622377       sd
-#&gt; 3:    5.8000000   3.0000000     4.350000   1.3000000   median</div><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>summarise_vars</span>(<span class='no'>is.numeric</span>,<span class='kw'>.func</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>mean</span>,<span class='no'>sd</span>,<span class='no'>median</span>),<span class='kw'>by</span> <span class='kw'>=</span> <span class='no'>Species</span>)</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width fun_name
+#&gt; 3:    5.8000000   3.0000000     4.350000   1.3000000   median</div><div class='input'><span class='va'>iris</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarise_vars</span><span class='op'>(</span><span class='va'>is.numeric</span>,.func <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>mean</span>,<span class='va'>sd</span>,<span class='va'>median</span><span class='op'>)</span>,by <span class='op'>=</span> <span class='va'>Species</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width fun_name
 #&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;   &lt;char&gt;
 #&gt; 1:     setosa    5.0060000   3.4280000    1.4620000   0.2460000     mean
 #&gt; 2: versicolor    5.9360000   2.7700000    4.2600000   1.3260000     mean
@@ -296,7 +307,7 @@ grouping variables. For details see <a href='https://Rdatatable.gitlab.io/data.t
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
