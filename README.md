@@ -112,8 +112,6 @@ iris[3:8,] %>%
 - [tidyr](https://github.com/tidyverse/tidyr)
 - [dplyr](https://github.com/tidyverse/dplyr)
 - [dtplyr](https://github.com/tidyverse/dtplyr)
-- [tidyfast](https://github.com/TysonStanley/tidyfast)
-- [tidytable](https://github.com/markfairbanks/tidytable)
 
 ## Acknowledgement
 
