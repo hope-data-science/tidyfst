@@ -16,7 +16,7 @@ separate_dt(
 \arguments{
 \item{.data}{A data frame.}
 
-\item{separated_colname}{Column name, string only.}
+\item{separated_colname}{Column to be separated, can be a character or alias.}
 
 \item{into}{Character vector of length 2.}
 
