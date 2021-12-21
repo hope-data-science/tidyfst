@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convenient print of time taken — sys_time_print • tidyfst</title>
+<title>Case insensitive table joining like SQL — sql_join • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,10 @@
 
 
 
-<meta property="og:title" content="Convenient print of time taken — sys_time_print" />
-<meta property="og:description" content="Convenient printing of time elapsed. A wrapper of
-data.table::timetaken, but showing the results more directly." />
+<meta property="og:title" content="Case insensitive table joining like SQL — sql_join" />
+<meta property="og:description" content="Work like the `*_join_dt` series functions, joining
+tables with common or customized keys  in various ways. The only
+difference is the joining is case insensitive like SQL." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -153,58 +154,76 @@ data.table::timetaken, but showing the results more directly." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convenient print of time taken</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/sys_time_print.R'><code>R/sys_time_print.R</code></a></small>
-    <div class="hidden name"><code>sys_time_print.Rd</code></div>
+    <h1>Case insensitive table joining like SQL</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/sql_join.R'><code>R/sql_join.R</code></a></small>
+    <div class="hidden name"><code>sql_join.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convenient printing of time elapsed. A wrapper of
-<code><a href='https://Rdatatable.gitlab.io/data.table/reference/timetaken.html'>data.table::timetaken</a></code>, but showing the results more directly.</p>
+    <p>Work like the `*_join_dt` series functions, joining
+tables with common or customized keys  in various ways. The only
+difference is the joining is case insensitive like SQL.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sys_time_print</span><span class='op'>(</span><span class='va'>expr</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>sql_join_dt</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, by <span class='op'>=</span> <span class='cn'>NULL</span>, type <span class='op'>=</span> <span class='st'>"inner"</span>, suffix <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>".x"</span>, <span class='st'>".y"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>expr</th>
-      <td><p>Valid R expression to be timed.</p></td>
+      <th>x</th>
+      <td><p>A data.table</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>A data.table</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>(Optional) A character vector of variables to join by.</p>
+<p>If `NULL`, the default, `*_join_dt()` will perform a natural join, using all
+  variables in common across `x` and `y`. A message lists the variables so that you
+  can check they're correct; suppress the message by supplying `by` explicitly.</p>
+<p>To join by different variables on `x` and `y`, use a named vector.
+  For example, `by = c("a" = "b")` will match `x$a` to `y$b`.</p>
+<p>To join by multiple variables, use a vector with length &gt; 1.
+  For example, `by = c("a", "b")` will match `x$a` to `y$a` and `x$b` to
+  `y$b`. Use a named vector to match different variables in `x` and `y`.
+  For example, `by = c("a" = "b", "c" = "d")` will match `x$a` to `y$b` and
+  `x$c` to `y$d`.</p>
+<p>Notice that in `sql_join`, the joining variables would turn to upper case
+  in the output table.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Which type of join would you like to use?
+Default uses "inner", other options include
+"left", "right", "full", "anti", "semi".</p></td>
+    </tr>
+    <tr>
+      <th>suffix</th>
+      <td><p>If there are non-joined duplicate variables in x and y, these
+suffixes will be added to the output to disambiguate them. Should be a
+character vector of length 2.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character vector of the form HH:MM:SS,
-or SS.MMMsec if under 60 seconds. See examples.</p>
+    <p>A data.table</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://Rdatatable.gitlab.io/data.table/reference/timetaken.html'>timetaken</a></code>, <code><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></code></p></div>
+    <div class='dont-index'><p><code><a href='join.html'>join</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>sys_time_print</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Finished in 1.020s elapsed (0.000s cpu)"</div><div class='input'>
-<span class='va'>a</span> <span class='op'>=</span> <span class='va'>iris</span>
-<span class='fu'>sys_time_print</span><span class='op'>(</span><span class='op'>{</span>
-  <span class='va'>res</span> <span class='op'>=</span> <span class='va'>iris</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='mutate_dt.html'>mutate_dt</a></span><span class='op'>(</span>one <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='op'>}</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Finished in 0.000s elapsed (0.000s cpu)"</div><div class='input'><span class='va'>res</span>
-</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species   one
-#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;num&gt;
-#&gt;   1:          5.1         3.5          1.4         0.2    setosa     1
-#&gt;   2:          4.9         3.0          1.4         0.2    setosa     1
-#&gt;   3:          4.7         3.2          1.3         0.2    setosa     1
-#&gt;   4:          4.6         3.1          1.5         0.2    setosa     1
-#&gt;   5:          5.0         3.6          1.4         0.2    setosa     1
-#&gt;  ---                                                                  
-#&gt; 146:          6.7         3.0          5.2         2.3 virginica     1
-#&gt; 147:          6.3         2.5          5.0         1.9 virginica     1
-#&gt; 148:          6.5         3.0          5.2         2.0 virginica     1
-#&gt; 149:          6.2         3.4          5.4         2.3 virginica     1
-#&gt; 150:          5.9         3.0          5.1         1.8 virginica     1</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>dt1</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>,<span class='st'>"b"</span><span class='op'>)</span>,y <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>dt2</span> <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>,<span class='st'>"B"</span><span class='op'>)</span>,z <span class='op'>=</span> <span class='fl'>4</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span>
+<span class='fu'>sql_join_dt</span><span class='op'>(</span><span class='va'>dt1</span>,<span class='va'>dt2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Key: &lt;x&gt;
+#&gt;         x     y     z
+#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt;
+#&gt; 1:      A     1     4
+#&gt; 2:      B     2     5</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

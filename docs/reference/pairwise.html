@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convenient print of time taken — sys_time_print • tidyfst</title>
+<title>Count pairs of items within a group — pairwise_count_dt • tidyfst</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,12 @@
 
 
 
-<meta property="og:title" content="Convenient print of time taken — sys_time_print" />
-<meta property="og:description" content="Convenient printing of time elapsed. A wrapper of
-data.table::timetaken, but showing the results more directly." />
+<meta property="og:title" content="Count pairs of items within a group — pairwise_count_dt" />
+<meta property="og:description" content="Count the number of times each pair
+of items appear together within a group.
+For example, this could count the number of times two words appear within documents.
+This function has referred to pairwise_count in widyr package,
+but with very different defaults on several parameters." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -153,58 +156,120 @@ data.table::timetaken, but showing the results more directly." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convenient print of time taken</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/sys_time_print.R'><code>R/sys_time_print.R</code></a></small>
-    <div class="hidden name"><code>sys_time_print.Rd</code></div>
+    <h1>Count pairs of items within a group</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hope-data-science/tidyfst/blob/master/R/pairwise.R'><code>R/pairwise.R</code></a></small>
+    <div class="hidden name"><code>pairwise.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convenient printing of time elapsed. A wrapper of
-<code><a href='https://Rdatatable.gitlab.io/data.table/reference/timetaken.html'>data.table::timetaken</a></code>, but showing the results more directly.</p>
+    <p>Count the number of times each pair
+of items appear together within a group.
+For example, this could count the number of times two words appear within documents.
+This function has referred to <code>pairwise_count</code> in <strong>widyr</strong> package,
+but with very different defaults on several parameters.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sys_time_print</span><span class='op'>(</span><span class='va'>expr</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pairwise_count_dt</span><span class='op'>(</span>
+  <span class='va'>.data</span>,
+  <span class='va'>.group</span>,
+  <span class='va'>.value</span>,
+  upper <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  diag <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  sort <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>expr</th>
-      <td><p>Valid R expression to be timed.</p></td>
+      <th>.data</th>
+      <td><p>A data.frame.</p></td>
+    </tr>
+    <tr>
+      <th>.group</th>
+      <td><p>Column name of counting group.</p></td>
+    </tr>
+    <tr>
+      <th>.value</th>
+      <td><p>Item to count pairs, will end up in <code>V1</code> and <code>V2</code> columns.</p></td>
+    </tr>
+    <tr>
+      <th>upper</th>
+      <td><p>When <code>FALSE</code>(Default), duplicated combinations would be removed.</p></td>
+    </tr>
+    <tr>
+      <th>diag</th>
+      <td><p>Whether to include diagonal (V1==V2) in output. Default uses <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>sort</th>
+      <td><p>Whether to sort rows by counts. Default uses <code>TRUE</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character vector of the form HH:MM:SS,
-or SS.MMMsec if under 60 seconds. See examples.</p>
+    <p>A data.table with 3 columns (named as "V1","V2" and "n"), containing combinations
+ in "V1" and "V2", and counts in "n".</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://Rdatatable.gitlab.io/data.table/reference/timetaken.html'>timetaken</a></code>, <code><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/widyr/man/pairwise_count.html'>pairwise_count</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>sys_time_print</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Finished in 1.020s elapsed (0.000s cpu)"</div><div class='input'>
-<span class='va'>a</span> <span class='op'>=</span> <span class='va'>iris</span>
-<span class='fu'>sys_time_print</span><span class='op'>(</span><span class='op'>{</span>
-  <span class='va'>res</span> <span class='op'>=</span> <span class='va'>iris</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='mutate_dt.html'>mutate_dt</a></span><span class='op'>(</span>one <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='op'>}</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Finished in 0.000s elapsed (0.000s cpu)"</div><div class='input'><span class='va'>res</span>
-</div><div class='output co'>#&gt;      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species   one
-#&gt;             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;num&gt;
-#&gt;   1:          5.1         3.5          1.4         0.2    setosa     1
-#&gt;   2:          4.9         3.0          1.4         0.2    setosa     1
-#&gt;   3:          4.7         3.2          1.3         0.2    setosa     1
-#&gt;   4:          4.6         3.1          1.5         0.2    setosa     1
-#&gt;   5:          5.0         3.6          1.4         0.2    setosa     1
-#&gt;  ---                                                                  
-#&gt; 146:          6.7         3.0          5.2         2.3 virginica     1
-#&gt; 147:          6.3         2.5          5.0         1.9 virginica     1
-#&gt; 148:          6.5         3.0          5.2         2.0 virginica     1
-#&gt; 149:          6.2         3.4          5.4         2.3 virginica     1
-#&gt; 150:          5.9         3.0          5.1         1.8 virginica     1</div></pre>
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span><span class='op'>(</span>group <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, each <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,
+              letter <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"b"</span>,
+                         <span class='st'>"a"</span>, <span class='st'>"c"</span>,
+                         <span class='st'>"a"</span>, <span class='st'>"c"</span>,
+                         <span class='st'>"b"</span>, <span class='st'>"e"</span>,
+                         <span class='st'>"b"</span>, <span class='st'>"f"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>pairwise_count_dt</span><span class='op'>(</span><span class='va'>dat</span>,<span class='va'>group</span>,<span class='va'>letter</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        V1     V2     n
+#&gt;    &lt;char&gt; &lt;char&gt; &lt;int&gt;
+#&gt; 1:      a      c     2
+#&gt; 2:      a      b     1
+#&gt; 3:      b      e     1
+#&gt; 4:      b      f     1</div><div class='input'><span class='fu'>pairwise_count_dt</span><span class='op'>(</span><span class='va'>dat</span>,<span class='va'>group</span>,<span class='va'>letter</span>,sort <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        V1     V2     n
+#&gt;    &lt;char&gt; &lt;char&gt; &lt;int&gt;
+#&gt; 1:      a      b     1
+#&gt; 2:      a      c     2
+#&gt; 3:      b      e     1
+#&gt; 4:      b      f     1</div><div class='input'><span class='fu'>pairwise_count_dt</span><span class='op'>(</span><span class='va'>dat</span>,<span class='va'>group</span>,<span class='va'>letter</span>,diag <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        V1     V2     n
+#&gt;    &lt;char&gt; &lt;char&gt; &lt;int&gt;
+#&gt; 1:      a      a     3
+#&gt; 2:      b      b     3
+#&gt; 3:      a      c     2
+#&gt; 4:      c      c     2
+#&gt; 5:      a      b     1
+#&gt; 6:      b      e     1
+#&gt; 7:      e      e     1
+#&gt; 8:      b      f     1
+#&gt; 9:      f      f     1</div><div class='input'><span class='fu'>pairwise_count_dt</span><span class='op'>(</span><span class='va'>dat</span>,<span class='va'>group</span>,<span class='va'>letter</span>,diag <span class='op'>=</span> <span class='cn'>TRUE</span>,upper <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         V1     V2     n
+#&gt;     &lt;char&gt; &lt;char&gt; &lt;int&gt;
+#&gt;  1:      a      a     3
+#&gt;  2:      b      b     3
+#&gt;  3:      a      c     2
+#&gt;  4:      c      a     2
+#&gt;  5:      c      c     2
+#&gt;  6:      a      b     1
+#&gt;  7:      b      a     1
+#&gt;  8:      b      e     1
+#&gt;  9:      e      b     1
+#&gt; 10:      e      e     1
+#&gt; 11:      b      f     1
+#&gt; 12:      f      b     1
+#&gt; 13:      f      f     1</div><div class='input'>
+<span class='co'># The column name could be specified using character.</span>
+<span class='fu'>pairwise_count_dt</span><span class='op'>(</span><span class='va'>dat</span>,<span class='st'>"group"</span>,<span class='st'>"letter"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        V1     V2     n
+#&gt;    &lt;char&gt; &lt;char&gt; &lt;int&gt;
+#&gt; 1:      a      c     2
+#&gt; 2:      a      b     1
+#&gt; 3:      b      e     1
+#&gt; 4:      b      f     1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
