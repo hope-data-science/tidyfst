@@ -1,4 +1,12 @@
 
+## 1.5.0
+1.Set `options("datatable.print.trunc.cols" = TRUE)`, so as to let the printing work like tibbles in dplyr.
+2.Make functions in tidyfst could be used in other functions. Details see <https://stackoverflow.com/questions/69098157/how-to-past-parameters-in-r-functions-using-substitute-and-eval-to-make-data>. Some functions have replaced the previous `eval` to `eval.parent`.
+3. Export `%like%` from data.table.
+4. Add function `sql_join_dt` to implement case insensitive joining for data.frame.
+5. Add function `percent` and `add_prop` to calculate percentage conveniently.
+6. Add function `pairwise_count_dt` to count pairs of items within a group.
+
 ## 1.0.0
 Date:20210908
 1. Add "fromLast" parameter to `distinct_dt`

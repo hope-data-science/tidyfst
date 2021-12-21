@@ -8,17 +8,17 @@ p_load(fst,stringr,data.table,tidyfst,testthat)
 # use_test("")
 
 # use_r("global_setting")
-# use_r("select_dt")
-# use_r("filter_dt")
-# use_r("arrange_dt")
 
+rm(list = ls())
 document()
 install(upgrade = "never",dependencies = F)
 #install(upgrade = "never",dependencies = F,quick = T)
 #install(quick = T)
 .rs.restartR()
-rm(list = ls())
+
 library(tidyfst)
+
+testthat::test_package("tidyfst")
 
 # library(tidydt)
 
@@ -39,8 +39,8 @@ if (file.exists(f)) {
 badge_devel("guangchuangyu/ggtree", "blue")
 badge_devel("hope-data-science/tidydt", "blue")
 
-a = "dl-keras-tf"
-stringr::str_glue("wget -c \"https://codeload.github.com/rstudio-conf-2020/{a}/zip/master\" -O {a}")
+a = "abichat"
+stringr::str_glue("wget -c \"https://codeload.github.com/{a}/TidyTuesday/zip/master\" -O {a}_tidytuesday.zip")
 
 a = "rstudio/cheatsheets"
 stringr::str_glue("wget -c \"https://codeload.github.com/{a}/zip/master\" -O cheatsheet.zip")
@@ -79,7 +79,7 @@ invisible(
 iris %>% select("Pe")
 
 
-
+test_file(path = "tests/testthat/test-mutate_dt.R")
 
 
 library(cranlogs)

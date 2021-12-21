@@ -1,6 +1,6 @@
 # tidyfst: Tidy Verbs for Fast Data Manipulation<img src="man/figures/hex-tidyfst_url.png" align="right" alt="" width="120" />
 
- [![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) [![](https://img.shields.io/badge/devel%20version-1.5.0-purple.svg)](https://github.com/hope-data-science/tidyfst) ![](https://img.shields.io/badge/lifecycle-stable-green.svg)  [![downloads](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=yellow)](https://r-pkg.org/pkg/tidyfst)
+ [![](https://www.r-pkg.org/badges/version/tidyfst?color=orange)](https://cran.r-project.org/package=tidyfst) [![](https://img.shields.io/badge/devel%20version-2.0.0-purple.svg)](https://github.com/hope-data-science/tidyfst) ![](https://img.shields.io/badge/lifecycle-stable-green.svg)  [![downloads](http://cranlogs.r-pkg.org/badges/grand-total/tidyfst?color=yellow)](https://r-pkg.org/pkg/tidyfst)
 
  [![download](https://cranlogs.r-pkg.org/badges/tidyfst?color=red)](https://rdrr.io/cran/tidyfst/) [![downloads](https://cranlogs.r-pkg.org/badges/last-week/tidyfst?color=ff69b4)](https://crantastic.org/packages/tidyfst) [![downloads](https://cranlogs.r-pkg.org/badges/last-day/tidyfst?color=9cf)](https://crantastic.org/packages/tidyfst)
 
@@ -24,7 +24,7 @@ PS: For extreme performance in tidy syntax, try *tidyfst*'s mirror package [tidy
 - Show the variable class of data.table as default.
 - Never use in place replacement (also known as modification by reference, which means the original variable would not be modified without notification).
 - Use suffix ("_dt") rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).
-- More flexible verbs for big data manipulation.
+- More flexible verbs (e.g. [pairwise_count_dt](https://hope-data-science.github.io/tidyfst/reference/pairwise.html)) for big data manipulation.
 - Supporting data importing and parsing with *fst*, which saves both time and memory. Details see [parse_fst/select_fst/filter_fst](https://hope-data-science.github.io/tidyfst/reference/fst.html) and [import_fst/export_fst](https://hope-data-science.github.io/tidyfst/reference/fst_io.html).
 - Low and stable dependency on mature packages (data.table, fst, stringr)
 
@@ -56,17 +56,14 @@ iris %>%
 #> 2: versicolor 3.4
 #> 3:  virginica 3.8
 
-mtcars %>%
-  group_dt(
-      by =.(vs,am),
-      summarise_dt(avg = mean(mpg))
-   )
-#>    vs am      avg
-#>   <num> <num>    <num>
-#> 1:  0  1 19.75000
-#> 2:  1  1 28.37143
-#> 3:  1  0 20.74286
-#> 4:  0  0 15.05000
+iris %>%
+  count_dt(Species) %>%
+  add_prop()
+#>       Species     n      prop prop_label
+#>        <fctr> <int>     <num>     <char>
+#> 1:     setosa    50 0.3333333      33.3%
+#> 2: versicolor    50 0.3333333      33.3%
+#> 3:  virginica    50 0.3333333      33.3%
 
 iris[3:8,] %>%
   mutate_when(Petal.Width == .2,
@@ -112,6 +109,8 @@ iris[3:8,] %>%
 - [tidyr](https://github.com/tidyverse/tidyr)
 - [dplyr](https://github.com/tidyverse/dplyr)
 - [dtplyr](https://github.com/tidyverse/dtplyr)
+
+
 
 ## Acknowledgement
 
