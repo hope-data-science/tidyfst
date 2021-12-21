@@ -52,12 +52,10 @@ complete_dt = function(.data,...,fill = NA){
       parse(text = .) %>%
       eval() %>%
       merge(dt,all = TRUE) %>%
-      #merge(setorder(dt),all = TRUE) %>%
       replace_na_dt(to=fill) %>%
       unique()
   }else
     dt %>%
-    #setorder(dt)%>%
     select_dt(...) %>%
     lapply(unique) %>%
     deparse() %>%
@@ -68,5 +66,7 @@ complete_dt = function(.data,...,fill = NA){
     replace_na_dt(to=fill) %>%
     unique()
 }
+
+
 
 
