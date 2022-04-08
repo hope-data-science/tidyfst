@@ -132,7 +132,8 @@ unnest_dt = function(.data,...){
   if(length(col_names) == 1) unnest_col(dt,...)
   else
     lapply(col_names,function(x) unnest_col(dt,cols = x)) %>%
-    Reduce(x = ., f = function(x,y) cbind(x,y))
+    Reduce(x = ., f = function(x,y) cbind(x,y)) %>%
+    .[, which(duplicated(names(.))) := NULL] %>% .[]
 }
 
 unnest_col = function(.data,...){
