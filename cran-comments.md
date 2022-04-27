@@ -1,4 +1,14 @@
 
+## 1.7.0
+1. Make a fix in `complete_dt`, letting it become more robust.
+2. Solve issue mentioned at <https://github.com/hope-data-science/tidyfst/issues/13>.
+3. Add `show_time` function to make time printing more user-friendly complementing the current `sys_time_print`.
+
+## 1.6.0
+1. Fix a bug in `sql_join_dt`, so as to let anti join and semi join work.
+2. Update `pairwise_count` function to be more fast when possible.
+3. Update ORCID number.
+
 ## 1.5.0
 1.Set `options("datatable.print.trunc.cols" = TRUE)`, so as to let the printing work like tibbles in dplyr.
 2.Make functions in tidyfst could be used in other functions. Details see <https://stackoverflow.com/questions/69098157/how-to-past-parameters-in-r-functions-using-substitute-and-eval-to-make-data>. Some functions have replaced the previous `eval` to `eval.parent`.

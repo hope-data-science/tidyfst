@@ -1,13 +1,13 @@
 Package: tidyfst
 Title: Tidy Verbs for Fast Data Manipulation
-Version: 1.5.0
+Version: 1.7.0
 Depends: R (>= 3.3.0)
 Authors@R: 
     person(given = "Tian-Yuan",
            family = "Huang",
            role = c("aut", "cre"),
            email = "huang.tian-yuan@qq.com",
-           comment = c(ORCID = "0000-0002-3591-4203"))
+           comment = c(ORCID = "0000-0002-4151-3764"))
 Description: A toolkit of tidy data manipulation verbs with 'data.table' as the backend.
   Combining the merits of syntax elegance from 'dplyr' and computing performance from 'data.table', 
   'tidyfst' intends to provide users with state-of-the-art data manipulation tools with least pain.
@@ -18,7 +18,7 @@ BugReports: https://github.com/hope-data-science/tidyfst/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: 
     data.table (>= 1.13.0),
     fst (>= 0.9.0),

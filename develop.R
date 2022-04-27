@@ -56,9 +56,6 @@ iris %>%
   distinct_dt(sl,keep_all = T) %>%
   summarise_dt(sw = max(sw),by = group)
 
-
-
-
 usethis::create_package
 
 
@@ -90,3 +87,13 @@ end_date = "2020-04-09"
 cran_downloads(package = "tidyfst", from = "2020-02-10",to = end_date) -> a
 
 a
+
+
+reprex::reprex({
+  library(tidyfst)
+  iris %>%
+    count_dt(Species) %>%
+    add_prop()
+},venue = "R")
+
+
