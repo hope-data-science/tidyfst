@@ -1,8 +1,8 @@
 
-## 1.7.0
+## 1.6.5
 1. Make a fix in `complete_dt`, letting it become more robust.
 2. Solve issue mentioned at <https://github.com/hope-data-science/tidyfst/issues/13>.
-3. Add `show_time` function to make time printing more user-friendly complementing the current `sys_time_print`.
+3. Update `sys_time_print` function to make time printing more user-friendly.
 
 ## 1.6.0
 1. Fix a bug in `sql_join_dt`, so as to let anti join and semi join work.
