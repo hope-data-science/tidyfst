@@ -53,7 +53,10 @@ sql_join_dt = function(x,y,by = NULL,type = "inner",suffix = c(".x",".y")){
     x = x[,(names(by)) := lapply(.SD,toupper),.SDcols = names(by)]
     y = y[,(by) := lapply(.SD,toupper),.SDcols = by]
   }
-  get(str_glue("{type}_join_dt"))(x,y,by = by,suffix = suffix)
+  if(type %in% c("anti","semi"))
+    get(str_glue("{type}_join_dt"))(x,y,by = by)
+  else
+    get(str_glue("{type}_join_dt"))(x,y,by = by,suffix = suffix)
 }
 
 

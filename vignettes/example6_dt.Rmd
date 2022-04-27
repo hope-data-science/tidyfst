@@ -2,7 +2,7 @@
 title: "Example 6: Dt"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{example6_dt}
+  %\VignetteIndexEntry{Example 6: Dt}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

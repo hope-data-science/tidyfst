@@ -48,7 +48,7 @@ complete_dt = function(.data,...,fill = NA){
     list(...) %>%
       lapply(unique) %>%
       deparse() %>%
-      str_replace("list","CJ") %>%
+      str_replace("list\\(","CJ\\(") %>%
       parse(text = .) %>%
       eval() %>%
       merge(dt,all = TRUE) %>%
@@ -59,7 +59,7 @@ complete_dt = function(.data,...,fill = NA){
     select_dt(...) %>%
     lapply(unique) %>%
     deparse() %>%
-    str_replace("list","CJ") %>%
+    str_replace("list\\(","CJ\\(") %>%
     parse(text = .) %>%
     eval() %>%
     merge(dt,all = TRUE) %>%

@@ -32,9 +32,9 @@
 top_dt = function(.data,wt = NULL,n = NULL,prop = NULL){
   dt = as_dt(.data)
   if(is.null(n) & !is.null(prop))
-    eval(substitute(top_frac_dt(dt,prop,wt)))
+    eval.parent(substitute(top_frac_dt(dt,prop,wt)))
   else if(!is.null(n) & is.null(prop))
-    eval(substitute(top_n_dt(dt,n,wt)))
+    eval.parent(substitute(top_n_dt(dt,n,wt)))
   else stop("Both or none of `n` and `prop` are provided!")
 }
 
@@ -60,7 +60,7 @@ top_n_dt = function(.data,n,wt = NULL){
 top_frac_dt = function(.data,prop,wt = NULL){
   dt = as_dt(.data)
   n = nrow(dt) * prop
-  eval(substitute(top_n_dt(dt,n,wt)))
+  eval.parent(substitute(top_n_dt(dt,n,wt)))
 }
 
 

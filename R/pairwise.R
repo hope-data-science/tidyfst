@@ -42,13 +42,14 @@ pairwise_count_dt = function(.data,.group,.value,upper = FALSE,diag = FALSE,sort
     .value = parse_name
 
   str_glue("dt[,CJ(V1={.value},V2={.value},unique = TRUE),by = .group][,(.group):=NULL]") %>%
-    parse(text = .) %>% eval() %>%
-    count_dt(sort = sort)-> res
+    parse(text = .) %>% eval() -> res
 
   if(!diag) res = res[V1!=V2]
   if(!upper) res = res[V1 <= V2]
 
-  res
+  res %>%
+    count_dt(V1,V2,sort = sort)
+
 }
 
 globalVariables(c("V1","V2"))

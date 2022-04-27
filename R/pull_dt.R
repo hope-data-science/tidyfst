@@ -11,10 +11,6 @@
 #' mtcars %>% pull_dt("cyl")
 #' @export
 
-
 pull_dt = function(.data,col) .data[[substitute(col)]]
 
-
-
-
-
+# pull_dt = function(.data,col) eval.parent(substitute(.data[[col]]))

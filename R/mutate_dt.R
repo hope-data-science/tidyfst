@@ -19,18 +19,29 @@
 
 mutate_dt = function(.data,...,by){
   dt = as.data.table(.data)
-  substitute(dt[,`:=`(...),by][]) %>% eval()
+  eval.parent(substitute(dt[,`:=`(...),by][]),1)
 }
+
+# mutate_dt = function(.data,...,by){
+#   dt = as.data.table(.data)
+#   substitute(dt[,`:=`(...),by][]) %>% eval()
+# }
 
 #' @rdname mutate
 #' @export
 
 transmute_dt = function(.data,...,by){
   dt = as_dt(.data)
-  substitute(dt[,.(id_ = 1:.N,...),by][]) %>% eval() %>%
-    .[,id_:=NULL] %>% .[]
+  eval.parent(substitute(dt[,.(id_ = 1:.N,...),by]),1)[,id_:=NULL][]
 }
 
+# transmute_dt = function(.data,...,by){
+#   dt = as_dt(.data)
+#   substitute(dt[,.(id_ = 1:.N,...),by][]) %>% eval() %>%
+#     .[,id_:=NULL] %>% .[]
+# }
+
+globalVariables("id_")
 
 # transmute_dt = function(.data,...,by){
 #   dt = as_dt(.data)

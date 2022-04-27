@@ -38,8 +38,9 @@ mat_df = function(m){
 #' @export
 df_mat = function(df,row,col,value){
   stopifnot(is.data.frame(df))
-  df = df
-  eval(substitute(with(df, tapply(value, list(row, col), identity))))
+  eval.parent(substitute(with(df, tapply(value, list(row, col), identity))),1)
+  # df = df
+  # eval(substitute(with(df, tapply(value, list(row, col), identity))))
 }
 
 

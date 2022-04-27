@@ -2,7 +2,7 @@
 title: "Example 3: Reshape"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{example3_reshape}
+  %\VignetteIndexEntry{Example 3: Reshape}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -2,7 +2,7 @@
 title: "Example 2: Join tables"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{example2_join}
+  %\VignetteIndexEntry{Example 2: Join tables}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

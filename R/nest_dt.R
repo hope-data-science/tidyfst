@@ -136,6 +136,15 @@ unnest_dt = function(.data,...){
     .[, which(duplicated(names(.))) := NULL] %>% .[]
 }
 
+# unnest_dt = function(.data,...){
+#   dt = as_dt(.data)
+#   col_names = dt[0] %>% select_dt(...) %>% names()
+#   if(length(col_names) == 1) unnest_col(dt,...)
+#   else
+#     lapply(col_names,function(x) unnest_col(dt,cols = x)) %>%
+#     Reduce(x = ., f = function(x,y) merge(x,y,all = TRUE))
+# }
+
 unnest_col = function(.data,...){
   dt = as_dt(.data)
   col_name = dt[0] %>% select_dt(...) %>% names()

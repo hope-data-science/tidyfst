@@ -38,3 +38,4 @@ add_prop = function(.data,count_name = last(names(.data)),digits = 1){
 }
 
 globalVariables(c("prop","prop_label"))
+

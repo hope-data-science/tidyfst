@@ -30,9 +30,9 @@
 #' @export
 
 mutate_when = function(.data,when,...,by){
-  #dt = as_dt(.data)
   dt = as.data.table(.data)
-  eval(substitute(dt[when,`:=`(...),by][]))
+  eval.parent(substitute(dt[when,`:=`(...),by][]),1)
+  # eval(substitute(dt[when,`:=`(...),by][]))
 }
 
 #' @rdname mutate_vars

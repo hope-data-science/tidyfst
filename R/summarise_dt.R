@@ -44,7 +44,7 @@ globalVariables("res")
 
 summarise_dt = function(.data,...,by = NULL){
   dt = as_dt(.data)
-  eval(substitute(dt[,.(...),by = by]))
+  eval.parent(substitute(dt[,.(...),by = by]))
 }
 
 #' @rdname summarise_dt
@@ -57,7 +57,7 @@ summarize_dt = summarise_dt
 
 summarise_when = function(.data,when,...,by = NULL){
   dt = as_dt(.data)
-  eval(substitute(dt[when,.(...),by = by]))
+  eval.parent(substitute(dt[when,.(...),by = by]))
 }
 
 #' @rdname summarise_dt

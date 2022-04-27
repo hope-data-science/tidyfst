@@ -17,7 +17,7 @@
 
 uncount_dt = function(.data,wt,.remove = TRUE){
   dt = as_dt(.data)
-  if(.remove) eval(substitute(dt[rep(1:.N,wt)][,wt:=NULL][]))
-  else eval(substitute(dt[rep(1:.N,wt)]))
+  if(.remove) eval.parent(substitute(dt[rep(1:.N,wt)][,wt:=NULL][]))
+  else eval.parent(substitute(dt[rep(1:.N,wt)]))
 }
 
