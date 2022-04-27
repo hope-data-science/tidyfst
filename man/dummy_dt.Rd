@@ -36,6 +36,9 @@ iris \%>\% dummy_dt(Species,longname = FALSE)
 mtcars \%>\% head() \%>\% dummy_dt(vs,am)
 mtcars \%>\% head() \%>\% dummy_dt("cyl|gear")
 }
+\references{
+https://stackoverflow.com/questions/18881073/creating-dummy-variables-in-r-data-table
+}
 \seealso{
 \code{\link[fastDummies]{dummy_cols}}
 }

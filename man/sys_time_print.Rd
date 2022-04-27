@@ -8,18 +8,26 @@ sys_time_print(expr)
 }
 \arguments{
 \item{expr}{Valid R expression to be timed.}
+
+\item{write_clip}{Logical. Whether copy the message to clipboard. Default uses \code{TRUE}.}
 }
 \value{
 A character vector of the form HH:MM:SS,
-or SS.MMMsec if under 60 seconds. See examples.
+or SS.MMMsec if under 60 seconds (invisibly for \code{show_time}). See examples.
 }
 \description{
 Convenient printing of time elapsed. A wrapper of
 \code{data.table::timetaken}, but showing the results more directly.
 }
+\details{
+\code{sys_time_print} and \code{show_time} work similarly, but \code{show_time}
+ is considered more user-friendly because it copy the message to clipboard automatically,
+ whereas \code{sys_time_print} only return a string.
+}
 \examples{
 
 sys_time_print(Sys.sleep(1))
+show_time(Sys.sleep(1))
 
 a = iris
 sys_time_print({

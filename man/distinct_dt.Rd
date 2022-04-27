@@ -4,7 +4,7 @@
 \alias{distinct_dt}
 \title{Select distinct/unique rows in data.frame}
 \usage{
-distinct_dt(.data, ..., .keep_all = FALSE)
+distinct_dt(.data, ..., .keep_all = FALSE, fromLast = FALSE)
 }
 \arguments{
 \item{.data}{data.frame}
@@ -16,6 +16,9 @@ If omitted, will use all variables.}
 
 \item{.keep_all}{If \code{TRUE}, keep all variables in data.frame. If a combination of ... is not distinct,
 this keeps the first row of values.}
+
+\item{fromLast}{Logical indicating if duplication should be
+considered from the reverse side. Defaults to \code{FALSE}.}
 }
 \value{
 data.table
@@ -29,6 +32,8 @@ iris \%>\% distinct_dt(Species)
 iris \%>\% distinct_dt(Species,.keep_all = TRUE)
 mtcars \%>\% distinct_dt(cyl,vs)
 mtcars \%>\% distinct_dt(cyl,vs,.keep_all = TRUE)
+mtcars \%>\% distinct_dt(cyl,vs,.keep_all = TRUE,fromLast = TRUE)
+
 
 }
 \seealso{
