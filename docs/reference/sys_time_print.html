@@ -18,7 +18,7 @@ data.table::timetaken, but showing the results more directly."><meta property="o
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.5</span>
       </span>
     </div>
 
@@ -93,19 +93,11 @@ data.table::timetaken, but showing the results more directly."><meta property="o
     <h2>Arguments</h2>
     <dl><dt>expr</dt>
 <dd><p>Valid R expression to be timed.</p></dd>
-<dt>write_clip</dt>
-<dd><p>Logical. Whether copy the message to clipboard. Default uses <code>TRUE</code>.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>A character vector of the form HH:MM:SS,
 or SS.MMMsec if under 60 seconds (invisibly for <code>show_time</code>). See examples.</p>
-    </div>
-    <div id="details">
-    <h2>Details</h2>
-    <p><code>sys_time_print</code> and <code>show_time</code> work similarly, but <code>show_time</code>
- is considered more user-friendly because it copy the message to clipboard automatically,
- whereas <code>sys_time_print</code> only return a string.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -116,17 +108,14 @@ or SS.MMMsec if under 60 seconds (invisibly for <code>show_time</code>). See exa
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
 <span class="r-in"><span class="fu">sys_time_print</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Finished in 1.030s elapsed (0.000s cpu)"</span>
-<span class="r-in"><span class="fu">show_time</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Finished in 1.000s elapsed (0.000s cpu)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Message above has copied to clipboard</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "# Finished in 1.030s elapsed (0.000s cpu)"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">a</span> <span class="op">=</span> <span class="va">iris</span></span>
 <span class="r-in"><span class="fu">sys_time_print</span><span class="op">(</span><span class="op">{</span></span>
 <span class="r-in">  <span class="va">res</span> <span class="op">=</span> <span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span class="r-in">    <span class="fu"><a href="mutate.html">mutate_dt</a></span><span class="op">(</span>one <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Finished in 0.000s elapsed (0.000s cpu)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "# Finished in 0.000s elapsed (0.000s cpu)"</span>
 <span class="r-in"><span class="va">res</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species   one</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;num&gt;</span>
