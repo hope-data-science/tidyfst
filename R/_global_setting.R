@@ -77,3 +77,5 @@ data.table::between
 #' @export
 data.table::set
 
+#' @export
+data.table::setDT

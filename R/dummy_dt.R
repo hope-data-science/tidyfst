@@ -20,6 +20,11 @@
 #'
 #' mtcars %>% head() %>% dummy_dt(vs,am)
 #' mtcars %>% head() %>% dummy_dt("cyl|gear")
+#'
+#' # when there are NAs in the column
+#' df <- data.table(x = c("a", "b", NA, NA),y = 1:4)
+#' df %>%
+#'   dummy_dt(x)
 
 #' @export
 dummy_dt = function(.data,...,longname = TRUE){
@@ -40,37 +45,45 @@ dummy_dt = function(.data,...,longname = TRUE){
 
 dummy_col = function(dt,col_name,longname){
 
+  dt[[col_name]] %>% unique() -> old_values
+  if(anyNA(old_values)) message("NA exist in the culumn.")
   dt[[col_name]] %>% unique() %>% as.character()-> old_names
+  old_names[is.na(old_names)] = "NA"
   if(!longname){
-    dt[,(old_names):=lapply(old_names,function(x) x == dt[[col_name]])][
+    dt[,(old_names):=lapply(old_values,function(x) {
+      sapply(as.list(dt[[col_name]]),FUN = identical,x)
+    })][
       ,(old_names):=lapply(.SD,as.numeric),.SDcols = old_names
     ][,(col_name):=NULL][]
   }else{
     str_c(col_name,old_names,sep="_") -> new_names
-    dt[,(old_names):=lapply(old_names,function(x) x == dt[[col_name]])]
+    dt[,(old_names):=lapply(old_values,function(x) {
+      sapply(as.list(dt[[col_name]]),FUN = identical,x)
+    })]
     setnames(dt,old = old_names,new = new_names)[
       ,(new_names):=lapply(.SD,as.numeric),.SDcols = new_names
     ][,(col_name):=NULL][]
   }
 }
 
-
-
+# for this version, when there are NAs, yields an error
 # dummy_col = function(dt,col_name,longname){
-#   dt[, `:=`(one_=1,id_=1:.N) ]
 #
-#   if(longname){
-#     dt[[col_name]] %>% unique() %>% as.character() -> old_names
-#     str_c(col_name,old_names,sep="_") -> new_names
-#     str_glue("dt=dcast(dt,...~{col_name},value.var = 'one_',fill = 0)") -> to_eval
-#     eval(parse(text = to_eval))
-#     setnames(dt,old_names,new_names)
+#   dt[[col_name]] %>% unique() %>% as.character()-> old_names
+#   if(!longname){
+#     dt[,(old_names):=lapply(old_names,function(x) x == dt[[col_name]])][
+#       ,(old_names):=lapply(.SD,as.numeric),.SDcols = old_names
+#     ][,(col_name):=NULL][]
 #   }else{
-#     str_glue("dt=dcast(dt,...~{col_name},value.var = 'one_',fill = 0)") -> to_eval
-#     eval(parse(text = to_eval))
+#     str_c(col_name,old_names,sep="_") -> new_names
+#     dt[,(old_names):=lapply(old_names,function(x) x == dt[[col_name]])]
+#     setnames(dt,old = old_names,new = new_names)[
+#       ,(new_names):=lapply(.SD,as.numeric),.SDcols = new_names
+#     ][,(col_name):=NULL][]
 #   }
-#   dt[,id_:=NULL][]
 # }
+
+
 
 
 
