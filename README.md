@@ -100,6 +100,10 @@ iris[3:8,] %>%
 
 <a href="docs/tidyfst_cheatsheet.pdf"><img src="tidyfst_cheatsheet.png"/></a>
 
+## Suggested citation
+
+Huang et al., (2020). tidyfst: Tidy Verbs for Fast Data Manipulation. Journal of Open Source Software, 5(52), 2388, https://doi.org/10.21105/joss.02388
+
 
 
 ## Related work
