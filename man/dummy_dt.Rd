@@ -35,6 +35,11 @@ iris \%>\% dummy_dt(Species,longname = FALSE)
 
 mtcars \%>\% head() \%>\% dummy_dt(vs,am)
 mtcars \%>\% head() \%>\% dummy_dt("cyl|gear")
+
+# when there are NAs in the column
+df <- data.table(x = c("a", "b", NA, NA),y = 1:4)
+df \%>\%
+  dummy_dt(x)
 }
 \references{
 https://stackoverflow.com/questions/18881073/creating-dummy-variables-in-r-data-table
