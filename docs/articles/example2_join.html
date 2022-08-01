@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,23 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -92,7 +88,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/hope-data-science/tidyfst/">
+  <a href="https://github.com/hope-data-science/tidyfst/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -107,31 +103,34 @@
 
       
 
-      </header><script src="example2_join_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Example 2: Join tables</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/hope-data-science/tidyfst/blob/master/vignettes/example2_join.Rmd"><code>vignettes/example2_join.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/hope-data-science/tidyfst/blob/HEAD/vignettes/example2_join.Rmd" class="external-link"><code>vignettes/example2_join.Rmd</code></a></small>
       <div class="hidden name"><code>example2_join.Rmd</code></div>
 
     </div>
 
     
     
-<p>This post has referred to a vignette from <code>dplyr</code>, you can find it in <a href="https://dplyr.tidyverse.org/articles/two-table.html" class="uri">https://dplyr.tidyverse.org/articles/two-table.html</a>. We’ll try to display how to join data tables in this vignette. First, load the packages we need and get some data.</p>
+<p>This post has referred to a vignette from <code>dplyr</code>, you can
+find it in <a href="https://dplyr.tidyverse.org/articles/two-table.html" class="external-link uri">https://dplyr.tidyverse.org/articles/two-table.html</a>.
+We’ll try to display how to join data tables in this vignette. First,
+load the packages we need and get some data.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst">tidyfst</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst" class="external-link">tidyfst</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Life's short, use R.</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13" class="external-link">nycflights13</a></span><span class="op">)</span>
 
-<span class="va">flights2</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/select_dt.html">select_dt</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">month</span>,<span class="va">day</span>, <span class="va">hour</span>, <span class="va">origin</span>, <span class="va">dest</span>, <span class="va">tailnum</span>, <span class="va">carrier</span><span class="op">)</span></code></pre></div>
+<span class="va">flights2</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/select.html">select_dt</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">month</span>,<span class="va">day</span>, <span class="va">hour</span>, <span class="va">origin</span>, <span class="va">dest</span>, <span class="va">tailnum</span>, <span class="va">carrier</span><span class="op">)</span></code></pre></div>
 <p>Do a left join with a simple:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">flights2</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airlines</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: carrier</span>
 <span class="co">#&gt; Key: &lt;carrier&gt;</span>
@@ -148,13 +147,13 @@
 <span class="co">#&gt; 336774:      YV  2013     9    30    16    LGA    IAD  N510MJ</span>
 <span class="co">#&gt; 336775:      YV  2013     9    30    17    LGA    CLT  N905FJ</span>
 <span class="co">#&gt; 336776:      YV  2013     9    30    20    LGA    CLT  N924FJ</span>
-<span class="co">#&gt; 1变量没显示: [name &lt;char&gt;]</span>NA</code></pre></div>
-<div id="controlling-how-the-tables-are-matched" class="section level2">
-<h2 class="hasAnchor">
-<a href="#controlling-how-the-tables-are-matched" class="anchor"></a>Controlling how the tables are matched</h2>
+<span class="co">#&gt; 1 variable not shown: [name &lt;char&gt;]</span></code></pre></div>
+<div class="section level2">
+<h2 id="controlling-how-the-tables-are-matched">Controlling how the tables are matched<a class="anchor" aria-label="anchor" href="#controlling-how-the-tables-are-matched"></a>
+</h2>
 <p>Join works the same as <code>dplyr</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">flights2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">weather</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">weather</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: year,month,day,hour,origin</span>
 <span class="co">#&gt; Key: &lt;year, month, day, hour, origin&gt;</span>
 <span class="co">#&gt;          year month   day  hour origin   dest tailnum carrier  temp  dewp</span>
@@ -170,7 +169,8 @@
 <span class="co">#&gt; 336774:  2013    12    31    23    JFK    SJU  N713TW      DL    NA    NA</span>
 <span class="co">#&gt; 336775:  2013    12    31    23    JFK    SJU  N509JB      B6    NA    NA</span>
 <span class="co">#&gt; 336776:  2013    12    31    23    JFK    PSE  N665JB      B6    NA    NA</span>
-<span class="co">#&gt; 8变量没显示: [humid &lt;num&gt;, wind_dir &lt;num&gt;, wind_speed &lt;num&gt;, wind_gust &lt;num&gt;, precip &lt;num&gt;, pressure &lt;num&gt;, visib &lt;num&gt;, time_hour &lt;POSc&gt;]</span>NA<span class="va">flights2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">planes</span>, by <span class="op">=</span> <span class="st">"tailnum"</span><span class="op">)</span>
+<span class="co">#&gt; 8 variables not shown: [humid &lt;num&gt;, wind_dir &lt;num&gt;, wind_speed &lt;num&gt;, wind_gust &lt;num&gt;, precip &lt;num&gt;, pressure &lt;num&gt;, visib &lt;num&gt;, time_hour &lt;POSc&gt;]</span>
+<span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">planes</span>, by <span class="op">=</span> <span class="st">"tailnum"</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;tailnum&gt;</span>
 <span class="co">#&gt;         tailnum year.x month   day  hour origin   dest carrier year.y   type</span>
 <span class="co">#&gt;          &lt;char&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt;  &lt;char&gt;  &lt;int&gt; &lt;char&gt;</span>
@@ -185,7 +185,8 @@
 <span class="co">#&gt; 336774:  N9EAMQ   2013     9    29    18    LGA    CMH      MQ     NA   &lt;NA&gt;</span>
 <span class="co">#&gt; 336775:  N9EAMQ   2013     9    30    11    JFK    DCA      MQ     NA   &lt;NA&gt;</span>
 <span class="co">#&gt; 336776:  N9EAMQ   2013     9    30    14    JFK    TPA      MQ     NA   &lt;NA&gt;</span>
-<span class="co">#&gt; 6变量没显示: [manufacturer &lt;char&gt;, model &lt;char&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;char&gt;]</span>NA<span class="va">flights2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dest"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; 6 variables not shown: [manufacturer &lt;char&gt;, model &lt;char&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;char&gt;]</span>
+<span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dest"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;dest&gt;</span>
 <span class="co">#&gt;           dest  year month   day  hour origin tailnum carrier</span>
 <span class="co">#&gt;         &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;  &lt;char&gt;  &lt;char&gt;</span>
@@ -200,7 +201,8 @@
 <span class="co">#&gt; 336774:    XNA  2013     9    30     8    EWR  N14117      EV</span>
 <span class="co">#&gt; 336775:    XNA  2013     9    30    15    LGA  N725MQ      MQ</span>
 <span class="co">#&gt; 336776:    XNA  2013     9    30    17    LGA  N720MQ      MQ</span>
-<span class="co">#&gt; 7变量没显示: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span>NA<span class="va">flights2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"origin"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; 7 variables not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span>
+<span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"origin"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;origin&gt;</span>
 <span class="co">#&gt;         origin  year month   day  hour   dest tailnum carrier</span>
 <span class="co">#&gt;         &lt;char&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;  &lt;char&gt;  &lt;char&gt;</span>
@@ -215,36 +217,36 @@
 <span class="co">#&gt; 336774:    LGA  2013     9    30    12    BNA  N535MQ      MQ</span>
 <span class="co">#&gt; 336775:    LGA  2013     9    30    11    CLE  N511MQ      MQ</span>
 <span class="co">#&gt; 336776:    LGA  2013     9    30     8    RDU  N839MQ      MQ</span>
-<span class="co">#&gt; 7变量没显示: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span>NA</code></pre></div>
+<span class="co">#&gt; 7 variables not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span></code></pre></div>
 </div>
-<div id="types-of-join" class="section level2">
-<h2 class="hasAnchor">
-<a href="#types-of-join" class="anchor"></a>Types of join</h2>
+<div class="section level2">
+<h2 id="types-of-join">Types of join<a class="anchor" aria-label="anchor" href="#types-of-join"></a>
+</h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, a <span class="op">=</span> <span class="fl">10</span>, b <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, a <span class="op">=</span> <span class="fl">10</span>, b <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span>
 
-<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span> 
+<span class="va">df1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span> 
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y     a      b</span>
 <span class="co">#&gt;    &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     2    10      a</span>
-<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
+<span class="va">df1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y     a      b</span>
 <span class="co">#&gt;    &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     2    10      a</span>
 <span class="co">#&gt; 2:     2     1    NA   &lt;NA&gt;</span>
-<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">right_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
+<span class="va">df1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">right_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y     a      b</span>
 <span class="co">#&gt;    &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt;</span>
 <span class="co">#&gt; 1:     1     2    10      a</span>
 <span class="co">#&gt; 2:     3    NA    10      a</span>
-<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">full_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
+<span class="va">df1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">full_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y     a      b</span>
@@ -252,12 +254,13 @@
 <span class="co">#&gt; 1:     1     2    10      a</span>
 <span class="co">#&gt; 2:     2     1    NA   &lt;NA&gt;</span>
 <span class="co">#&gt; 3:     3    NA    10      a</span></code></pre></div>
-<p>If all you have is a data.frame or tibble, you have no need to change the format. Feed the data directly:</p>
+<p>If all you have is a data.frame or tibble, you have no need to change
+the format. Feed the data directly:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
-<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>
+<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
+<span class="va">df1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span>
 <span class="co">#&gt; Joining by: x</span>
 <span class="co">#&gt; Key: &lt;x&gt;</span>
 <span class="co">#&gt;        x     y      z</span>
@@ -267,16 +270,18 @@
 <span class="co">#&gt; 3:     1     2      a</span>
 <span class="co">#&gt; 4:     1     2      b</span>
 <span class="co">#&gt; 5:     2     3      a</span></code></pre></div>
-<p>The "_dt" suffix should remind you that this is backed up by <code>data.table</code> and will always return a data.table in the end.</p>
+<p>The “_dt” suffix should remind you that this is backed up by
+<code>data.table</code> and will always return a data.table in the
+end.</p>
 </div>
-<div id="filtering-joins" class="section level2">
-<h2 class="hasAnchor">
-<a href="#filtering-joins" class="anchor"></a>Filtering joins</h2>
+<div class="section level2">
+<h2 id="filtering-joins">Filtering joins<a class="anchor" aria-label="anchor" href="#filtering-joins"></a>
+</h2>
 <p>Filtering joins have also been supported in <code>tidyfst</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">flights</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/join.html">anti_join_dt</a></span><span class="op">(</span><span class="va">planes</span>, by <span class="op">=</span> <span class="st">"tailnum"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/count_dt.html">count_dt</a></span><span class="op">(</span><span class="va">tailnum</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">flights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/join.html">anti_join_dt</a></span><span class="op">(</span><span class="va">planes</span>, by <span class="op">=</span> <span class="st">"tailnum"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/count.html">count_dt</a></span><span class="op">(</span><span class="va">tailnum</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;      tailnum     n</span>
 <span class="co">#&gt;       &lt;char&gt; &lt;int&gt;</span>
 <span class="co">#&gt;   1:    &lt;NA&gt;  2512</span>
@@ -290,59 +295,63 @@
 <span class="co">#&gt; 720:  N5FCAA     1</span>
 <span class="co">#&gt; 721:  N5ERAA     1</span>
 <span class="co">#&gt; 722:  N647MQ     1</span></code></pre></div>
-<p>Other examples (<code><a href="../reference/join.html">semi_join_dt()</a></code> and <code><a href="../reference/join.html">anti_join_dt()</a></code> never duplicate; they only ever remove observations.):</p>
+<p>Other examples (<code><a href="../reference/join.html">semi_join_dt()</a></code> and
+<code><a href="../reference/join.html">anti_join_dt()</a></code> never duplicate; they only ever remove
+observations.):</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
-<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
+<span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Four rows to start with:</span>
-<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">df1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 4</span>
 
 <span class="co"># And we get four rows after the join</span>
-<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span><span class="op">(</span><span class="va">df2</span>, by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">df1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span><span class="op">(</span><span class="va">df2</span>, by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 4</span>
 
 <span class="co"># But only two rows actually match</span>
-<span class="va">df1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/join.html">semi_join_dt</a></span><span class="op">(</span><span class="va">df2</span>, by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">df1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">semi_join_dt</a></span><span class="op">(</span><span class="va">df2</span>, by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2</span></code></pre></div>
 </div>
-<div id="set-operations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#set-operations" class="anchor"></a>Set operations</h2>
-<p>For set operations, wrap <code>data.table</code>’s function directly, but the functions will automatically turn any data.frame into data.table. Examples are listed as below:</p>
+<div class="section level2">
+<h2 id="set-operations">Set operations<a class="anchor" aria-label="anchor" href="#set-operations"></a>
+</h2>
+<p>For set operations, wrap <code>data.table</code>’s function directly,
+but the functions will automatically turn any data.frame into
+data.table. Examples are listed as below:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>,<span class="op">]</span>
+<code class="sourceCode R"><span class="va">x</span> <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>,<span class="op">]</span>
 <span class="va">x2</span> <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>,<span class="op">]</span>
-<span class="va">y</span> <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>,<span class="op">]</span>
+<span class="va">y</span> <span class="op">=</span> <span class="va">iris</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>,<span class="op">]</span>
 
-<span class="fu"><a href="../reference/intersect_dt.html">intersect_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>            <span class="co"># intersect</span>
+<span class="fu"><a href="../reference/setops.html">intersect_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>            <span class="co"># intersect</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.7         3.2          1.3         0.2  setosa</span>
 <span class="co">#&gt; 2:          4.6         3.1          1.5         0.2  setosa</span>
-<span class="fu"><a href="../reference/intersect_dt.html">intersect_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># intersect all</span>
+<span class="fu"><a href="../reference/setops.html">intersect_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># intersect all</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.7         3.2          1.3         0.2  setosa</span>
 <span class="co">#&gt; 2:          4.6         3.1          1.5         0.2  setosa</span>
-<span class="fu"><a href="../reference/intersect_dt.html">setdiff_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>              <span class="co"># except</span>
+<span class="fu"><a href="../reference/setops.html">setdiff_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>              <span class="co"># except</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.9           3          1.4         0.2  setosa</span>
-<span class="fu"><a href="../reference/intersect_dt.html">setdiff_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>    <span class="co"># except all</span>
+<span class="fu"><a href="../reference/setops.html">setdiff_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>    <span class="co"># except all</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.9         3.0          1.4         0.2  setosa</span>
 <span class="co">#&gt; 2:          4.7         3.2          1.3         0.2  setosa</span>
-<span class="fu"><a href="../reference/intersect_dt.html">union_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>                <span class="co"># union</span>
+<span class="fu"><a href="../reference/setops.html">union_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>                <span class="co"># union</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.9         3.0          1.4         0.2  setosa</span>
 <span class="co">#&gt; 2:          4.7         3.2          1.3         0.2  setosa</span>
 <span class="co">#&gt; 3:          4.6         3.1          1.5         0.2  setosa</span>
 <span class="co">#&gt; 4:          5.0         3.6          1.4         0.2  setosa</span>
-<span class="fu"><a href="../reference/intersect_dt.html">union_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>      <span class="co"># union all</span>
+<span class="fu"><a href="../reference/setops.html">union_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>      <span class="co"># union all</span>
 <span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="co">#&gt;           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt;</span>
 <span class="co">#&gt; 1:          4.9         3.0          1.4         0.2  setosa</span>
@@ -352,11 +361,12 @@
 <span class="co">#&gt; 5:          4.7         3.2          1.3         0.2  setosa</span>
 <span class="co">#&gt; 6:          4.6         3.1          1.5         0.2  setosa</span>
 <span class="co">#&gt; 7:          5.0         3.6          1.4         0.2  setosa</span>
-<span class="fu"><a href="../reference/intersect_dt.html">setequal_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x2</span>, all<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co"># setequal</span>
+<span class="fu"><a href="../reference/setops.html">setequal_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x2</span>, all<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co"># setequal</span>
 <span class="co">#&gt; [1] TRUE</span>
-<span class="fu"><a href="../reference/intersect_dt.html">setequal_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x2</span><span class="op">)</span>     
+<span class="fu"><a href="../reference/setops.html">setequal_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x2</span><span class="op">)</span>     
 <span class="co">#&gt; [1] FALSE</span></code></pre></div>
-<p>For more details, just find the help from <code>data.table</code> using <code><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html">?setops</a></code>.</p>
+<p>For more details, just find the help from <code>data.table</code>
+using <code><a href="https://Rdatatable.gitlab.io/data.table/reference/setops.html" class="external-link">?setops</a></code>.</p>
 </div>
   </div>
 
@@ -371,11 +381,14 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Tian-Yuan Huang.</p>
+  <p></p>
+<p>Developed by Tian-Yuan Huang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
@@ -383,6 +396,8 @@
 
   
 
+
+  
 
   </body>
 </html>

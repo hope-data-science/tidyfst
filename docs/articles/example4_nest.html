@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,23 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -92,7 +88,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/hope-data-science/tidyfst/">
+  <a href="https://github.com/hope-data-science/tidyfst/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -107,28 +103,30 @@
 
       
 
-      </header><script src="example4_nest_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Example 4: Nest</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/hope-data-science/tidyfst/blob/master/vignettes/example4_nest.Rmd"><code>vignettes/example4_nest.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/hope-data-science/tidyfst/blob/HEAD/vignettes/example4_nest.Rmd" class="external-link"><code>vignettes/example4_nest.Rmd</code></a></small>
       <div class="hidden name"><code>example4_nest.Rmd</code></div>
 
     </div>
 
     
     
-<p>This vignette displays how to use nesting in <code>tidyfst</code>. It has referred to <code>tidyr</code>s vignette in <a href="https://tidyr.tidyverse.org/articles/nest.html" class="uri">https://tidyr.tidyverse.org/articles/nest.html</a>. Now fist, we nest the “mtcars” data.frame by “cyl” column.</p>
+<p>This vignette displays how to use nesting in <code>tidyfst</code>. It
+has referred to <code>tidyr</code>s vignette in <a href="https://tidyr.tidyverse.org/articles/nest.html" class="external-link uri">https://tidyr.tidyverse.org/articles/nest.html</a>. Now
+fist, we nest the “mtcars” data.frame by “cyl” column.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst">tidyfst</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst" class="external-link">tidyfst</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Life's short, use R.</span>
 
 <span class="co"># nest by "cyl" column</span>
-<span class="va">mtcars_nested</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/nest_dt.html">nest_dt</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="co"># you can use "cyl" too, very flexible</span>
+<span class="va">mtcars_nested</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/nest.html">nest_dt</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="co"># you can use "cyl" too, very flexible</span>
 
 <span class="co"># inspect the output data.table</span>
 <span class="va">mtcars_nested</span>
@@ -137,10 +135,11 @@
 <span class="co">#&gt; 1:     6  &lt;data.table[7x10]&gt;</span>
 <span class="co">#&gt; 2:     4 &lt;data.table[11x10]&gt;</span>
 <span class="co">#&gt; 3:     8 &lt;data.table[14x10]&gt;</span></code></pre></div>
-<p>Now, we want to do a regression within the nested group “cyl”. We’ll use the famous <code>lapply</code> to complete this:</p>
+<p>Now, we want to do a regression within the nested group “cyl”. We’ll
+use the famous <code>lapply</code> to complete this:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mtcars_nested2</span> <span class="op">&lt;-</span> <span class="va">mtcars_nested</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/mutate_dt.html">mutate_dt</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">ndt</span>,<span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">mtcars_nested2</span> <span class="op">&lt;-</span> <span class="va">mtcars_nested</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">ndt</span>,<span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">mtcars_nested2</span>
 <span class="co">#&gt;      cyl                 ndt    model</span>
@@ -148,10 +147,11 @@
 <span class="co">#&gt; 1:     6  &lt;data.table[7x10]&gt; &lt;lm[12]&gt;</span>
 <span class="co">#&gt; 2:     4 &lt;data.table[11x10]&gt; &lt;lm[12]&gt;</span>
 <span class="co">#&gt; 3:     8 &lt;data.table[14x10]&gt; &lt;lm[12]&gt;</span></code></pre></div>
-<p>We could see that the model is stored in the column “model”. Now, we try to get the fitted value in the model.</p>
+<p>We could see that the model is stored in the column “model”. Now, we
+try to get the fitted value in the model.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mtcars_nested3</span> <span class="op">&lt;-</span> <span class="va">mtcars_nested2</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/mutate_dt.html">mutate_dt</a></span><span class="op">(</span>model_predict <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">predict</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">mtcars_nested3</span> <span class="op">&lt;-</span> <span class="va">mtcars_nested2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span><span class="op">(</span>model_predict <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">predict</span><span class="op">)</span><span class="op">)</span>
 <span class="va">mtcars_nested3</span><span class="op">$</span><span class="va">model_predict</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt;        1        2        3        4        5        6        7 </span>
@@ -168,9 +168,10 @@
 <span class="co">#&gt; 16.32604 16.04103 14.94481 15.69024 15.58061 12.35773 11.97625 12.14945 </span>
 <span class="co">#&gt;        9       10       11       12       13       14 </span>
 <span class="co">#&gt; 16.15065 16.33700 15.44907 15.43811 16.91800 16.04103</span></code></pre></div>
-<p>We could find that the “model_predict” is a list of numeric vectors. Let’s try to unnest the target column “model_predict”.</p>
+<p>We could find that the “model_predict” is a list of numeric vectors.
+Let’s try to unnest the target column “model_predict”.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mtcars_nested3</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/nest_dt.html">unnest_dt</a></span><span class="op">(</span><span class="va">model_predict</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">mtcars_nested3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/nest.html">unnest_dt</a></span><span class="op">(</span><span class="va">model_predict</span><span class="op">)</span>
 <span class="co">#&gt;       cyl model_predict</span>
 <span class="co">#&gt;     &lt;num&gt;         &lt;num&gt;</span>
 <span class="co">#&gt;  1:     6      21.12497</span>
@@ -206,7 +207,8 @@
 <span class="co">#&gt; 31:     8      16.91800</span>
 <span class="co">#&gt; 32:     8      16.04103</span>
 <span class="co">#&gt;       cyl model_predict</span></code></pre></div>
-<p>This process would remove all the other list column automatically. For instance, in our case, the column “ndt” is removed.</p>
+<p>This process would remove all the other list column automatically.
+For instance, in our case, the column “ndt” is removed.</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -218,11 +220,14 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Tian-Yuan Huang.</p>
+  <p></p>
+<p>Developed by Tian-Yuan Huang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
@@ -230,6 +235,8 @@
 
   
 
+
+  
 
   </body>
 </html>

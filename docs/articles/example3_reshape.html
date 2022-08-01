@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,23 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -92,7 +88,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/hope-data-science/tidyfst/">
+  <a href="https://github.com/hope-data-science/tidyfst/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -107,68 +103,74 @@
 
       
 
-      </header><script src="example3_reshape_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Example 3: Reshape</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/hope-data-science/tidyfst/blob/master/vignettes/example3_reshape.Rmd"><code>vignettes/example3_reshape.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/hope-data-science/tidyfst/blob/HEAD/vignettes/example3_reshape.Rmd" class="external-link"><code>vignettes/example3_reshape.Rmd</code></a></small>
       <div class="hidden name"><code>example3_reshape.Rmd</code></div>
 
     </div>
 
     
     
-<p>When I design <code>longer_dt</code> and <code>wider_dt</code>, I could find the <code>pivot_longer</code> and <code>pivot_wider</code> in <code>tidyr</code> and <code>melt</code> and <code>dcast</code> in <code>data.table</code>. Still, designing this API is not easy, as my goal is to let users use it with least pain. Here we would try to reproduce the results in the vignette of <code>tidyr</code>(<a href="https://tidyr.tidyverse.org/articles/pivot.html" class="uri">https://tidyr.tidyverse.org/articles/pivot.html</a>). First load the packages:</p>
+<p>When I design <code>longer_dt</code> and <code>wider_dt</code>, I
+could find the <code>pivot_longer</code> and <code>pivot_wider</code> in
+<code>tidyr</code> and <code>melt</code> and <code>dcast</code> in
+<code>data.table</code>. Still, designing this API is not easy, as my
+goal is to let users use it with least pain. Here we would try to
+reproduce the results in the vignette of <code>tidyr</code>(<a href="https://tidyr.tidyverse.org/articles/pivot.html" class="external-link uri">https://tidyr.tidyverse.org/articles/pivot.html</a>). First
+load the packages:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst">tidyfst</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst" class="external-link">tidyfst</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Life's short, use R.</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></code></pre></div>
-<div id="longer" class="section level2">
-<h2 class="hasAnchor">
-<a href="#longer" class="anchor"></a>Longer</h2>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="longer">Longer<a class="anchor" aria-label="anchor" href="#longer"></a>
+</h2>
 <p>First inspect the data:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">relig_income</span>
-<span class="co">#&gt; # A tibble: 18 x 11</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 x 11</span></span>
 <span class="co">#&gt;    religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k`</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 Agnostic      27        34        60        81        76       137        122</span>
-<span class="co">#&gt;  2 Atheist       12        27        37        52        35        70         73</span>
-<span class="co">#&gt;  3 Buddhist      27        21        30        34        33        58         62</span>
-<span class="co">#&gt;  4 Catholic     418       617       732       670       638      1116        949</span>
-<span class="co">#&gt;  5 Don’t k~      15        14        15        11        10        35         21</span><span class="co">#&gt;  6 Evangel~     575       869      1064       982       881      1486        949</span>
-<span class="co">#&gt;  7 Hindu          1         9         7         9        11        34         47</span>
-<span class="co">#&gt;  8 Histori~     228       244       236       238       197       223        131</span>
-<span class="co">#&gt;  9 Jehovah~      20        27        24        24        21        30         15</span>
-<span class="co">#&gt; 10 Jewish        19        19        25        25        30        95         69</span>
-<span class="co">#&gt; 11 Mainlin~     289       495       619       655       651      1107        939</span>
-<span class="co">#&gt; 12 Mormon        29        40        48        51        56       112         85</span>
-<span class="co">#&gt; 13 Muslim         6         7         9        10         9        23         16</span>
-<span class="co">#&gt; 14 Orthodox      13        17        23        32        32        47         38</span>
-<span class="co">#&gt; 15 Other C~       9         7        11        13        13        14         18</span>
-<span class="co">#&gt; 16 Other F~      20        33        40        46        49        63         46</span>
-<span class="co">#&gt; 17 Other W~       5         2         3         4         2         7          3</span>
-<span class="co">#&gt; 18 Unaffil~     217       299       374       365       341       528        407</span>
-<span class="co">#&gt; # ... with 3 more variables: $100-150k &lt;dbl&gt;, &gt;150k &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   Don't know/refused &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Agnostic      27        34        60        81        76       137        122</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Atheist       12        27        37        52        35        70         73</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Buddhist      27        21        30        34        33        58         62</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Catholic     418       617       732       670       638      <span style="text-decoration: underline;">1</span>116        949</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Don鈥檛 k~      15        14        15        11        10        35         21</span>NA<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Evangel~     575       869      <span style="text-decoration: underline;">1</span>064       982       881      <span style="text-decoration: underline;">1</span>486        949</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Hindu          1         9         7         9        11        34         47</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Histori~     228       244       236       238       197       223        131</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Jehovah~      20        27        24        24        21        30         15</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Jewish        19        19        25        25        30        95         69</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Mainlin~     289       495       619       655       651      <span style="text-decoration: underline;">1</span>107        939</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Mormon        29        40        48        51        56       112         85</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Muslim         6         7         9        10         9        23         16</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Orthodox      13        17        23        32        32        47         38</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Other C~       9         7        11        13        13        14         18</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">16</span> Other F~      20        33        40        46        49        63         46</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">17</span> Other W~       5         2         3         4         2         7          3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">18</span> Unaffil~     217       299       374       365       341       528        407</span>
+<span class="co">#&gt; <span style="color: #949494;"># ... with 3 more variables: `$100-150k` &lt;dbl&gt;, `&gt;150k` &lt;dbl&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   `Don't know/refused` &lt;dbl&gt;</span></span></code></pre></div>
 <p>In <code>tidyr</code>, to get the longer format you need:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">relig_income</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">religion</span>, names_to <span class="op">=</span> <span class="st">"income"</span>, values_to <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">relig_income</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">religion</span>, names_to <span class="op">=</span> <span class="st">"income"</span>, values_to <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></code></pre></div>
 <p>In <code>tidyfst</code>, we have:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">relig_income</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/longer_dt.html">longer_dt</a></span><span class="op">(</span><span class="st">"religion"</span>,name <span class="op">=</span> <span class="st">"income"</span>,value <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">relig_income</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/longer.html">longer_dt</a></span><span class="op">(</span><span class="st">"religion"</span>,name <span class="op">=</span> <span class="st">"income"</span>,value <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span>
 <span class="co">#&gt;                   religion             income count</span>
 <span class="co">#&gt;                     &lt;char&gt;             &lt;fctr&gt; &lt;num&gt;</span>
 <span class="co">#&gt;   1:              Agnostic              &lt;$10k    27</span>
 <span class="co">#&gt;   2:               Atheist              &lt;$10k    12</span>
 <span class="co">#&gt;   3:              Buddhist              &lt;$10k    27</span>
 <span class="co">#&gt;   4:              Catholic              &lt;$10k   418</span>
-<span class="co">#&gt;   5:    Don’t know/refused              &lt;$10k    15</span><span class="co">#&gt;  ---                                               </span>
+<span class="co">#&gt;   5:    Don鈥檛 know/refused              &lt;$10k    15</span>NA<span class="co">#&gt;  ---                                               </span>
 <span class="co">#&gt; 176:              Orthodox Don't know/refused    73</span>
 <span class="co">#&gt; 177:       Other Christian Don't know/refused    18</span>
 <span class="co">#&gt; 178:          Other Faiths Don't know/refused    71</span>
@@ -179,73 +181,74 @@
 <code class="sourceCode R"><span class="va">billboard</span>
 
 <span class="co"># tidyr way:</span>
- <span class="va">billboard</span> <span class="op">%&gt;%</span>
-   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
-     cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"wk"</span><span class="op">)</span>,
+ <span class="va">billboard</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>
+     cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"wk"</span><span class="op">)</span>,
      names_to <span class="op">=</span> <span class="st">"week"</span>,
      values_to <span class="op">=</span> <span class="st">"rank"</span>,
      values_drop_na <span class="op">=</span> <span class="cn">TRUE</span>
    <span class="op">)</span>
 
 <span class="co"># tidyfst way:</span>
-<span class="va">billboard</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/longer_dt.html">longer_dt</a></span><span class="op">(</span><span class="op">-</span><span class="st">"wk"</span>,
+<span class="va">billboard</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/longer.html">longer_dt</a></span><span class="op">(</span><span class="op">-</span><span class="st">"wk"</span>,
             name <span class="op">=</span> <span class="st">"week"</span>,
             value <span class="op">=</span> <span class="st">"rank"</span>,
             na.rm <span class="op">=</span> <span class="cn">TRUE</span>
             <span class="op">)</span>
 <span class="co"># regex could select the groups to keep, and minus could select the reverse</span></code></pre></div>
-<p>A warning would could come out because the merging column has different data types and do the coercion automatically.</p>
+<p>A warning would could come out because the merging column has
+different data types and do the coercion automatically.</p>
 </div>
-<div id="wider" class="section level2">
-<h2 class="hasAnchor">
-<a href="#wider" class="anchor"></a>Wider</h2>
+<div class="section level2">
+<h2 id="wider">Wider<a class="anchor" aria-label="anchor" href="#wider"></a>
+</h2>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## data</span>
 <span class="va">fish_encounters</span>
-<span class="co">#&gt; # A tibble: 114 x 3</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 114 x 3</span></span>
 <span class="co">#&gt;    fish  station  seen</span>
-<span class="co">#&gt;    &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;</span>
-<span class="co">#&gt;  1 4842  Release     1</span>
-<span class="co">#&gt;  2 4842  I80_1       1</span>
-<span class="co">#&gt;  3 4842  Lisbon      1</span>
-<span class="co">#&gt;  4 4842  Rstr        1</span>
-<span class="co">#&gt;  5 4842  Base_TD     1</span>
-<span class="co">#&gt;  6 4842  BCE         1</span>
-<span class="co">#&gt;  7 4842  BCW         1</span>
-<span class="co">#&gt;  8 4842  BCE2        1</span>
-<span class="co">#&gt;  9 4842  BCW2        1</span>
-<span class="co">#&gt; 10 4842  MAE         1</span>
-<span class="co">#&gt; # ... with 104 more rows</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 4842  Release     1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 4842  I80_1       1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 4842  Lisbon      1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4842  Rstr        1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 4842  Base_TD     1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 4842  BCE         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 4842  BCW         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 4842  BCE2        1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 4842  BCW2        1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 4842  MAE         1</span>
+<span class="co">#&gt; <span style="color: #949494;"># ... with 104 more rows</span></span>
 
 <span class="co">## tidyr way:</span>
-<span class="va">fish_encounters</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">station</span>, values_from <span class="op">=</span> <span class="va">seen</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 19 x 12</span>
+<span class="va">fish_encounters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">station</span>, values_from <span class="op">=</span> <span class="va">seen</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 19 x 12</span></span>
 <span class="co">#&gt;    fish  Release I80_1 Lisbon  Rstr Base_TD   BCE   BCW  BCE2  BCW2   MAE   MAW</span>
-<span class="co">#&gt;    &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt;  1 4842        1     1      1     1       1     1     1     1     1     1     1</span>
-<span class="co">#&gt;  2 4843        1     1      1     1       1     1     1     1     1     1     1</span>
-<span class="co">#&gt;  3 4844        1     1      1     1       1     1     1     1     1     1     1</span>
-<span class="co">#&gt;  4 4845        1     1      1     1       1    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt;  5 4847        1     1      1    NA      NA    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt;  6 4848        1     1      1     1      NA    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt;  7 4849        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt;  8 4850        1     1     NA     1       1     1     1    NA    NA    NA    NA</span>
-<span class="co">#&gt;  9 4851        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt; 10 4854        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt; 11 4855        1     1      1     1       1    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt; 12 4857        1     1      1     1       1     1     1     1     1    NA    NA</span>
-<span class="co">#&gt; 13 4858        1     1      1     1       1     1     1     1     1     1     1</span>
-<span class="co">#&gt; 14 4859        1     1      1     1       1    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt; 15 4861        1     1      1     1       1     1     1     1     1     1     1</span>
-<span class="co">#&gt; 16 4862        1     1      1     1       1     1     1     1     1    NA    NA</span>
-<span class="co">#&gt; 17 4863        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt; 18 4864        1     1     NA    NA      NA    NA    NA    NA    NA    NA    NA</span>
-<span class="co">#&gt; 19 4865        1     1      1    NA      NA    NA    NA    NA    NA    NA    NA</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 4842        1     1      1     1       1     1     1     1     1     1     1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 4843        1     1      1     1       1     1     1     1     1     1     1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 4844        1     1      1     1       1     1     1     1     1     1     1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4845        1     1      1     1       1    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 4847        1     1      1    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 4848        1     1      1     1      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 4849        1     1     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 4850        1     1     <span style="color: #BB0000;">NA</span>     1       1     1     1    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 4851        1     1     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 4854        1     1     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 4855        1     1      1     1       1    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 4857        1     1      1     1       1     1     1     1     1    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 4858        1     1      1     1       1     1     1     1     1     1     1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span> 4859        1     1      1     1       1    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span> 4861        1     1      1     1       1     1     1     1     1     1     1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">16</span> 4862        1     1      1     1       1     1     1     1     1    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">17</span> 4863        1     1     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">18</span> 4864        1     1     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">19</span> 4865        1     1      1    <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
 
 <span class="co">## tidyfst way:</span>
-<span class="va">fish_encounters</span> <span class="op">%&gt;%</span> 
+<span class="va">fish_encounters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"station"</span>,value <span class="op">=</span> <span class="st">"seen"</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;fish&gt;</span>
 <span class="co">#&gt;       fish Release I80_1 Lisbon  Rstr Base_TD   BCE   BCW  BCE2  BCW2</span>
@@ -269,10 +272,12 @@
 <span class="co">#&gt; 17:   4863       1     1     NA    NA      NA    NA    NA    NA    NA</span>
 <span class="co">#&gt; 18:   4864       1     1     NA    NA      NA    NA    NA    NA    NA</span>
 <span class="co">#&gt; 19:   4865       1     1      1    NA      NA    NA    NA    NA    NA</span>
-<span class="co">#&gt; 2变量没显示: [MAE &lt;int&gt;, MAW &lt;int&gt;]</span>NA<span class="co"># if no keeped groups are selected, use all except for name and value columns</span></code></pre></div>
+<span class="co">#&gt; 2 variables not shown: [MAE &lt;int&gt;, MAW &lt;int&gt;]</span>
+
+<span class="co"># if no keeped groups are selected, use all except for name and value columns</span></code></pre></div>
 <p>If you want to fill with 0s, use:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fish_encounters</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">fish_encounters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"station"</span>,value <span class="op">=</span> <span class="st">"seen"</span>,fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
 <span class="co">#&gt; Key: &lt;fish&gt;</span>
 <span class="co">#&gt;       fish Release I80_1 Lisbon  Rstr Base_TD   BCE   BCW  BCE2  BCW2</span>
@@ -296,15 +301,19 @@
 <span class="co">#&gt; 17:   4863       1     1      0     0       0     0     0     0     0</span>
 <span class="co">#&gt; 18:   4864       1     1      0     0       0     0     0     0     0</span>
 <span class="co">#&gt; 19:   4865       1     1      1     0       0     0     0     0     0</span>
-<span class="co">#&gt; 2变量没显示: [MAE &lt;int&gt;, MAW &lt;int&gt;]</span>NA</code></pre></div>
-<p>Note that the parameter of <code>name</code> and <code>value</code> should always be provided and should be explicit called (with the parameter names attached).</p>
+<span class="co">#&gt; 2 variables not shown: [MAE &lt;int&gt;, MAW &lt;int&gt;]</span></code></pre></div>
+<p>Note that the parameter of <code>name</code> and <code>value</code>
+should always be provided and should be explicit called (with the
+parameter names attached).</p>
 </div>
-<div id="more-complicated-example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#more-complicated-example" class="anchor"></a>More complicated example</h2>
-<p>This example comes from data.table (<a href="https://rdatatable.gitlab.io/data.table/articles/datatable-reshape.html" class="uri">https://rdatatable.gitlab.io/data.table/articles/datatable-reshape.html</a>), and has been used in tidyr too. We’ll try to do it in tidyfst in this example. If we have a data.frame as below:</p>
+<div class="section level2">
+<h2 id="more-complicated-example">More complicated example<a class="anchor" aria-label="anchor" href="#more-complicated-example"></a>
+</h2>
+<p>This example comes from data.table (<a href="https://rdatatable.gitlab.io/data.table/articles/datatable-reshape.html" class="external-link uri">https://rdatatable.gitlab.io/data.table/articles/datatable-reshape.html</a>),
+and has been used in tidyr too. We’ll try to do it in tidyfst in this
+example. If we have a data.frame as below:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">family</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3
+<code class="sourceCode R"><span class="va">family</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="st">"family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3
 1         30 1998-11-26 2000-01-29         NA             1             2            NA
 2         27 1996-06-22         NA         NA             2            NA            NA
 3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1
@@ -319,7 +328,7 @@
 <span class="co">#&gt; 3:         3         26 2002-07-11 2004-04-05 2007-09-02             2</span>
 <span class="co">#&gt; 4:         4         32 2004-10-10 2009-08-27 2012-07-21             1</span>
 <span class="co">#&gt; 5:         5         29 2000-12-05 2005-02-28       &lt;NA&gt;             2</span>
-<span class="co">#&gt; 2变量没显示: [gender_child2 &lt;int&gt;, gender_child3 &lt;int&gt;]</span>NA</code></pre></div>
+<span class="co">#&gt; 2 variables not shown: [gender_child2 &lt;int&gt;, gender_child3 &lt;int&gt;]</span></code></pre></div>
 <p>And want to reshape the data.table to be like this:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#     family_id age_mother  child        dob gender</span>
@@ -339,11 +348,14 @@
 <span class="co"># 13:         5         29 child1 2000-12-05      2</span>
 <span class="co"># 14:         5         29 child2 2005-02-28      1</span>
 <span class="co"># 15:         5         29 child3       &lt;NA&gt;   &lt;NA&gt;</span></code></pre></div>
-<p>The <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> could transfer it in one step, however, not so easy to understand. Here we’ll do it step by step to see what actually happens in this transfer.</p>
+<p>The <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html" class="external-link">data.table::dcast</a></code> and
+<code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">tidyr::pivot_longer</a></code> could transfer it in one step, however,
+not so easy to understand. Here we’ll do it step by step to see what
+actually happens in this transfer.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">family</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/longer_dt.html">longer_dt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/separate_dt.html">separate_dt</a></span><span class="op">(</span><span class="st">"name"</span>,into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"class"</span>,<span class="st">"child"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">family</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/longer.html">longer_dt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/separate_dt.html">separate_dt</a></span><span class="op">(</span><span class="st">"name"</span>,into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"class"</span>,<span class="st">"child"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span><span class="op">(</span><span class="op">-</span><span class="st">"class|value"</span>,
            name <span class="op">=</span> <span class="st">"class"</span>,
            value <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span>
@@ -365,7 +377,12 @@
 <span class="co">#&gt; 13:         5         29 child1 2000-12-05 1970-01-03</span>
 <span class="co">#&gt; 14:         5         29 child2 2005-02-28 1970-01-02</span>
 <span class="co">#&gt; 15:         5         29 child3       &lt;NA&gt;       &lt;NA&gt;</span></code></pre></div>
-<p>In such a process, we could find that we actually get a longer table, then separate it, and wider it later. <em>tidyfst</em> is not going to support the complicated transfer in one step, because it might be easier to implement, but much harder to understand 3 procedures in 1 step. If you still prefer that way, use <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html">data.table::dcast</a></code> and <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">tidyr::pivot_longer</a></code> instead.</p>
+<p>In such a process, we could find that we actually get a longer table,
+then separate it, and wider it later. <em>tidyfst</em> is not going to
+support the complicated transfer in one step, because it might be easier
+to implement, but much harder to understand 3 procedures in 1 step. If
+you still prefer that way, use <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html" class="external-link">data.table::dcast</a></code> and
+<code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">tidyr::pivot_longer</a></code> instead.</p>
 </div>
   </div>
 
@@ -380,11 +397,14 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Tian-Yuan Huang.</p>
+  <p></p>
+<p>Developed by Tian-Yuan Huang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
@@ -392,6 +412,8 @@
 
   
 
+
+  
 
   </body>
 </html>
