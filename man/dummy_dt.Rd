@@ -24,6 +24,9 @@ This function is useful for statistical analysis when you want binary columns ra
 }
 \details{
 If no columns provided, will return the original data frame.
+ When NA exist in the input column, they would also be considered. If
+ the input character column contains both NA and string "NA", they would be
+ merged.
 
 This function is inspired by \pkg{fastDummies} package, but provides
 simple and precise usage, whereas \code{fastDummies::dummy_cols} provides more
@@ -40,6 +43,12 @@ mtcars \%>\% head() \%>\% dummy_dt("cyl|gear")
 df <- data.table(x = c("a", "b", NA, NA),y = 1:4)
 df \%>\%
   dummy_dt(x)
+
+# when NA  and "NA" both exist, they would be merged
+df <- data.table(x = c("a", "b", NA, "NA"),y = 1:4)
+df \%>\%
+  dummy_dt(x)
+
 }
 \references{
 https://stackoverflow.com/questions/18881073/creating-dummy-variables-in-r-data-table
