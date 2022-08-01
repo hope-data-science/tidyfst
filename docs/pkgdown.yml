@@ -1,4 +1,4 @@
-pandoc: 2.17.1.1
+pandoc: '2.18'
 pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
@@ -11,5 +11,5 @@ articles:
   example4_nest: example4_nest.html
   example5_fst: example5_fst.html
   example6_dt: example6_dt.html
-last_built: 2022-04-27T07:57Z
+last_built: 2022-08-01T06:32Z
 

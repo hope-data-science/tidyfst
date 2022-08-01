@@ -157,6 +157,9 @@
     <loc>/reference/pairwise.html</loc>
   </url>
   <url>
+    <loc>/reference/pkg_load.html</loc>
+  </url>
+  <url>
     <loc>/reference/print_options.html</loc>
   </url>
   <url>
@@ -197,9 +200,6 @@
   </url>
   <url>
     <loc>/reference/setops.html</loc>
-  </url>
-  <url>
-    <loc>/reference/show_tibble.html</loc>
   </url>
   <url>
     <loc>/reference/slice.html</loc>
