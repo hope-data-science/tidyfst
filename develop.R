@@ -15,7 +15,6 @@ install(upgrade = "never",dependencies = F)
 #install(upgrade = "never",dependencies = F,quick = T)
 #install(quick = T)
 .rs.restartR()
-
 library(tidyfst)
 
 testthat::test_package("tidyfst")

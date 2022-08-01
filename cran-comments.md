@@ -2,7 +2,7 @@
 ## 1.7.0
 1. Export `data.table::setDT` for usage in `tidyfst`.
 2. Introduce functions `pkg_load` and `pkg_unload` as `p_load` and `p_unload` in package `pacman`.
-3. Make `dummy_dt` to be roboust when there are NAs in the column. Refere to <https://github.com/hope-data-science/tidyfst/issues/15>.
+3. Make `dummy_dt` to be robust when there are NAs in the column. Refer to <https://github.com/hope-data-science/tidyfst/issues/15>.
 
 ## 1.6.5
 1. Make a fix in `complete_dt`, letting it become more robust.
