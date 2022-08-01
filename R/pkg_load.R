@@ -14,7 +14,6 @@
 #' \code{\link[base]{detach}},
 #' \code{\link[pacman]{p_load}},
 #' \code{\link[pacman]{p_unload}}
-#' @export
 #' @examples
 #' \dontrun{
 #' pkg_load(data.table)
@@ -30,6 +29,8 @@
 #' pkg_unload("all") # shortcut to unload all loaded packages
 #' }
 
+#' @rdname pkg_load
+#' @export
 pkg_load = \(...,pkg_names = NULL){
   if(is.null(pkg_names)){
     (match.call(expand.dots = FALSE)$...) %>%
@@ -44,6 +45,7 @@ pkg_load = \(...,pkg_names = NULL){
   }) %>% all() %>% invisible()
 }
 
+#' @rdname pkg_load
 #' @export
 pkg_unload = \(...,pkg_names = NULL){
   if(is.null(pkg_names)){
