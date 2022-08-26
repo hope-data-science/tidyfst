@@ -1,8 +1,20 @@
 
+## 1.7.3
+1. Remove `top_n_dt`,`top_prop_dt` and `top_dt`. These functions are considered as deprecated.
+2. Fix bugs in `slice_max_dt` and `slice_min_dt`, they could not perform correctly in group filtering by proportion in the previous version. 
+
+## 1.7.1
+It seems some issues are urgent (<https://github.com/hope-data-science/tidyfst/issues/19>), so I have to make the revision immediately. Apology for the inconvenience brought. 
+1. Fix bug to make `pst` work.
+2. Use `function` instead of `\` to avoid platform consistency bug, as stated in <https://github.com/hope-data-science/tidyfst/issues/18>.
+3. Export `setnames` from data.table.
+
 ## 1.7.0
-1. Export `data.table::setDT` for usage in `tidyfst`.
+1. Export `data.table::setDT` and `data.table::%chin%` for usage in `tidyfst`.
 2. Introduce functions `pkg_load` and `pkg_unload` as `p_load` and `p_unload` in package `pacman`.
 3. Make `dummy_dt` to be robust when there are NAs in the column. Refer to <https://github.com/hope-data-science/tidyfst/issues/15>.
+4. Add `%notin%` function to be used.
+5. Add new name `pst` for function `sys_time_print` for convenience.
 
 ## 1.6.5
 1. Make a fix in `complete_dt`, letting it become more robust.
