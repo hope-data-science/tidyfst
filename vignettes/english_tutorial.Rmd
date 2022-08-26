@@ -65,7 +65,7 @@ drop_na_dt(DF) # na.omit(DF)
 ### Other filters
 sample_n_dt(DF, 3)      # n random rows
 sample_frac_dt(DF, 0.5) # fraction of random rows
-top_n_dt(DF, 1, V1)     # top n entries (includes equals)
+slice_max_dt(DF, V1,1)     # top n entries (includes equals)
 
 filter_dt(DT,V4 %like% "^B")
 filter_dt(DT,V2 %between% c(3, 5))
