@@ -141,67 +141,105 @@ slice_tail_dt = function(.data,n,by = NULL){
 #' @export
 slice_max_dt = function(.data,order_by,n,by = NULL,with_ties = TRUE){
   dt = as_dt(.data)
+  if(with_ties) ties_method = "min" else ties_method = "first"
   wt = substitute(order_by) %>% deparse()
   by = substitute(by) %>% deparse()
-  setorderv(dt,cols = wt,order = -1L)
-  if (n > 0 & n < 1)
-    n = nrow(.data) * n
-  else if (n <= 0)
-    stop("Invalid input, n should take a positive value.")
-
-  if(by != "NULL"){
-    if(with_ties){
-      eval(parse(text = str_glue("
-                            dt[,.SD[{wt} %in% ({wt} %>%
-                            sort %>% tail(.,n) %>% unique)],{by}]
-                             ")))
-    }
-    else{
-      eval(parse(text = str_glue("
-                            dt[,.SD[1:n],{by}]
-                             ")))
-    }
-  }else{
-    if(with_ties) eval(parse(text = str_glue("
-                            dt[{wt} %in% (sort({wt}) %>%
-                            tail(.,n) %>% unique)]
-                             ")))
-    else dt[1:n]
+  if(n <= 0) stop("Invalid input, n should take a positive value.")
+  if(by == "NULL"){
+    eval(parse(text = str_glue(
+      " dt[frank(-{wt},ties.method = ties_method,na.last = 'keep')<=
+    min(.N,ifelse(n<1,.N*n,n))][order(-{wt})]"
+    )))
+  } else{
+    eval(parse(text = str_glue(
+      " dt[,.SD[frank(-{wt},ties.method = ties_method,na.last = 'keep')<=
+    min(.N,ifelse(n<1,.N*n,n))],by = {by}]"
+    )))
   }
 }
+
+# slice_max_dt = function(.data,order_by,n,by = NULL,with_ties = TRUE){
+#   dt = as_dt(.data)
+#   wt = substitute(order_by) %>% deparse()
+#   by = substitute(by) %>% deparse()
+#   setorderv(dt,cols = wt,order = -1L)
+#   if (n > 0 & n < 1)
+#     n = nrow(.data) * n
+#   else if (n <= 0)
+#     stop("Invalid input, n should take a positive value.")
+#
+#   if(by != "NULL"){
+#     if(with_ties){
+#       eval(parse(text = str_glue("
+#                             dt[,.SD[{wt} %in% ({wt} %>%
+#                             sort %>% tail(.,n) %>% unique)],{by}]
+#                              ")))
+#     }
+#     else{
+#       eval(parse(text = str_glue("
+#                             dt[,.SD[1:n],{by}]
+#                              ")))
+#     }
+#   }else{
+#     if(with_ties) eval(parse(text = str_glue("
+#                             dt[{wt} %in% (sort({wt}) %>%
+#                             tail(.,n) %>% unique)]
+#                              ")))
+#     else dt[1:n]
+#   }
+# }
 
 #' @rdname slice
 #' @export
 slice_min_dt = function(.data,order_by,n,by = NULL,with_ties = TRUE){
   dt = as_dt(.data)
+  if(with_ties) ties_method = "min" else ties_method = "first"
   wt = substitute(order_by) %>% deparse()
   by = substitute(by) %>% deparse()
-  setorderv(dt,cols = wt,order = 1L)
-  if (n > 0 & n < 1)
-    n = nrow(.data) * n
-  else if (n <= 0)
-    stop("Invalid input, n should take a positive value.")
-
-  if(by != "NULL"){
-    if(with_ties){
-      eval(parse(text = str_glue("
-                            dt[,.SD[{wt} %in% ({wt} %>%
-                            sort %>% head(.,n) %>% unique)],{by}]
-                             ")))
-    }
-    else{
-      eval(parse(text = str_glue("
-                            dt[,.SD[1:n],{by}]
-                             ")))
-    }
-  }else{
-    if(with_ties) eval(parse(text = str_glue("
-                            dt[{wt} %in% (sort({wt}) %>%
-                            head(.,n) %>% unique)]
-                             ")))
-    else dt[1:n]
+  if(n <= 0) stop("Invalid input, n should take a positive value.")
+  if(by == "NULL"){
+    eval(parse(text = str_glue(
+      " dt[frank({wt},ties.method = ties_method,na.last = 'keep')<=
+    min(.N,ifelse(n<1,.N*n,n))][order({wt})]"
+    )))
+  } else{
+    eval(parse(text = str_glue(
+      " dt[,.SD[frank({wt},ties.method = ties_method,na.last = 'keep')<=
+    min(.N,ifelse(n<1,.N*n,n))],by = {by}]"
+    )))
   }
 }
+
+# slice_min_dt = function(.data,order_by,n,by = NULL,with_ties = TRUE){
+#   dt = as_dt(.data)
+#   wt = substitute(order_by) %>% deparse()
+#   by = substitute(by) %>% deparse()
+#   setorderv(dt,cols = wt,order = 1L)
+#   if (n > 0 & n < 1)
+#     n = nrow(.data) * n
+#   else if (n <= 0)
+#     stop("Invalid input, n should take a positive value.")
+#
+#   if(by != "NULL"){
+#     if(with_ties){
+#       eval(parse(text = str_glue("
+#                             dt[,.SD[{wt} %in% ({wt} %>%
+#                             sort %>% head(.,n) %>% unique)],{by}]
+#                              ")))
+#     }
+#     else{
+#       eval(parse(text = str_glue("
+#                             dt[,.SD[1:n],{by}]
+#                              ")))
+#     }
+#   }else{
+#     if(with_ties) eval(parse(text = str_glue("
+#                             dt[{wt} %in% (sort({wt}) %>%
+#                             head(.,n) %>% unique)]
+#                              ")))
+#     else dt[1:n]
+#   }
+# }
 
 #' @rdname slice
 #' @export
@@ -210,6 +248,8 @@ slice_sample_dt = function(.data, n, replace = FALSE, by = NULL){
   else if(n > 0) sample_frac_dt(.data,size = n,replace = replace,by = by)
   else stop("Invalid input, n should take a positive value.")
 }
+
+
 
 
 
