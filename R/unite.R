@@ -23,7 +23,7 @@
 #'   unite_dt("xy", x:y)
 #'
 #' # Select all columns
-#' iris %>% unite_dt("merged_name","")
+#' iris %>% unite_dt("merged_name",".")
 
 #' @export
 unite_dt = function(.data,united_colname,...,
