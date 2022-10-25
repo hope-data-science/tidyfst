@@ -3,10 +3,14 @@
 #' @import fst
 #' @import stringr
 #' @importFrom stats na.omit setNames median
-#' @importFrom utils object.size head tail
+#' @importFrom utils object.size head tail install.packages installed.packages
+NULL
 
 #' @export
 stringr::`%>%`
+
+#' @export
+data.table::`%like%`
 
 #' @export
 data.table::data.table
@@ -74,3 +78,5 @@ data.table::between
 #' @export
 data.table::set
 
+#' @export
+data.table::setDT

@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^cran-comments\.md$
+^develop\.R$
+^docs$
+^pkgdown$
+^tidyfst_cheatsheet\.png$
