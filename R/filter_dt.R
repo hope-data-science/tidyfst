@@ -22,6 +22,5 @@
 #' @export
 filter_dt = function(.data,...){
   dt = as_dt(.data)
-  dt[...]
+  eval.parent(dt[...])
 }
-

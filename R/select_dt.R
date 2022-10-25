@@ -56,7 +56,8 @@ select_dt = function(.data,...,cols = NULL,negate =FALSE){
   dt = as_dt(.data)
   if(is.null(cols)){
     substitute(list(...)) %>%
-      deparse() %>% paste0() %>%
+      deparse() %>%
+      paste0(collapse = "") %>%
       str_extract("\\(.+\\)") %>%
       str_sub(2,-2)-> dot_string
     if(is.na(dot_string)) dt
@@ -80,12 +81,10 @@ select_dt = function(.data,...,cols = NULL,negate =FALSE){
       dot_string = str_remove_all(dot_string,"-") %>% str_squish()
       if(!str_detect(dot_string,","))
         dt[,.SD,.SDcols = - dot_string]
-       # eval(parse(text = str_glue("dt[,{dot_string} := NULL][]")))
       else{
         str_split(dot_string,",",simplify = TRUE) %>%
           str_squish()-> delete_names
         dt[,.SD,.SDcols = -delete_names]
-       # eval(parse(text = str_glue("dt[, {delete_names}:=NULL][]")))
       }
     }
     else eval(parse(text = str_glue("dt[,.({dot_string})]")))
