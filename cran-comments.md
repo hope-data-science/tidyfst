@@ -1,4 +1,9 @@
 
+## 1.7.4
+1. The previous `select_dt` could not handle a special case, when selecting multiple columns (say more than 8), it tends to throw an error. This time the bug is fixed.
+2. `slice_max_dt` could not handle date type when using minus symbol("-"), this has been fixed in this version.
+3. Make `filter_dt` more robust by using `eval.parent` to evaluate it.
+
 ## 1.7.3
 1. Remove `top_n_dt`,`top_prop_dt` and `top_dt`. These functions are considered as deprecated.
 2. Fix bugs in `slice_max_dt` and `slice_min_dt`, they could not perform correctly in group filtering by proportion in the previous version. 
