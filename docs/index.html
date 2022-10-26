@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -110,8 +110,7 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="tidyfst-tidy-verbs-for-fast-data-manipulation">tidyfst: Tidy Verbs for Fast Data
-Manipulation<img src="reference/figures/hex-tidyfst_url.png" align="right" alt="" width="120"><a class="anchor" aria-label="anchor" href="#tidyfst-tidy-verbs-for-fast-data-manipulation"></a>
+<div class="page-header"><h1 id="tidyfst-tidy-verbs-for-fast-data-manipulation">tidyfst: Tidy Verbs for Fast Data Manipulation<img src="reference/figures/hex-tidyfst_url.png" align="right" alt="" width="120"><a class="anchor" aria-label="anchor" href="#tidyfst-tidy-verbs-for-fast-data-manipulation"></a>
 </h1></div>
 
 <p><a href="https://rdrr.io/cran/tidyfst/" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/tidyfst?color=red" alt="download"></a> <a href="https://crantastic.org/packages/tidyfst" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-week/tidyfst?color=ff69b4" alt="downloads"></a> <a href="https://crantastic.org/packages/tidyfst" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-day/tidyfst?color=9cf" alt="downloads"></a></p>
@@ -119,122 +118,84 @@ Manipulation<img src="reference/figures/hex-tidyfst_url.png" align="right" alt="
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><em>tidyfst</em> is a toolkit of tidy data manipulation verbs with
-<em>data.table</em> as the backend . Combining the merits of syntax
-elegance from <em>dplyr</em> and computing performance from
-<em>data.table</em>, <em>tidyfst</em> intends to provide users with
-state-of-the-art data manipulation tools with least pain. This package
-is an extension of <em>data.table</em>, while enjoying a tidy syntax, it
-also wraps combinations of efficient functions to facilitate
-frequently-used data operations. Also, <em>tidyfst</em> would introduce
-more tidy data verbs from other packages, including but not limited to
-<em>tidyverse</em> and <em>data.table</em>. If you are a <em>dplyr</em>
-user but have to use <em>data.table</em> for speedy computation, or
-<em>data.table</em> user looking for readable coding syntax,
-<em>tidyfst</em> is designed for you (and me of course). For further
-details and tutorials, see <a href="https://hope-data-science.github.io/tidyfst/" class="external-link">vignettes</a>. Both
-<a href="https://hope-data-science.github.io/tidyfst/articles/chinese_tutorial.html" class="external-link">Chinese</a>
-and <a href="https://hope-data-science.github.io/tidyfst/articles/english_tutorial.html" class="external-link">English</a>
-tutorials could be found there.</p>
-<p>Till now, <em>tidyfst</em> has an API that might even transcend its
-predecessors (e.g. <a href="https://hope-data-science.github.io/tidyfst/reference/select.html" class="external-link"><code>select_dt</code></a>
-could accept nearly anything for super column selection). Enjoy the
-efficient data operations in <em>tidyfst</em> !</p>
-<p>PS: For extreme performance in tidy syntax, try <em>tidyfst</em>’s
-mirror package <a href="https://github.com/hope-data-science/tidyft" class="external-link">tidyft</a>.</p>
+<p><em>tidyfst</em> is a toolkit of tidy data manipulation verbs with <em>data.table</em> as the backend . Combining the merits of syntax elegance from <em>dplyr</em> and computing performance from <em>data.table</em>, <em>tidyfst</em> intends to provide users with state-of-the-art data manipulation tools with least pain. This package is an extension of <em>data.table</em>, while enjoying a tidy syntax, it also wraps combinations of efficient functions to facilitate frequently-used data operations. Also, <em>tidyfst</em> would introduce more tidy data verbs from other packages, including but not limited to <em>tidyverse</em> and <em>data.table</em>. If you are a <em>dplyr</em> user but have to use <em>data.table</em> for speedy computation, or <em>data.table</em> user looking for readable coding syntax, <em>tidyfst</em> is designed for you (and me of course). For further details and tutorials, see <a href="https://hope-data-science.github.io/tidyfst/" class="external-link">vignettes</a>. Both <a href="https://hope-data-science.github.io/tidyfst/articles/chinese_tutorial.html" class="external-link">Chinese</a> and <a href="https://hope-data-science.github.io/tidyfst/articles/english_tutorial.html" class="external-link">English</a> tutorials could be found there.</p>
+<p>Till now, <em>tidyfst</em> has an API that might even transcend its predecessors (e.g. <a href="https://hope-data-science.github.io/tidyfst/reference/select.html" class="external-link"><code>select_dt</code></a> could accept nearly anything for super column selection). Enjoy the efficient data operations in <em>tidyfst</em> !</p>
+<p>PS: For extreme performance in tidy syntax, try <em>tidyfst</em>’s mirror package <a href="https://github.com/hope-data-science/tidyft" class="external-link">tidyft</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h2>
 <ul>
-<li>Receives any data.frame (tibble/data.table/data.frame) and returns a
-data.table.</li>
+<li>Receives any data.frame (tibble/data.table/data.frame) and returns a data.table.</li>
 <li>Show the variable class of data.table as default.</li>
-<li>Never use in place replacement (also known as modification by
-reference, which means the original variable would not be modified
-without notification).</li>
-<li>Use suffix (“_dt”) rather than prefix to increase the efficiency
-(especially when you have IDE with automatic code completion).</li>
-<li>More flexible verbs (e.g. <a href="https://hope-data-science.github.io/tidyfst/reference/pairwise.html" class="external-link">pairwise_count_dt</a>)
-for big data manipulation.</li>
-<li>Supporting data importing and parsing with <em>fst</em>, which saves
-both time and memory. Details see <a href="https://hope-data-science.github.io/tidyfst/reference/fst.html" class="external-link">parse_fst/select_fst/filter_fst</a>
-and <a href="https://hope-data-science.github.io/tidyfst/reference/fst_io.html" class="external-link">import_fst/export_fst</a>.</li>
-<li>Low and stable dependency on mature packages (data.table, fst,
-stringr)</li>
+<li>Never use in place replacement (also known as modification by reference, which means the original variable would not be modified without notification).</li>
+<li>Use suffix (“_dt”) rather than prefix to increase the efficiency (especially when you have IDE with automatic code completion).</li>
+<li>More flexible verbs (e.g. <a href="https://hope-data-science.github.io/tidyfst/reference/pairwise.html" class="external-link">pairwise_count_dt</a>) for big data manipulation.</li>
+<li>Supporting data importing and parsing with <em>fst</em>, which saves both time and memory. Details see <a href="https://hope-data-science.github.io/tidyfst/reference/fst.html" class="external-link">parse_fst/select_fst/filter_fst</a> and <a href="https://hope-data-science.github.io/tidyfst/reference/fst_io.html" class="external-link">import_fst/export_fst</a>.</li>
+<li>Low and stable dependency on mature packages (data.table, fst, stringr)</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyfst"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyfst"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst" class="external-link">tidyfst</a></span><span class="op">)</span>
-
-<span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/mutate.html">mutate_dt</a></span><span class="op">(</span>group <span class="op">=</span> <span class="va">Species</span>,sl <span class="op">=</span> <span class="va">Sepal.Length</span>,sw <span class="op">=</span> <span class="va">Sepal.Width</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/select.html">select_dt</a></span><span class="op">(</span><span class="va">group</span>,<span class="va">sl</span>,<span class="va">sw</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">sl</span> <span class="op">&gt;</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/arrange_dt.html">arrange_dt</a></span><span class="op">(</span><span class="va">group</span>,<span class="va">sl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/distinct_dt.html">distinct_dt</a></span><span class="op">(</span><span class="va">sl</span>,.keep_all <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sw <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">sw</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">group</span><span class="op">)</span>
-<span class="co">#&gt;         group  sw</span>
-<span class="co">#&gt;        &lt;fctr&gt; &lt;num&gt;</span>
-<span class="co">#&gt; 1:     setosa 4.4</span>
-<span class="co">#&gt; 2: versicolor 3.4</span>
-<span class="co">#&gt; 3:  virginica 3.8</span>
-
-<span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/count.html">count_dt</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/add_prop.html">add_prop</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       Species     n      prop prop_label</span>
-<span class="co">#&gt;        &lt;fctr&gt; &lt;int&gt;     &lt;num&gt;     &lt;char&gt;</span>
-<span class="co">#&gt; 1:     setosa    50 0.3333333      33.3%</span>
-<span class="co">#&gt; 2: versicolor    50 0.3333333      33.3%</span>
-<span class="co">#&gt; 3:  virginica    50 0.3333333      33.3%</span>
-
-<span class="va">iris</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span>,<span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/mutate_vars.html">mutate_when</a></span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">==</span> <span class="fl">.2</span>,
-              one <span class="op">=</span> <span class="fl">1</span>,Sepal.Length<span class="op">=</span><span class="fl">2</span><span class="op">)</span>
-<span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species one</span>
-<span class="co">#&gt;          &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt; &lt;num&gt;</span>
-<span class="co">#&gt; 1:          2.0         3.2          1.3         0.2  setosa   1</span>
-<span class="co">#&gt; 2:          2.0         3.1          1.5         0.2  setosa   1</span>
-<span class="co">#&gt; 3:          2.0         3.6          1.4         0.2  setosa   1</span>
-<span class="co">#&gt; 4:          5.4         3.9          1.7         0.4  setosa  NA</span>
-<span class="co">#&gt; 5:          4.6         3.4          1.4         0.3  setosa  NA</span>
-<span class="co">#&gt; 6:          2.0         3.4          1.5         0.2  setosa   1</span>
-</code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst" class="external-link">tidyfst</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/mutate.html">mutate_dt</a></span><span class="op">(</span>group <span class="op">=</span> <span class="va">Species</span>,sl <span class="op">=</span> <span class="va">Sepal.Length</span>,sw <span class="op">=</span> <span class="va">Sepal.Width</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/select.html">select_dt</a></span><span class="op">(</span><span class="va">group</span>,<span class="va">sl</span>,<span class="va">sw</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/filter_dt.html">filter_dt</a></span><span class="op">(</span><span class="va">sl</span> <span class="op">&gt;</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/arrange_dt.html">arrange_dt</a></span><span class="op">(</span><span class="va">group</span>,<span class="va">sl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/distinct_dt.html">distinct_dt</a></span><span class="op">(</span><span class="va">sl</span>,.keep_all <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sw <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">sw</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">group</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         group  sw</span></span>
+<span><span class="co">#&gt;        &lt;fctr&gt; &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:     setosa 4.4</span></span>
+<span><span class="co">#&gt; 2: versicolor 3.4</span></span>
+<span><span class="co">#&gt; 3:  virginica 3.8</span></span>
+<span></span>
+<span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/count.html">count_dt</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/add_prop.html">add_prop</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       Species     n      prop prop_label</span></span>
+<span><span class="co">#&gt;        &lt;fctr&gt; &lt;int&gt;     &lt;num&gt;     &lt;char&gt;</span></span>
+<span><span class="co">#&gt; 1:     setosa    50 0.3333333      33.3%</span></span>
+<span><span class="co">#&gt; 2: versicolor    50 0.3333333      33.3%</span></span>
+<span><span class="co">#&gt; 3:  virginica    50 0.3333333      33.3%</span></span>
+<span></span>
+<span><span class="va">iris</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span>,<span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/mutate_vars.html">mutate_when</a></span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">==</span> <span class="fl">.2</span>,</span>
+<span>              one <span class="op">=</span> <span class="fl">1</span>,Sepal.Length<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species one</span></span>
+<span><span class="co">#&gt;          &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt; &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:          2.0         3.2          1.3         0.2  setosa   1</span></span>
+<span><span class="co">#&gt; 2:          2.0         3.1          1.5         0.2  setosa   1</span></span>
+<span><span class="co">#&gt; 3:          2.0         3.6          1.4         0.2  setosa   1</span></span>
+<span><span class="co">#&gt; 4:          5.4         3.9          1.7         0.4  setosa  NA</span></span>
+<span><span class="co">#&gt; 5:          4.6         3.4          1.4         0.3  setosa  NA</span></span>
+<span><span class="co">#&gt; 6:          2.0         3.4          1.5         0.2  setosa   1</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="future-plans">Future plans<a class="anchor" aria-label="anchor" href="#future-plans"></a>
 </h2>
-<p><em>tidyfst</em> will keep up with the <a href="https://github.com/Rdatatable/data.table/blob/master/NEWS.md" class="external-link">updates</a>
-of <em>data.table</em> , in the next step would introduce more new
-features to improve the performance and flexibility to facilitate fast
-data manipulation in tidy syntax.</p>
+<p><em>tidyfst</em> will keep up with the <a href="https://github.com/Rdatatable/data.table/blob/master/NEWS.md" class="external-link">updates</a> of <em>data.table</em> , in the next step would introduce more new features to improve the performance and flexibility to facilitate fast data manipulation in tidy syntax.</p>
 </div>
 <div class="section level2">
 <h2 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>
 </h2>
 <ul>
-<li><a href="https://hope-data-science.github.io/tidyfst/articles/example1_intro.html" class="external-link">Example
-1: Basic usage</a></li>
-<li><a href="https://hope-data-science.github.io/tidyfst/articles/example2_join.html" class="external-link">Example
-2: Join tables</a></li>
-<li><a href="https://hope-data-science.github.io/tidyfst/articles/example3_reshape.html" class="external-link">Example
-3: Reshape</a></li>
-<li><a href="https://hope-data-science.github.io/tidyfst/articles/example4_nest.html" class="external-link">Example
-4: Nest</a></li>
-<li><a href="https://hope-data-science.github.io/tidyfst/articles/example5_fst.html" class="external-link">Example
-5: Fst</a></li>
-<li><a href="https://hope-data-science.github.io/tidyfst/articles/example6_dt.html" class="external-link">Example
-6: Dt</a></li>
+<li><a href="https://hope-data-science.github.io/tidyfst/articles/example1_intro.html" class="external-link">Example 1: Basic usage</a></li>
+<li><a href="https://hope-data-science.github.io/tidyfst/articles/example2_join.html" class="external-link">Example 2: Join tables</a></li>
+<li><a href="https://hope-data-science.github.io/tidyfst/articles/example3_reshape.html" class="external-link">Example 3: Reshape</a></li>
+<li><a href="https://hope-data-science.github.io/tidyfst/articles/example4_nest.html" class="external-link">Example 4: Nest</a></li>
+<li><a href="https://hope-data-science.github.io/tidyfst/articles/example5_fst.html" class="external-link">Example 5: Fst</a></li>
+<li><a href="https://hope-data-science.github.io/tidyfst/articles/example6_dt.html" class="external-link">Example 6: Dt</a></li>
 </ul>
 </div>
 <div class="section level2">
@@ -245,8 +206,7 @@ data manipulation in tidy syntax.</p>
 <div class="section level2">
 <h2 id="suggested-citation">Suggested citation<a class="anchor" aria-label="anchor" href="#suggested-citation"></a>
 </h2>
-<p>Huang et al., (2020). tidyfst: Tidy Verbs for Fast Data Manipulation.
-Journal of Open Source Software, 5(52), 2388, <a href="https://doi.org/10.21105/joss.02388" class="external-link uri">https://doi.org/10.21105/joss.02388</a></p>
+<p>Huang et al., (2020). tidyfst: Tidy Verbs for Fast Data Manipulation. Journal of Open Source Software, 5(52), 2388, <a href="https://doi.org/10.21105/joss.02388" class="external-link uri">https://doi.org/10.21105/joss.02388</a></p>
 </div>
 <div class="section level2">
 <h2 id="related-work">Related work<a class="anchor" aria-label="anchor" href="#related-work"></a>
@@ -262,12 +222,7 @@ Journal of Open Source Software, 5(52), 2388, <a href="https://doi.org/10.21105/
 <div class="section level2">
 <h2 id="acknowledgement">Acknowledgement<a class="anchor" aria-label="anchor" href="#acknowledgement"></a>
 </h2>
-<p>The author of <a href="https://github.com/gdemin/maditr" class="external-link">maditr</a>,
-<a href="https://github.com/gdemin" class="external-link">Gregory Demin</a> and the author of
-<a href="https://github.com/fstpackage/fst" class="external-link">fst</a>, <a href="https://github.com/MarcusKlik" class="external-link">Marcus Klik</a> have helped me a
-lot in the development of this work. It is so lucky to have them (and
-many other selfless contributors) in the same open source community of
-R.</p>
+<p>The author of <a href="https://github.com/gdemin/maditr" class="external-link">maditr</a>, <a href="https://github.com/gdemin" class="external-link">Gregory Demin</a> and the author of <a href="https://github.com/fstpackage/fst" class="external-link">fst</a>, <a href="https://github.com/MarcusKlik" class="external-link">Marcus Klik</a> have helped me a lot in the development of this work. It is so lucky to have them (and many other selfless contributors) in the same open source community of R.</p>
 </div>
 </div>
   </div>
@@ -324,8 +279,7 @@ R.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
