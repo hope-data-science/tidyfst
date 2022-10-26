@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -84,9 +84,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">count_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, sort <span class="op">=</span> <span class="cn">TRUE</span>, .name <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span>
-
-<span class="fu">add_count_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .name <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">count_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, sort <span class="op">=</span> <span class="cn">TRUE</span>, .name <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">add_count_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .name <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -94,16 +94,25 @@
     <dl><dt>.data</dt>
 <dd><p>data.table/data.frame data.frame will be automatically converted
 to data.table.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Variables to group by, could receive what `select_dt` receives.</p></dd>
+
+
 <dt>sort</dt>
 <dd><p>logical. If TRUE result will be sorted in desending order by resulting variable.</p></dd>
+
+
 <dt>.name</dt>
 <dd><p>character. Name of resulting variable. Default uses "n".</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.table</p>
+    
+
+<p>data.table</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -112,19 +121,19 @@ to data.table.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Species     n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;fctr&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     setosa    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2: versicolor    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:  virginica    50</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="va">Species</span>,.name <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="va">Species</span>,.name <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Species count</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;fctr&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     setosa    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2: versicolor    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:  virginica    50</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_count_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_count_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species     n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa    50</span>
@@ -138,7 +147,7 @@ to data.table.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica    50</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_count_dt</span><span class="op">(</span><span class="va">Species</span>,.name <span class="op">=</span> <span class="st">"N"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_count_dt</span><span class="op">(</span><span class="va">Species</span>,.name <span class="op">=</span> <span class="st">"N"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species     N</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa    50</span>
@@ -152,8 +161,8 @@ to data.table.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica    50</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="va">cyl</span>,<span class="va">vs</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="va">cyl</span>,<span class="va">vs</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl    vs     n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     8     0    14</span>
@@ -161,7 +170,7 @@ to data.table.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     6     1     4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:     6     0     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:     4     0     1</span>
-<span class="r-in"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl    vs     n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     8     0    14</span>
@@ -169,7 +178,7 @@ to data.table.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     6     1     4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:     6     0     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:     4     0     1</span>
-<span class="r-in"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="va">cyl</span>,<span class="va">vs</span>,.name <span class="op">=</span> <span class="st">"N"</span>,sort <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">count_dt</span><span class="op">(</span><span class="va">cyl</span>,<span class="va">vs</span>,.name <span class="op">=</span> <span class="st">"N"</span>,sort <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl    vs     N</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     6     0     3</span>
@@ -177,7 +186,7 @@ to data.table.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     6     1     4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:     8     0    14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:     4     0     1</span>
-<span class="r-in"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_count_dt</span><span class="op">(</span><span class="va">cyl</span>,<span class="va">vs</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_count_dt</span><span class="op">(</span><span class="va">cyl</span>,<span class="va">vs</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4</span>
@@ -214,7 +223,7 @@ to data.table.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 variables not shown: [carb &lt;num&gt;, n &lt;int&gt;]</span>
-<span class="r-in"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_count_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_count_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:  21.0     6 160.0   110  3.90 2.620 16.46     0     1     4</span>
@@ -251,7 +260,7 @@ to data.table.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32:  21.4     4 121.0   109  4.11 2.780 18.60     1     1     4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 variables not shown: [carb &lt;num&gt;, n &lt;int&gt;]</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -266,8 +275,7 @@ to data.table.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

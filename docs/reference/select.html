@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -84,30 +84,41 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">select_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, cols <span class="op">=</span> <span class="cn">NULL</span>, negate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">select_mix</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, rm.dup <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">select_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, cols <span class="op">=</span> <span class="cn">NULL</span>, negate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">select_mix</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, rm.dup <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>data.frame</p></dd>
+
+
 <dt>...</dt>
 <dd><p>List of variables or name-value pairs of summary/modifications
 functions. It can also recieve conditional function to select columns.
 When starts with `-`(minus symbol) or `!`, return the negative columns.</p></dd>
+
+
 <dt>cols</dt>
 <dd><p>(Optional)A numeric or character vector.</p></dd>
+
+
 <dt>negate</dt>
 <dd><p>Applicable when regular expression and "cols" is used.
 If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</code>.</p></dd>
+
+
 <dt>rm.dup</dt>
 <dd><p>Should duplicated columns be removed? Defaults to <code>TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.table</p>
+    
+
+<p>data.table</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -116,7 +127,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:    setosa</span>
@@ -130,7 +141,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148: virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149: virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150: virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="va">Sepal.Length</span>,<span class="va">Sepal.Width</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="va">Sepal.Length</span>,<span class="va">Sepal.Width</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5</span>
@@ -144,7 +155,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">:</span><span class="va">Petal.Length</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">:</span><span class="va">Petal.Length</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4</span>
@@ -158,7 +169,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="va">Sepal.Length</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="va">Sepal.Length</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:         3.5          1.4         0.2    setosa</span>
@@ -172,7 +183,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:         3.0          5.2         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:         3.4          5.4         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:         3.0          5.1         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="va">Sepal.Length</span>,<span class="op">-</span><span class="va">Petal.Length</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="va">Sepal.Length</span>,<span class="op">-</span><span class="va">Petal.Length</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Width Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:         3.5         0.2    setosa</span>
@@ -186,7 +197,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:         3.0         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:         3.4         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:         3.0         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">:</span><span class="va">Petal.Length</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">:</span><span class="va">Petal.Length</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:         0.2    setosa</span>
@@ -200,7 +211,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Length"</span>,<span class="st">"Sepal.Width"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Length"</span>,<span class="st">"Sepal.Width"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5</span>
@@ -214,7 +225,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Length"</span>,<span class="st">"Sepal.Width"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Length"</span>,<span class="st">"Sepal.Width"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          1.4         0.2    setosa</span>
@@ -228,7 +239,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          5.2         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          5.4         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.1         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1</span>
@@ -242,7 +253,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:         3.5          1.4         0.2    setosa</span>
@@ -256,7 +267,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:         3.0          5.2         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:         3.4          5.4         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:         3.0          5.1         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4</span>
@@ -270,7 +281,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:         0.2    setosa</span>
@@ -284,7 +295,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Petal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1          1.4</span>
@@ -298,7 +309,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5          5.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2          5.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9          5.1</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="st">"Pe"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="st">"Pe"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Petal.Length Petal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          1.4         0.2</span>
@@ -312,7 +323,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          5.2         2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          5.4         2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.1         1.8</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="st">"Se"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="st">"Se"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          1.4         0.2    setosa</span>
@@ -326,7 +337,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          5.2         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          5.4         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.1         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">!</span><span class="st">"Se"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">!</span><span class="st">"Se"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          1.4         0.2    setosa</span>
@@ -340,7 +351,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          5.2         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          5.4         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.1         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="st">"Pe"</span>,negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="st">"Pe"</span>,negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5    setosa</span>
@@ -354,7 +365,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="st">"Pe|Sp"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="st">"Pe|Sp"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          1.4         0.2    setosa</span>
@@ -368,7 +379,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          5.2         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          5.4         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.1         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Width Petal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            &lt;num&gt;        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:         3.5          1.4</span>
@@ -382,7 +393,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:         3.0          5.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:         3.4          5.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:         3.0          5.1</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span>,negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span>,negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         0.2    setosa</span>
@@ -396,7 +407,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Length"</span>,<span class="st">"Sepal.Width"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sepal.Length"</span>,<span class="st">"Sepal.Width"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5</span>
@@ -410,7 +421,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Width Petal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            &lt;num&gt;        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:         3.5          1.4</span>
@@ -424,8 +435,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:         3.0          5.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:         3.4          5.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:         3.0          5.1</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:    setosa</span>
@@ -439,7 +450,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148: virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149: virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150: virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="va">is.factor</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">-</span><span class="va">is.factor</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2</span>
@@ -453,7 +464,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">!</span><span class="va">is.factor</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">select_dt</span><span class="op">(</span><span class="op">!</span><span class="va">is.factor</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2</span>
@@ -467,9 +478,9 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># select_mix could provide flexible mix selection</span></span>
-<span class="r-in"><span class="fu">select_mix</span><span class="op">(</span><span class="va">iris</span>, <span class="va">Species</span>,<span class="st">"Sepal.Length"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># select_mix could provide flexible mix selection</span></span></span>
+<span class="r-in"><span><span class="fu">select_mix</span><span class="op">(</span><span class="va">iris</span>, <span class="va">Species</span>,<span class="st">"Sepal.Length"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        Species Sepal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;fctr&gt;        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:    setosa          5.1</span>
@@ -483,7 +494,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148: virginica          6.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149: virginica          6.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150: virginica          5.9</span>
-<span class="r-in"><span class="fu">select_mix</span><span class="op">(</span><span class="va">iris</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="va">is.factor</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">select_mix</span><span class="op">(</span><span class="va">iris</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="va">is.factor</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5    setosa</span>
@@ -497,8 +508,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0 virginica</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">select_mix</span><span class="op">(</span><span class="va">iris</span>,<span class="va">Sepal.Length</span>,<span class="va">is.numeric</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">select_mix</span><span class="op">(</span><span class="va">iris</span>,<span class="va">Sepal.Length</span>,<span class="va">is.numeric</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2</span>
@@ -512,8 +523,8 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8</span>
-<span class="r-in"><span class="co"># set rm.dup to FALSE could save the duplicated column names</span></span>
-<span class="r-in"><span class="fu">select_mix</span><span class="op">(</span><span class="va">iris</span>,<span class="va">Sepal.Length</span>,<span class="va">is.numeric</span>,rm.dup <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># set rm.dup to FALSE could save the duplicated column names</span></span></span>
+<span class="r-in"><span><span class="fu">select_mix</span><span class="op">(</span><span class="va">iris</span>,<span class="va">Sepal.Length</span>,<span class="va">is.numeric</span>,rm.dup <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1          5.1         3.5          1.4         0.2</span>
@@ -527,7 +538,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5          6.5         3.0          5.2         2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2          6.2         3.4          5.4         2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9          5.9         3.0          5.1         1.8</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -542,8 +553,7 @@ If <code>TRUE</code>, return the non-matched pattern. Default uses <code>FALSE</
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

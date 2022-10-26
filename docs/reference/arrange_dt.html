@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -84,20 +84,25 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">arrange_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">arrange_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>data.frame</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Arrange by what group? Minus symbol means arrange by
 descending order.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.table</p>
+    
+
+<p>data.table</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -106,8 +111,8 @@ descending order.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">arrange_dt</span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">arrange_dt</span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          4.3         3.0          1.1         0.1    setosa</span>
@@ -121,9 +126,9 @@ descending order.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          7.7         2.8          6.7         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          7.7         3.0          6.1         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          7.9         3.8          6.4         2.0 virginica</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># minus for decreasing order</span></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">arrange_dt</span><span class="op">(</span><span class="op">-</span><span class="va">Sepal.Length</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># minus for decreasing order</span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">arrange_dt</span><span class="op">(</span><span class="op">-</span><span class="va">Sepal.Length</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          7.9         3.8          6.4         2.0 virginica</span>
@@ -137,9 +142,9 @@ descending order.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          4.4         3.0          1.3         0.2    setosa</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          4.4         3.2          1.3         0.2    setosa</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          4.3         3.0          1.1         0.1    setosa</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># arrange by multiple variables</span></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">arrange_dt</span><span class="op">(</span><span class="va">Sepal.Length</span>,<span class="va">Petal.Length</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># arrange by multiple variables</span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">arrange_dt</span><span class="op">(</span><span class="va">Sepal.Length</span>,<span class="va">Petal.Length</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          4.3         3.0          1.1         0.1    setosa</span>
@@ -153,7 +158,7 @@ descending order.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          7.7         2.8          6.7         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          7.7         2.6          6.9         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          7.9         3.8          6.4         2.0 virginica</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -168,8 +173,7 @@ descending order.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

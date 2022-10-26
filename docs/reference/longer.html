@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -84,29 +84,40 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">longer_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, name <span class="op">=</span> <span class="st">"name"</span>, value <span class="op">=</span> <span class="st">"value"</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">longer_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, name <span class="op">=</span> <span class="st">"name"</span>, value <span class="op">=</span> <span class="st">"value"</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>A data.frame</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Pattern for unchanged group or unquoted names. Pattern can accept
 regular expression to match column names. It can recieve what <code>select_dt</code>
 recieves.</p></dd>
+
+
 <dt>name</dt>
 <dd><p>Name for the measured variable names column.
 The default name is 'name'.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>Name for the molten data values column(s).
 The default name is 'value'.</p></dd>
+
+
 <dt>na.rm</dt>
 <dd><p>If <code>TRUE</code>, <code>NA</code> values will be removed from the molten data.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data.table</p>
+    
+
+<p>A data.table</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -117,16 +128,16 @@ The default name is 'value'.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co">## Example 1:</span></span>
-<span class="r-in"><span class="va">stocks</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">  time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2009-01-01'</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0</span><span class="op">:</span><span class="fl">9</span>,</span>
-<span class="r-in">  X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">  Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">  Z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">stocks</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Example 1:</span></span></span>
+<span class="r-in"><span><span class="va">stocks</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2009-01-01'</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0</span><span class="op">:</span><span class="fl">9</span>,</span></span>
+<span class="r-in"><span>  X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  Z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">stocks</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          time          X           Y          Z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  2009-01-01 -1.5171329 -2.58389994  3.2247414</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2009-01-02  0.1879811  0.09984914  2.9869549</span>
@@ -138,9 +149,9 @@ The default name is 'value'.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8  2009-01-08 -0.6874585 -1.87925647  3.6727750</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9  2009-01-09 -0.7381848  0.72525958 -8.4367991</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10 2009-01-10  0.7062822 -2.57758846  4.1861255</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">stocks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">longer_dt</span><span class="op">(</span><span class="va">time</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">stocks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">longer_dt</span><span class="op">(</span><span class="va">time</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           time   name       value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;Date&gt; &lt;fctr&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1: 2009-01-01      X -1.51713292</span>
@@ -174,9 +185,9 @@ The default name is 'value'.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 29: 2009-01-09      Z -8.43679908</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 30: 2009-01-10      Z  4.18612551</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           time   name       value</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">stocks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">longer_dt</span><span class="op">(</span><span class="st">"ti"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">stocks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">longer_dt</span><span class="op">(</span><span class="st">"ti"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           time   name       value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;Date&gt; &lt;fctr&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1: 2009-01-01      X -1.51713292</span>
@@ -210,19 +221,19 @@ The default name is 'value'.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 29: 2009-01-09      Z -8.43679908</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 30: 2009-01-10      Z  4.18612551</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           time   name       value</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 2:</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">billboard</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">    <span class="fu">longer_dt</span><span class="op">(</span></span>
-<span class="r-in">      <span class="op">-</span><span class="st">"wk"</span>,</span>
-<span class="r-in">      name <span class="op">=</span> <span class="st">"week"</span>,</span>
-<span class="r-in">      value <span class="op">=</span> <span class="st">"rank"</span>,</span>
-<span class="r-in">      na.rm <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">    <span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 2:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">billboard</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu">longer_dt</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="op">-</span><span class="st">"wk"</span>,</span></span>
+<span class="r-in"><span>      name <span class="op">=</span> <span class="st">"week"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="st">"rank"</span>,</span></span>
+<span class="r-in"><span>      na.rm <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             artist                   track date.entered   week  rank</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;</span>
@@ -237,15 +248,15 @@ The default name is 'value'.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5305:        Creed                  Higher   1999-09-11   wk64    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5306:     Lonestar                  Amazed   1999-06-05   wk64    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5307:        Creed                  Higher   1999-09-11   wk65    49</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># or use:</span></span>
-<span class="r-in">  <span class="va">billboard</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">    <span class="fu">longer_dt</span><span class="op">(</span></span>
-<span class="r-in">      <span class="va">artist</span>,<span class="va">track</span>,<span class="va">date.entered</span>,</span>
-<span class="r-in">      name <span class="op">=</span> <span class="st">"week"</span>,</span>
-<span class="r-in">      value <span class="op">=</span> <span class="st">"rank"</span>,</span>
-<span class="r-in">      na.rm <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">    <span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># or use:</span></span></span>
+<span class="r-in"><span>  <span class="va">billboard</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu">longer_dt</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">artist</span>,<span class="va">track</span>,<span class="va">date.entered</span>,</span></span>
+<span class="r-in"><span>      name <span class="op">=</span> <span class="st">"week"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="st">"rank"</span>,</span></span>
+<span class="r-in"><span>      na.rm <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             artist                   track date.entered   week  rank</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;</span>
@@ -260,15 +271,15 @@ The default name is 'value'.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5305:        Creed                  Higher   1999-09-11   wk64    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5306:     Lonestar                  Amazed   1999-06-05   wk64    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5307:        Creed                  Higher   1999-09-11   wk65    49</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># or use:</span></span>
-<span class="r-in">  <span class="va">billboard</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">    <span class="fu">longer_dt</span><span class="op">(</span></span>
-<span class="r-in">      <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
-<span class="r-in">      name <span class="op">=</span> <span class="st">"week"</span>,</span>
-<span class="r-in">      value <span class="op">=</span> <span class="st">"rank"</span>,</span>
-<span class="r-in">      na.rm <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">    <span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># or use:</span></span></span>
+<span class="r-in"><span>  <span class="va">billboard</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu">longer_dt</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span></span>
+<span class="r-in"><span>      name <span class="op">=</span> <span class="st">"week"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="st">"rank"</span>,</span></span>
+<span class="r-in"><span>      na.rm <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'measure.vars' [wk1, wk2, wk3, wk4, ...] are not all of the same type. By order of hierarchy, the molten data value column will be of type 'double'. All measure variables not of type 'double' will be coerced too. Check DETAILS in ?melt.data.table for more on coercion.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             artist                   track date.entered   week  rank</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;char&gt;                  &lt;char&gt;       &lt;Date&gt; &lt;fctr&gt; &lt;num&gt;</span>
@@ -283,7 +294,7 @@ The default name is 'value'.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5305:        Creed                  Higher   1999-09-11   wk64    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5306:     Lonestar                  Amazed   1999-06-05   wk64    50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5307:        Creed                  Higher   1999-09-11   wk65    49</span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -298,8 +309,7 @@ The default name is 'value'.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

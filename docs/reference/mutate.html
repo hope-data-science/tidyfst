@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -84,24 +84,31 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">mutate_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, <span class="va">by</span><span class="op">)</span>
-
-<span class="fu">transmute_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, <span class="va">by</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mutate_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, <span class="va">by</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">transmute_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, <span class="va">by</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>data.frame</p></dd>
+
+
 <dt>...</dt>
 <dd><p>List of variables or name-value pairs of summary/modifications
 functions.</p></dd>
+
+
 <dt>by</dt>
 <dd><p>(Optional) Mutate by what group?</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.table</p>
+    
+
+<p>data.table</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -110,8 +117,8 @@ functions.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_dt</span><span class="op">(</span>one <span class="op">=</span> <span class="fl">1</span>,Sepal.Length <span class="op">=</span> <span class="va">Sepal.Length</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_dt</span><span class="op">(</span>one <span class="op">=</span> <span class="fl">1</span>,Sepal.Length <span class="op">=</span> <span class="va">Sepal.Length</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species   one</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          6.1         3.5          1.4         0.2    setosa     1</span>
@@ -125,7 +132,7 @@ functions.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          7.5         3.0          5.2         2.0 virginica     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          7.2         3.4          5.4         2.3 virginica     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          6.9         3.0          5.1         1.8 virginica     1</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">transmute_dt</span><span class="op">(</span>one <span class="op">=</span> <span class="fl">1</span>,Sepal.Length <span class="op">=</span> <span class="va">Sepal.Length</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">transmute_dt</span><span class="op">(</span>one <span class="op">=</span> <span class="fl">1</span>,Sepal.Length <span class="op">=</span> <span class="va">Sepal.Length</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        one Sepal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      &lt;num&gt;        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:     1          6.1</span>
@@ -139,8 +146,8 @@ functions.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:     1          7.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:     1          7.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:     1          6.9</span>
-<span class="r-in"><span class="co"># add group number with symbol `.GRP`</span></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_dt</span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">.N</span>,grp <span class="op">=</span> <span class="va">.GRP</span>,by <span class="op">=</span> <span class="va">Species</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># add group number with symbol `.GRP`</span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_dt</span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">.N</span>,grp <span class="op">=</span> <span class="va">.GRP</span>,by <span class="op">=</span> <span class="va">Species</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species    id   grp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa     1     1</span>
@@ -154,7 +161,7 @@ functions.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica    48     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica    49     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica    50     3</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -169,8 +176,7 @@ functions.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

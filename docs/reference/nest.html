@@ -21,7 +21,7 @@ designed to merge multiple columns into list column."><meta property="og:image" 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -92,35 +92,44 @@ designed to merge multiple columns into list column.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">nest_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, mcols <span class="op">=</span> <span class="cn">NULL</span>, .name <span class="op">=</span> <span class="st">"ndt"</span><span class="op">)</span>
-
-<span class="fu">unnest_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">squeeze_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .name <span class="op">=</span> <span class="st">"ndt"</span><span class="op">)</span>
-
-<span class="fu">chop_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">unchop_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">nest_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, mcols <span class="op">=</span> <span class="cn">NULL</span>, .name <span class="op">=</span> <span class="st">"ndt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">unnest_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">squeeze_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .name <span class="op">=</span> <span class="st">"ndt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">chop_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">unchop_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>data.table, nested or unnested</p></dd>
+
+
 <dt>...</dt>
 <dd><p>The variables for nest group(for <code>nest_dt</code>),
 columns to be nested(for <code>squeeze_dt</code> and <code>chop_dt</code>),
 or column(s) to be unnested(for <code>unnest_dt</code>).
 Could recieve anything that <code><a href="select.html">select_dt</a></code> could receive.</p></dd>
+
+
 <dt>mcols</dt>
 <dd><p>Name-variable pairs in the list, form like</p></dd>
+
+
 <dt>.name</dt>
 <dd><p>Character. The nested column name. Defaults to "ndt".
 <code>list(petal="^Pe",sepal="^Se")</code>, see example.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.table, nested or unnested</p>
+    
+
+<p>data.table, nested or unnested</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -144,22 +153,22 @@ package.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># examples for nest_dt</span></span>
-<span class="r-in"><span class="co"># nest by which columns?</span></span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># examples for nest_dt</span></span></span>
+<span class="r-in"><span><span class="co"># nest by which columns?</span></span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl                 ndt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt;              &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     6  &lt;data.table[7x10]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:     4 &lt;data.table[11x10]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     8 &lt;data.table[14x10]&gt;</span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="st">"cyl"</span><span class="op">)</span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="st">"cyl"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl                 ndt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt;              &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     6  &lt;data.table[7x10]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:     4 &lt;data.table[11x10]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     8 &lt;data.table[14x10]&gt;</span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="va">cyl</span>,<span class="va">vs</span><span class="op">)</span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="va">cyl</span>,<span class="va">vs</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl    vs                ndt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt;             &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     6     0  &lt;data.table[3x9]&gt;</span>
@@ -167,14 +176,14 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     6     1  &lt;data.table[4x9]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:     8     0 &lt;data.table[14x9]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:     4     0  &lt;data.table[1x9]&gt;</span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="va">vs</span><span class="op">:</span><span class="va">am</span><span class="op">)</span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="va">vs</span><span class="op">:</span><span class="va">am</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       vs    am                ndt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt;             &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     0     1  &lt;data.table[6x9]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:     1     1  &lt;data.table[7x9]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     1     0  &lt;data.table[7x9]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:     0     0 &lt;data.table[12x9]&gt;</span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl    vs                ndt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt;             &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     6     0  &lt;data.table[3x9]&gt;</span>
@@ -182,7 +191,7 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     6     1  &lt;data.table[4x9]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:     8     0 &lt;data.table[14x9]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:     4     0  &lt;data.table[1x9]&gt;</span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>,<span class="st">"vs"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>,<span class="st">"vs"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl    vs                ndt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt;             &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     6     0  &lt;data.table[3x9]&gt;</span>
@@ -190,39 +199,39 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     6     1  &lt;data.table[4x9]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:     8     0 &lt;data.table[14x9]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:     4     0  &lt;data.table[1x9]&gt;</span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="co"># change the nested column name</span></span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="va">cyl</span>,.name <span class="op">=</span> <span class="st">"data"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="co"># change the nested column name</span></span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="va">cyl</span>,.name <span class="op">=</span> <span class="st">"data"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl                data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt;              &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     6  &lt;data.table[7x10]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:     4 &lt;data.table[11x10]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     8 &lt;data.table[14x10]&gt;</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># nest two columns directly</span></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span>mcols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>petal<span class="op">=</span><span class="st">"^Pe"</span>,sepal<span class="op">=</span><span class="st">"^Se"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># nest two columns directly</span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span>mcols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>petal<span class="op">=</span><span class="st">"^Pe"</span>,sepal<span class="op">=</span><span class="st">"^Se"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Species&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Species              petal              sepal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;fctr&gt;             &lt;list&gt;             &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     setosa &lt;data.table[50x4]&gt; &lt;data.table[50x4]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2: versicolor &lt;data.table[50x4]&gt; &lt;data.table[50x4]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:  virginica &lt;data.table[50x4]&gt; &lt;data.table[50x4]&gt;</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># nest more flexibly</span></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span>mcols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ndt1 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
-<span class="r-in">  ndt2 <span class="op">=</span> <span class="st">"Pe"</span>,</span>
-<span class="r-in">  ndt3 <span class="op">=</span> <span class="va">Sepal.Length</span><span class="op">:</span><span class="va">Sepal.Width</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># nest more flexibly</span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span>mcols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ndt1 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  ndt2 <span class="op">=</span> <span class="st">"Pe"</span>,</span></span>
+<span class="r-in"><span>  ndt3 <span class="op">=</span> <span class="va">Sepal.Length</span><span class="op">:</span><span class="va">Sepal.Width</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Species&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Species               ndt1               ndt2               ndt3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;fctr&gt;             &lt;list&gt;             &lt;list&gt;             &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     setosa &lt;data.table[50x4]&gt; &lt;data.table[50x4]&gt; &lt;data.table[50x4]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2: versicolor &lt;data.table[50x4]&gt; &lt;data.table[50x4]&gt; &lt;data.table[50x4]&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:  virginica &lt;data.table[50x4]&gt; &lt;data.table[50x4]&gt; &lt;data.table[50x4]&gt;</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># examples for unnest_dt</span></span>
-<span class="r-in"><span class="co"># unnest which column?</span></span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">   <span class="fu">unnest_dt</span><span class="op">(</span><span class="va">ndt</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># examples for unnest_dt</span></span></span>
+<span class="r-in"><span><span class="co"># unnest which column?</span></span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>   <span class="fu">unnest_dt</span><span class="op">(</span><span class="va">ndt</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:     6     0  21.0 160.0   110  3.90 2.620 16.46     1     4</span>
@@ -259,8 +268,8 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32:     4     0  26.0 120.3    91  4.43 2.140 16.70     1     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable not shown: [carb &lt;num&gt;]</span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">   <span class="fu">unnest_dt</span><span class="op">(</span><span class="st">"ndt"</span><span class="op">)</span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">nest_dt</span><span class="op">(</span><span class="st">"cyl|vs"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>   <span class="fu">unnest_dt</span><span class="op">(</span><span class="st">"ndt"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:     6     0  21.0 160.0   110  3.90 2.620 16.46     1     4</span>
@@ -297,67 +306,67 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32:     4     0  26.0 120.3    91  4.43 2.140 16.70     1     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       cyl    vs   mpg  disp    hp  drat    wt  qsec    am  gear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable not shown: [carb &lt;num&gt;]</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span></span>
-<span class="r-in">  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>, <span class="st">"c"</span><span class="op">)</span>,</span>
-<span class="r-in">  b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span><span class="op">)</span>,<span class="cn">FALSE</span><span class="op">)</span>,</span>
-<span class="r-in">  c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">  d <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">22</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>, <span class="st">"c"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span><span class="op">)</span>,<span class="cn">FALSE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  d <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">22</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         a         b      c     d</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;list&gt;    &lt;list&gt; &lt;list&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:    a,b TRUE,TRUE      3    11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:      c     FALSE    1,2    22</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        d      a</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;char&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:    11      a</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:    11      b</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:    22      c</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        d      b</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;lgcl&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:    11   TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:    11   TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:    22  FALSE</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="st">"c"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="st">"c"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        d     c</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:    11     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:    22     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:    22     2</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        d     c</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:    11     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:    22     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:    22     2</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># You can unnest multiple columns simultaneously</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># You can unnest multiple columns simultaneously</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        d      a      b     c</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;char&gt; &lt;lgcl&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:    11      a   TRUE     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:    11      b   TRUE     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:    22      c  FALSE     2</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="va">a</span>,<span class="va">b</span>,<span class="va">c</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="va">a</span>,<span class="va">b</span>,<span class="va">c</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        d      a      b     c</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;char&gt; &lt;lgcl&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:    11      a   TRUE     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:    11      b   TRUE     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:    22      c  FALSE     2</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="st">"a|b|c"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unnest_dt</span><span class="op">(</span><span class="st">"a|b|c"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        d      a      b     c</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;char&gt; &lt;lgcl&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:    11      a   TRUE     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:    11      b   TRUE     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:    22      c  FALSE     2</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># examples for squeeze_dt</span></span>
-<span class="r-in"><span class="co"># nest which columns?</span></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">squeeze_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># examples for squeeze_dt</span></span></span>
+<span class="r-in"><span><span class="co"># nest which columns?</span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">squeeze_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species     ndt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;  &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa 5.1,3.5</span>
@@ -371,7 +380,7 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica 6.5,3.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica 6.2,3.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica 5.9,3.0</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">squeeze_dt</span><span class="op">(</span><span class="st">"Se"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">squeeze_dt</span><span class="op">(</span><span class="st">"Se"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species     ndt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;  &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa 5.1,3.5</span>
@@ -385,7 +394,7 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica 6.5,3.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica 6.2,3.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica 5.9,3.0</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">squeeze_dt</span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">:</span><span class="va">Petal.Width</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">squeeze_dt</span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">:</span><span class="va">Petal.Width</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa</span>
@@ -400,7 +409,7 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable not shown: [ndt &lt;list&gt;]</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">squeeze_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,.name <span class="op">=</span> <span class="st">"data"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">squeeze_dt</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,.name <span class="op">=</span> <span class="st">"data"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species    data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;  &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa 5.1,3.5</span>
@@ -414,16 +423,16 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica 6.5,3.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica 6.2,3.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica 5.9,3.0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># examples for chop_dt</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, z <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">chop_dt</span><span class="op">(</span><span class="va">y</span>,<span class="va">z</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># examples for chop_dt</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, z <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">chop_dt</span><span class="op">(</span><span class="va">y</span>,<span class="va">z</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        x      y      z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;list&gt; &lt;list&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     1  1,2,3  6,5,4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:     2    4,5    3,2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:     3      6      1</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">chop_dt</span><span class="op">(</span><span class="va">y</span>,<span class="va">z</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unchop_dt</span><span class="op">(</span><span class="va">y</span>,<span class="va">z</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">chop_dt</span><span class="op">(</span><span class="va">y</span>,<span class="va">z</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">unchop_dt</span><span class="op">(</span><span class="va">y</span>,<span class="va">z</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        x     y     z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     1     1     6</span>
@@ -446,8 +455,7 @@ package.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

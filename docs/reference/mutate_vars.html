@@ -20,7 +20,7 @@ in dplyr and make a new tidy verb for data.table. mutate_vars is
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -90,31 +90,44 @@ in <span class="pkg">dplyr</span> and make a new tidy verb for data.table. <code
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">mutate_when</span><span class="op">(</span><span class="va">.data</span>, <span class="va">when</span>, <span class="va">...</span>, <span class="va">by</span><span class="op">)</span>
-
-<span class="fu">mutate_vars</span><span class="op">(</span><span class="va">.data</span>, .cols <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">.func</span>, <span class="va">...</span>, <span class="va">by</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mutate_when</span><span class="op">(</span><span class="va">.data</span>, <span class="va">when</span>, <span class="va">...</span>, <span class="va">by</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">mutate_vars</span><span class="op">(</span><span class="va">.data</span>, .cols <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">.func</span>, <span class="va">...</span>, <span class="va">by</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>data.frame</p></dd>
+
+
 <dt>when</dt>
 <dd><p>An object which can be coerced to logical mode</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Name-value pairs of expressions for <code>mutate_when</code>.
 Additional parameters to be passed to parameter '.func' in <code>mutate_vars</code>.</p></dd>
+
+
 <dt>by</dt>
 <dd><p>(Optional) Mutate by what group?</p></dd>
+
+
 <dt>.cols</dt>
 <dd><p>Any types that can be accepted by <code><a href="select.html">select_dt</a></code>.</p></dd>
+
+
 <dt>.func</dt>
 <dd><p>Function to be run within each column, should return a value or
 vectors with same length.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.table</p>
+    
+
+<p>data.table</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -123,7 +136,7 @@ vectors with same length.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">iris</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span>,<span class="op">]</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">iris</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span>,<span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3          4.7         3.2          1.3         0.2  setosa</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4          4.6         3.1          1.5         0.2  setosa</span>
@@ -131,9 +144,9 @@ vectors with same length.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6          5.4         3.9          1.7         0.4  setosa</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7          4.6         3.4          1.4         0.3  setosa</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8          5.0         3.4          1.5         0.2  setosa</span>
-<span class="r-in"><span class="va">iris</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span>,<span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">mutate_when</span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">==</span> <span class="fl">.2</span>,</span>
-<span class="r-in">              one <span class="op">=</span> <span class="fl">1</span>,Sepal.Length<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span>,<span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">mutate_when</span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">==</span> <span class="fl">.2</span>,</span></span>
+<span class="r-in"><span>              one <span class="op">=</span> <span class="fl">1</span>,Sepal.Length<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Index: &lt;Petal.Width&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Sepal.Length Sepal.Width Petal.Length Petal.Width Species   one</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;  &lt;fctr&gt; &lt;num&gt;</span>
@@ -143,8 +156,8 @@ vectors with same length.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:          5.4         3.9          1.7         0.4  setosa    NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:          4.6         3.4          1.4         0.3  setosa    NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6:          2.0         3.4          1.5         0.2  setosa     1</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span><span class="st">"Pe"</span>,<span class="va">scale</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span><span class="st">"Pe"</span>,<span class="va">scale</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5   -1.3357516  -1.3110521    setosa</span>
@@ -158,7 +171,7 @@ vectors with same length.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0    0.8168591   1.0504160 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4    0.9301544   1.4439941 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0    0.7602115   0.7880307 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span><span class="va">is.numeric</span>,<span class="va">scale</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span><span class="va">is.numeric</span>,<span class="va">scale</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:  -0.89767388  1.01560199   -1.3357516  -1.3110521    setosa</span>
@@ -172,7 +185,7 @@ vectors with same length.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:   0.79301235 -0.13153881    0.8168591   1.0504160 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:   0.43072244  0.78617383    0.9301544   1.4439941 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:   0.06843254 -0.13153881    0.7602115   0.7880307 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span><span class="op">-</span><span class="va">is.factor</span>,<span class="va">scale</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span><span class="op">-</span><span class="va">is.factor</span>,<span class="va">scale</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:  -0.89767388  1.01560199   -1.3357516  -1.3110521    setosa</span>
@@ -186,7 +199,7 @@ vectors with same length.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:   0.79301235 -0.13153881    0.8168591   1.0504160 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:   0.43072244  0.78617383    0.9301544   1.4439941 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:   0.06843254 -0.13153881    0.7602115   0.7880307 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="va">scale</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="va">scale</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:  -0.89767388  1.01560199          1.4         0.2    setosa</span>
@@ -200,7 +213,7 @@ vectors with same length.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:   0.79301235 -0.13153881          5.2         2.0 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:   0.43072244  0.78617383          5.4         2.3 virginica</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:   0.06843254 -0.13153881          5.1         1.8 virginica</span>
-<span class="r-in"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span>.func <span class="op">=</span> <span class="va">as.character</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">mutate_vars</span><span class="op">(</span>.func <span class="op">=</span> <span class="va">as.character</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            &lt;char&gt;      &lt;char&gt;       &lt;char&gt;      &lt;char&gt;    &lt;char&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa</span>
@@ -228,8 +241,7 @@ vectors with same length.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -19,7 +19,7 @@ For data export, always compress the data to the smallest size."><meta property=
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -88,27 +88,33 @@ For data export, always compress the data to the smallest size.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">export_fst</span><span class="op">(</span><span class="va">x</span>, <span class="va">path</span>, compress <span class="op">=</span> <span class="fl">100</span>, uniform_encoding <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">import_fst</span><span class="op">(</span>
-  <span class="va">path</span>,
-  columns <span class="op">=</span> <span class="cn">NULL</span>,
-  from <span class="op">=</span> <span class="fl">1</span>,
-  to <span class="op">=</span> <span class="cn">NULL</span>,
-  as.data.table <span class="op">=</span> <span class="cn">TRUE</span>,
-  old_format <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">export_fst</span><span class="op">(</span><span class="va">x</span>, <span class="va">path</span>, compress <span class="op">=</span> <span class="fl">100</span>, uniform_encoding <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">import_fst</span><span class="op">(</span></span>
+<span>  <span class="va">path</span>,</span>
+<span>  columns <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  from <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  to <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  as.data.table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  old_format <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a data frame to write to disk</p></dd>
+
+
 <dt>path</dt>
 <dd><p>path to fst file</p></dd>
+
+
 <dt>compress</dt>
 <dd><p>value in the range 0 to 100, indicating the amount of compression to use.
 Lower values mean larger file sizes. The default compression is set to 50.</p></dd>
+
+
 <dt>uniform_encoding</dt>
 <dd><p>If `TRUE`, all character vectors will be assumed to have elements with equal encoding.
 The encoding (latin1, UTF8 or native) of the first non-NA element will used as encoding for the whole column.
@@ -116,23 +122,36 @@ This will be a correct assumption for most use cases.
 If `uniform.encoding` is set to `FALSE`, no such assumption will be made and all elements will be converted
 to the same encoding. The latter is a relatively expensive operation and will reduce write performance for
 character columns.</p></dd>
+
+
 <dt>columns</dt>
 <dd><p>Column names to read. The default is to read all columns.</p></dd>
+
+
 <dt>from</dt>
 <dd><p>Read data starting from this row number.</p></dd>
+
+
 <dt>to</dt>
 <dd><p>Read data up until this row number. The default is to read to the last row of the stored dataset.</p></dd>
+
+
 <dt>as.data.table</dt>
 <dd><p>If TRUE, the result will be returned as a <code>data.table</code> object. Any keys set on
 dataset <code>x</code> before writing will be retained. This allows for storage of sorted datasets. This option
 requires <code>data.table</code> package to be installed.</p></dd>
+
+
 <dt>old_format</dt>
 <dd><p>must be FALSE, the old fst file format is deprecated and can only be read and
 converted with fst package versions 0.8.0 to 0.8.10.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>`import_fst` returns a data.table with the selected columns and rows. `export_fst`
+    
+
+<p>`import_fst` returns a data.table with the selected columns and rows. `export_fst`
 writes `x` to a `fst` file and invisibly returns `x` (so you can use this function in a pipeline).</p>
     </div>
     <div id="see-also">
@@ -142,12 +161,12 @@ writes `x` to a `fst` file and invisibly returns `x` (so you can use this functi
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">export_fst</span><span class="op">(</span><span class="va">iris</span>,<span class="st">"iris_fst_test.fst"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">iris_dt</span> <span class="op">=</span> <span class="fu">import_fst</span><span class="op">(</span><span class="st">"iris_fst_test.fst"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">iris_dt</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"iris_fst_test.fst"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">export_fst</span><span class="op">(</span><span class="va">iris</span>,<span class="st">"iris_fst_test.fst"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">iris_dt</span> <span class="op">=</span> <span class="fu">import_fst</span><span class="op">(</span><span class="st">"iris_fst_test.fst"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">iris_dt</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"iris_fst_test.fst"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -162,8 +181,7 @@ writes `x` to a `fst` file and invisibly returns `x` (so you can use this functi
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

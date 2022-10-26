@@ -20,7 +20,7 @@ rownames_to_column and column_to_rownames in tibble."><meta property="og:image" 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -90,28 +90,33 @@ to save information in row names. These functions are analogous to
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rn_col</span><span class="op">(</span><span class="va">.data</span>, var <span class="op">=</span> <span class="st">"rowname"</span><span class="op">)</span>
-
-<span class="fu">col_rn</span><span class="op">(</span><span class="va">.data</span>, var <span class="op">=</span> <span class="st">"rowname"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rn_col</span><span class="op">(</span><span class="va">.data</span>, var <span class="op">=</span> <span class="st">"rowname"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">col_rn</span><span class="op">(</span><span class="va">.data</span>, var <span class="op">=</span> <span class="st">"rowname"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>A data.frame.</p></dd>
+
+
 <dt>var</dt>
 <dd><p>Name of column to use for rownames.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>rn_col</code> returns a data.table,
+    
+
+<p><code>rn_col</code> returns a data.table,
 <code>col_rn</code> returns a data frame.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">rn_col</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">rn_col</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 rowname   mpg   cyl  disp    hp  drat    wt  qsec    vs    am</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:           Mazda RX4  21.0     6 160.0   110  3.90 2.620 16.46     0     1</span>
@@ -182,7 +187,7 @@ to save information in row names. These functions are analogous to
 <span class="r-out co"><span class="r-pr">#&gt;</span> 31:     5     8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32:     4     2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      gear  carb</span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">rn_col</span><span class="op">(</span><span class="st">"rn"</span><span class="op">)</span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">rn_col</span><span class="op">(</span><span class="st">"rn"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      rn   mpg   cyl  disp    hp  drat    wt  qsec    vs    am</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  &lt;char&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:           Mazda RX4  21.0     6 160.0   110  3.90 2.620 16.46     0     1</span>
@@ -253,11 +258,11 @@ to save information in row names. These functions are analogous to
 <span class="r-out co"><span class="r-pr">#&gt;</span> 31:     5     8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32:     4     2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      gear  carb</span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">rn_col</span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">new_mtcars</span></span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="va">new_mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">col_rn</span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">old_mtcars</span></span>
-<span class="r-in"> <span class="va">old_mtcars</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">rn_col</span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">new_mtcars</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">new_mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">col_rn</span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">old_mtcars</span></span></span>
+<span class="r-in"><span> <span class="va">old_mtcars</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span>
@@ -291,7 +296,7 @@ to save information in row names. These functions are analogous to
 <span class="r-out co"><span class="r-pr">#&gt;</span> Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setequal</a></span><span class="op">(</span><span class="va">mtcars</span>,<span class="va">old_mtcars</span><span class="op">)</span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setequal</a></span><span class="op">(</span><span class="va">mtcars</span>,<span class="va">old_mtcars</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 </code></pre></div>
     </div>
@@ -307,8 +312,7 @@ to save information in row names. These functions are analogous to
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

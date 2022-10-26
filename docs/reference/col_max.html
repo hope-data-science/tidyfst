@@ -18,7 +18,7 @@ specifying the column name of the first max/min value each row."><meta property=
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -86,21 +86,26 @@ specifying the column name of the first max/min value each row.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">col_max</span><span class="op">(</span><span class="va">.data</span>, .name <span class="op">=</span> <span class="st">"max_col"</span><span class="op">)</span>
-
-<span class="fu">col_min</span><span class="op">(</span><span class="va">.data</span>, .name <span class="op">=</span> <span class="st">"min_col"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">col_max</span><span class="op">(</span><span class="va">.data</span>, .name <span class="op">=</span> <span class="st">"max_col"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">col_min</span><span class="op">(</span><span class="va">.data</span>, .name <span class="op">=</span> <span class="st">"min_col"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>A data.frame with numeric column(s)</p></dd>
+
+
 <dt>.name</dt>
 <dd><p>The column name of the new added column</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data.table</p>
+    
+
+<p>A data.table</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -109,9 +114,9 @@ specifying the column name of the first max/min value each row.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">199057</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">100</span>, <span class="cn">TRUE</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">DT</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">199057</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">100</span>, <span class="cn">TRUE</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">DT</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        V1    V2    V3    V4    V5    V6    V7    V8    V9   V10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:     8     1     2     2     5     5     9     2     9     4</span>
@@ -124,7 +129,7 @@ specifying the column name of the first max/min value each row.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  8:    10     8    10     1     5    10     8     6     3     4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  9:     1     7     6     2     6     1    10     6     4     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10:     5    10     3     3     5     9     2     9     7     7</span>
-<span class="r-in"><span class="fu">col_max</span><span class="op">(</span><span class="va">DT</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">col_max</span><span class="op">(</span><span class="va">DT</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        V1    V2    V3    V4    V5    V6    V7    V8    V9   V10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:     8     1     2     2     5     5     9     2     9     4</span>
@@ -138,7 +143,7 @@ specifying the column name of the first max/min value each row.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  9:     1     7     6     2     6     1    10     6     4     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10:     5    10     3     3     5     9     2     9     7     7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable not shown: [max_col &lt;char&gt;]</span>
-<span class="r-in"><span class="fu">col_max</span><span class="op">(</span><span class="va">DT</span>,.name <span class="op">=</span> <span class="st">"max_col_name"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">col_max</span><span class="op">(</span><span class="va">DT</span>,.name <span class="op">=</span> <span class="st">"max_col_name"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        V1    V2    V3    V4    V5    V6    V7    V8    V9   V10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:     8     1     2     2     5     5     9     2     9     4</span>
@@ -152,7 +157,7 @@ specifying the column name of the first max/min value each row.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  9:     1     7     6     2     6     1    10     6     4     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10:     5    10     3     3     5     9     2     9     7     7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable not shown: [max_col_name &lt;char&gt;]</span>
-<span class="r-in"><span class="fu">col_min</span><span class="op">(</span><span class="va">DT</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">col_min</span><span class="op">(</span><span class="va">DT</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        V1    V2    V3    V4    V5    V6    V7    V8    V9   V10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1:     8     1     2     2     5     5     9     2     9     4</span>
@@ -166,8 +171,8 @@ specifying the column name of the first max/min value each row.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  9:     1     7     6     2     6     1    10     6     4     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10:     5    10     3     3     5     9     2     9     7     7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable not shown: [min_col &lt;char&gt;]</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">col_max</span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">col_max</span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species      max_col</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;       &lt;char&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa Sepal.Length</span>
@@ -195,8 +200,7 @@ specifying the column name of the first max/min value each row.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

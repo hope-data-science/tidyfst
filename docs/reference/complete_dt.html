@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -88,13 +88,15 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">complete_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">complete_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>data.frame</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Specification of columns to expand.The selection of columns is
 supported by the flexible <code><a href="select.html">select_dt</a></code>.
@@ -102,12 +104,17 @@ To find all unique combinations of provided columns, including those not found i
 supply each variable as a separate argument. But the two modes (select the
 needed columns and fill outside values) could not be mixed,
 find more details in examples.</p></dd>
+
+
 <dt>fill</dt>
 <dd><p>Atomic value to fill into the missing cell, default uses <code>NA</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.table</p>
+    
+
+<p>data.table</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -123,15 +130,15 @@ only on unique entries, and it will always returned the unique entries.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span></span>
-<span class="r-in">  group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">  item_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">  item_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span><span class="op">)</span>,</span>
-<span class="r-in">  value1 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
-<span class="r-in">  value2 <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span><span class="va">item_id</span>,<span class="va">item_name</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  item_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  item_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  value1 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  value2 <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span><span class="va">item_id</span>,<span class="va">item_name</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;item_id, item_name&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    item_id item_name group value1 value2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      &lt;num&gt;    &lt;char&gt; &lt;num&gt;  &lt;int&gt;  &lt;int&gt;</span>
@@ -140,7 +147,7 @@ only on unique entries, and it will always returned the unique entries.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:       2         a    NA     NA     NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:       2         b     2      2      5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:       2         b     1      3      6</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span><span class="va">item_id</span>,<span class="va">item_name</span>,fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span><span class="va">item_id</span>,<span class="va">item_name</span>,fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;item_id, item_name&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    item_id item_name group value1 value2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      &lt;num&gt;    &lt;char&gt; &lt;num&gt;  &lt;int&gt;  &lt;int&gt;</span>
@@ -149,7 +156,7 @@ only on unique entries, and it will always returned the unique entries.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:       2         a     0      0      0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:       2         b     2      2      5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:       2         b     1      3      6</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span><span class="st">"item"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span><span class="st">"item"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;item_id, item_name&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    item_id item_name group value1 value2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      &lt;num&gt;    &lt;char&gt; &lt;num&gt;  &lt;int&gt;  &lt;int&gt;</span>
@@ -158,7 +165,7 @@ only on unique entries, and it will always returned the unique entries.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:       2         a    NA     NA     NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:       2         b     2      2      5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:       2         b     1      3      6</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span>item_id<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span>item_id<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;item_id&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    item_id group item_name value1 value2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      &lt;int&gt; &lt;num&gt;    &lt;char&gt;  &lt;int&gt;  &lt;int&gt;</span>
@@ -166,7 +173,7 @@ only on unique entries, and it will always returned the unique entries.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:       2     2         b      2      5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:       2     1         b      3      6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:       3    NA      &lt;NA&gt;     NA     NA</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span>item_id<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,group<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span>item_id<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,group<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;item_id, group&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    item_id group item_name value1 value2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      &lt;int&gt; &lt;int&gt;    &lt;char&gt;  &lt;int&gt;  &lt;int&gt;</span>
@@ -176,7 +183,7 @@ only on unique entries, and it will always returned the unique entries.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:       2     2         b      2      5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:       3     1      &lt;NA&gt;     NA     NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6:       3     2      &lt;NA&gt;     NA     NA</span>
-<span class="r-in"><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span>item_id<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,group<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,item_name<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">complete_dt</span><span class="op">(</span>item_id<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,group<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,item_name<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;item_id, group, item_name&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     item_id group item_name value1 value2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;int&gt; &lt;int&gt;    &lt;char&gt;  &lt;int&gt;  &lt;int&gt;</span>
@@ -208,7 +215,7 @@ only on unique entries, and it will always returned the unique entries.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 26:       3     3         b     NA     NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 27:       3     3         c     NA     NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     item_id group item_name value1 value2</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -223,8 +230,7 @@ only on unique entries, and it will always returned the unique entries.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

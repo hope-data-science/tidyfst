@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -84,31 +84,44 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">wider_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, <span class="va">name</span>, value <span class="op">=</span> <span class="cn">NULL</span>, fun <span class="op">=</span> <span class="cn">NULL</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">wider_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, <span class="va">name</span>, value <span class="op">=</span> <span class="cn">NULL</span>, fun <span class="op">=</span> <span class="cn">NULL</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>A data.frame</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Optional. The unchanged group in the transformation.
 Could use integer vector, could receive what <code>select_dt</code> receives.</p></dd>
+
+
 <dt>name</dt>
 <dd><p>Chracter.One column name of class to spread</p></dd>
+
+
 <dt>value</dt>
 <dd><p>Chracter.One column name of value to spread.
 If <code>NULL</code>, use all other variables.</p></dd>
+
+
 <dt>fun</dt>
 <dd><p>Should the data be aggregated before casting?
 Defaults to <code>NULL</code>, which uses <code>length</code> for aggregation.
 If a function is provided, with aggregated by this function.</p></dd>
+
+
 <dt>fill</dt>
 <dd><p>Value with which to fill missing cells. Default uses <code>NA</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.table</p>
+    
+
+<p>data.table</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -124,15 +137,15 @@ be provided and should be explicit called (with the parameter names attached).</
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"> <span class="va">stocks</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">   time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2009-01-01'</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0</span><span class="op">:</span><span class="fl">9</span>,</span>
-<span class="r-in">   X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">   Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">   Z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">   <span class="fu"><a href="longer.html">longer_dt</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">longer_stocks</span></span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="va">longer_stocks</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="va">stocks</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2009-01-01'</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0</span><span class="op">:</span><span class="fl">9</span>,</span></span>
+<span class="r-in"><span>   X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   Z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="longer.html">longer_dt</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">longer_stocks</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">longer_stocks</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           time   name        value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;Date&gt; &lt;fctr&gt;        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1: 2009-01-01      X -0.840956365</span>
@@ -166,11 +179,11 @@ be provided and should be explicit called (with the parameter names attached).</
 <span class="r-out co"><span class="r-pr">#&gt;</span> 29: 2009-01-09      Z  4.372243874</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 30: 2009-01-10      Z -2.084999836</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           time   name        value</span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="va">longer_stocks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">   <span class="fu">wider_dt</span><span class="op">(</span><span class="st">"time"</span>,</span>
-<span class="r-in">            name <span class="op">=</span> <span class="st">"name"</span>,</span>
-<span class="r-in">            value <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">longer_stocks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>   <span class="fu">wider_dt</span><span class="op">(</span><span class="st">"time"</span>,</span></span>
+<span class="r-in"><span>            name <span class="op">=</span> <span class="st">"name"</span>,</span></span>
+<span class="r-in"><span>            value <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;time&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           time           X            Y          Z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;Date&gt;       &lt;num&gt;        &lt;num&gt;      &lt;num&gt;</span>
@@ -184,12 +197,12 @@ be provided and should be explicit called (with the parameter names attached).</
 <span class="r-out co"><span class="r-pr">#&gt;</span>  8: 2009-01-08  0.73043894  0.317032490  4.3559047</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  9: 2009-01-09 -1.04230356 -0.001976107  4.3722439</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10: 2009-01-10  1.38367668  2.070255527 -2.0849998</span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="va">longer_stocks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">   <span class="fu"><a href="mutate.html">mutate_dt</a></span><span class="op">(</span>one <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">   <span class="fu">wider_dt</span><span class="op">(</span><span class="st">"time"</span>,</span>
-<span class="r-in">            name <span class="op">=</span> <span class="st">"name"</span>,</span>
-<span class="r-in">            value <span class="op">=</span> <span class="st">"one"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">longer_stocks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="mutate.html">mutate_dt</a></span><span class="op">(</span>one <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>   <span class="fu">wider_dt</span><span class="op">(</span><span class="st">"time"</span>,</span></span>
+<span class="r-in"><span>            name <span class="op">=</span> <span class="st">"name"</span>,</span></span>
+<span class="r-in"><span>            value <span class="op">=</span> <span class="st">"one"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;time&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           time     X     Y     Z</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;Date&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
@@ -203,18 +216,18 @@ be provided and should be explicit called (with the parameter names attached).</
 <span class="r-out co"><span class="r-pr">#&gt;</span>  8: 2009-01-08     1     1     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  9: 2009-01-09     1     1     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10: 2009-01-10     1     1     1</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## using "fun" parameter for aggregation</span></span>
-<span class="r-in"><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>v1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, each <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span>
-<span class="r-in">                 v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">                 v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">6</span><span class="op">)</span>,</span>
-<span class="r-in">                 v4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">## for each combination of (v1, v2), add up all values of v4</span></span>
-<span class="r-in"><span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">wider_dt</span><span class="op">(</span><span class="va">v1</span>,<span class="va">v2</span>,</span>
-<span class="r-in">           value <span class="op">=</span> <span class="st">"v4"</span>,</span>
-<span class="r-in">           name <span class="op">=</span> <span class="st">"."</span>,</span>
-<span class="r-in">           fun <span class="op">=</span> <span class="va">sum</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## using "fun" parameter for aggregation</span></span></span>
+<span class="r-in"><span><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>v1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, each <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                 v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                 v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">6</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                 v4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## for each combination of (v1, v2), add up all values of v4</span></span></span>
+<span class="r-in"><span><span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">wider_dt</span><span class="op">(</span><span class="va">v1</span>,<span class="va">v2</span>,</span></span>
+<span class="r-in"><span>           value <span class="op">=</span> <span class="st">"v4"</span>,</span></span>
+<span class="r-in"><span>           name <span class="op">=</span> <span class="st">"."</span>,</span></span>
+<span class="r-in"><span>           fun <span class="op">=</span> <span class="va">sum</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;v1, v2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       v1    v2         .</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;int&gt; &lt;int&gt;     &lt;num&gt;</span>
@@ -238,8 +251,7 @@ be provided and should be explicit called (with the parameter names attached).</
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

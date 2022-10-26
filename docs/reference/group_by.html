@@ -21,7 +21,7 @@ not only convenient but also efficient in computation."><meta property="og:image
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
       </span>
     </div>
 
@@ -92,27 +92,34 @@ not only convenient but also efficient in computation.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">group_by_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, cols <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">group_exe_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">group_by_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, cols <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">group_exe_dt</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>A data frame</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Variables to group by for <code>group_by_dt</code>,
 namely the columns to sort by. Do not quote the column names.
 Any data manipulation arguments that could be
 implemented on a data.frame for <code>group_exe_dt</code>.
 It can receive what <code>select_dt</code> receives.</p></dd>
+
+
 <dt>cols</dt>
 <dd><p>A character vector of column names to group by.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data.table with keys</p>
+    
+
+<p>A data.table with keys</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -124,37 +131,37 @@ to operate by specific groups frequently.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># aggregation after grouping using group_exe_dt</span></span>
-<span class="r-in"><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">a</span></span>
-<span class="r-in"><span class="va">a</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">group_by_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">group_exe_dt</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># aggregation after grouping using group_exe_dt</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">a</span></span></span>
+<span class="r-in"><span><span class="va">a</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">group_by_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">group_exe_dt</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Species&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Species Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     setosa          5.1         3.5          1.4         0.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2: versicolor          7.0         3.2          4.7         1.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:  virginica          6.3         3.3          6.0         2.5</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">a</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">group_by_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">group_exe_dt</span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">      <span class="fu"><a href="summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">a</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">group_by_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">group_exe_dt</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="summarise_dt.html">summarise_dt</a></span><span class="op">(</span>sum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;Species&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Species   sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;fctr&gt; &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     setosa  14.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2: versicolor  20.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:  virginica  19.2</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">group_by_dt</span><span class="op">(</span><span class="st">"cyl|am"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">group_exe_dt</span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="summarise_dt.html">summarise_dt</a></span><span class="op">(</span>mpg_sum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">group_by_dt</span><span class="op">(</span><span class="st">"cyl|am"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">group_exe_dt</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="summarise_dt.html">summarise_dt</a></span><span class="op">(</span>mpg_sum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;cyl, am&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl    am mpg_sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt;   &lt;num&gt;</span>
@@ -164,12 +171,12 @@ to operate by specific groups frequently.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:     6     1    61.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:     8     0   180.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6:     8     1    30.8</span>
-<span class="r-in"><span class="co"># equals to</span></span>
-<span class="r-in"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">group_by_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>,<span class="st">"am"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">group_exe_dt</span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="summarise_dt.html">summarise_dt</a></span><span class="op">(</span>mpg_sum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># equals to</span></span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">group_by_dt</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>,<span class="st">"am"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">group_exe_dt</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="summarise_dt.html">summarise_dt</a></span><span class="op">(</span>mpg_sum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Key: &lt;cyl, am&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      cyl    am mpg_sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt;   &lt;num&gt;</span>
@@ -193,8 +200,7 @@ to operate by specific groups frequently.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
