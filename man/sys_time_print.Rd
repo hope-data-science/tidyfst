@@ -2,9 +2,12 @@
 % Please edit documentation in R/sys_time_print.R
 \name{sys_time_print}
 \alias{sys_time_print}
+\alias{pst}
 \title{Convenient print of time taken}
 \usage{
 sys_time_print(expr)
+
+pst(expr)
 }
 \arguments{
 \item{expr}{Valid R expression to be timed.}
