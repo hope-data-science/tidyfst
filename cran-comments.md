@@ -1,4 +1,7 @@
-
+## 1.7.5
+1.A request has been suggested and implemented, see <https://github.com/hope-data-science/tidyfst/pull/21>;.
+2.Expired URLs have been removed from README.md.
+  
 ## 1.7.4
 1. The previous `select_dt` could not handle a special case, when selecting multiple columns (say more than 8), it tends to throw an error. This time the bug is fixed.
 2. `slice_max_dt` could not handle date type when using minus symbol("-"), this has been fixed in this version.
