@@ -1,3 +1,6 @@
+## 1.7.6
+Fix error noted by CRAN.
+
 ## 1.7.5
 1.A request has been suggested and implemented, see <https://github.com/hope-data-science/tidyfst/pull/21>;.
 2.Expired URLs have been removed from README.md.
