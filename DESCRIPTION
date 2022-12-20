@@ -21,7 +21,7 @@ RoxygenNote: 7.2.1
 Imports: 
     data.table (>= 1.13.0),
     fst (>= 0.9.0),
-    stringr (>= 1.4.0)
+    stringr (>= 1.5.0)
 Suggests: 
     knitr,
     rmarkdown,
