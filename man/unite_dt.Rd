@@ -44,7 +44,7 @@ df \%>\%
   unite_dt("xy", x:y)
 
 # Select all columns
-iris \%>\% unite_dt("merged_name","")
+iris \%>\% unite_dt("merged_name",".")
 }
 \seealso{
 \code{\link[tidyr]{unite}},\code{\link[tidyfst]{separate_dt}}
