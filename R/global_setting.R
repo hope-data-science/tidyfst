@@ -4,13 +4,15 @@
 #' @import stringr
 #' @importFrom stats na.omit setNames median
 #' @importFrom utils object.size head tail install.packages installed.packages
-NULL
 
 #' @export
 stringr::`%>%`
 
 #' @export
 data.table::`%like%`
+
+#' @export
+data.table::`%chin%`
 
 #' @export
 data.table::data.table
@@ -80,3 +82,9 @@ data.table::set
 
 #' @export
 data.table::setDT
+
+#' @export
+data.table::setDF
+
+#' @export
+data.table::setnames

@@ -1,5 +1,6 @@
 
 #' @title Convenient print of time taken
+#' @name sys_time_print
 #' @description Convenient printing of time elapsed. A wrapper of
 #' \code{data.table::timetaken}, but showing the results more directly.
 #' @param expr Valid R expression to be timed.
@@ -17,6 +18,7 @@
 #' })
 #' res
 
+#' @rdname sys_time_print
 #' @export
 sys_time_print = function (expr) {
   started.at = proc.time()
@@ -24,7 +26,9 @@ sys_time_print = function (expr) {
   paste("# Finished in", timetaken(started.at))
 }
 
-
+#' @rdname sys_time_print
+#' @export
+pst = sys_time_print
 
 
 

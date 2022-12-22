@@ -31,7 +31,7 @@
 
 #' @rdname pkg_load
 #' @export
-pkg_load = \(...,pkg_names = NULL){
+pkg_load = function(...,pkg_names = NULL){
   if(is.null(pkg_names)){
     (match.call(expand.dots = FALSE)$...) %>%
       as.character() %>%
@@ -47,7 +47,7 @@ pkg_load = \(...,pkg_names = NULL){
 
 #' @rdname pkg_load
 #' @export
-pkg_unload = \(...,pkg_names = NULL){
+pkg_unload = function(...,pkg_names = NULL){
   if(is.null(pkg_names)){
     (match.call(expand.dots = FALSE)$...) %>%
       as.character() -> list.of.packages

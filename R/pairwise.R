@@ -24,6 +24,7 @@
 #'                          "b", "f"))
 #' pairwise_count_dt(dat,group,letter)
 #' pairwise_count_dt(dat,group,letter,sort = FALSE)
+#' pairwise_count_dt(dat,group,letter,upper = TRUE)
 #' pairwise_count_dt(dat,group,letter,diag = TRUE)
 #' pairwise_count_dt(dat,group,letter,diag = TRUE,upper = TRUE)
 #'

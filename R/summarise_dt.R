@@ -96,26 +96,6 @@ summarise_vars = function (.data, .cols = NULL, .func, ...,by) {
 
 }
 
-# summarise_vars = function (.data, .cols = NULL, .func, ...,by) {
-#   dt = as_dt(.data)
-#   deparse(substitute(.cols)) -> .cols
-#   deparse(substitute(by)) -> .by
-#   if (.cols == "NULL")
-#     sel_name = names(dt[0])
-#   else{
-#     eval(
-#       parse(
-#         text =
-#           str_glue("select_dt(dt[0],{.cols}) %>% names() -> sel_name")))
-#   }
-#
-#   eval(parse(text = str_glue(
-#   "res = dt[,lapply(.SD, .func, ...), by = {.by},.SDcols = sel_name]")))
-#   res[, unique(names(res)), with = FALSE]
-# }
-
-
-
 #' @rdname summarise_dt
 #' @export
 
