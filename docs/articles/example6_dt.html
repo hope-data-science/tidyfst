@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.6</span>
       </span>
     </div>
 
@@ -123,28 +123,28 @@ There are several ways to cut into <em>data.table</em> syntax to gain
 higher performance in <em>tidyfst</em>. A convenient way is to use the
 <code>DT[I,J,BY]</code> syntax after the pipe(<code>%&gt;%</code>).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst" class="external-link">tidyfst</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Life's short, use R.</span>
-<span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/dt.html">as_dt</a></span><span class="op">(</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  <span class="co">#coerce a data.frame to data.table</span>
-  <span class="va">.</span><span class="op">[</span>,<span class="va">.SD</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,by <span class="op">=</span> <span class="va">Species</span><span class="op">]</span>
-<span class="co">#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="co">#&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span>
-<span class="co">#&gt; 1:     setosa          5.1         3.5          1.4         0.2</span>
-<span class="co">#&gt; 2: versicolor          7.0         3.2          4.7         1.4</span>
-<span class="co">#&gt; 3:  virginica          6.3         3.3          6.0         2.5</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst" class="external-link">tidyfst</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Life's short, use R.</span></span>
+<span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/dt.html">as_dt</a></span><span class="op">(</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  <span class="co">#coerce a data.frame to data.table</span></span>
+<span>  <span class="va">.</span><span class="op">[</span>,<span class="va">.SD</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,by <span class="op">=</span> <span class="va">Species</span><span class="op">]</span></span>
+<span><span class="co">#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span><span class="co">#&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:     setosa          5.1         3.5          1.4         0.2</span></span>
+<span><span class="co">#&gt; 2: versicolor          7.0         3.2          4.7         1.4</span></span>
+<span><span class="co">#&gt; 3:  virginica          6.3         3.3          6.0         2.5</span></span></code></pre></div>
 <p>This syntax is not so consistent with the tidy syntax, therefore
 <code>in_dt</code> is also designed for the short cut to
 <em>data.table</em> method, which could be used as:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/dt.html">in_dt</a></span><span class="op">(</span>,<span class="va">.SD</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,by <span class="op">=</span> <span class="va">Species</span><span class="op">)</span>
-<span class="co">#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="co">#&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span>
-<span class="co">#&gt; 1:     setosa          5.1         3.5          1.4         0.2</span>
-<span class="co">#&gt; 2: versicolor          7.0         3.2          4.7         1.4</span>
-<span class="co">#&gt; 3:  virginica          6.3         3.3          6.0         2.5</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/dt.html">in_dt</a></span><span class="op">(</span>,<span class="va">.SD</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,by <span class="op">=</span> <span class="va">Species</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       Species Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span><span class="co">#&gt;        &lt;fctr&gt;        &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:     setosa          5.1         3.5          1.4         0.2</span></span>
+<span><span class="co">#&gt; 2: versicolor          7.0         3.2          4.7         1.4</span></span>
+<span><span class="co">#&gt; 3:  virginica          6.3         3.3          6.0         2.5</span></span></code></pre></div>
 <p><code>in_dt</code> follows the basic principals of <em>tidyfst</em>,
 which include: (1) Never use in place replacement. Therefore, the in
 place functions like <code>:=</code> will still return the results. (2)
@@ -169,8 +169,7 @@ you are working on data frames in R.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

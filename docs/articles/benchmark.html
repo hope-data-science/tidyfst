@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.6</span>
       </span>
     </div>
 
@@ -129,62 +129,62 @@ package (<a href="https://h2oai.github.io/db-benchmark/" class="external-link ur
 These tests are based on computation by groups.<br><br> First let’s load
 the package and generate some data.<br><br></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst" class="external-link">tidyfst</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Life's short, use R.</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dplyr'</span>
-<span class="co">#&gt; The following objects are masked from 'package:data.table':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     between, first, last</span>
-<span class="co">#&gt; The following objects are masked from 'package:tidyfst':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     between, cummean, nth</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter, lag</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bench.r-lib.org/" class="external-link">bench</a></span><span class="op">)</span>
-
-<span class="co"># generate the data</span>
-<span class="co"># if you have a HPC and want to try larger data sets, increase N</span>
-<span class="va">N</span> <span class="op">=</span> <span class="fl">1e4</span> 
-<span class="va">K</span> <span class="op">=</span> <span class="fl">1e2</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Producing data of %s rows and %s K groups factors\n"</span>, <span class="va">N</span>, <span class="va">K</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Producing data of 10000 rows and 100 K groups factors</span>
-
-<span class="va">DT</span> <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>
-
-  id1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"id%03d"</span>,<span class="fl">1</span><span class="op">:</span><span class="va">K</span><span class="op">)</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,      <span class="co"># large groups (char)</span>
-
-  id2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"id%03d"</span>,<span class="fl">1</span><span class="op">:</span><span class="va">K</span><span class="op">)</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,      <span class="co"># large groups (char)</span>
-
-  id3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"id%010d"</span>,<span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">N</span><span class="op">/</span><span class="va">K</span><span class="op">)</span><span class="op">)</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="co"># small groups (char)</span>
-
-  id4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">K</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                          <span class="co"># large groups (int)</span>
-
-  id5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">K</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                          <span class="co"># large groups (int)</span>
-
-  id6 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">N</span><span class="op">/</span><span class="va">K</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                        <span class="co"># small groups (int)</span>
-
-  v1 <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">5</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                          <span class="co"># int in range [1,5]</span>
-
-  v2 <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">5</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                          <span class="co"># int in range [1,5]</span>
-
-  v3 <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">N</span>,max<span class="op">=</span><span class="fl">100</span><span class="op">)</span>,<span class="fl">4</span><span class="op">)</span>                    <span class="co"># numeric e.g. 23.5749</span>
-
-<span class="op">)</span>
-
-<span class="fu"><a href="../reference/object_size.html">object_size</a></span><span class="op">(</span><span class="va">DT</span><span class="op">)</span>
-<span class="co">#&gt; 527.7 Kb</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># load packages</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hope-data-science/tidyfst" class="external-link">tidyfst</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Life's short, use R.</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:data.table':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     between, first, last</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:tidyfst':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     between, cummean, nth</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bench.r-lib.org/" class="external-link">bench</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># generate the data</span></span>
+<span><span class="co"># if you have a HPC and want to try larger data sets, increase N</span></span>
+<span><span class="va">N</span> <span class="op">=</span> <span class="fl">1e4</span> </span>
+<span><span class="va">K</span> <span class="op">=</span> <span class="fl">1e2</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Producing data of %s rows and %s K groups factors\n"</span>, <span class="va">N</span>, <span class="va">K</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Producing data of 10000 rows and 100 K groups factors</span></span>
+<span></span>
+<span><span class="va">DT</span> <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span></span>
+<span></span>
+<span>  id1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"id%03d"</span>,<span class="fl">1</span><span class="op">:</span><span class="va">K</span><span class="op">)</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,      <span class="co"># large groups (char)</span></span>
+<span></span>
+<span>  id2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"id%03d"</span>,<span class="fl">1</span><span class="op">:</span><span class="va">K</span><span class="op">)</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,      <span class="co"># large groups (char)</span></span>
+<span></span>
+<span>  id3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"id%010d"</span>,<span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">N</span><span class="op">/</span><span class="va">K</span><span class="op">)</span><span class="op">)</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="co"># small groups (char)</span></span>
+<span></span>
+<span>  id4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">K</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                          <span class="co"># large groups (int)</span></span>
+<span></span>
+<span>  id5 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">K</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                          <span class="co"># large groups (int)</span></span>
+<span></span>
+<span>  id6 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">N</span><span class="op">/</span><span class="va">K</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                        <span class="co"># small groups (int)</span></span>
+<span></span>
+<span>  v1 <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">5</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                          <span class="co"># int in range [1,5]</span></span>
+<span></span>
+<span>  v2 <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">5</span>, <span class="va">N</span>, <span class="cn">TRUE</span><span class="op">)</span>,                          <span class="co"># int in range [1,5]</span></span>
+<span></span>
+<span>  v3 <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">N</span>,max<span class="op">=</span><span class="fl">100</span><span class="op">)</span>,<span class="fl">4</span><span class="op">)</span>                    <span class="co"># numeric e.g. 23.5749</span></span>
+<span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/object_size.html">object_size</a></span><span class="op">(</span><span class="va">DT</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 527.7 Kb</span></span></code></pre></div>
 <p>This data is rather small, the size is around 527 Kb. However, with
 the <em>bench</em> package, we could detect the difference by increasing
 iteration times. In this way, examples listed here could be implemented
@@ -201,51 +201,51 @@ the results are equal, because dplyr will return a tibble class even
 when we input a data.table in the first place. The iteration time is 10
 for each of the test below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span>
-  data.table <span class="op">=</span> <span class="va">DT</span><span class="op">[</span>,<span class="fu">.</span><span class="op">(</span>median_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,
-                     sd_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span><span class="op">)</span>,
-                  by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">id4</span>,<span class="va">id5</span><span class="op">)</span><span class="op">]</span>,
-  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>
-      by <span class="op">=</span> <span class="st">"id4,id5"</span>,
-      median_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,
-      sd_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>
-    <span class="op">)</span>,
-  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id4</span>,<span class="va">id5</span>,.drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>median_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,sd_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span><span class="op">)</span>,
-  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span>
-<span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q1</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span>
-<span class="co">#&gt; argument.</span>
-
-<span class="va">q1</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 6</span></span>
-<span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   1.58ms   1.65ms    600.      2.21MB      0  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      1.61ms   1.71ms    510.    663.62KB     51.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr      207.93ms 222.52ms      4.35    6.02MB     14.8</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span>  data.table <span class="op">=</span> <span class="va">DT</span><span class="op">[</span>,<span class="fu">.</span><span class="op">(</span>median_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,</span>
+<span>                     sd_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">id4</span>,<span class="va">id5</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span></span>
+<span>      by <span class="op">=</span> <span class="st">"id4,id5"</span>,</span>
+<span>      median_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,</span>
+<span>      sd_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id4</span>,<span class="va">id5</span>,.drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>median_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,sd_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q1</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id4'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span></span>
+<span><span class="va">q1</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
+<span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   1.97ms   2.08ms    437.      2.21MB     0   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      2.01ms   2.29ms    390.    658.98KB     0   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr      287.98ms 301.77ms      3.31    5.85MB     9.28</span></span></code></pre></div>
 <p>We could find that spent time of tidyfst and data.table are quite
 similar, but much less than dplyr.</p>
 </div>
@@ -257,25 +257,25 @@ similar, but much less than dplyr.</p>
 translation than <em>data.table</em>, but still performs much better
 than <em>dplyr</em>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span>
-  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span>,<span class="fu">.</span><span class="op">(</span>range_v1_v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">v1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">v2</span><span class="op">)</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id3</span><span class="op">]</span>,
-  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>
-    by <span class="op">=</span> <span class="va">id3</span>,
-    range_v1_v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">v1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">v2</span><span class="op">)</span>
-  <span class="op">)</span>,
-  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id3</span>,.drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>range_v1_v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">v1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">v2</span><span class="op">)</span><span class="op">)</span>,
-  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span>
-<span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q2</span>
-
-<span class="va">q2</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 6</span></span>
-<span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table  629.1us 676.05us     <span style="text-decoration: underline;">1</span>461.    92.9KB        0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst     690.2us    696us     <span style="text-decoration: underline;">1</span>427.    92.9KB        0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        3.63ms   3.85ms      256.   303.2KB        0</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span>  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span>,<span class="fu">.</span><span class="op">(</span>range_v1_v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">v1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">v2</span><span class="op">)</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id3</span><span class="op">]</span>,</span>
+<span>  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span></span>
+<span>    by <span class="op">=</span> <span class="va">id3</span>,</span>
+<span>    range_v1_v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">v1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">v2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id3</span>,.drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>range_v1_v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">v1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">v2</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q2</span></span>
+<span></span>
+<span><span class="va">q2</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
+<span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table  995.8µs   1.12ms      878.    92.9KB        0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      1.01ms   1.17ms      860.    92.9KB        0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        4.75ms   5.12ms      193.   304.7KB        0</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="q3">Q3<a class="anchor" aria-label="anchor" href="#q3"></a>
@@ -289,24 +289,24 @@ data.table codes to gain speed when you meet a bottomneck.<br><br> In
 the following example, we use the exact same syntax of
 <em>data.table</em> in <code><a href="../reference/dt.html">tidyfst::in_dt</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span>
-  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">v3</span><span class="op">)</span>,<span class="fu">.</span><span class="op">(</span>largest2_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">v3</span>,<span class="fl">2L</span><span class="op">)</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id6</span><span class="op">]</span>,
-  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="../reference/dt.html">in_dt</a></span><span class="op">(</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">v3</span><span class="op">)</span>,<span class="fu">.</span><span class="op">(</span>largest2_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">v3</span>,<span class="fl">2L</span><span class="op">)</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id6</span><span class="op">)</span>,
-  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id6</span>,largest2_v3 <span class="op">=</span> <span class="va">v3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">largest2_v3</span>,n <span class="op">=</span> <span class="fl">2</span>,with_ties <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span>
-<span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q3</span>
-
-<span class="va">q3</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 6</span></span>
-<span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   1.81ms   1.87ms     528.   396.38KB    58.7 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      1.95ms   2.02ms     493.   842.28KB     0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        19.1ms  19.63ms      51.2    1.66MB     5.69</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span>  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">v3</span><span class="op">)</span>,<span class="fu">.</span><span class="op">(</span>largest2_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">v3</span>,<span class="fl">2L</span><span class="op">)</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id6</span><span class="op">]</span>,</span>
+<span>  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="../reference/dt.html">in_dt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">v3</span><span class="op">)</span>,<span class="fu">.</span><span class="op">(</span>largest2_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">v3</span>,<span class="fl">2L</span><span class="op">)</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id6</span><span class="op">)</span>,</span>
+<span>  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id6</span>,largest2_v3 <span class="op">=</span> <span class="va">v3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">largest2_v3</span>,n <span class="op">=</span> <span class="fl">2</span>,with_ties <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q3</span></span>
+<span></span>
+<span><span class="va">q3</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
+<span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   2.61ms   3.44ms     299.   396.37KB     0   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      3.15ms   3.87ms     257.   842.27KB     0   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        24.9ms  25.72ms      38.6    1.72MB     9.65</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="q4">Q4<a class="anchor" aria-label="anchor" href="#q4"></a>
@@ -317,27 +317,27 @@ convenient than the <code>across</code> function in <em>dplyr</em>. It
 first choose the columns, then tell it what to do, and you can provide
 the “by” parameter to operate by groups (optional).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span>
-  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">.SD</span>,<span class="va">mean</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id4</span>,.SDcols <span class="op">=</span> <span class="va">v1</span><span class="op">:</span><span class="va">v3</span><span class="op">]</span>,
-  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span><span class="op">(</span>
-      <span class="va">v1</span><span class="op">:</span><span class="va">v3</span>,
-      <span class="va">mean</span>,
-      by <span class="op">=</span> <span class="va">id4</span>
-    <span class="op">)</span>,
-  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="va">v1</span><span class="op">:</span><span class="va">v3</span>,<span class="va">mean</span><span class="op">)</span><span class="op">)</span>,
-  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span>
-<span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q4</span>
-
-<span class="va">q4</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 6</span></span>
-<span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table  853.8us  900.8us     <span style="text-decoration: underline;">1</span>087.     335KB      0  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      2.25ms   2.33ms      429.     282KB      0  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        5.47ms   5.75ms      160.     612KB     17.8</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span>  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">.SD</span>,<span class="va">mean</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id4</span>,.SDcols <span class="op">=</span> <span class="va">v1</span><span class="op">:</span><span class="va">v3</span><span class="op">]</span>,</span>
+<span>  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span><span class="op">(</span></span>
+<span>      <span class="va">v1</span><span class="op">:</span><span class="va">v3</span>,</span>
+<span>      <span class="va">mean</span>,</span>
+<span>      by <span class="op">=</span> <span class="va">id4</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="va">v1</span><span class="op">:</span><span class="va">v3</span>,<span class="va">mean</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q4</span></span>
+<span></span>
+<span><span class="va">q4</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
+<span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   1.13ms   1.19ms      690.     334KB      0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      4.04ms   4.13ms      234.     307KB      0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        8.34ms   9.36ms      104.     620KB     11.6</span></span></code></pre></div>
 <p>Take a look at the performance, <em>tidyfst</em> still lies between
 <em>data.table</em> and <em>dplyr</em>.</p>
 </div>
@@ -349,49 +349,49 @@ and get the sum and count. Note that <em>tidyfst</em> is written in
 <em>data.table</em>, so it do not use <code><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n()</a></code> in <em>dplyr</em>
 but <code>.N</code> in <em>data.table</em> to get counts by group.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span>
-  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span>,<span class="fu">.</span><span class="op">(</span>v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,count <span class="op">=</span> <span class="va">.N</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id1</span><span class="op">:</span><span class="va">id6</span><span class="op">]</span>,
-  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span>
-      by <span class="op">=</span> <span class="va">id1</span><span class="op">:</span><span class="va">id6</span>,
-      v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,
-      count <span class="op">=</span> <span class="va">.N</span>
-    <span class="op">)</span>,
-  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id1</span>,<span class="va">id2</span>,<span class="va">id3</span>,<span class="va">id4</span>,<span class="va">id5</span>,<span class="va">id6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,
-  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span>
-<span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q5</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span>
-<span class="co">#&gt; override using the `.groups` argument.</span>
-
-<span class="va">q5</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 x 6</span></span>
-<span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   1.89ms   2.08ms    483.      1.03MB     0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      2.12ms   2.19ms    457.      1.03MB     0   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr      173.97ms 184.91ms      5.36    4.73MB     9.11</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span>  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span>,<span class="fu">.</span><span class="op">(</span>v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,count <span class="op">=</span> <span class="va">.N</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id1</span><span class="op">:</span><span class="va">id6</span><span class="op">]</span>,</span>
+<span>  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span></span>
+<span>      by <span class="op">=</span> <span class="va">id1</span><span class="op">:</span><span class="va">id6</span>,</span>
+<span>      v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,</span>
+<span>      count <span class="op">=</span> <span class="va">.N</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>  dplyr <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id1</span>,<span class="va">id2</span>,<span class="va">id3</span>,<span class="va">id4</span>,<span class="va">id5</span>,<span class="va">id6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  check <span class="op">=</span> <span class="cn">FALSE</span>,iterations <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">q5</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'id1', 'id2', 'id3', 'id4', 'id5'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span></span>
+<span><span class="va">q5</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
+<span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   2.81ms   2.88ms    314.      1.02MB     0   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      2.85ms   3.01ms    328.      1.02MB     0   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr       227.9ms 234.74ms      4.26    4.88MB     7.67</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="last-words">Last words<a class="anchor" aria-label="anchor" href="#last-words"></a>
@@ -412,40 +412,40 @@ verbs friendly, the innate syntax of <em>tidyfst</em> is more like
 <h2 id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.1.3 (2022-03-10)</span>
-<span class="co">#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)</span>
-<span class="co">#&gt; Running under: Windows 10 x64 (build 19044)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; locale:</span>
-<span class="co">#&gt; [1] LC_COLLATE=Chinese (Simplified)_China.936 </span>
-<span class="co">#&gt; [2] LC_CTYPE=Chinese (Simplified)_China.936   </span>
-<span class="co">#&gt; [3] LC_MONETARY=Chinese (Simplified)_China.936</span>
-<span class="co">#&gt; [4] LC_NUMERIC=C                              </span>
-<span class="co">#&gt; [5] LC_TIME=Chinese (Simplified)_China.936    </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attached base packages:</span>
-<span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] bench_1.1.2       dplyr_1.0.8       data.table_1.14.2 tidyfst_1.7.0    </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.8.3      pillar_1.7.0      bslib_0.3.1       compiler_4.1.3   </span>
-<span class="co">#&gt;  [5] jquerylib_0.1.4   tools_4.1.3       digest_0.6.29     tibble_3.1.6     </span>
-<span class="co">#&gt;  [9] jsonlite_1.8.0    evaluate_0.15     memoise_2.0.1     lifecycle_1.0.1  </span>
-<span class="co">#&gt; [13] fstcore_0.9.8     pkgconfig_2.0.3   rlang_1.0.2       DBI_1.1.2        </span>
-<span class="co">#&gt; [17] cli_3.2.0         rstudioapi_0.13   yaml_2.3.5        parallel_4.1.3   </span>
-<span class="co">#&gt; [21] pkgdown_2.0.2     xfun_0.30         fastmap_1.1.0     stringr_1.4.0    </span>
-<span class="co">#&gt; [25] knitr_1.37        desc_1.4.1        generics_0.1.3    fs_1.5.2         </span>
-<span class="co">#&gt; [29] sass_0.4.0        vctrs_0.3.8       systemfonts_1.0.4 tidyselect_1.1.2 </span>
-<span class="co">#&gt; [33] rprojroot_2.0.2   glue_1.6.2        R6_2.5.1          textshaping_0.3.6</span>
-<span class="co">#&gt; [37] fansi_1.0.2       profmem_0.6.0     rmarkdown_2.13    purrr_0.3.4      </span>
-<span class="co">#&gt; [41] magrittr_2.0.2    ellipsis_0.3.2    htmltools_0.5.2   assertthat_0.2.1 </span>
-<span class="co">#&gt; [45] fst_0.9.8         ragg_1.2.2        utf8_1.2.2        stringi_1.7.6    </span>
-<span class="co">#&gt; [49] cachem_1.0.6      crayon_1.5.1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; R version 4.2.2 (2022-10-31 ucrt)</span></span>
+<span><span class="co">#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)</span></span>
+<span><span class="co">#&gt; Running under: Windows 10 x64 (build 19044)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Matrix products: default</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; locale:</span></span>
+<span><span class="co">#&gt; [1] LC_COLLATE=Chinese (Simplified)_China.utf8 </span></span>
+<span><span class="co">#&gt; [2] LC_CTYPE=Chinese (Simplified)_China.utf8   </span></span>
+<span><span class="co">#&gt; [3] LC_MONETARY=Chinese (Simplified)_China.utf8</span></span>
+<span><span class="co">#&gt; [4] LC_NUMERIC=C                               </span></span>
+<span><span class="co">#&gt; [5] LC_TIME=Chinese (Simplified)_China.utf8    </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; attached base packages:</span></span>
+<span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; other attached packages:</span></span>
+<span><span class="co">#&gt; [1] bench_1.1.2       dplyr_1.0.10      data.table_1.14.2 tidyfst_1.7.5    </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span><span class="co">#&gt;  [1] Rcpp_1.0.9        bslib_0.4.1       compiler_4.2.2    pillar_1.8.1     </span></span>
+<span><span class="co">#&gt;  [5] jquerylib_0.1.4   tools_4.2.2       digest_0.6.30     tibble_3.1.8     </span></span>
+<span><span class="co">#&gt;  [9] jsonlite_1.8.3    evaluate_0.18     memoise_2.0.1     lifecycle_1.0.3  </span></span>
+<span><span class="co">#&gt; [13] fstcore_0.9.12    pkgconfig_2.0.3   rlang_1.0.6       DBI_1.1.3        </span></span>
+<span><span class="co">#&gt; [17] cli_3.4.1         rstudioapi_0.14   yaml_2.3.6        parallel_4.2.2   </span></span>
+<span><span class="co">#&gt; [21] pkgdown_2.0.6     xfun_0.35         fastmap_1.1.0     withr_2.5.0      </span></span>
+<span><span class="co">#&gt; [25] stringr_1.5.0     knitr_1.41        desc_1.4.2        generics_0.1.3   </span></span>
+<span><span class="co">#&gt; [29] fs_1.5.2          vctrs_0.5.1       sass_0.4.2        systemfonts_1.0.4</span></span>
+<span><span class="co">#&gt; [33] tidyselect_1.2.0  rprojroot_2.0.3   glue_1.6.2        R6_2.5.1         </span></span>
+<span><span class="co">#&gt; [37] textshaping_0.3.6 fansi_1.0.3       profmem_0.6.0     rmarkdown_2.18   </span></span>
+<span><span class="co">#&gt; [41] purrr_0.3.5       magrittr_2.0.3    htmltools_0.5.3   assertthat_0.2.1 </span></span>
+<span><span class="co">#&gt; [45] fst_0.9.8         ragg_1.2.4        utf8_1.2.2        stringi_1.7.8    </span></span>
+<span><span class="co">#&gt; [49] cachem_1.0.6</span></span></code></pre></div>
 </div>
   </div>
 
@@ -466,8 +466,7 @@ verbs friendly, the innate syntax of <em>tidyfst</em> is more like
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
