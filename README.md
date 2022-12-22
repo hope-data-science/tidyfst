@@ -98,7 +98,7 @@ iris[3:8,] %>%
 
 ## Cheat sheet
 
-<a href="docs/tidyfst_cheatsheet.pdf"><img src="tidyfst_cheatsheet.png"/></a>
+<a href="https://github.com/hope-data-science/tidyfst/blob/master/docs/tidyfst_cheatsheet.pdf"><img src="tidyfst_cheatsheet.png"/></a>
 
 ## Suggested citation
 

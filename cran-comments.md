@@ -1,5 +1,6 @@
 ## 1.7.6
-Fix error noted by CRAN.
+1.Fix error noted by CRAN.
+2.Remove `%notin%` function as data.table would provide it later.
 
 ## 1.7.5
 1.A request has been suggested and implemented, see <https://github.com/hope-data-science/tidyfst/pull/21>;.
