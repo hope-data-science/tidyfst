@@ -21,7 +21,7 @@ but with very different defaults on several parameters."><meta property="og:imag
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.6</span>
       </span>
     </div>
 
@@ -137,7 +137,7 @@ but with very different defaults on several parameters.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="https://juliasilge.github.io/widyr/reference/pairwise_count.html" class="external-link">pairwise_count</a></code></p></div>
+    <div class="dont-index"><p><code>pairwise_count</code></p></div>
     </div>
 
     <div id="ref-examples">
@@ -163,6 +163,17 @@ but with very different defaults on several parameters.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:      a      c     2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:      b      e     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:      b      f     1</span>
+<span class="r-in"><span><span class="fu">pairwise_count_dt</span><span class="op">(</span><span class="va">dat</span>,<span class="va">group</span>,<span class="va">letter</span>,upper <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        V1     V2     n</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;char&gt; &lt;char&gt; &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:      a      c     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2:      c      a     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3:      a      b     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4:      b      a     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5:      b      e     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6:      e      b     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7:      b      f     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8:      f      b     1</span>
 <span class="r-in"><span><span class="fu">pairwise_count_dt</span><span class="op">(</span><span class="va">dat</span>,<span class="va">group</span>,<span class="va">letter</span>,diag <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        V1     V2     n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;char&gt; &lt;char&gt; &lt;int&gt;</span>
