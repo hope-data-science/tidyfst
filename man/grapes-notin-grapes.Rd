@@ -12,7 +12,7 @@ x \%notin\% y
 \item{y}{vector or NULL}
 }
 \description{
-Inverse operation of match (`%in%`)
+Inverse operation of match.
 }
 \examples{
 
