@@ -1,3 +1,10 @@
+
+## 1.7.7
+1. Change the .onAttach message to help users accessing the citation info.
+2. Update function `dummy_dt` referring to `fastdummies::dummy_col` to make it faster.
+3. Add `maxth` and `minth` to get the nth highest/lowest value of a vector.
+4. Use `bibentry` for citation info.
+
 ## 1.7.6
 1.Fix error noted by CRAN.
 2.Remove `%notin%` function as data.table would provide it later.
