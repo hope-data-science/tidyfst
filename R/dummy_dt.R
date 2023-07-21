@@ -54,30 +54,48 @@ dummy_dt = function(.data,...,longname = TRUE){
 
 dummy_col = function(dt,col_name,longname){
 
-  dt[[col_name]] %>% unique() -> old_values
-  if(is.character(old_values) & anyNA(old_values) & "NA" %in% old_values){
-    dt[is.na(dt[[col_name]]),(col_name):="NA"]
-    dt[[col_name]] %>% unique() -> old_values
+  dt[is.na(dt[[col_name]]),(col_name) := "NA"]
+  dt[[col_name]] %>% unique() %>% as.character()-> old_names
+
+  if(longname) new_names = str_c(col_name,old_names,sep="_")
+  else new_names = old_names
+
+  dt[,(old_names):=0]
+
+  for (current_value in old_names) {
+    set(dt,i = which(chmatch(as.character(dt[[col_name]]),current_value,nomatch = 0) == 1L),j = current_value,value = 1L)
   }
 
-  dt[[col_name]] %>% unique() %>% as.character()-> old_names
-  old_names[is.na(old_values)] = "NA"
-  if(!longname){
-    dt[,(old_names):=lapply(old_values,function(x) {
-      sapply(as.list(dt[[col_name]]),FUN = identical,x)
-    })][
-      ,(old_names):=lapply(.SD,as.numeric),.SDcols = old_names
-    ][,(col_name):=NULL][]
-  }else{
-    str_c(col_name,old_names,sep="_") -> new_names
-    dt[,(old_names):=lapply(old_values,function(x) {
-      sapply(as.list(dt[[col_name]]),FUN = identical,x)
-    })]
-    setnames(dt,old = old_names,new = new_names)[
-      ,(new_names):=lapply(.SD,as.numeric),.SDcols = new_names
-    ][,(col_name):=NULL][]
-  }
+  setnames(dt,old = old_names,new = new_names)[]
 }
+
+# # this version is slow
+# dummy_col = function(dt,col_name,longname){
+#
+#   dt[[col_name]] %>% unique() -> old_values
+#   if(is.character(old_values) & anyNA(old_values) & "NA" %in% old_values){
+#     dt[is.na(dt[[col_name]]),(col_name):="NA"]
+#     dt[[col_name]] %>% unique() -> old_values
+#   }
+#
+#   dt[[col_name]] %>% unique() %>% as.character()-> old_names
+#   old_names[is.na(old_values)] = "NA"
+#   if(!longname){
+#     dt[,(old_names):=lapply(old_values,function(x) {
+#       sapply(as.list(dt[[col_name]]),FUN = identical,x)
+#     })][
+#       ,(old_names):=lapply(.SD,as.numeric),.SDcols = old_names
+#     ][,(col_name):=NULL][]
+#   }else{
+#     str_c(col_name,old_names,sep="_") -> new_names
+#     dt[,(old_names):=lapply(old_values,function(x) {
+#       sapply(as.list(dt[[col_name]]),FUN = identical,x)
+#     })]
+#     setnames(dt,old = old_names,new = new_names)[
+#       ,(new_names):=lapply(.SD,as.numeric),.SDcols = new_names
+#     ][,(col_name):=NULL][]
+#   }
+# }
 
 # # for this version, when there are NAs, yields an error
 # dummy_col = function(dt,col_name,longname){
