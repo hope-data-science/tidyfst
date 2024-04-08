@@ -14,7 +14,7 @@ test_that("count", {
 
   expect_equal(
     mtcars %>% count_dt(cyl,vs),
-    mt[,.(n = .N),by = "cyl,vs"][order(-n)]
+    mt[,.(n = .N),by = c("cyl","vs")][order(-n)]
   )
 
   expect_equal(

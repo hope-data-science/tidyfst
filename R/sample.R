@@ -28,8 +28,6 @@
 #' iris %>% sample_n_dt(2,by = "Species")
 #' iris %>% sample_frac_dt(.1,by = "Species")
 #'
-#' mtcars %>% sample_n_dt(1,by = "cyl,vs")
-#' # equals to
 #' mtcars %>% sample_n_dt(1,by = c("cyl","vs"))
 
 
