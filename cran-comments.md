@@ -1,4 +1,7 @@
 
+## 1.7.8
+1. Merge the request pulled recently(see <https://github.com/hope-data-science/tidyfst/pull/25>).
+
 ## 1.7.7
 1. Change the .onAttach message to help users accessing the citation info.
 2. Update function `dummy_dt` referring to `fastdummies::dummy_col` to make it faster.
