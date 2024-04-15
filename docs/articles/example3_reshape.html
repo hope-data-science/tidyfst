@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.8</span>
       </span>
     </div>
 
@@ -316,7 +316,7 @@ parameter names attached).</p>
 and has been used in tidyr too. We’ll try to do it in tidyfst in this
 example. If we have a data.frame as below:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">family</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="st">"family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3</span></span>
+<code class="sourceCode R"><span><span class="va">family</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="st">"family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3</span></span>
 <span><span class="st">1         30 1998-11-26 2000-01-29         NA             1             2            NA</span></span>
 <span><span class="st">2         27 1996-06-22         NA         NA             2            NA            NA</span></span>
 <span><span class="st">3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1</span></span>
@@ -351,7 +351,7 @@ example. If we have a data.frame as below:</p>
 <span><span class="co"># 13:         5         29 child1 2000-12-05      2</span></span>
 <span><span class="co"># 14:         5         29 child2 2005-02-28      1</span></span>
 <span><span class="co"># 15:         5         29 child3       &lt;NA&gt;   &lt;NA&gt;</span></span></code></pre></div>
-<p>The <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html" class="external-link">data.table::dcast</a></code> and
+<p>The <code><a href="https://rdatatable.gitlab.io/data.table/reference/dcast.data.table.html" class="external-link">data.table::dcast</a></code> and
 <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">tidyr::pivot_longer</a></code> could transfer it in one step, however,
 not so easy to understand. Here we’ll do it step by step to see what
 actually happens in this transfer.</p>
@@ -384,7 +384,7 @@ actually happens in this transfer.</p>
 then separate it, and wider it later. <em>tidyfst</em> is not going to
 support the complicated transfer in one step, because it might be easier
 to implement, but much harder to understand 3 procedures in 1 step. If
-you still prefer that way, use <code><a href="https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html" class="external-link">data.table::dcast</a></code> and
+you still prefer that way, use <code><a href="https://rdatatable.gitlab.io/data.table/reference/dcast.data.table.html" class="external-link">data.table::dcast</a></code> and
 <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">tidyr::pivot_longer</a></code> instead.</p>
 </div>
   </div>
@@ -406,7 +406,7 @@ you still prefer that way, use <code><a href="https://Rdatatable.gitlab.io/data.
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
       </footer>

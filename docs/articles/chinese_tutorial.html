@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.8</span>
       </span>
     </div>
 
@@ -133,14 +133,14 @@
 <span>                     to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2020-01-01"</span><span class="op">)</span>,</span>
 <span>                     by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">n1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">dat1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">[</span><span class="va">n1</span>, <span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">dat1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">[</span><span class="va">n1</span>, <span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">dat1</span><span class="op">[</span>, <span class="st">"dt"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">dtranges</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># 增加dt列</span></span>
 <span><span class="va">n2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dat1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dat1</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="va">dat1</span><span class="op">[</span><span class="va">n2</span>, <span class="st">"price"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span> <span class="co"># price列构造千分之一缺失值</span></span>
-<span><span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>dt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">dtranges</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dtranges</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span><span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>dt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">dtranges</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dtranges</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   price1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dtranges</span><span class="op">)</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">dat3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>dt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">dtranges</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dtranges</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span><span class="va">dat3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>dt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">dtranges</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dtranges</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   price2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dtranges</span><span class="op">)</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">dat1</span><span class="op">)</span></span>
@@ -257,7 +257,7 @@
 <span>      <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.010s elapsed (0.000s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.030s elapsed (0.000s cpu)"</span></span>
 <span><span class="va">r1_2</span></span>
 <span><span class="co">#&gt;               dt carat       cut color clarity depth table price     x</span></span>
 <span><span class="co">#&gt;           &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span></span>
@@ -287,7 +287,7 @@
 <span>  <span class="va">r2_1</span> <span class="op">&lt;-</span> <span class="va">dat1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">dat2</span>,by <span class="op">=</span> <span class="st">"dt"</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.000s elapsed (0.000s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.020s elapsed (0.020s cpu)"</span></span>
 <span><span class="va">r2_1</span></span>
 <span><span class="co">#&gt; Key: &lt;dt&gt;</span></span>
 <span><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span></span>
@@ -313,7 +313,7 @@
 <span>  <span class="va">mymerge</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="st">"dt"</span><span class="op">)</span></span>
 <span>  <span class="va">r2_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Reduce</a></span><span class="op">(</span><span class="va">mymerge</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">dat2</span>, <span class="va">dat3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.030s elapsed (0.030s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.030s elapsed (0.010s cpu)"</span></span>
 <span><span class="va">r2_2</span></span>
 <span><span class="co">#&gt; Key: &lt;dt&gt;</span></span>
 <span><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span></span>
@@ -371,7 +371,7 @@
 <span>              name <span class="op">=</span> <span class="st">"xyz"</span>,</span>
 <span>              value <span class="op">=</span> <span class="st">"xyzvalue"</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.020s elapsed (0.000s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.000s elapsed (0.000s cpu)"</span></span>
 <span></span>
 <span><span class="va">r3_2</span> </span>
 <span><span class="co">#&gt;               cut color    xyz xyzvalue</span></span>
@@ -432,7 +432,7 @@
 <span>           sd_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">price</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>           by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">cut</span>, <span class="va">color</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.060s elapsed (0.050s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.040s elapsed (0.020s cpu)"</span></span>
 <span></span>
 <span><span class="va">dat1</span></span>
 <span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y     z</span></span>
@@ -462,7 +462,7 @@
 <span>    <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="va">.N</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dat1</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 1.250s elapsed (1.220s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.740s elapsed (0.240s cpu)"</span></span>
 <span><span class="va">dat1</span></span>
 <span><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span></span>
 <span><span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span></span>
@@ -490,12 +490,12 @@
 <span>    <span class="fu"><a href="../reference/group_dt.html">group_dt</a></span><span class="op">(</span></span>
 <span>      by <span class="op">=</span> <span class="va">color</span>,</span>
 <span>      <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span><span class="op">(</span></span>
-<span>        MA10_price <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/froll.html" class="external-link">frollmean</a></span><span class="op">(</span><span class="va">price</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span>        MSD10_price <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/froll.html" class="external-link">frollapply</a></span><span class="op">(</span><span class="va">price</span>, <span class="fl">10</span>, FUN <span class="op">=</span> <span class="va">sd</span><span class="op">)</span></span>
+<span>        MA10_price <span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/froll.html" class="external-link">frollmean</a></span><span class="op">(</span><span class="va">price</span>, <span class="fl">10</span><span class="op">)</span>,</span>
+<span>        MSD10_price <span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/froll.html" class="external-link">frollapply</a></span><span class="op">(</span><span class="va">price</span>, <span class="fl">10</span>, FUN <span class="op">=</span> <span class="va">sd</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dat1</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.820s elapsed (0.780s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.540s elapsed (0.190s cpu)"</span></span>
 <span></span>
 <span><span class="va">dat1</span></span>
 <span><span class="co">#&gt;         color         dt carat       cut clarity depth table price     x</span></span>
@@ -519,9 +519,9 @@
 </h2>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.3.1 (2023-06-16 ucrt)</span></span>
+<span><span class="co">#&gt; R version 4.3.2 (2023-10-31 ucrt)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)</span></span>
-<span><span class="co">#&gt; Running under: Windows 10 x64 (build 19045)</span></span>
+<span><span class="co">#&gt; Running under: Windows 11 x64 (build 22631)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -540,23 +540,23 @@
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] tidyfst_1.7.7</span></span>
+<span><span class="co">#&gt; [1] tidyfst_1.7.8</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] gtable_0.3.3      jsonlite_1.8.7    dplyr_1.1.2       compiler_4.3.1   </span></span>
-<span><span class="co">#&gt;  [5] tidyselect_1.2.0  Rcpp_1.0.11       stringr_1.5.0     parallel_4.3.1   </span></span>
-<span><span class="co">#&gt;  [9] jquerylib_0.1.4   systemfonts_1.0.4 scales_1.2.1      textshaping_0.3.6</span></span>
-<span><span class="co">#&gt; [13] yaml_2.3.7        fastmap_1.1.1     ggplot2_3.4.2     R6_2.5.1         </span></span>
-<span><span class="co">#&gt; [17] generics_0.1.3    knitr_1.43        tibble_3.2.1      desc_1.4.2       </span></span>
-<span><span class="co">#&gt; [21] munsell_0.5.0     rprojroot_2.0.3   pillar_1.9.0      bslib_0.5.0      </span></span>
-<span><span class="co">#&gt; [25] rlang_1.1.1       utf8_1.2.3        cachem_1.0.8      stringi_1.7.12   </span></span>
-<span><span class="co">#&gt; [29] xfun_0.39         fs_1.6.2          sass_0.4.7        memoise_2.0.1    </span></span>
-<span><span class="co">#&gt; [33] cli_3.6.1         pkgdown_2.0.7     magrittr_2.0.3    digest_0.6.33    </span></span>
-<span><span class="co">#&gt; [37] grid_4.3.1        rstudioapi_0.15.0 fst_0.9.8         lifecycle_1.0.3  </span></span>
-<span><span class="co">#&gt; [41] vctrs_0.6.3       evaluate_0.21     glue_1.6.2        data.table_1.14.8</span></span>
-<span><span class="co">#&gt; [45] ragg_1.2.5        fansi_1.0.4       colorspace_2.1-0  fstcore_0.9.14   </span></span>
-<span><span class="co">#&gt; [49] rmarkdown_2.23    purrr_1.0.1       pkgconfig_2.0.3   tools_4.3.1      </span></span>
-<span><span class="co">#&gt; [53] htmltools_0.5.5</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] sass_0.4.7        utf8_1.2.3        generics_0.1.3    stringi_1.7.12   </span></span>
+<span><span class="co">#&gt;  [5] digest_0.6.33     magrittr_2.0.3    evaluate_0.22     grid_4.3.2       </span></span>
+<span><span class="co">#&gt;  [9] fastmap_1.1.1     rprojroot_2.0.3   jsonlite_1.8.7    purrr_1.0.2      </span></span>
+<span><span class="co">#&gt; [13] fansi_1.0.5       scales_1.2.1      textshaping_0.3.7 jquerylib_0.1.4  </span></span>
+<span><span class="co">#&gt; [17] cli_3.6.1         rlang_1.1.1       munsell_0.5.0     cachem_1.0.8     </span></span>
+<span><span class="co">#&gt; [21] yaml_2.3.7        tools_4.3.2       fst_0.9.8         parallel_4.3.2   </span></span>
+<span><span class="co">#&gt; [25] fstcore_0.9.14    memoise_2.0.1     dplyr_1.1.3       colorspace_2.1-0 </span></span>
+<span><span class="co">#&gt; [29] ggplot2_3.4.4     vctrs_0.6.3       R6_2.5.1          lifecycle_1.0.3  </span></span>
+<span><span class="co">#&gt; [33] stringr_1.5.0     fs_1.6.3          htmlwidgets_1.6.2 ragg_1.2.6       </span></span>
+<span><span class="co">#&gt; [37] pkgconfig_2.0.3   desc_1.4.2        pkgdown_2.0.8     bslib_0.5.1      </span></span>
+<span><span class="co">#&gt; [41] pillar_1.9.0      gtable_0.3.4      data.table_1.14.8 glue_1.6.2       </span></span>
+<span><span class="co">#&gt; [45] Rcpp_1.0.11       systemfonts_1.0.5 xfun_0.42         tibble_3.2.1     </span></span>
+<span><span class="co">#&gt; [49] tidyselect_1.2.0  rstudioapi_0.15.0 knitr_1.45        htmltools_0.5.6.1</span></span>
+<span><span class="co">#&gt; [53] rmarkdown_2.25    compiler_4.3.2</span></span></code></pre></div>
 </div>
   </div>
 
@@ -577,7 +577,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
       </footer>
