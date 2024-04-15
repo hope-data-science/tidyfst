@@ -62,7 +62,7 @@ test_that("use group by in tidyfst",{
       group_exe_dt(
         summarise_dt(mpg_sum = sum(mpg))
       ),
-    mt[,.(mpg_sum=sum(mpg)),keyby="cyl,am"],
+    mt[,.(mpg_sum=sum(mpg)),keyby=c("cyl","am")],
     check.attributes = FALSE
   )
   expect_equal(

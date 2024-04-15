@@ -60,7 +60,7 @@ iris \%>\% summarise_vars(-is.factor,min)
 iris \%>\% summarise_vars(1:4,min)
 
 iris \%>\% summarise_vars(is.numeric,min,by ="Species")
-mtcars \%>\% summarise_vars(is.numeric,mean,by = "vs,am")
+mtcars \%>\% summarise_vars(is.numeric,mean,by = c("vs", "am"))
 
 # use multiple functions on multiple columns
 iris \%>\%
