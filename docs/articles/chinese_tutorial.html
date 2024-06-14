@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.9</span>
       </span>
     </div>
 
@@ -144,20 +144,20 @@
 <span>                   price2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dtranges</span><span class="op">)</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">dat1</span><span class="op">)</span></span>
-<span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y     z</span></span>
-<span><span class="co">#&gt;         &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span></span>
-<span><span class="co">#&gt;      1:  2.23   Premium     J     VS2  61.0    58 14867  8.39  8.36  5.11</span></span>
-<span><span class="co">#&gt;      2:  0.46     Ideal     F     SI2  61.5    54   758  4.98  5.01  3.07</span></span>
-<span><span class="co">#&gt;      3:  0.70     Ideal     H    VVS1  60.9    57  3611  5.70  5.78  3.50</span></span>
-<span><span class="co">#&gt;      4:  1.50   Premium     F     VS2  61.5    58 14719  7.34  7.32  4.51</span></span>
-<span><span class="co">#&gt;      5:  0.40 Very Good     G      IF  61.0    59  1154  4.75  4.79  2.91</span></span>
-<span><span class="co">#&gt;     ---                                                                  </span></span>
-<span><span class="co">#&gt;  99996:  1.14     Ideal     F     VS2  61.4    56  8017  6.73  6.78  4.14</span></span>
-<span><span class="co">#&gt;  99997:  0.39     Ideal     F     SI1  61.8    55   886  4.70  4.72  2.91</span></span>
-<span><span class="co">#&gt;  99998:  2.00      Good     F     SI1  63.0    64 17869  7.67  7.76  4.86</span></span>
-<span><span class="co">#&gt;  99999:  1.00   Premium     H     VS2  59.7    59  5139  6.57  6.52  3.91</span></span>
-<span><span class="co">#&gt; 100000:  0.30     Ideal     G    VVS2  60.6    57   878  4.35  4.33  2.63</span></span>
-<span><span class="co">#&gt; 1 variable not shown: [dt &lt;Date&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y</span></span>
+<span><span class="co">#&gt;         &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span></span>
+<span><span class="co">#&gt;      1:  2.23   Premium     J     VS2  61.0    58 14867  8.39  8.36</span></span>
+<span><span class="co">#&gt;      2:  0.46     Ideal     F     SI2  61.5    54   758  4.98  5.01</span></span>
+<span><span class="co">#&gt;      3:  0.70     Ideal     H    VVS1  60.9    57  3611  5.70  5.78</span></span>
+<span><span class="co">#&gt;      4:  1.50   Premium     F     VS2  61.5    58 14719  7.34  7.32</span></span>
+<span><span class="co">#&gt;      5:  0.40 Very Good     G      IF  61.0    59  1154  4.75  4.79</span></span>
+<span><span class="co">#&gt;     ---                                                            </span></span>
+<span><span class="co">#&gt;  99996:  1.14     Ideal     F     VS2  61.4    56  8017  6.73  6.78</span></span>
+<span><span class="co">#&gt;  99997:  0.39     Ideal     F     SI1  61.8    55   886  4.70  4.72</span></span>
+<span><span class="co">#&gt;  99998:  2.00      Good     F     SI1  63.0    64 17869  7.67  7.76</span></span>
+<span><span class="co">#&gt;  99999:  1.00   Premium     H     VS2  59.7    59  5139  6.57  6.52</span></span>
+<span><span class="co">#&gt; 100000:  0.30     Ideal     G    VVS2  60.6    57   878  4.35  4.33</span></span>
+<span><span class="co">#&gt; 2 variable(s) not shown: [z &lt;num&gt;, dt &lt;Date&gt;]</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="基础">基础<a class="anchor" aria-label="anchor" href="#%E5%9F%BA%E7%A1%80"></a>
@@ -169,20 +169,20 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat1</span> <span class="op">=</span> <span class="fu"><a href="../reference/arrange_dt.html">arrange_dt</a></span><span class="op">(</span><span class="va">dat1</span>,<span class="va">dt</span><span class="op">)</span></span>
 <span><span class="va">dat1</span></span>
-<span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y     z</span></span>
-<span><span class="co">#&gt;         &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span></span>
-<span><span class="co">#&gt;      1:  0.34 Very Good     H     VS2  62.4  60.0   537  4.41  4.44  2.76</span></span>
-<span><span class="co">#&gt;      2:  0.30      Good     G     VS1  63.6  57.0   776  4.26  4.23  2.70</span></span>
-<span><span class="co">#&gt;      3:  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69  6.66  4.10</span></span>
-<span><span class="co">#&gt;      4:  1.00   Premium     E     SI1  59.1  58.0  4805  6.52  6.44  3.83</span></span>
-<span><span class="co">#&gt;      5:  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92  5.03  3.28</span></span>
-<span><span class="co">#&gt;     ---                                                                  </span></span>
-<span><span class="co">#&gt;  99996:  0.32     Ideal     J     VS1  62.0  54.7   442  4.39  4.42  2.73</span></span>
-<span><span class="co">#&gt;  99997:  0.33     Ideal     G     VS2  62.5  57.0   743  4.41  4.39  2.75</span></span>
-<span><span class="co">#&gt;  99998:  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19  2.58</span></span>
-<span><span class="co">#&gt;  99999:  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30  2.66</span></span>
-<span><span class="co">#&gt; 100000:  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40  2.74</span></span>
-<span><span class="co">#&gt; 1 variable not shown: [dt &lt;Date&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y</span></span>
+<span><span class="co">#&gt;         &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span></span>
+<span><span class="co">#&gt;      1:  0.34 Very Good     H     VS2  62.4  60.0   537  4.41  4.44</span></span>
+<span><span class="co">#&gt;      2:  0.30      Good     G     VS1  63.6  57.0   776  4.26  4.23</span></span>
+<span><span class="co">#&gt;      3:  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69  6.66</span></span>
+<span><span class="co">#&gt;      4:  1.00   Premium     E     SI1  59.1  58.0  4805  6.52  6.44</span></span>
+<span><span class="co">#&gt;      5:  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92  5.03</span></span>
+<span><span class="co">#&gt;     ---                                                            </span></span>
+<span><span class="co">#&gt;  99996:  0.32     Ideal     J     VS1  62.0  54.7   442  4.39  4.42</span></span>
+<span><span class="co">#&gt;  99997:  0.33     Ideal     G     VS2  62.5  57.0   743  4.41  4.39</span></span>
+<span><span class="co">#&gt;  99998:  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19</span></span>
+<span><span class="co">#&gt;  99999:  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30</span></span>
+<span><span class="co">#&gt; 100000:  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40</span></span>
+<span><span class="co">#&gt; 2 variable(s) not shown: [z &lt;num&gt;, dt &lt;Date&gt;]</span></span></code></pre></div>
 <p>那么，现在dat1的数据就按照日期排好序了。</p>
 </div>
 <div class="section level3">
@@ -257,7 +257,7 @@
 <span>      <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.030s elapsed (0.000s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.020s elapsed (0.000s cpu)"</span></span>
 <span><span class="va">r1_2</span></span>
 <span><span class="co">#&gt;               dt carat       cut color clarity depth table price     x</span></span>
 <span><span class="co">#&gt;           &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span></span>
@@ -272,7 +272,7 @@
 <span><span class="co">#&gt; 3286: 2019-12-30  1.55 Very Good     H     VS2  63.3    56 10546  7.38</span></span>
 <span><span class="co">#&gt; 3287: 2019-12-31  1.51 Very Good     F    VVS2  63.1    56 17317  7.32</span></span>
 <span><span class="co">#&gt; 3288: 2020-01-01  2.04   Premium     J     VS2  63.0    58 13734  8.02</span></span>
-<span><span class="co">#&gt; 2 variables not shown: [y &lt;num&gt;, z &lt;num&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt; 2 variable(s) not shown: [y &lt;num&gt;, z &lt;num&gt;]</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -287,7 +287,7 @@
 <span>  <span class="va">r2_1</span> <span class="op">&lt;-</span> <span class="va">dat1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">dat2</span>,by <span class="op">=</span> <span class="st">"dt"</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.020s elapsed (0.020s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.000s elapsed (0.000s cpu)"</span></span>
 <span><span class="va">r2_1</span></span>
 <span><span class="co">#&gt; Key: &lt;dt&gt;</span></span>
 <span><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span></span>
@@ -303,7 +303,7 @@
 <span><span class="co">#&gt;  99998: 2020-01-01  0.28 Very Good     I     VS2  61.9  57.0   379  4.16</span></span>
 <span><span class="co">#&gt;  99999: 2020-01-01  0.30     Ideal     G     VS2  62.0  56.0   556  4.28</span></span>
 <span><span class="co">#&gt; 100000: 2020-01-01  0.32     Ideal     F     VS2  62.4  54.0   645  4.38</span></span>
-<span><span class="co">#&gt; 3 variables not shown: [y &lt;num&gt;, z &lt;num&gt;, price1 &lt;int&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt; 3 variable(s) not shown: [y &lt;num&gt;, z &lt;num&gt;, price1 &lt;int&gt;]</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="多重join">2.多重join<a class="anchor" aria-label="anchor" href="#%E5%A4%9A%E9%87%8Djoin"></a>
@@ -313,7 +313,7 @@
 <span>  <span class="va">mymerge</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="st">"dt"</span><span class="op">)</span></span>
 <span>  <span class="va">r2_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Reduce</a></span><span class="op">(</span><span class="va">mymerge</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">dat2</span>, <span class="va">dat3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.030s elapsed (0.010s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.020s elapsed (0.000s cpu)"</span></span>
 <span><span class="va">r2_2</span></span>
 <span><span class="co">#&gt; Key: &lt;dt&gt;</span></span>
 <span><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span></span>
@@ -329,7 +329,7 @@
 <span><span class="co">#&gt;  99998: 2020-01-01  0.28 Very Good     I     VS2  61.9  57.0   379  4.16</span></span>
 <span><span class="co">#&gt;  99999: 2020-01-01  0.30     Ideal     G     VS2  62.0  56.0   556  4.28</span></span>
 <span><span class="co">#&gt; 100000: 2020-01-01  0.32     Ideal     F     VS2  62.4  54.0   645  4.38</span></span>
-<span><span class="co">#&gt; 4 variables not shown: [y &lt;num&gt;, z &lt;num&gt;, price1 &lt;int&gt;, price2 &lt;int&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt; 4 variable(s) not shown: [y &lt;num&gt;, z &lt;num&gt;, price1 &lt;int&gt;, price2 &lt;int&gt;]</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -348,7 +348,7 @@
 <span>             name <span class="op">=</span> <span class="st">"color"</span>,</span>
 <span>             fun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mean1</span>,<span class="va">max1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.000s elapsed (0.000s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.030s elapsed (0.000s cpu)"</span></span>
 <span><span class="va">r3_1</span></span>
 <span><span class="co">#&gt; Key: &lt;cut&gt;</span></span>
 <span><span class="co">#&gt;          cut depth_mean1_D depth_mean1_E depth_mean1_F depth_mean1_G</span></span>
@@ -358,7 +358,7 @@
 <span><span class="co">#&gt; 3: Very Good      61.70454      61.73751      61.73138      61.83043</span></span>
 <span><span class="co">#&gt; 4:   Premium      61.18875      61.16850      61.25098      61.27894</span></span>
 <span><span class="co">#&gt; 5:     Ideal      61.67241      61.68693      61.65616      61.70585</span></span>
-<span><span class="co">#&gt; 24 variables not shown: [depth_mean1_H &lt;num&gt;, depth_mean1_I &lt;num&gt;, depth_mean1_J &lt;num&gt;, price_mean1_D &lt;num&gt;, price_mean1_E &lt;num&gt;, price_mean1_F &lt;num&gt;, price_mean1_G &lt;num&gt;, price_mean1_H &lt;num&gt;, price_mean1_I &lt;num&gt;, price_mean1_J &lt;num&gt;, ...]</span></span></code></pre></div>
+<span><span class="co">#&gt; 24 variable(s) not shown: [depth_mean1_H &lt;num&gt;, depth_mean1_I &lt;num&gt;, depth_mean1_J &lt;num&gt;, price_mean1_D &lt;num&gt;, price_mean1_E &lt;num&gt;, price_mean1_F &lt;num&gt;, price_mean1_G &lt;num&gt;, price_mean1_H &lt;num&gt;, price_mean1_I &lt;num&gt;, price_mean1_J &lt;num&gt;, ...]</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="宽表转长表">2.宽表转长表<a class="anchor" aria-label="anchor" href="#%E5%AE%BD%E8%A1%A8%E8%BD%AC%E9%95%BF%E8%A1%A8"></a>
@@ -401,22 +401,22 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/sys_time_print.html">sys_time_print</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>  <span class="va">dat1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/missing.html">fill_na_dt</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dat1</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.000s elapsed (0.000s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.020s elapsed (0.000s cpu)"</span></span>
 <span><span class="va">dat1</span></span>
-<span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y     z</span></span>
-<span><span class="co">#&gt;         &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span></span>
-<span><span class="co">#&gt;      1:  0.34 Very Good     H     VS2  62.4  60.0   537  4.41  4.44  2.76</span></span>
-<span><span class="co">#&gt;      2:  0.30      Good     G     VS1  63.6  57.0   776  4.26  4.23  2.70</span></span>
-<span><span class="co">#&gt;      3:  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69  6.66  4.10</span></span>
-<span><span class="co">#&gt;      4:  1.00   Premium     E     SI1  59.1  58.0  4805  6.52  6.44  3.83</span></span>
-<span><span class="co">#&gt;      5:  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92  5.03  3.28</span></span>
-<span><span class="co">#&gt;     ---                                                                  </span></span>
-<span><span class="co">#&gt;  99996:  0.32     Ideal     J     VS1  62.0  54.7   442  4.39  4.42  2.73</span></span>
-<span><span class="co">#&gt;  99997:  0.33     Ideal     G     VS2  62.5  57.0   743  4.41  4.39  2.75</span></span>
-<span><span class="co">#&gt;  99998:  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19  2.58</span></span>
-<span><span class="co">#&gt;  99999:  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30  2.66</span></span>
-<span><span class="co">#&gt; 100000:  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40  2.74</span></span>
-<span><span class="co">#&gt; 1 variable not shown: [dt &lt;Date&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y</span></span>
+<span><span class="co">#&gt;         &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span></span>
+<span><span class="co">#&gt;      1:  0.34 Very Good     H     VS2  62.4  60.0   537  4.41  4.44</span></span>
+<span><span class="co">#&gt;      2:  0.30      Good     G     VS1  63.6  57.0   776  4.26  4.23</span></span>
+<span><span class="co">#&gt;      3:  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69  6.66</span></span>
+<span><span class="co">#&gt;      4:  1.00   Premium     E     SI1  59.1  58.0  4805  6.52  6.44</span></span>
+<span><span class="co">#&gt;      5:  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92  5.03</span></span>
+<span><span class="co">#&gt;     ---                                                            </span></span>
+<span><span class="co">#&gt;  99996:  0.32     Ideal     J     VS1  62.0  54.7   442  4.39  4.42</span></span>
+<span><span class="co">#&gt;  99997:  0.33     Ideal     G     VS2  62.5  57.0   743  4.41  4.39</span></span>
+<span><span class="co">#&gt;  99998:  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19</span></span>
+<span><span class="co">#&gt;  99999:  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30</span></span>
+<span><span class="co">#&gt; 100000:  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40</span></span>
+<span><span class="co">#&gt; 2 variable(s) not shown: [z &lt;num&gt;, dt &lt;Date&gt;]</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="添加子维度聚合结果为新列">添加子维度聚合结果为新列<a class="anchor" aria-label="anchor" href="#%E6%B7%BB%E5%8A%A0%E5%AD%90%E7%BB%B4%E5%BA%A6%E8%81%9A%E5%90%88%E7%BB%93%E6%9E%9C%E4%B8%BA%E6%96%B0%E5%88%97"></a>
@@ -432,23 +432,23 @@
 <span>           sd_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">price</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>           by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">cut</span>, <span class="va">color</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.040s elapsed (0.020s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.060s elapsed (0.010s cpu)"</span></span>
 <span></span>
 <span><span class="va">dat1</span></span>
-<span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y     z</span></span>
-<span><span class="co">#&gt;         &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span></span>
-<span><span class="co">#&gt;      1:  0.34 Very Good     H     VS2  62.4  60.0   537  4.41  4.44  2.76</span></span>
-<span><span class="co">#&gt;      2:  0.30      Good     G     VS1  63.6  57.0   776  4.26  4.23  2.70</span></span>
-<span><span class="co">#&gt;      3:  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69  6.66  4.10</span></span>
-<span><span class="co">#&gt;      4:  1.00   Premium     E     SI1  59.1  58.0  4805  6.52  6.44  3.83</span></span>
-<span><span class="co">#&gt;      5:  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92  5.03  3.28</span></span>
-<span><span class="co">#&gt;     ---                                                                  </span></span>
-<span><span class="co">#&gt;  99996:  0.32     Ideal     J     VS1  62.0  54.7   442  4.39  4.42  2.73</span></span>
-<span><span class="co">#&gt;  99997:  0.33     Ideal     G     VS2  62.5  57.0   743  4.41  4.39  2.75</span></span>
-<span><span class="co">#&gt;  99998:  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19  2.58</span></span>
-<span><span class="co">#&gt;  99999:  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30  2.66</span></span>
-<span><span class="co">#&gt; 100000:  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40  2.74</span></span>
-<span><span class="co">#&gt; 1 variable not shown: [dt &lt;Date&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y</span></span>
+<span><span class="co">#&gt;         &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span></span>
+<span><span class="co">#&gt;      1:  0.34 Very Good     H     VS2  62.4  60.0   537  4.41  4.44</span></span>
+<span><span class="co">#&gt;      2:  0.30      Good     G     VS1  63.6  57.0   776  4.26  4.23</span></span>
+<span><span class="co">#&gt;      3:  1.12     Ideal     F    VVS2  61.4  57.0  9634  6.69  6.66</span></span>
+<span><span class="co">#&gt;      4:  1.00   Premium     E     SI1  59.1  58.0  4805  6.52  6.44</span></span>
+<span><span class="co">#&gt;      5:  0.50      Fair     D    VVS1  65.9  64.0  1792  4.92  5.03</span></span>
+<span><span class="co">#&gt;     ---                                                            </span></span>
+<span><span class="co">#&gt;  99996:  0.32     Ideal     J     VS1  62.0  54.7   442  4.39  4.42</span></span>
+<span><span class="co">#&gt;  99997:  0.33     Ideal     G     VS2  62.5  57.0   743  4.41  4.39</span></span>
+<span><span class="co">#&gt;  99998:  0.28 Very Good     I     VS2  61.9  57.0   379  4.16  4.19</span></span>
+<span><span class="co">#&gt;  99999:  0.30     Ideal     G     VS2  62.0  56.0   556  4.28  4.30</span></span>
+<span><span class="co">#&gt; 100000:  0.32     Ideal     F     VS2  62.4  54.0   645  4.38  4.40</span></span>
+<span><span class="co">#&gt; 2 variable(s) not shown: [z &lt;num&gt;, dt &lt;Date&gt;]</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="以dat1为例以dt分组添加一列序号id">2.以dat1为例，以dt分组添加一列序号id<a class="anchor" aria-label="anchor" href="#%E4%BB%A5dat1%E4%B8%BA%E4%BE%8B%E4%BB%A5dt%E5%88%86%E7%BB%84%E6%B7%BB%E5%8A%A0%E4%B8%80%E5%88%97%E5%BA%8F%E5%8F%B7id"></a>
@@ -462,7 +462,7 @@
 <span>    <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="va">.N</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dat1</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.740s elapsed (0.240s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.780s elapsed (0.230s cpu)"</span></span>
 <span><span class="va">dat1</span></span>
 <span><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span></span>
 <span><span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span></span>
@@ -477,7 +477,7 @@
 <span><span class="co">#&gt;  99998: 2020-01-01  0.28 Very Good     I     VS2  61.9  57.0   379  4.16</span></span>
 <span><span class="co">#&gt;  99999: 2020-01-01  0.30     Ideal     G     VS2  62.0  56.0   556  4.28</span></span>
 <span><span class="co">#&gt; 100000: 2020-01-01  0.32     Ideal     F     VS2  62.4  54.0   645  4.38</span></span>
-<span><span class="co">#&gt; 3 variables not shown: [y &lt;num&gt;, z &lt;num&gt;, id &lt;int&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt; 3 variable(s) not shown: [y &lt;num&gt;, z &lt;num&gt;, id &lt;int&gt;]</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -495,7 +495,7 @@
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dat1</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.540s elapsed (0.190s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.410s elapsed (0.050s cpu)"</span></span>
 <span></span>
 <span><span class="va">dat1</span></span>
 <span><span class="co">#&gt;         color         dt carat       cut clarity depth table price     x</span></span>
@@ -511,7 +511,7 @@
 <span><span class="co">#&gt;  99998:     I 2019-12-31  0.30     Ideal     SI1  61.3    56   506  4.33</span></span>
 <span><span class="co">#&gt;  99999:     I 2020-01-01  1.22   Premium     VS2  62.3    59  5832  6.79</span></span>
 <span><span class="co">#&gt; 100000:     I 2020-01-01  0.28 Very Good     VS2  61.9    57   379  4.16</span></span>
-<span><span class="co">#&gt; 5 variables not shown: [y &lt;num&gt;, z &lt;num&gt;, id &lt;int&gt;, MA10_price &lt;num&gt;, MSD10_price &lt;num&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt; 5 variable(s) not shown: [y &lt;num&gt;, z &lt;num&gt;, id &lt;int&gt;, MA10_price &lt;num&gt;, MSD10_price &lt;num&gt;]</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -519,8 +519,8 @@
 </h2>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.3.2 (2023-10-31 ucrt)</span></span>
-<span><span class="co">#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)</span></span>
+<span><span class="co">#&gt; R version 4.4.0 (2024-04-24 ucrt)</span></span>
+<span><span class="co">#&gt; Platform: x86_64-w64-mingw32/x64</span></span>
 <span><span class="co">#&gt; Running under: Windows 11 x64 (build 22631)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
@@ -540,23 +540,23 @@
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] tidyfst_1.7.8</span></span>
+<span><span class="co">#&gt; [1] tidyfst_1.7.9</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] sass_0.4.7        utf8_1.2.3        generics_0.1.3    stringi_1.7.12   </span></span>
-<span><span class="co">#&gt;  [5] digest_0.6.33     magrittr_2.0.3    evaluate_0.22     grid_4.3.2       </span></span>
-<span><span class="co">#&gt;  [9] fastmap_1.1.1     rprojroot_2.0.3   jsonlite_1.8.7    purrr_1.0.2      </span></span>
-<span><span class="co">#&gt; [13] fansi_1.0.5       scales_1.2.1      textshaping_0.3.7 jquerylib_0.1.4  </span></span>
-<span><span class="co">#&gt; [17] cli_3.6.1         rlang_1.1.1       munsell_0.5.0     cachem_1.0.8     </span></span>
-<span><span class="co">#&gt; [21] yaml_2.3.7        tools_4.3.2       fst_0.9.8         parallel_4.3.2   </span></span>
-<span><span class="co">#&gt; [25] fstcore_0.9.14    memoise_2.0.1     dplyr_1.1.3       colorspace_2.1-0 </span></span>
-<span><span class="co">#&gt; [29] ggplot2_3.4.4     vctrs_0.6.3       R6_2.5.1          lifecycle_1.0.3  </span></span>
-<span><span class="co">#&gt; [33] stringr_1.5.0     fs_1.6.3          htmlwidgets_1.6.2 ragg_1.2.6       </span></span>
-<span><span class="co">#&gt; [37] pkgconfig_2.0.3   desc_1.4.2        pkgdown_2.0.8     bslib_0.5.1      </span></span>
-<span><span class="co">#&gt; [41] pillar_1.9.0      gtable_0.3.4      data.table_1.14.8 glue_1.6.2       </span></span>
-<span><span class="co">#&gt; [45] Rcpp_1.0.11       systemfonts_1.0.5 xfun_0.42         tibble_3.2.1     </span></span>
-<span><span class="co">#&gt; [49] tidyselect_1.2.0  rstudioapi_0.15.0 knitr_1.45        htmltools_0.5.6.1</span></span>
-<span><span class="co">#&gt; [53] rmarkdown_2.25    compiler_4.3.2</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] gtable_0.3.5      jsonlite_1.8.8    dplyr_1.1.4       compiler_4.4.0   </span></span>
+<span><span class="co">#&gt;  [5] tidyselect_1.2.1  Rcpp_1.0.12       stringr_1.5.1     parallel_4.4.0   </span></span>
+<span><span class="co">#&gt;  [9] jquerylib_0.1.4   systemfonts_1.1.0 scales_1.3.0      textshaping_0.3.7</span></span>
+<span><span class="co">#&gt; [13] yaml_2.3.8        fastmap_1.2.0     ggplot2_3.5.1     R6_2.5.1         </span></span>
+<span><span class="co">#&gt; [17] generics_0.1.3    knitr_1.46        htmlwidgets_1.6.4 tibble_3.2.1     </span></span>
+<span><span class="co">#&gt; [21] desc_1.4.3        munsell_0.5.1     pillar_1.9.0      bslib_0.7.0      </span></span>
+<span><span class="co">#&gt; [25] rlang_1.1.3       utf8_1.2.4        cachem_1.1.0      stringi_1.8.3    </span></span>
+<span><span class="co">#&gt; [29] xfun_0.43         fs_1.6.4          sass_0.4.9        memoise_2.0.1    </span></span>
+<span><span class="co">#&gt; [33] cli_3.6.2         pkgdown_2.0.9     magrittr_2.0.3    digest_0.6.35    </span></span>
+<span><span class="co">#&gt; [37] grid_4.4.0        rstudioapi_0.16.0 fst_0.9.8         lifecycle_1.0.4  </span></span>
+<span><span class="co">#&gt; [41] vctrs_0.6.5       evaluate_0.23     glue_1.7.0        data.table_1.15.4</span></span>
+<span><span class="co">#&gt; [45] ragg_1.3.0        fansi_1.0.6       colorspace_2.1-0  fstcore_0.9.18   </span></span>
+<span><span class="co">#&gt; [49] rmarkdown_2.27    purrr_1.0.2       pkgconfig_2.0.3   tools_4.4.0      </span></span>
+<span><span class="co">#&gt; [53] htmltools_0.5.8.1</span></span></code></pre></div>
 </div>
   </div>
 
@@ -577,7 +577,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>

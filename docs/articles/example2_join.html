@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.9</span>
       </span>
     </div>
 
@@ -126,7 +126,6 @@ load the packages we need and get some data.</p>
 <span><span class="co">#&gt; To acknowledge our work, please cite the package:</span></span>
 <span><span class="co">#&gt; Huang et al., (2020). tidyfst: Tidy Verbs for Fast Data Manipulation. Journal of Open Source Software, 5(52), 2388, https://doi.org/10.21105/joss.02388</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13" class="external-link">nycflights13</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'nycflights13' was built under R version 4.3.3</span></span>
 <span></span>
 <span><span class="va">flights2</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/select.html">select_dt</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">month</span>,<span class="va">day</span>, <span class="va">hour</span>, <span class="va">origin</span>, <span class="va">dest</span>, <span class="va">tailnum</span>, <span class="va">carrier</span><span class="op">)</span></span></code></pre></div>
@@ -149,7 +148,7 @@ load the packages we need and get some data.</p>
 <span><span class="co">#&gt; 336774:      YV  2013     9    30    16    LGA    IAD  N510MJ</span></span>
 <span><span class="co">#&gt; 336775:      YV  2013     9    30    17    LGA    CLT  N905FJ</span></span>
 <span><span class="co">#&gt; 336776:      YV  2013     9    30    20    LGA    CLT  N924FJ</span></span>
-<span><span class="co">#&gt; 1 variable not shown: [name &lt;char&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 variable(s) not shown: [name &lt;char&gt;]</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="controlling-how-the-tables-are-matched">Controlling how the tables are matched<a class="anchor" aria-label="anchor" href="#controlling-how-the-tables-are-matched"></a>
 </h2>
@@ -158,36 +157,36 @@ load the packages we need and get some data.</p>
 <code class="sourceCode R"><span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">weather</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining by: year,month,day,hour,origin</span></span>
 <span><span class="co">#&gt; Key: &lt;year, month, day, hour, origin&gt;</span></span>
-<span><span class="co">#&gt;          year month   day  hour origin   dest tailnum carrier  temp  dewp</span></span>
-<span><span class="co">#&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;char&gt;  &lt;char&gt;  &lt;char&gt; &lt;num&gt; &lt;num&gt;</span></span>
-<span><span class="co">#&gt;      1:  2013     1     1     5    EWR    IAH  N14228      UA 39.02 28.04</span></span>
-<span><span class="co">#&gt;      2:  2013     1     1     5    EWR    ORD  N39463      UA 39.02 28.04</span></span>
-<span><span class="co">#&gt;      3:  2013     1     1     5    JFK    MIA  N619AA      AA 39.02 26.96</span></span>
-<span><span class="co">#&gt;      4:  2013     1     1     5    JFK    BQN  N804JB      B6 39.02 26.96</span></span>
-<span><span class="co">#&gt;      5:  2013     1     1     5    JFK    BOS  N708JB      B6 39.02 26.96</span></span>
-<span><span class="co">#&gt;     ---                                                                  </span></span>
-<span><span class="co">#&gt; 336772:  2013    12    31    23    EWR    SJU  N651JB      B6    NA    NA</span></span>
-<span><span class="co">#&gt; 336773:  2013    12    31    23    JFK    BQN  N566JB      B6    NA    NA</span></span>
-<span><span class="co">#&gt; 336774:  2013    12    31    23    JFK    SJU  N713TW      DL    NA    NA</span></span>
-<span><span class="co">#&gt; 336775:  2013    12    31    23    JFK    SJU  N509JB      B6    NA    NA</span></span>
-<span><span class="co">#&gt; 336776:  2013    12    31    23    JFK    PSE  N665JB      B6    NA    NA</span></span>
-<span><span class="co">#&gt; 8 variables not shown: [humid &lt;num&gt;, wind_dir &lt;num&gt;, wind_speed &lt;num&gt;, wind_gust &lt;num&gt;, precip &lt;num&gt;, pressure &lt;num&gt;, visib &lt;num&gt;, time_hour &lt;POSc&gt;]</span></span>
+<span><span class="co">#&gt;          year month   day  hour origin   dest tailnum carrier  temp</span></span>
+<span><span class="co">#&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;char&gt; &lt;char&gt;  &lt;char&gt;  &lt;char&gt; &lt;num&gt;</span></span>
+<span><span class="co">#&gt;      1:  2013     1     1     5    EWR    IAH  N14228      UA 39.02</span></span>
+<span><span class="co">#&gt;      2:  2013     1     1     5    EWR    ORD  N39463      UA 39.02</span></span>
+<span><span class="co">#&gt;      3:  2013     1     1     5    JFK    MIA  N619AA      AA 39.02</span></span>
+<span><span class="co">#&gt;      4:  2013     1     1     5    JFK    BQN  N804JB      B6 39.02</span></span>
+<span><span class="co">#&gt;      5:  2013     1     1     5    JFK    BOS  N708JB      B6 39.02</span></span>
+<span><span class="co">#&gt;     ---                                                            </span></span>
+<span><span class="co">#&gt; 336772:  2013    12    31    23    EWR    SJU  N651JB      B6    NA</span></span>
+<span><span class="co">#&gt; 336773:  2013    12    31    23    JFK    BQN  N566JB      B6    NA</span></span>
+<span><span class="co">#&gt; 336774:  2013    12    31    23    JFK    SJU  N713TW      DL    NA</span></span>
+<span><span class="co">#&gt; 336775:  2013    12    31    23    JFK    SJU  N509JB      B6    NA</span></span>
+<span><span class="co">#&gt; 336776:  2013    12    31    23    JFK    PSE  N665JB      B6    NA</span></span>
+<span><span class="co">#&gt; 9 variable(s) not shown: [dewp &lt;num&gt;, humid &lt;num&gt;, wind_dir &lt;num&gt;, wind_speed &lt;num&gt;, wind_gust &lt;num&gt;, precip &lt;num&gt;, pressure &lt;num&gt;, visib &lt;num&gt;, time_hour &lt;POSc&gt;]</span></span>
 <span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">planes</span>, by <span class="op">=</span> <span class="st">"tailnum"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Key: &lt;tailnum&gt;</span></span>
-<span><span class="co">#&gt;         tailnum year.x month   day  hour origin   dest carrier year.y   type</span></span>
-<span><span class="co">#&gt;          &lt;char&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt;  &lt;char&gt;  &lt;int&gt; &lt;char&gt;</span></span>
-<span><span class="co">#&gt;      1:    &lt;NA&gt;   2013     1     2    15    JFK    LAX      AA     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;      2:    &lt;NA&gt;   2013     1     2    16    EWR    ORD      UA     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;      3:    &lt;NA&gt;   2013     1     3     8    EWR    MIA      UA     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;      4:    &lt;NA&gt;   2013     1     3     6    EWR    DFW      UA     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;      5:    &lt;NA&gt;   2013     1     4     8    JFK    DCA      9E     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;     ---                                                                     </span></span>
-<span><span class="co">#&gt; 336772:  N9EAMQ   2013     9    27    16    LGA    ATL      MQ     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 336773:  N9EAMQ   2013     9    29    12    LGA    BNA      MQ     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 336774:  N9EAMQ   2013     9    29    18    LGA    CMH      MQ     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 336775:  N9EAMQ   2013     9    30    11    JFK    DCA      MQ     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 336776:  N9EAMQ   2013     9    30    14    JFK    TPA      MQ     NA   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 6 variables not shown: [manufacturer &lt;char&gt;, model &lt;char&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;char&gt;]</span></span>
+<span><span class="co">#&gt;         tailnum year.x month   day  hour origin   dest carrier year.y</span></span>
+<span><span class="co">#&gt;          &lt;char&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;num&gt; &lt;char&gt; &lt;char&gt;  &lt;char&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt;      1:    &lt;NA&gt;   2013     1     2    15    JFK    LAX      AA     NA</span></span>
+<span><span class="co">#&gt;      2:    &lt;NA&gt;   2013     1     2    16    EWR    ORD      UA     NA</span></span>
+<span><span class="co">#&gt;      3:    &lt;NA&gt;   2013     1     3     8    EWR    MIA      UA     NA</span></span>
+<span><span class="co">#&gt;      4:    &lt;NA&gt;   2013     1     3     6    EWR    DFW      UA     NA</span></span>
+<span><span class="co">#&gt;      5:    &lt;NA&gt;   2013     1     4     8    JFK    DCA      9E     NA</span></span>
+<span><span class="co">#&gt;     ---                                                              </span></span>
+<span><span class="co">#&gt; 336772:  N9EAMQ   2013     9    27    16    LGA    ATL      MQ     NA</span></span>
+<span><span class="co">#&gt; 336773:  N9EAMQ   2013     9    29    12    LGA    BNA      MQ     NA</span></span>
+<span><span class="co">#&gt; 336774:  N9EAMQ   2013     9    29    18    LGA    CMH      MQ     NA</span></span>
+<span><span class="co">#&gt; 336775:  N9EAMQ   2013     9    30    11    JFK    DCA      MQ     NA</span></span>
+<span><span class="co">#&gt; 336776:  N9EAMQ   2013     9    30    14    JFK    TPA      MQ     NA</span></span>
+<span><span class="co">#&gt; 7 variable(s) not shown: [type &lt;char&gt;, manufacturer &lt;char&gt;, model &lt;char&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;char&gt;]</span></span>
 <span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dest"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Key: &lt;dest&gt;</span></span>
 <span><span class="co">#&gt;           dest  year month   day  hour origin tailnum carrier</span></span>
@@ -203,7 +202,7 @@ load the packages we need and get some data.</p>
 <span><span class="co">#&gt; 336774:    XNA  2013     9    30     8    EWR  N14117      EV</span></span>
 <span><span class="co">#&gt; 336775:    XNA  2013     9    30    15    LGA  N725MQ      MQ</span></span>
 <span><span class="co">#&gt; 336776:    XNA  2013     9    30    17    LGA  N720MQ      MQ</span></span>
-<span><span class="co">#&gt; 7 variables not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span></span>
+<span><span class="co">#&gt; 7 variable(s) not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span></span>
 <span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"origin"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Key: &lt;origin&gt;</span></span>
 <span><span class="co">#&gt;         origin  year month   day  hour   dest tailnum carrier</span></span>
@@ -219,7 +218,7 @@ load the packages we need and get some data.</p>
 <span><span class="co">#&gt; 336774:    LGA  2013     9    30    12    BNA  N535MQ      MQ</span></span>
 <span><span class="co">#&gt; 336775:    LGA  2013     9    30    11    CLE  N511MQ      MQ</span></span>
 <span><span class="co">#&gt; 336776:    LGA  2013     9    30     8    RDU  N839MQ      MQ</span></span>
-<span><span class="co">#&gt; 7 variables not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt; 7 variable(s) not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="types-of-join">Types of join<a class="anchor" aria-label="anchor" href="#types-of-join"></a>
@@ -389,7 +388,7 @@ using <code><a href="https://rdatatable.gitlab.io/data.table/reference/setops.ht
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>
