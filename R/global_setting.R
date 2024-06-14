@@ -15,6 +15,9 @@ data.table::`%like%`
 data.table::`%chin%`
 
 #' @export
+data.table::`%notin%`
+
+#' @export
 data.table::data.table
 
 #' @export

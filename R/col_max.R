@@ -32,3 +32,17 @@ col_min = function(.data,.name = "min_col"){
   DT[, (.name) := colnames(.SD)[max.col(-.SD, ties.method = "first")],
      .SDcols = is.numeric][]
 }
+
+
+# col_max2 = function(.data,...,.name = "max_col"){
+#   dt = as.data.table(.data)
+#   dt[0] %>% select_dt(...) %>% names() -> dot_string
+#   if(setequal(dot_string,names(dt))){
+#     dt[, (.name) := colnames(.SD)[max.col(.SD, ties.method = "first")],
+#        .SDcols = is.numeric][]
+#   }else{
+#     dt[, (.name) := colnames(.SD)[max.col(.SD, ties.method = "first")],
+#        .SDcols = dot_string][]
+#   }
+# }
+
