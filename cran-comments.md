@@ -1,4 +1,8 @@
 
+## 1.7.9
+1. Remove `%notin%` in tidyfst and export it directly from data.table.
+2. Add `import_fst_chunked` to process fst files by chunks.
+
 ## 1.7.8
 1. Merge the request pulled recently(see <https://github.com/hope-data-science/tidyfst/pull/25>).
 

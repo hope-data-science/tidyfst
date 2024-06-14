@@ -5,6 +5,8 @@ library(pacman)
 p_load(devtools,usethis,roxygen2,pkgdown,badger)
 p_load(fst,stringr,data.table,tidyfst,testthat)
 
+devtools::install_github("csgillespie/roxygen2Comment")
+
 # use_test("")
 
 # use_r("global_setting")
