@@ -6,6 +6,7 @@
 \alias{\%>\%}
 \alias{\%like\%}
 \alias{\%chin\%}
+\alias{\%notin\%}
 \alias{data.table}
 \alias{as.data.table}
 \alias{fread}
@@ -38,7 +39,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{data.table}{\code{\link[data.table:chmatch]{\%chin\%}}, \code{\link[data.table:like]{\%like\%}}, \code{\link[data.table]{as.data.table}}, \code{\link[data.table]{between}}, \code{\link[data.table:J]{CJ}}, \code{\link[data.table]{copy}}, \code{\link[data.table]{data.table}}, \code{\link[data.table]{fcase}}, \code{\link[data.table:coalesce]{fcoalesce}}, \code{\link[data.table:setops]{fintersect}}, \code{\link[data.table]{fread}}, \code{\link[data.table:froll]{frollapply}}, \code{\link[data.table:setops]{fsetdiff}}, \code{\link[data.table:setops]{fsetequal}}, \code{\link[data.table:setops]{funion}}, \code{\link[data.table]{fwrite}}, \code{\link[data.table:setkey]{key}}, \code{\link[data.table]{like}}, \code{\link[data.table]{rbindlist}}, \code{\link[data.table]{rleid}}, \code{\link[data.table:rleid]{rleidv}}, \code{\link[data.table:assign]{set}}, \code{\link[data.table]{setDF}}, \code{\link[data.table]{setDT}}, \code{\link[data.table:setattr]{setnames}}, \code{\link[data.table]{tables}}, \code{\link[data.table:duplicated]{uniqueN}}}
+  \item{data.table}{\code{\link[data.table:chmatch]{\%chin\%}}, \code{\link[data.table:like]{\%like\%}}, \code{\link[data.table:notin]{\%notin\%}}, \code{\link[data.table]{as.data.table}}, \code{\link[data.table]{between}}, \code{\link[data.table:J]{CJ}}, \code{\link[data.table]{copy}}, \code{\link[data.table]{data.table}}, \code{\link[data.table]{fcase}}, \code{\link[data.table:coalesce]{fcoalesce}}, \code{\link[data.table:setops]{fintersect}}, \code{\link[data.table]{fread}}, \code{\link[data.table:froll]{frollapply}}, \code{\link[data.table:setops]{fsetdiff}}, \code{\link[data.table:setops]{fsetequal}}, \code{\link[data.table:setops]{funion}}, \code{\link[data.table]{fwrite}}, \code{\link[data.table:setkey]{key}}, \code{\link[data.table]{like}}, \code{\link[data.table]{rbindlist}}, \code{\link[data.table]{rleid}}, \code{\link[data.table:rleid]{rleidv}}, \code{\link[data.table:assign]{set}}, \code{\link[data.table]{setDF}}, \code{\link[data.table]{setDT}}, \code{\link[data.table:setattr]{setnames}}, \code{\link[data.table]{tables}}, \code{\link[data.table:duplicated]{uniqueN}}}
 
   \item{stringr}{\code{\link[stringr:pipe]{\%>\%}}}
 }}
