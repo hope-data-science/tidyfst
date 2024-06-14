@@ -18,7 +18,7 @@ This function is useful for statistical analysis when you want binary columns ra
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.9</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@ original column name? Default uses <code>TRUE</code>.</p></dd>
  the input character column contains both NA and string "NA", they would be
  merged.</p>
 <p>This function is inspired by <span class="pkg">fastDummies</span> package, but provides
-simple and precise usage, whereas <code><a href="https://jacobkap.github.io/fastDummies/reference/dummy_cols.html" class="external-link">fastDummies::dummy_cols</a></code> provides more
+simple and precise usage, whereas <code>fastDummies::dummy_cols</code> provides more
 features for statistical usage.</p>
     </div>
     <div id="references">
@@ -127,26 +127,26 @@ features for statistical usage.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="https://jacobkap.github.io/fastDummies/reference/dummy_cols.html" class="external-link">dummy_cols</a></code></p></div>
+    <div class="dont-index"><p><code>dummy_cols</code></p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dummy_dt</span><span class="op">(</span><span class="va">Species</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species Species_setosa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;          &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa              1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2:          4.9         3.0          1.4         0.2    setosa              1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3:          4.7         3.2          1.3         0.2    setosa              1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4:          4.6         3.1          1.5         0.2    setosa              1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5:          5.0         3.6          1.4         0.2    setosa              1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ---                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 146:          6.7         3.0          5.2         2.3 virginica              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 147:          6.3         2.5          5.0         1.9 virginica              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica              0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 variables not shown: [Species_versicolor &lt;num&gt;, Species_virginica &lt;num&gt;]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1:          5.1         3.5          1.4         0.2    setosa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2:          4.9         3.0          1.4         0.2    setosa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3:          4.7         3.2          1.3         0.2    setosa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4:          4.6         3.1          1.5         0.2    setosa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5:          5.0         3.6          1.4         0.2    setosa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ---                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146:          6.7         3.0          5.2         2.3 virginica</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147:          6.3         2.5          5.0         1.9 virginica</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 variable(s) not shown: [Species_setosa &lt;num&gt;, Species_versicolor &lt;num&gt;, Species_virginica &lt;num&gt;]</span>
 <span class="r-in"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dummy_dt</span><span class="op">(</span><span class="va">Species</span>,longname <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species setosa</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;num&gt;       &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;fctr&gt;  &lt;num&gt;</span>
@@ -161,7 +161,7 @@ features for statistical usage.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica      0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica      0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 variables not shown: [versicolor &lt;num&gt;, virginica &lt;num&gt;]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 variable(s) not shown: [versicolor &lt;num&gt;, virginica &lt;num&gt;]</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dummy_dt</span><span class="op">(</span><span class="va">vs</span>,<span class="va">am</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear</span>
@@ -172,7 +172,7 @@ features for statistical usage.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:  21.4     6   258   110  3.08 3.215 19.44     1     0     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:  18.7     8   360   175  3.15 3.440 17.02     0     0     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6:  18.1     6   225   105  2.76 3.460 20.22     1     0     3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 variables not shown: [carb &lt;num&gt;, vs_0 &lt;num&gt;, vs_1 &lt;num&gt;, am_1 &lt;num&gt;, am_0 &lt;num&gt;]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 variable(s) not shown: [carb &lt;num&gt;, vs_0 &lt;num&gt;, vs_1 &lt;num&gt;, am_1 &lt;num&gt;, am_0 &lt;num&gt;]</span>
 <span class="r-in"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dummy_dt</span><span class="op">(</span><span class="st">"cyl|gear"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;</span>
@@ -182,7 +182,7 @@ features for statistical usage.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4:  21.4     6   258   110  3.08 3.215 19.44     1     0     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:  18.7     8   360   175  3.15 3.440 17.02     0     0     3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6:  18.1     6   225   105  2.76 3.460 20.22     1     0     3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 variables not shown: [carb &lt;num&gt;, cyl_6 &lt;num&gt;, cyl_4 &lt;num&gt;, cyl_8 &lt;num&gt;, gear_4 &lt;num&gt;, gear_3 &lt;num&gt;]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 variable(s) not shown: [carb &lt;num&gt;, cyl_6 &lt;num&gt;, cyl_4 &lt;num&gt;, cyl_8 &lt;num&gt;, gear_4 &lt;num&gt;, gear_3 &lt;num&gt;]</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># when there are NAs in the column</span></span></span>
 <span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>,y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span></span>
@@ -220,7 +220,7 @@ features for statistical usage.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer></div>
