@@ -1,7 +1,7 @@
 Package: tidyfst
 Title: Tidy Verbs for Fast Data Manipulation
-Version: 1.7.9
-Depends: R (>= 3.3.0)
+Version: 1.8.0
+Depends: R (>= 4.0.0)
 Authors@R: 
     person(given = "Tian-Yuan",
            family = "Huang",
@@ -17,9 +17,9 @@ URL: https://github.com/hope-data-science/tidyfst, https://hope-data-science.git
 BugReports: https://github.com/hope-data-science/tidyfst/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
-    data.table (>= 1.13.0),
+    data.table (>= 1.15.0),
     fst (>= 0.9.0),
     stringr (>= 1.5.0)
 Suggests: 

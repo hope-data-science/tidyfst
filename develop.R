@@ -24,6 +24,7 @@ testthat::test_package("tidyfst")
 # library(tidydt)
 
 options(pkgdown.internet = F)
+options(rmarkdown.html_vignette.check_title = FALSE)
 build_site(override = list(rmarkdown.html_vignette.check_title = FALSE))
 
 submit_cran()

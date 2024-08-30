@@ -1,4 +1,9 @@
 
+## 1.8.0
+1. Imports data.table (>= 1.15.0) to ensure `%notin%` could be used.
+2. Depends on R (>=4.0.0).
+3. Add `round0` function to ensure rounding includes 0 from behind.
+
 ## 1.7.9
 1. Remove `%notin%` in tidyfst and export it directly from data.table.
 2. Add `import_fst_chunked` to process fst files by chunks.
