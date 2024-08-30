@@ -26,7 +26,7 @@ end of tables with more than \code{nrow} rows.}
 
 \item{col.names}{One of three flavours for controlling the display of column names in output. \code{"auto"} includes column names above the data, as well as below the table if \code{nrow(x) > 20}. \code{"top"} excludes this lower register when applicable, and \code{"none"} suppresses column names altogether (as well as column classes if \code{class = TRUE}.}
 
-\item{print.keys}{If \code{TRUE}, any \code{\link{key}} and/or \code{\link[=indices]{index}} currently assigned to \code{x} will be printed prior to the preview of the data.}
+\item{print.keys}{If \code{TRUE}, any \code{\link{key}} currently assigned to \code{x} will be printed prior to the preview of the data.}
 
 \item{trunc.cols}{If \code{TRUE}, only the columns that can be printed in the console without wrapping the columns to new lines will be printed (similar to \code{tibbles}).}
 }
