@@ -7,7 +7,7 @@
 #' @param class If \code{TRUE}, the resulting output will include above each column its storage class (or a self-evident abbreviation thereof).
 #' @param row.names If \code{TRUE}, row indices will be printed.
 #' @param col.names One of three flavours for controlling the display of column names in output. \code{"auto"} includes column names above the data, as well as below the table if \code{nrow(x) > 20}. \code{"top"} excludes this lower register when applicable, and \code{"none"} suppresses column names altogether (as well as column classes if \code{class = TRUE}.
-#' @param print.keys If \code{TRUE}, any \code{\link{key}} and/or \code{\link[=indices]{index}} currently assigned to \code{x} will be printed prior to the preview of the data.
+#' @param print.keys If \code{TRUE}, any \code{\link{key}} currently assigned to \code{x} will be printed prior to the preview of the data.
 #' @param trunc.cols  If \code{TRUE}, only the columns that can be printed in the console without wrapping the columns to new lines will be printed (similar to \code{tibbles}).
 #' @seealso \code{\link[data.table]{print.data.table}}
 #' @details Notice that \pkg{tidyfst} has a slightly different printing default for data.table,
