@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.1</span>
       </span>
     </div>
 
@@ -1179,7 +1179,15 @@ Now let’s begin.</p>
 <span><span class="co">### Cast data (from long to wide)</span></span>
 <span><span class="va">mDT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/wider_dt.html">wider_dt</a></span><span class="op">(</span><span class="va">V4</span>,name <span class="op">=</span> <span class="st">"name"</span>,value <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Aggregate function missing, defaulting to 'length'</span></span>
+<span><span class="co">#&gt; Warning in dcast.data.table(dt, V4 ~ name, fun.aggregate = NULL, value.var =</span></span>
+<span><span class="co">#&gt; value, : 'fun.aggregate' is NULL, but found duplicate row/column combinations,</span></span>
+<span><span class="co">#&gt; so defaulting to length(). That is, the variables [V4, name] used in 'formula'</span></span>
+<span><span class="co">#&gt; do not uniquely identify rows in the input 'data'. In such cases,</span></span>
+<span><span class="co">#&gt; 'fun.aggregate' is used to derive a single representative value for each</span></span>
+<span><span class="co">#&gt; combination in the output data.table, for example by summing or averaging</span></span>
+<span><span class="co">#&gt; (fun.aggregate=sum or fun.aggregate=mean, respectively). Check the resulting</span></span>
+<span><span class="co">#&gt; table for values larger than 1 to see which combinations were not unique. See</span></span>
+<span><span class="co">#&gt; ?dcast.data.table for more details.</span></span>
 <span><span class="co">#&gt; Key: &lt;V4&gt;</span></span>
 <span><span class="co">#&gt;        V4    V1    V2</span></span>
 <span><span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt;</span></span>

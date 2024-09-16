@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.1</span>
       </span>
     </div>
 
@@ -200,7 +200,7 @@ the results are equal, because dplyr will return a tibble class even
 when we input a data.table in the first place. The iteration time is 10
 for each of the test below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  data.table <span class="op">=</span> <span class="va">DT</span><span class="op">[</span>,<span class="fu">.</span><span class="op">(</span>median_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,</span>
 <span>                     sd_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                  by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">id4</span>,<span class="va">id5</span><span class="op">)</span><span class="op">]</span>,</span>
@@ -242,9 +242,9 @@ for each of the test below.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
 <span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table    1.1ms   1.34ms    741.      2.36MB      0  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      1.19ms   1.26ms    762.    661.28KB      0  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr      134.01ms 156.66ms      6.37    5.33MB     42.7</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   1.25ms   1.46ms    653.      2.37MB      0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      1.33ms   1.45ms    695.    661.28KB      0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr      134.78ms 155.64ms      6.38    5.33MB     42.7</span></span></code></pre></div>
 <p>We could find that spent time of tidyfst and data.table are quite
 similar, but much less than dplyr.</p>
 </div>
@@ -256,7 +256,7 @@ similar, but much less than dplyr.</p>
 translation than <em>data.table</em>, but still performs much better
 than <em>dplyr</em>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span>,<span class="fu">.</span><span class="op">(</span>range_v1_v2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">v1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">v2</span><span class="op">)</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id3</span><span class="op">]</span>,</span>
 <span>  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span></span>
 <span>    by <span class="op">=</span> <span class="va">id3</span>,</span>
@@ -272,9 +272,9 @@ than <em>dplyr</em>.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
 <span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table  521.9µs  553.3µs     <span style="text-decoration: underline;">1</span>683.    92.9KB        0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst     512.2µs 534.25µs     <span style="text-decoration: underline;">1</span>850.    92.9KB        0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        1.79ms   1.82ms      521.   468.7KB        0</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table  518.9µs  612.4µs     <span style="text-decoration: underline;">1</span>566.    92.9KB        0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst     546.8µs  636.1µs     <span style="text-decoration: underline;">1</span>461.    92.9KB        0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        1.79ms   1.95ms      496.   468.7KB        0</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="q3">Q3<a class="anchor" aria-label="anchor" href="#q3"></a>
@@ -288,7 +288,7 @@ data.table codes to gain speed when you meet a bottomneck.<br><br> In
 the following example, we use the exact same syntax of
 <em>data.table</em> in <code><a href="../reference/dt.html">tidyfst::in_dt</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">v3</span><span class="op">)</span>,<span class="fu">.</span><span class="op">(</span>largest2_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">v3</span>,<span class="fl">2L</span><span class="op">)</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id6</span><span class="op">]</span>,</span>
 <span>  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="../reference/dt.html">in_dt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">v3</span><span class="op">)</span>,<span class="fu">.</span><span class="op">(</span>largest2_v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">v3</span>,<span class="fl">2L</span><span class="op">)</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id6</span><span class="op">)</span>,</span>
@@ -303,9 +303,9 @@ the following example, we use the exact same syntax of
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
 <span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   1.19ms   1.23ms      739.  597.75KB      0  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      1.51ms   1.55ms      625.    1.02MB      0  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr         8.5ms   9.18ms      101.    2.01MB     25.3</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   1.48ms   1.51ms      617.  608.47KB      0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      1.76ms   1.84ms      507.    1.03MB      0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        8.74ms    9.2ms      109.    1.99MB     27.2</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="q4">Q4<a class="anchor" aria-label="anchor" href="#q4"></a>
@@ -316,7 +316,7 @@ convenient than the <code>across</code> function in <em>dplyr</em>. It
 first choose the columns, then tell it what to do, and you can provide
 the “by” parameter to operate by groups (optional).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">.SD</span>,<span class="va">mean</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id4</span>,.SDcols <span class="op">=</span> <span class="va">v1</span><span class="op">:</span><span class="va">v3</span><span class="op">]</span>,</span>
 <span>  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="../reference/summarise_dt.html">summarise_vars</a></span><span class="op">(</span></span>
@@ -334,9 +334,9 @@ the “by” parameter to operate by groups (optional).</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
 <span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table  747.8µs  830.7µs     <span style="text-decoration: underline;">1</span>056.     490KB      0  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      2.12ms   2.14ms      455.     319KB     50.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        3.36ms    3.5ms      286.     551KB      0</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table  765.7µs    829µs     <span style="text-decoration: underline;">1</span>059.     490KB      0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      2.17ms   2.23ms      430.     319KB     47.8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr        3.29ms   3.49ms      277.     551KB      0</span></span></code></pre></div>
 <p>Take a look at the performance, <em>tidyfst</em> still lies between
 <em>data.table</em> and <em>dplyr</em>.</p>
 </div>
@@ -348,7 +348,7 @@ and get the sum and count. Note that <em>tidyfst</em> is written in
 <em>data.table</em>, so it do not use <code><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n()</a></code> in <em>dplyr</em>
 but <code>.N</code> in <em>data.table</em> to get counts by group.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>  data.table <span class="op">=</span><span class="va">DT</span><span class="op">[</span>,<span class="fu">.</span><span class="op">(</span>v3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">v3</span><span class="op">)</span>,count <span class="op">=</span> <span class="va">.N</span><span class="op">)</span>,by <span class="op">=</span> <span class="va">id1</span><span class="op">:</span><span class="va">id6</span><span class="op">]</span>,</span>
 <span>  tidyfst <span class="op">=</span> <span class="va">DT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="../reference/summarise_dt.html">summarise_dt</a></span><span class="op">(</span></span>
@@ -388,9 +388,9 @@ but <code>.N</code> in <em>data.table</em> to get counts by group.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
 <span><span class="co">#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;bch:expr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:tm&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;bch:byt&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   1.81ms   1.92ms     501.     1.03MB      0  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst       1.9ms   1.92ms     512.     1.02MB      0  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr       52.99ms  55.45ms      17.8    2.94MB     23.1</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> data.table   2.05ms   2.18ms     439.     1.03MB      0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tidyfst      2.13ms   2.18ms     446.     1.02MB      0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> dplyr       53.35ms  55.76ms      17.7    2.94MB     23.0</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="last-words">Last words<a class="anchor" aria-label="anchor" href="#last-words"></a>
@@ -433,7 +433,7 @@ verbs friendly, the innate syntax of <em>tidyfst</em> is more like
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] bench_1.1.3       dplyr_1.1.4       data.table_1.15.4 tidyfst_1.8.0    </span></span>
+<span><span class="co">#&gt; [1] bench_1.1.3       dplyr_1.1.4       data.table_1.16.0 tidyfst_1.8.1    </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;  [1] jsonlite_1.8.8    compiler_4.4.1    tidyselect_1.2.1  Rcpp_1.0.13      </span></span>

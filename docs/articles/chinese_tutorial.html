@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.1</span>
       </span>
     </div>
 
@@ -255,7 +255,7 @@
 <span>      <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.030s elapsed (0.000s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.020s elapsed (0.000s cpu)"</span></span>
 <span><span class="va">r1_2</span></span>
 <span><span class="co">#&gt;               dt carat       cut color clarity depth table price     x</span></span>
 <span><span class="co">#&gt;           &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span></span>
@@ -311,7 +311,7 @@
 <span>  <span class="va">mymerge</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, by <span class="op">=</span> <span class="st">"dt"</span><span class="op">)</span></span>
 <span>  <span class="va">r2_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Reduce</a></span><span class="op">(</span><span class="va">mymerge</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">dat2</span>, <span class="va">dat3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.040s elapsed (0.020s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.030s elapsed (0.030s cpu)"</span></span>
 <span><span class="va">r2_2</span></span>
 <span><span class="co">#&gt; Key: &lt;dt&gt;</span></span>
 <span><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span></span>
@@ -346,7 +346,7 @@
 <span>             name <span class="op">=</span> <span class="st">"color"</span>,</span>
 <span>             fun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mean1</span>,<span class="va">max1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.000s elapsed (0.000s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.030s elapsed (0.000s cpu)"</span></span>
 <span><span class="va">r3_1</span></span>
 <span><span class="co">#&gt; Key: &lt;cut&gt;</span></span>
 <span><span class="co">#&gt;          cut depth_mean1_D depth_mean1_E depth_mean1_F depth_mean1_G</span></span>
@@ -399,7 +399,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/sys_time_print.html">sys_time_print</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>  <span class="va">dat1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/missing.html">fill_na_dt</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dat1</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.000s elapsed (0.000s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.010s elapsed (0.000s cpu)"</span></span>
 <span><span class="va">dat1</span></span>
 <span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y</span></span>
 <span><span class="co">#&gt;         &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt; &lt;num&gt;</span></span>
@@ -430,7 +430,7 @@
 <span>           sd_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">price</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>           by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">cut</span>, <span class="va">color</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.050s elapsed (0.020s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.050s elapsed (0.010s cpu)"</span></span>
 <span></span>
 <span><span class="va">dat1</span></span>
 <span><span class="co">#&gt;         carat       cut color clarity depth table price     x     y</span></span>
@@ -460,7 +460,7 @@
 <span>    <span class="fu"><a href="../reference/mutate.html">mutate_dt</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="va">.N</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dat1</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.700s elapsed (0.290s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.790s elapsed (0.340s cpu)"</span></span>
 <span><span class="va">dat1</span></span>
 <span><span class="co">#&gt;                 dt carat       cut color clarity depth table price     x</span></span>
 <span><span class="co">#&gt;             &lt;Date&gt; &lt;num&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;int&gt; &lt;num&gt;</span></span>
@@ -493,7 +493,7 @@
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">-&gt;</span> <span class="va">dat1</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "# Finished in 0.420s elapsed (0.170s cpu)"</span></span>
+<span><span class="co">#&gt; [1] "# Finished in 0.420s elapsed (0.140s cpu)"</span></span>
 <span></span>
 <span><span class="va">dat1</span></span>
 <span><span class="co">#&gt;         color         dt carat       cut clarity depth table price     x</span></span>
@@ -538,7 +538,7 @@
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] tidyfst_1.8.0</span></span>
+<span><span class="co">#&gt; [1] tidyfst_1.8.1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;  [1] gtable_0.3.5      jsonlite_1.8.8    dplyr_1.1.4       compiler_4.4.1   </span></span>
@@ -551,7 +551,7 @@
 <span><span class="co">#&gt; [29] xfun_0.46         fs_1.6.4          sass_0.4.9        cli_3.6.3        </span></span>
 <span><span class="co">#&gt; [33] pkgdown_2.1.0     magrittr_2.0.3    digest_0.6.36     grid_4.4.1       </span></span>
 <span><span class="co">#&gt; [37] rstudioapi_0.16.0 fst_0.9.8         lifecycle_1.0.4   vctrs_0.6.5      </span></span>
-<span><span class="co">#&gt; [41] evaluate_0.24.0   glue_1.7.0        data.table_1.15.4 ragg_1.3.2       </span></span>
+<span><span class="co">#&gt; [41] evaluate_0.24.0   glue_1.7.0        data.table_1.16.0 ragg_1.3.2       </span></span>
 <span><span class="co">#&gt; [45] fansi_1.0.6       colorspace_2.1-0  fstcore_0.9.18    rmarkdown_2.27   </span></span>
 <span><span class="co">#&gt; [49] pkgconfig_2.0.3   tools_4.4.1       htmltools_0.5.8.1</span></span></code></pre></div>
 </div>
