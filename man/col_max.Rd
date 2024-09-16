@@ -5,12 +5,15 @@
 \alias{col_min}
 \title{Get the column name of the max/min number each row}
 \usage{
-col_max(.data, .name = "max_col")
+col_max(.data, ..., .name = "max_col")
 
-col_min(.data, .name = "min_col")
+col_min(.data, ..., .name = "min_col")
 }
 \arguments{
 \item{.data}{A data.frame with numeric column(s)}
+
+\item{...}{Variables for screening, could receive what `select_dt` receives.
+When starts with '-'(minus symbol) or '!', return the negative columns.}
 
 \item{.name}{The column name of the new added column}
 }
@@ -26,10 +29,13 @@ set.seed(199057)
 DT <- data.table(matrix(sample(10, 100, TRUE), ncol=10))
 DT
 col_max(DT)
+col_max(DT,V1:V3)
 col_max(DT,.name = "max_col_name")
 col_min(DT)
+col_min(DT,2:4)
 
 col_max(iris)
+
 }
 \references{
 https://stackoverflow.com/questions/17735859/for-each-row-return-the-column-name-of-the-largest-value
