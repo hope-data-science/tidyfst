@@ -18,7 +18,7 @@ specifying the column name of the first max/min value each row."><meta property=
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.1</span>
       </span>
     </div>
 
@@ -86,9 +86,9 @@ specifying the column name of the first max/min value each row.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">col_max</span><span class="op">(</span><span class="va">.data</span>, .name <span class="op">=</span> <span class="st">"max_col"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">col_max</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .name <span class="op">=</span> <span class="st">"max_col"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">col_min</span><span class="op">(</span><span class="va">.data</span>, .name <span class="op">=</span> <span class="st">"min_col"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">col_min</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span>, .name <span class="op">=</span> <span class="st">"min_col"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -97,6 +97,11 @@ specifying the column name of the first max/min value each row.</p>
 
 <dl><dt id="arg--data">.data<a class="anchor" aria-label="anchor" href="#arg--data"></a></dt>
 <dd><p>A data.frame with numeric column(s)</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Variables for screening, could receive what `select_dt` receives.
+When starts with '-'(minus symbol) or '!', return the negative columns.</p></dd>
 
 
 <dt id="arg--name">.name<a class="anchor" aria-label="anchor" href="#arg--name"></a></dt>
@@ -143,6 +148,20 @@ specifying the column name of the first max/min value each row.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  9:     1     7     6     2     6     1    10     6     4     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10:     5    10     3     3     5     9     2     9     7     7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable(s) not shown: [max_col &lt;char&gt;]</span>
+<span class="r-in"><span><span class="fu">col_max</span><span class="op">(</span><span class="va">DT</span>,<span class="va">V1</span><span class="op">:</span><span class="va">V3</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        V1    V2    V3    V4    V5    V6    V7    V8    V9   V10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1:     8     1     2     2     5     5     9     2     9     4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2:     6     2     1    10     5     7     1    10     9    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3:     3     1     8     6    10    10     9     2     4     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4:     1     2     9     1    10    10     2     2     7     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5:     9     5     4     4     5    10     4     5     8     8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6:     8    10     3     3     8     8     5     1     4     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7:    10     3     3     7     7     7     8     1     5     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  8:    10     8    10     1     5    10     8     6     3     4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  9:     1     7     6     2     6     1    10     6     4     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10:     5    10     3     3     5     9     2     9     7     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable(s) not shown: [max_col &lt;char&gt;]</span>
 <span class="r-in"><span><span class="fu">col_max</span><span class="op">(</span><span class="va">DT</span>,.name <span class="op">=</span> <span class="st">"max_col_name"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        V1    V2    V3    V4    V5    V6    V7    V8    V9   V10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
@@ -171,6 +190,20 @@ specifying the column name of the first max/min value each row.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  9:     1     7     6     2     6     1    10     6     4     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10:     5    10     3     3     5     9     2     9     7     7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable(s) not shown: [min_col &lt;char&gt;]</span>
+<span class="r-in"><span><span class="fu">col_min</span><span class="op">(</span><span class="va">DT</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        V1    V2    V3    V4    V5    V6    V7    V8    V9   V10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1:     8     1     2     2     5     5     9     2     9     4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2:     6     2     1    10     5     7     1    10     9    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3:     3     1     8     6    10    10     9     2     4     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4:     1     2     9     1    10    10     2     2     7     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5:     9     5     4     4     5    10     4     5     8     8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6:     8    10     3     3     8     8     5     1     4     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7:    10     3     3     7     7     7     8     1     5     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  8:    10     8    10     1     5    10     8     6     3     4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  9:     1     7     6     2     6     1    10     6     4     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10:     5    10     3     3     5     9     2     9     7     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 variable(s) not shown: [min_col &lt;char&gt;]</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">col_max</span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sepal.Length Sepal.Width Petal.Length Petal.Width   Species      max_col</span>
@@ -186,6 +219,7 @@ specifying the column name of the first max/min value each row.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 148:          6.5         3.0          5.2         2.0 virginica Sepal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 149:          6.2         3.4          5.4         2.3 virginica Sepal.Length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 150:          5.9         3.0          5.1         1.8 virginica Sepal.Length</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
