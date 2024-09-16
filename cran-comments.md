@@ -1,4 +1,8 @@
 
+## 1.8.1
+1. Add function `bind_rows_dt`, so as to facilitate row bindings of data.frames with same names but different data types.
+2. Revise `col_max` and `col_min` function according to issue pulled at <https://github.com/hope-data-science/tidyfst/issues/26>.
+
 ## 1.8.0
 1. Imports data.table (>= 1.15.0) to ensure `%notin%` could be used.
 2. Depends on R (>=4.0.0).
@@ -22,7 +26,7 @@
 2.Remove `%notin%` function as data.table would provide it later.
 
 ## 1.7.5
-1.A request has been suggested and implemented, see <https://github.com/hope-data-science/tidyfst/pull/21>;.
+1.A request has been suggested and implemented, see <https://github.com/hope-data-science/tidyfst/pull/21>.
 2.Expired URLs have been removed from README.md.
   
 ## 1.7.4
