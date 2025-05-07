@@ -51,8 +51,6 @@ filter_dt(DF, V4 %in% c("A", "C"))
 filter_dt(DF, V4 %chin% c("A", "C")) # fast %in% for character
 
 ### Filter rows using multiple conditions
-filter_dt(DF, V1 == 1, V4 == "A")
-# equals to
 filter_dt(DF, V1 == 1 & V4 == "A")
 
 ### Filter unique rows
