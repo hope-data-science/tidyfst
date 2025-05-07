@@ -1,7 +1,7 @@
 Package: tidyfst
 Title: Tidy Verbs for Fast Data Manipulation
-Version: 1.8.1
-Depends: R (>= 4.0.0)
+Version: 1.8.2
+Depends: R (>= 4.1.0)
 Authors@R: 
     person(given = "Tian-Yuan",
            family = "Huang",
@@ -31,5 +31,6 @@ Suggests:
     ggplot2,
     dplyr,
     bench,
-    testthat
+    testthat,
+    tidytext
 VignetteBuilder: knitr

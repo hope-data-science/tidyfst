@@ -1,4 +1,8 @@
 
+## 1.8.2
+1. Correct mistake made in vignette "Use data.table the tidy way: An ultimate tutorial of tidyfst"
+2. Add new function `bind_tf_idf_dt` to calculate TF-IDF faster (than `tidytext::bind_tf_idf`), especially for multiple groups.
+
 ## 1.8.1
 1. Add function `bind_rows_dt`, so as to facilitate row bindings of data.frames with same names but different data types.
 2. Revise `col_max` and `col_min` function according to issue pulled at <https://github.com/hope-data-science/tidyfst/issues/26>.
