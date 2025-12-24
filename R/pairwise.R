@@ -11,8 +11,8 @@
 #' @param upper When \code{FALSE}(Default), duplicated combinations would be removed.
 #' @param diag Whether to include diagonal (V1==V2) in output. Default uses \code{FALSE}.
 #' @param sort Whether to sort rows by counts. Default uses \code{TRUE}.
-#' @return A data.table with 3 columns (named as "V1","V2" and "n"), containing combinations
-#'  in "V1" and "V2", and counts in "n".
+#' @return A data.table with 3 columns (named as "item1","item2" and "n"), containing combinations
+#'  in "item1" and "item2", and counts in "n".
 #' @seealso \code{\link[widyr]{pairwise_count}}
 #' @examples
 #'
@@ -49,9 +49,10 @@ pairwise_count_dt = function(.data,.group,.value,upper = FALSE,diag = FALSE,sort
   if(!upper) res = res[V1 <= V2]
 
   res %>%
-    count_dt(V1,V2,sort = sort)
+    count_dt(V1,V2,sort = sort) %>%
+    rename_dt(item1 = V1,item2 = V2)
 
 }
 
-globalVariables(c("V1","V2"))
+globalVariables(c("V1","V2","item1","item2"))
 
