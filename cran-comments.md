@@ -1,4 +1,7 @@
 
+## 1.8.3
+For `pairwise_count_dt` function, make the output name consistent with the `widyr::pairwise_count` function (using "item1" and "item2" instead of "V1" and "V2").
+
 ## 1.8.2
 1. Correct mistake made in vignette "Use data.table the tidy way: An ultimate tutorial of tidyfst"
 2. Add new function `bind_tf_idf_dt` to calculate TF-IDF faster (than `tidytext::bind_tf_idf`), especially for multiple groups.
