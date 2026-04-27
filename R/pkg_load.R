@@ -39,7 +39,7 @@ pkg_load = function(...,pkg_names = NULL){
   }else list.of.packages = pkg_names
 
   new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-  if(length(new.packages)) install.packages(new.packages)
+  if(length(new.packages)) pak::pak(new.packages)
   sapply(list.of.packages,\(x){
     suppressMessages(require(x,character.only = TRUE))
   }) %>% all() %>% invisible()

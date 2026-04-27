@@ -4,6 +4,7 @@
 #' @import stringr
 #' @importFrom stats na.omit setNames median
 #' @importFrom utils object.size head tail install.packages installed.packages
+#' @importFrom pak pak
 
 #' @export
 stringr::`%>%`
@@ -13,9 +14,6 @@ data.table::`%like%`
 
 #' @export
 data.table::`%chin%`
-
-#' @export
-data.table::`%notin%`
 
 #' @export
 data.table::data.table
