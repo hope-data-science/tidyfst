@@ -1,5 +1,5 @@
-pandoc: 3.1.11
-pkgdown: 2.1.0
+pandoc: 3.8.3
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   benchmark: benchmark.html
@@ -11,4 +11,4 @@ articles:
   example4_nest: example4_nest.html
   example5_fst: example5_fst.html
   example6_dt: example6_dt.html
-last_built: 2024-09-16T03:45Z
+last_built: 2026-04-27T07:05Z
