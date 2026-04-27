@@ -27,8 +27,8 @@ pairwise_count_dt(
 \item{sort}{Whether to sort rows by counts. Default uses \code{TRUE}.}
 }
 \value{
-A data.table with 3 columns (named as "V1","V2" and "n"), containing combinations
- in "V1" and "V2", and counts in "n".
+A data.table with 3 columns (named as "item1","item2" and "n"), containing combinations
+ in "item1" and "item2", and counts in "n".
 }
 \description{
 Count the number of times each pair
