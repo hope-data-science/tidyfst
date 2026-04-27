@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Example 2: Join tables • tidyfst</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -38,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyfst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.4</span>
       </span>
     </div>
 
@@ -146,7 +145,7 @@ load the packages we need and get some data.</p>
 <span><span class="co">#&gt; 336774:      YV  2013     9    30    16    LGA    IAD  N510MJ</span></span>
 <span><span class="co">#&gt; 336775:      YV  2013     9    30    17    LGA    CLT  N905FJ</span></span>
 <span><span class="co">#&gt; 336776:      YV  2013     9    30    20    LGA    CLT  N924FJ</span></span>
-<span><span class="co">#&gt; 1 variable(s) not shown: [name &lt;char&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 variable not shown: [name &lt;char&gt;]</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="controlling-how-the-tables-are-matched">Controlling how the tables are matched<a class="anchor" aria-label="anchor" href="#controlling-how-the-tables-are-matched"></a>
 </h2>
@@ -168,7 +167,7 @@ load the packages we need and get some data.</p>
 <span><span class="co">#&gt; 336774:  2013    12    31    23    JFK    SJU  N713TW      DL    NA</span></span>
 <span><span class="co">#&gt; 336775:  2013    12    31    23    JFK    SJU  N509JB      B6    NA</span></span>
 <span><span class="co">#&gt; 336776:  2013    12    31    23    JFK    PSE  N665JB      B6    NA</span></span>
-<span><span class="co">#&gt; 9 variable(s) not shown: [dewp &lt;num&gt;, humid &lt;num&gt;, wind_dir &lt;num&gt;, wind_speed &lt;num&gt;, wind_gust &lt;num&gt;, precip &lt;num&gt;, pressure &lt;num&gt;, visib &lt;num&gt;, time_hour &lt;POSc&gt;]</span></span>
+<span><span class="co">#&gt; 9 variables not shown: [dewp &lt;num&gt;, humid &lt;num&gt;, wind_dir &lt;num&gt;, wind_speed &lt;num&gt;, wind_gust &lt;num&gt;, precip &lt;num&gt;, pressure &lt;num&gt;, visib &lt;num&gt;, time_hour &lt;POSc&gt;]</span></span>
 <span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">planes</span>, by <span class="op">=</span> <span class="st">"tailnum"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Key: &lt;tailnum&gt;</span></span>
 <span><span class="co">#&gt;         tailnum year.x month   day  hour origin   dest carrier year.y</span></span>
@@ -184,7 +183,7 @@ load the packages we need and get some data.</p>
 <span><span class="co">#&gt; 336774:  N9EAMQ   2013     9    29    18    LGA    CMH      MQ     NA</span></span>
 <span><span class="co">#&gt; 336775:  N9EAMQ   2013     9    30    11    JFK    DCA      MQ     NA</span></span>
 <span><span class="co">#&gt; 336776:  N9EAMQ   2013     9    30    14    JFK    TPA      MQ     NA</span></span>
-<span><span class="co">#&gt; 7 variable(s) not shown: [type &lt;char&gt;, manufacturer &lt;char&gt;, model &lt;char&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;char&gt;]</span></span>
+<span><span class="co">#&gt; 7 variables not shown: [type &lt;char&gt;, manufacturer &lt;char&gt;, model &lt;char&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;char&gt;]</span></span>
 <span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dest"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Key: &lt;dest&gt;</span></span>
 <span><span class="co">#&gt;           dest  year month   day  hour origin tailnum carrier</span></span>
@@ -200,7 +199,7 @@ load the packages we need and get some data.</p>
 <span><span class="co">#&gt; 336774:    XNA  2013     9    30     8    EWR  N14117      EV</span></span>
 <span><span class="co">#&gt; 336775:    XNA  2013     9    30    15    LGA  N725MQ      MQ</span></span>
 <span><span class="co">#&gt; 336776:    XNA  2013     9    30    17    LGA  N720MQ      MQ</span></span>
-<span><span class="co">#&gt; 7 variable(s) not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span></span>
+<span><span class="co">#&gt; 7 variables not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span></span>
 <span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">left_join_dt</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"origin"</span> <span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Key: &lt;origin&gt;</span></span>
 <span><span class="co">#&gt;         origin  year month   day  hour   dest tailnum carrier</span></span>
@@ -216,14 +215,14 @@ load the packages we need and get some data.</p>
 <span><span class="co">#&gt; 336774:    LGA  2013     9    30    12    BNA  N535MQ      MQ</span></span>
 <span><span class="co">#&gt; 336775:    LGA  2013     9    30    11    CLE  N511MQ      MQ</span></span>
 <span><span class="co">#&gt; 336776:    LGA  2013     9    30     8    RDU  N839MQ      MQ</span></span>
-<span><span class="co">#&gt; 7 variable(s) not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span></span></code></pre></div>
+<span><span class="co">#&gt; 7 variables not shown: [name &lt;char&gt;, lat &lt;num&gt;, lon &lt;num&gt;, alt &lt;num&gt;, tz &lt;num&gt;, dst &lt;char&gt;, tzone &lt;char&gt;]</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="types-of-join">Types of join<a class="anchor" aria-label="anchor" href="#types-of-join"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, a <span class="op">=</span> <span class="fl">10</span>, b <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, a <span class="op">=</span> <span class="fl">10</span>, b <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/join.html">inner_join_dt</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; Joining by: x</span></span>
@@ -365,7 +364,7 @@ data.table. Examples are listed as below:</p>
 <span><span class="fu"><a href="../reference/setops.html">setequal_dt</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x2</span><span class="op">)</span>     </span>
 <span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>For more details, just find the help from <code>data.table</code>
-using <code><a href="https://rdatatable.gitlab.io/data.table/reference/setops.html" class="external-link">?setops</a></code>.</p>
+using <code><a href="https://rdrr.io/pkg/data.table/man/setops.html" class="external-link">?setops</a></code>.</p>
 </div>
   </div>
 
@@ -384,7 +383,7 @@ using <code><a href="https://rdatatable.gitlab.io/data.table/reference/setops.ht
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>
