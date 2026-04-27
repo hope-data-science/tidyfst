@@ -1,9 +1,9 @@
 
 # for develop
 
-library(pacman)
-p_load(devtools,usethis,roxygen2,pkgdown,badger)
-p_load(fst,stringr,data.table,tidyfst,testthat)
+library(tidyfst)
+pkg_load(devtools,usethis,roxygen2,pkgdown,badger)
+pkg_load(fst,stringr,data.table,tidyfst,testthat)
 
 devtools::install_github("csgillespie/roxygen2Comment")
 
@@ -13,7 +13,7 @@ devtools::install_github("csgillespie/roxygen2Comment")
 
 rm(list = ls())
 document()
-install(upgrade = "never",dependencies = F)
+devtools::install(upgrade = F,dependencies = F)
 #install(upgrade = "never",dependencies = F,quick = T)
 #install(quick = T)
 .rs.restartR()

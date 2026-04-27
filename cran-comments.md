@@ -1,4 +1,9 @@
 
+## 1.8.4
+1. Use `pak::pak` instead of former `install.packages` to support `pkg_load`, this could be faster.
+2. `%notin%` is now in base-R, therefore not exported in tidyfst now.
+3. Remove package pryr in suggest as it is removed from CRAN.
+
 ## 1.8.3
 For `pairwise_count_dt` function, make the output name consistent with the `widyr::pairwise_count` function (using "item1" and "item2" instead of "V1" and "V2").
 
